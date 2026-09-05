@@ -56,10 +56,22 @@
 
 
 .hero {
-  background:
-    linear-gradient(145deg, rgba(17,47,91,.72), rgba(10,29,56,.65)),
-    url("assets/home5.png") center / cover no-repeat;
+  --hero-scrim: linear-gradient(115deg, rgba(17, 47, 91, 0.84) 0%, rgba(10, 29, 56, 0.62) 58%, rgba(10, 29, 56, 0.28) 100%);
+  background: #0a1d38 url("assets/home5.png") center / cover no-repeat;
+  min-height: clamp(24rem, 50vw, 34rem);
 }
+.hero h1 {
+  max-width: 18ch;
+  color: #fff;
+}
+.hero .lede { color: #fff; }
+.hero .eyebrow {
+  color: #112f5b;
+  background: #fdf102;
+}
+.btn-primary { background: #d64000; color: #fff; }
 .site-header { background: #112F5B url("assets/home4.png") center / cover; }
 #services { background: #f2eae7 url("assets/services-art.png") right / contain no-repeat; }
+.theme-dark-header :focus-visible,
+.hero :focus-visible { outline-color: #fff6c8; }
 

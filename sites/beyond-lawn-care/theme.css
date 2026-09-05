@@ -17,6 +17,7 @@
 }
 
 .hero {
+  --hero-scrim: linear-gradient(90deg, rgba(22, 48, 34, 0.78) 0%, rgba(22, 48, 34, 0.45) 60%, transparent 100%);
   background: linear-gradient(145deg, #18793f, #0f5a2c);
 }
 .prose a, .nav a:hover, .nav a[aria-current="page"] { color: #18793f; }
@@ -55,11 +56,40 @@
 
 
 
-.hero.video-hero { position: relative; min-height: 28rem; overflow: hidden; background: #18793f; }
-.hero.video-hero .videobgframe {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;
+.hero.video-hero {
+  --hero-scrim: linear-gradient(90deg, rgba(22, 48, 34, 0.78) 0%, rgba(22, 48, 34, 0.58) 42%, rgba(22, 48, 34, 0.18) 72%, rgba(22, 48, 34, 0) 100%);
+  position: relative;
+  min-height: clamp(28rem, 58vw, 38rem);
+  overflow: hidden;
+  background: #163022 url("assets/hero-poster.jpg") center / cover no-repeat;
 }
-.hero.video-hero .wrap, .hero.video-hero .hero-grid { position: relative; z-index: 1; }
+.hero.video-hero .videobgframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero.video-hero .wrap,
+.hero.video-hero .hero-grid { position: relative; z-index: 1; }
 .hero.video-hero::after { opacity: 0; }
+.hero.video-hero h1 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  max-width: 14ch;
+}
+.hero.video-hero .lede,
+.hero.video-hero .eyebrow { color: #fff; }
 .prose a { color: #18793f; }
+.btn-primary { background: #d45f10; color: #fff; }
+.nav a { color: #f27c21; }
+.nav a[aria-current="page"] { color: #18793f; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero.video-hero .videobgframe {
+    display: none;
+  }
+}
 

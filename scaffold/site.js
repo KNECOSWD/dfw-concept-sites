@@ -24,6 +24,33 @@
     });
   }
 
+  function applyReducedMotionMedia() {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var videos = document.querySelectorAll("video.videobgframe");
+    function sync() {
+      videos.forEach(function (video) {
+        if (reduce.matches) {
+          video.pause();
+          video.removeAttribute("autoplay");
+          video.setAttribute("hidden", "");
+          video.classList.add("is-reduced");
+        } else {
+          video.removeAttribute("hidden");
+          video.classList.remove("is-reduced");
+          var play = video.play();
+          if (play && typeof play.catch === "function") play.catch(function () {});
+        }
+      });
+    }
+    sync();
+    if (typeof reduce.addEventListener === "function") {
+      reduce.addEventListener("change", sync);
+    } else if (typeof reduce.addListener === "function") {
+      reduce.addListener(sync);
+    }
+  }
+  applyReducedMotionMedia();
+
   if (form && status) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();
