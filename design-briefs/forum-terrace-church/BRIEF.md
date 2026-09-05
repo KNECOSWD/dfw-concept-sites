@@ -66,49 +66,83 @@ Warm cream `#F6EFE6` / brown `#8B5A2B` in current `theme.css` are **rebuild inve
 
 ---
 
-## Content / nav parity (HARD GATE)
+## Content / nav / image / favicon parity (Scout fold — authoritative)
 
-**Parity status:** FAIL risk — Resources (Tracts/Workbooks/Sermons) and Bulletins must stay reachable; Member Directory link OK as gated external.
+_Folded from `/workspace/dfw-parity/forum-terrace-church.md` (Scout public HTML inventory, 2026-09-05). Supersedes thinner lists for Eng._
 
-### Live nav map
-- **Home** → `http://forumterrace.org/`
-- **Location** → `http://forumterrace.org/location`
-- **Bulletins** → `http://forumterrace.org/#blog`
-- **Contact Us** → `http://forumterrace.org/#contact`
-- **Resources** (dropdown)
-  - Tracts → `http://forumterrace.org/tracts/`
-  - Workbooks / Bible Classes → `http://forumterrace.org/bible-classes/`
-  - Sermons → `http://forumterrace.org/sermons/`
-- **Members** (dropdown)
-  - Member Directory (gated — do not copy contents) → `http://forumterrace.org/member-directory-2/`
-- **Find Us** → `https://www.google.com/maps/place/2446+Arkansas+Ln,+Grand+Prairie,+TX+75052`
+# CONTENT PARITY — forum-terrace-church
+
+**Live source:** http://forumterrace.org/  
+**Fetched:** 2026-09-05 (HTTP 200; public homepage HTML only)  
+**Page title:** The Forum Terrace Church of Christ in Grand Prairie welcomes you!  
+**Notes:** HTTPS may fail on this host; inventory uses HTTP. No invented URLs or labels.
+
+---
+
+## 1. Primary navigation (+ dropdown children)
+
+Source: `#main-navigation` / `#menu-menu1.nav.navbar-nav`
+
+| Label | Absolute URL | Dropdown children |
+|-------|--------------|-------------------|
+| Location | http://forumterrace.org/location | *(none)* |
+| Bulletins | http://forumterrace.org/#blog | *(none)* |
+| Contact Us | http://forumterrace.org/#contact | *(none)* |
+| Tracts | http://forumterrace.org/tracts/ | *(none)* |
+| Workbooks | http://forumterrace.org/bible-classes/ | *(none)* |
+| Sermons | http://forumterrace.org/sermons/ | *(none)* |
+| MEMBERS | # | **Member Directory** → http://forumterrace.org/member-directory-2/ |
+
+**Dropdown detail — MEMBERS** (`menu-item-has-children` / `.dropdown-menu`):
+- Member Directory — http://forumterrace.org/member-directory-2/
+
+**Also in nav chrome (not a page link):** Hestia search form (`action=http://forumterrace.org/`).
+
+**Navbar brand / logo link:** http://forumterrace.org/
+
+---
+
+## 2. Key live images / heroes (absolute URLs)
+
+### Logo (header)
+- http://forumterrace.org/wp-content/uploads/2018/06/cropped-FTCoC_Logo_646x200.png  
+  *(alt: Forum Terrace Church of Christ)*
+
+### Hero / header filter background
+- http://forumterrace.org/wp-content/uploads/2018/06/photo-1432059964050-d4eba2ef368a.jpg  
+  *(used as CSS `background` on `.header-filter` and again on `#about.hestia-about.section-image`)*
+
+### Contact section background
+- http://forumterrace.org/wp-content/uploads/2018/06/BoyAndBibleSliderLeftJustified.jpg  
+  *(CSS `background` on `#contact.hestia-contact.section-image`)*
+
+### Map image (homepage content)
+- http://forumterrace.org/wp-content/uploads/2018/06/FTCoC_Map_1000x837-300x251.png *(src, 300w)*
+- http://forumterrace.org/wp-content/uploads/2018/06/FTCoC_Map_1000x837-768x643.png *(srcset 768w)*
+- http://forumterrace.org/wp-content/uploads/2018/06/FTCoC_Map_1000x837.png *(srcset 1000w / full)*
+
+### Social / OG share image (meta, not necessarily on-canvas hero)
+- og:image: http://forumterrace.org/wp-content/uploads/2018/06/photo-1432059964050-d4eba2ef368a-1024x576.jpg
+- twitter:image: http://forumterrace.org/wp-content/uploads/2018/06/photo-1432059964050-d4eba2ef368a.jpg
+
+---
+
+## 3. Favicon URL(s)
+
+From `<link>` / related meta on homepage:
+
+| rel / meta | sizes | Absolute URL |
+|------------|-------|--------------|
+| icon | 32x32 | http://forumterrace.org/wp-content/uploads/2026/05/cropped-FtCC_Logo-1-32x32.png |
+| icon | 192x192 | http://forumterrace.org/wp-content/uploads/2026/05/cropped-FtCC_Logo-1-192x192.png |
+| apple-touch-icon-precomposed | — | http://forumterrace.org/wp-content/uploads/2026/05/cropped-FtCC_Logo-1-180x180.png |
+| msapplication-TileImage | — | http://forumterrace.org/wp-content/uploads/2026/05/cropped-FtCC_Logo-1-270x270.png |
 
 
 
-### Rebuild nav map (current)
-- Home → `index.html`
-- Location → `location.html`
-- Bible Classes → `classes.html`
-- Resources → `resources.html`
-- Contact → `contact.html`
+### Parity emphasis
+- Flat items Location / Bulletins / Contact / Tracts / Workbooks / Sermons + **MEMBERS → Member Directory** (gated — link only, don’t copy members).
+- Incorporate cloud hero photo, BoyAndBible contact bg, map image.
+- Favicon from cropped FtCC_Logo-1 sizes.
 
-### Eng requirement
-Restore **full live header IA** (every top item + dropdown children). Collapsing only OK if every destination stays reachable with the **same labels**. Do not strip Financing / service-area / deep service pages into a thin 4–5 link bar.
-
-## Image inventory (Eng must incorporate)
-
-Homepage (and linked gallery/team) assets from live — download into `assets/` and place in matching sections (hero / gallery / team / services). Do not leave pages image-thin vs live.
-
-1. **logo** — `http://forumterrace.org/wp-content/uploads/2018/06/cropped-FTCoC_Logo_646x200.png` alt="Forum Terrace Church of Christ"
-2. **content** — `http://forumterrace.org/wp-content/uploads/2018/06/FTCoC_Map_1000x837-300x251.png`
-3. **hero/banner** — `http://forumterrace.org/wp-content/uploads/2018/06/photo-1432059964050-d4eba2ef368a.jpg`
-4. **hero/banner** — `http://forumterrace.org/wp-content/uploads/2018/06/BoyAndBibleSliderLeftJustified.jpg`
-
-Parsed homepage image count (raw): **4**. Also pull gallery/inner-page images when those routes are restored.
-
-## Favicon
-
-- **Live source:** `http://forumterrace.org/wp-content/uploads/2026/05/cropped-FtCC_Logo-1-32x32.png`
-- **Local capture:** `/workspace/dfw-design-briefs/favicons/forum-terrace-church.png`
-- **Note:** Ship this favicon (or logo-derived 32/180) — never invent a new mark.
 

@@ -36,3 +36,13 @@ Live header ≈ **11 top items** including **Service Areas** dropdown (Garland/R
 - CareMaster: hero should be skyline-forward (not lede+CTA heavy) per Tick SOFT.
 
 No Sketch code. Gizmo implements.
+
+## Scout fold (2026-09-05)
+Ferraro / Garden / Len Conner BRIEF.md updated from `/workspace/dfw-parity/*.md`.
+- Len Conner: **20** Practice Areas children (full list).
+- Garden: favicon **logo-derived** (no live icon).
+- Ferraro: full nested services + Patient Resources tree.
+
+## Scout fold wave 2
+Speake’s, B&B, CareMaster, Forum Terrace BRIEF.md updated from `/workspace/dfw-parity/*.md`.
+Beyond / Hughes / Victory folded from Scout HTML dumps (formal Scout `.md` can supersede later).

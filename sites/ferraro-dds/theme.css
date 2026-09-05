@@ -25,3 +25,42 @@
 .hero .panel { background: #fff; color: #16333a; border-color: #c5e4e6; }
 .chip { background: #e7f8fb; border-color: #3bc0e1; }
 
+
+/* Shared dropdown nav — all 10 sites */
+.nav, .nav-bar { flex-wrap: wrap; }
+.nav-item, .nav-sub-item { position: relative; }
+.nav-toggle {
+  background: none; border: 0; font: inherit; font-weight: 700; color: inherit;
+  cursor: pointer; padding: 0; text-align: left;
+}
+.nav-sub, .nav-sub2 {
+  display: none; list-style: none; margin: 0; padding: 0.35rem 0;
+  background: #fff; min-width: 15rem; box-shadow: 0 10px 26px rgba(0,0,0,.16); z-index: 40;
+}
+.nav-sub a, .nav-sub .nav-toggle {
+  display: block; width: 100%; text-align: left; color: #222; background: none; border: 0;
+  font: inherit; font-weight: 600; font-size: 0.88rem; padding: 0.4rem 0.8rem;
+  cursor: pointer; text-decoration: none;
+}
+.nav-sub a:hover, .nav-sub .nav-toggle:hover { background: #f4f4f4; color: inherit; }
+.nav-item.open > .nav-sub,
+.nav-item:hover > .nav-sub,
+.nav-item:focus-within > .nav-sub,
+.nav-sub-item.open > .nav-sub2,
+.nav-sub-item:hover > .nav-sub2,
+.nav-sub-item:focus-within > .nav-sub2 { display: block; }
+.nav-sub2 { padding-left: 0; }
+@media (min-width: 760px) {
+  .nav-sub { position: absolute; top: 100%; left: 0; }
+  .nav-sub2 { position: absolute; top: 0; left: 100%; min-width: 16rem; }
+}
+
+
+
+.hero {
+  background:
+    linear-gradient(rgba(255,255,255,.2), rgba(255,255,255,.15)),
+    url("assets/hero-01.webp") center / cover no-repeat;
+}
+.prose a { color: #0a6b70; }
+

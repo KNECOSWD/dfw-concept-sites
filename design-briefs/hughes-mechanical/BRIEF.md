@@ -59,50 +59,41 @@
 
 ---
 
-## Content / nav parity (HARD GATE)
+## Content / nav / image / favicon parity (HTML inventory fold)
 
-**Parity status:** SOFT — live is mostly single-page anchors; rebuild pages OK if labels/content match.
+_Built from `/workspace/dfw-parity/` live HTML for `hughes-mechanical` (supersede if formal Scout `.md` arrives)._  
+**Live:** https://www.hughescontractorsllc.com/  
+**Title:** Hughes Mechanical and Electrical Contractors | Dallas-Fort Worth HVAC Contractor | Arlington, TX
 
-### Live nav map
-- **Home** → `https://www.hughescontractorsllc.com/`
-- **Services** → `https://www.hughescontractorsllc.com/`
-- **About** → `https://www.hughescontractorsllc.com/`
-- **FAQ** → `https://www.hughescontractorsllc.com/`
-- **Contact** → `https://www.hughescontractorsllc.com/`
+### Primary nav
+1. **Home** → `/`
+2. **Services**
+3. **About**
+4. **FAQ**
+5. **Contact** / Call CTA
 
-_Note: Wix single-page anchors (Services/About/FAQ). Rebuild multi-page OK if same labels/content reachable. Live host = hughescontractorsllc.com._
+Wix anchors may become pages if labels + published team/services content stay reachable. Host = hughescontractorsllc.com (not hughes-mech-elect.com).
 
-### Rebuild nav map (current)
-- Home → `index.html`
-- Services → `index.html#services`
-- About → `index.html#about`
-- Contact → `contact.html`
 
-### Eng requirement
-Restore **full live header IA** (every top item + dropdown children). Collapsing only OK if every destination stays reachable with the **same labels**. Do not strip Financing / service-area / deep service pages into a thin 4–5 link bar.
+### Key images / heroes
+- `https://static.wixstatic.com/media/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png/v1/fill/w_100,h_56,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png`
+- `https://static.wixstatic.com/media/418722_1095a3e8f6cf4b29a3b86fda28c8d80a~mv2.png/v1/crop/x_4335,y_3146,w_1701,h_565/fill/w_49,h_16,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Hughes%20Mechanical%20Full%20Logo%20%E2%80%93%20White%20with%20Colored%20Bug%20%E2%80%93%20No%20LLC.png`
+- `https://static.wixstatic.com/media/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png/v1/fill/w_160,h_90,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png`
+- `https://static.wixstatic.com/media/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png/v1/fill/w_100,h_56,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png`
+- `https://static.wixstatic.com/media/418722_53973c441a104dfb9d71612a8f068690~mv2.jpg/v1/fill/w_147,h_83,al_c,q_80,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Profile%20(1).jpg`
+- `https://static.wixstatic.com/media/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png/v1/fill/w_100,h_56,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png`
+- `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63~mv2.png`
+- `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63~mv2.png/v1/fill/w_73,h_67,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Hughes%20Mechanical%20Logo%20Bug.png`
+- `https://static.wixstatic.com/media/418722_c717935a8ed14ccf841b74587de0f812~mv2.png/v1/fill/w_160,h_73,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_c717935a8ed14ccf841b74587de0f812~mv2.png`
+- `https://static.wixstatic.com/media/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png/v1/fill/w_160,h_90,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png`
+- `https://static.wixstatic.com/media/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png/v1/fill/w_160,h_90,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png`
+- `https://static.wixstatic.com/media/418722_1095a3e8f6cf4b29a3b86fda28c8d80a~mv2.png/v1/crop/x_4447,y_3189,w_1582,h_468/fill/w_49,h_14,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Hughes%20Mechanical%20Full%20Logo%20%E2%80%93%20White%20with%20Colored%20Bug%20%E2%80%93%20No%20LLC.png`
 
-## Image inventory (Eng must incorporate)
+### Favicon
+- `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png`
+- `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png`
+- `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png/v1/fill/w_180%2Ch_180%2Clg_1%2Cusm_0.66_1.00_0.01/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png`
 
-Homepage (and linked gallery/team) assets from live — download into `assets/` and place in matching sections (hero / gallery / team / services). Do not leave pages image-thin vs live.
-
-1. **content** — `https://static.wixstatic.com/media/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png/v1/fill/w_100,h_56,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png` alt="Home (4).png"
-2. **logo** — `https://static.wixstatic.com/media/418722_1095a3e8f6cf4b29a3b86fda28c8d80a~mv2.png/v1/crop/x_4335,y_3146,w_1701,h_565/fill/w_49,h_16,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Hughes%20Mechanical%20Full%20Logo%20%E2%80%93%20White%20with%20Colored%20Bug%20%E2%80%93%20No%20LLC.png`
-3. **content** — `https://static.wixstatic.com/media/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png/v1/fill/w_160,h_90,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png`
-4. **content** — `https://static.wixstatic.com/media/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png/v1/fill/w_100,h_56,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_294b4fb63f0648dcbc6231ee89f37f35~mv2.png` alt="Profile.png"
-5. **content** — `https://static.wixstatic.com/media/418722_53973c441a104dfb9d71612a8f068690~mv2.jpg/v1/fill/w_147,h_83,al_c,q_80,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Profile%20(1).jpg` alt="DFW Commercial HVAC | DFW Commercial Electrical | DFW Commercial Refrigeration | Hughes Mechanical and Electrical "
-6. **content** — `https://static.wixstatic.com/media/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png/v1/fill/w_100,h_56,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png` alt="Home (5).png"
-7. **content** — `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63~mv2.png`
-8. **logo** — `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63~mv2.png/v1/fill/w_73,h_67,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Hughes%20Mechanical%20Logo%20Bug.png` alt="Hughes Mechanical Logo Bug.png"
-9. **content** — `https://static.wixstatic.com/media/418722_c717935a8ed14ccf841b74587de0f812~mv2.png/v1/fill/w_160,h_73,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_c717935a8ed14ccf841b74587de0f812~mv2.png` alt="Services.png"
-10. **content** — `https://static.wixstatic.com/media/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png/v1/fill/w_160,h_90,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_93e6e1ccd46d41c1906ca378aca87f07~mv2.png` alt="Home (5).png"
-11. **content** — `https://static.wixstatic.com/media/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png/v1/fill/w_160,h_90,al_c,q_85,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/418722_1993efe25fa844e78dc0c9d5d5d1a62c~mv2.png` alt="Home (4).png"
-12. **logo** — `https://static.wixstatic.com/media/418722_1095a3e8f6cf4b29a3b86fda28c8d80a~mv2.png/v1/crop/x_4447,y_3189,w_1582,h_468/fill/w_49,h_14,al_c,q_85,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/Hughes%20Mechanical%20Full%20Logo%20%E2%80%93%20White%20with%20Colored%20Bug%20%E2%80%93%20No%20LLC.png`
-
-Parsed homepage image count (raw): **12**. Also pull gallery/inner-page images when those routes are restored.
-
-## Favicon
-
-- **Live source:** `https://static.wixstatic.com/media/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png/v1/fill/w_192%2Ch_192%2Clg_1%2Cusm_0.66_1.00_0.01/418722_72342bbe43d942fc9617ed8855750d63%7Emv2.png`
-- **Local capture:** `/workspace/dfw-design-briefs/favicons/hughes-mechanical.png`
-- **Note:** Ship this favicon (or logo-derived 32/180) — never invent a new mark.
+### Capture notes
+Keep published Wix logo/bug + team photos. Tokens: navy #112F5B, orange #D64000, yellow #FDF102.
 

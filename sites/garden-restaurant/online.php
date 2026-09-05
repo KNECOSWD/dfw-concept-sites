@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order PickUp | Delivery</title>
+  <meta name="description" content="Order online.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body class="theme-dark-header">
+  <a class="skip" href="#main">Skip to content</a>
+  
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">
+        <img class="logo wide" src="assets/logo.png" alt="Garden Restaurant">
+      </a>
+      <nav id="site-nav" class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <a class="btn btn-primary header-cta" href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa" target="_blank" rel="noopener noreferrer">Order PickUp | Delivery</a>
+      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="page-hero"><div class="wrap"><h1>Order PickUp | Delivery</h1></div></section>
+    <section><div class="wrap prose"><p><a href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa">Order on ZingMyOrder</a></p>
+      <p>Call the office to confirm current details and schedule.</p>
+    </div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>Garden Restaurant</strong>
+        <p>Garland, TX</p>
+        <p><a href="tel:+19724878289">(972) 487-8289</a></p>
+        <p>3555 W Walnut St, Garland, TX 75042</p>
+      </div>
+      <div>
+        
+        <p class="legal">© <span id="year"></span> Garden Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <div class="callbar">
+    <a class="btn btn-primary" href="tel:+19724878289">Call (972) 487-8289</a>
+    <a class="btn btn-dark" href="contact.html">Contact</a>
+  </div>
+  <script src="site.js"></script>
+</body>
+</html>

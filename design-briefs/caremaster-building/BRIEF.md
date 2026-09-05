@@ -64,62 +64,80 @@ Rebuild is a clean modern scaffold (sticky header, CTA, KPI panel) but **misses 
 
 ---
 
-## Content / nav parity (HARD GATE)
+## Content / nav / image / favicon parity (Scout fold — authoritative)
 
-**Parity status:** Closer — ensure About/Services/Our Commitment parity; skyline hero image required.
+_Folded from `/workspace/dfw-parity/caremaster-building.md` (Scout public HTML inventory, 2026-09-05). Supersedes thinner lists for Eng._
 
-### Live nav map
-- **Home** → `http://www.caremaster.biz/`
-- **About Us** → `http://www.caremaster.biz/about-us`
-- **Services** → `http://www.caremaster.biz/services`
-- **Our Commitment** → `http://www.caremaster.biz/our-commitment`
+# CONTENT PARITY — caremaster-building
 
-_Note: Live Freemona nav is Home / About Us / Services / Our Commitment (centered caps). Rebuild Contact page OK to keep if destination exists; do not drop About/Services/Commitment._
+**Live source:** http://www.caremaster.biz/  
+**Fetched:** 2026-09-05 (HTTP 200; public homepage HTML only)  
+**Page title:** Home - CareMaster Building Services  
+**Notes:** HTTPS may fail on this host; inventory uses HTTP. No invented URLs or labels.
 
-### Rebuild nav map (current)
-- Home → `index.html`
-- About Us → `about.html`
-- Services → `services.html`
-- Our Commitment → `commitment.html`
-- Contact → `contact.html`
+---
 
-### Eng requirement
-Restore **full live header IA** (every top item + dropdown children). Collapsing only OK if every destination stays reachable with the **same labels**. Do not strip Financing / service-area / deep service pages into a thin 4–5 link bar.
+## 1. Primary navigation (+ dropdown children)
 
-## Image inventory (Eng must incorporate)
+Source: `#fm_mnav` / `.sk-menu` menuitem anchors; visible labels from site menu config `"Text"` fields (caption spans in HTML are empty; first item also has `title`/`Alt` = `"Main"`).
 
-Homepage (and linked gallery/team) assets from live — download into `assets/` and place in matching sections (hero / gallery / team / services). Do not leave pages image-thin vs live.
+| Label | Absolute URL | Dropdown children |
+|-------|--------------|-------------------|
+| Home | http://www.caremaster.biz/index.html | *(none — flat item; config `elements: []`)* |
+| About Us | http://www.caremaster.biz/about-us | *(none)* |
+| Services | http://www.caremaster.biz/services | *(none)* |
+| Our Commitment | http://www.caremaster.biz/our-commitment | *(none)* |
 
-1. **logo** — `https://0201.nccdn.net/1_2/000/000/132/48e/logo-2.jpg#RDAMDAID43011713` alt="CareMaster Building Services"
-2. **content** — `https://designs.nccdn.net/Common/Gallery/mat-black-12.png`
-3. **content** — `https://designs.nccdn.net/Common/Gallery/mat-black-80.png`
-4. **content** — `https://designs.nccdn.net/Common/Gallery/sprite-dots-dark.svg`
-5. **content** — `https://designs.nccdn.net/Common/Gallery/nav-numbers-light.svg`
-6. **content** — `https://designs.nccdn.net/Common/Gallery/close.svg`
-7. **content** — `https://designs.nccdn.net/Common/Gallery/mat-black-60.png`
-8. **content** — `https://designs.nccdn.net/Common/Gallery/sprite-scrollbar-arrows-light.svg`
-9. **content** — `https://designs.nccdn.net/FinancialAdvisor9/Images/section-arrow-expanded-dark.png`
-10. **content** — `https://designs.nccdn.net/FinancialAdvisor9/Images/section-arrow-collapsed-dark.png`
-11. **content** — `https://designs.nccdn.net/Common/Section/section-arrow-expanded-white.png`
-12. **content** — `https://designs.nccdn.net/Common/Section/section-arrow-collapsed-white.png`
-13. **content** — `https://designs.nccdn.net/Common/Navigation/nav_dot_separator_white.png`
-14. **content** — `https://designs.nccdn.net/FinancialAdvisor9/Images/menu_icon.svg`
-15. **content** — `https://designs.nccdn.net/FinancialAdvisor9/Images/collapsible_panel.svg`
-16. **content** — `https://0201.nccdn.net/1_2/000/000/14d/871/city.png#RDAMDAID42972464`
-17. **content** — `https://0201.nccdn.net/4_2/000/000/05c/240/city-1280x443.png#RDAMDAID42974225`
-18. **content** — `https://0201.nccdn.net/1_2/000/000/090/63e/city-960x332.png#RDAMDAID42974226`
-19. **content** — `https://0201.nccdn.net/4_2/000/000/038/2d3/city-640x221.png#RDAMDAID42974227`
-20. **content** — `https://0201.nccdn.net/4_2/000/000/060/85f/city-480x166.png#RDAMDAID42974223`
-21. **content** — `https://0201.nccdn.net/1_2/000/000/161/fe9/city-320x111.png#RDAMDAID42974222`
-22. **content** — `https://0201.nccdn.net/1_2/000/000/0f0/43d/city-160x55.png#RDAMDAID42974224`
-23. **content** — `https://si.nccdn.net/pictograms-gray/48/icon_02.png`
-24. **content** — `https://si.nccdn.net/pictograms-gray/48/icon_04.png`
+**Dropdowns:** none on primary nav.
 
-Parsed homepage image count (raw): **29**. Also pull gallery/inner-page images when those routes are restored.
+**Related header contact links (not primary nav items):**
+- `tel:469.233.3366` — 469.233.3366
+- `mailto:customerservice@caremaster.biz` — customerservice@caremaster.biz
 
-## Favicon
+**Logo home link:** http://www.caremaster.biz/ (`aria-label` / alt: CareMaster Building Services)
 
-- **Live source:** `https://img-fl.nccdn.net/favicon.ico?V=4722132f#SYSTEM`
-- **Local capture:** `/workspace/dfw-design-briefs/favicons/caremaster-building.ico`
-- **Note:** Ship this favicon (or logo-derived 32/180) — never invent a new mark.
+---
+
+## 2. Key live images / heroes (absolute URLs)
+
+### Logo
+- https://0201.nccdn.net/1_2/000/000/132/48e/logo-2.jpg#RDAMDAID43011713  
+  *(alt: CareMaster Building Services; 245×150)*
+
+### Hero / page image (`.pageImage`, `role="banner"` aria-label: "High rise buildings")
+Primary (full) asset:
+- https://0201.nccdn.net/1_2/000/000/14d/871/city.png#RDAMDAID42972464
+
+Responsive variants declared in homepage CSS:
+- https://0201.nccdn.net/4_2/000/000/05c/240/city-1280x443.png#RDAMDAID42974225
+- https://0201.nccdn.net/1_2/000/000/090/63e/city-960x332.png#RDAMDAID42974226
+- https://0201.nccdn.net/4_2/000/000/038/2d3/city-640x221.png#RDAMDAID42974227
+- https://0201.nccdn.net/4_2/000/000/060/85f/city-480x166.png#RDAMDAID42974223
+- https://0201.nccdn.net/1_2/000/000/161/fe9/city-320x111.png#RDAMDAID42974222
+- https://0201.nccdn.net/1_2/000/000/0f0/43d/city-160x55.png#RDAMDAID42974224
+
+**Other content `<img>` on homepage:** none beyond logo (system `blank.gif` spacers omitted).
+
+---
+
+## 3. Favicon URL(s)
+
+From `<link>` tags on homepage:
+
+| rel | sizes | type | Absolute URL |
+|-----|-------|------|--------------|
+| icon | — | image/x-icon | https://img-fl.nccdn.net/favicon.ico?V=4722132f#SYSTEM |
+| apple-touch-icon | — | — | https://img-fl.nccdn.net/apple-touch-icon.png?V=4722132f#SYSTEM |
+| icon | 32x32 | image/png | https://img-fl.nccdn.net/favicon-32x32.png?V=4722132f#SYSTEM |
+| icon | 16x16 | image/png | https://img-fl.nccdn.net/favicon-16x16.png?V=4722132f#SYSTEM |
+| icon | 16x16 *(as declared)* | image/png | http://www.caremaster.biz/android-chrome-192x192.png#SYSTEM |
+| icon | 16x16 *(as declared)* | image/png | http://www.caremaster.biz/android-chrome-512x512.png#SYSTEM |
+
+
+
+### Parity emphasis
+- Flat 4-item nav: Home / About Us / Services / Our Commitment.
+- **Hero must be skyline** `city.png` (+ responsive variants) — Tick SOFT if lede+CTA replaces skyline-only feel.
+- Favicon set from nccdn + android-chrome on caremaster.biz.
+
 

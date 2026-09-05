@@ -61,58 +61,38 @@ Update theme away from `#1b4332` / `#e85d04` toward the brighter live pair above
 
 ---
 
-## Content / nav parity (HARD GATE)
+## Content / nav / image / favicon parity (HTML inventory fold)
 
-**Parity status:** FAIL risk — live Commercial + Residential dropdowns with many service URLs; rebuild flattens to Services/Packages/Gallery/Contact. Every live service URL must remain reachable with same labels.
+_Built from `/workspace/dfw-parity/` live HTML for `beyond-lawn-care` (supersede if formal Scout `.md` arrives)._  
+**Live:** https://www.beyondlawncares.com/  
+**Title:** Lawn Care & Landscape Maintenance Mesquite TX, Grass Mowing
 
-### Live nav map
-- **Home** → `https://www.beyondlawncares.com/`
-- **Commercial** (dropdown)
-  - Commercial Lawn Care Services → `https://www.beyondlawncares.com/commercial-lawn-care-services`
-  - Commercial Landscape Maintenance → `https://www.beyondlawncares.com/commercial-landscape-maintenance`
-- **Residential** (dropdown)
-  - Lawn Care & Mowing → `https://www.beyondlawncares.com/lawn-care-mowing`
-  - Landscape Maintenance → `https://www.beyondlawncares.com/landscape-maintenance`
-  - Seasonal Flower Installations → `https://www.beyondlawncares.com/seasonal-flower-installations`
-  - Bush & Hedge Trimming → `https://www.beyondlawncares.com/bush-hedge-trimming`
-  - Landscape Pruning → `https://www.beyondlawncares.com/landscape-pruning`
-  - Property Clean Ups → `https://www.beyondlawncares.com/property-clean-ups`
-  - Leaf Cleanup → `https://www.beyondlawncares.com/leaf-cleanup`
-  - Mulch Installations → `https://www.beyondlawncares.com/mulch-installations`
-  - Overseeding → `https://www.beyondlawncares.com/overseeding`
-  - Core Aeration → `https://www.beyondlawncares.com/aeration`
-  - Sod Installation → `https://www.beyondlawncares.com/sod-installation`
-  - Salt Application → `https://www.beyondlawncares.com/salt-application`
-  - Sprinkler System Inspection & Maintenance → `https://www.beyondlawncares.com/sprinkler-system-inspection-maintenance`
-- **Gallery** → `https://www.beyondlawncares.com/gallery`
-- **Packages** → `https://www.beyondlawncares.com/packages`
-- **Contact** → `https://www.beyondlawncares.com/contact`
+### Primary nav
+1. **HOME** → `/`
+2. **COMMERCIAL** (dropdown) → Commercial Lawn Care Services; Commercial Landscape Maintenance
+3. **RESIDENTIAL** (dropdown) → Lawn Care & Mowing; Landscape Maintenance; Seasonal Flower Installations; Bush & Hedge Trimming; Landscape Pruning; Property Clean Ups; Leaf Cleanup; Mulch Installations; Overseeding; Core Aeration; Sod Installation; Salt Application; Sprinkler System Inspection & Maintenance
+4. **GALLERY** → `/gallery`
+5. **PACKAGES** → `/packages`
+6. **CONTACT** (live contact destination — keep reachable)
+
+Every Residential/Commercial child URL must remain reachable with the same labels.
 
 
+### Key images / heroes
+- `https://www.googletagmanager.com/gtm.js?id=GTM-5TMLZVPT`
+- `https://www.googletagmanager.com/gtag/js?id=G-9850155FWL`
+- `https://irp.cdn-website.com/d4f793c4/dms3rep/multi/opt/BEYOND-1920w.png`
+- `https://irp.cdn-website.com/d4f793c4/dms3rep/multi/opt/Graphic-3-1920w.png`
+- `https://vid.cdn-website.com/d4f793c4/videos/149959YERzaEGRZLonsM_Beyond+Lawn+New+Video-v.mp4`
+- `https://apps.elfsight.com/p/platform.js`
+- `https://static.cdn-website.com/libs/jquery/jquery-3.7.0.min.js`
+- `https://static.cdn-website.com/mnlt/production/6737/_dm/s/rt/dist/scripts/d-js-one-runtime-unified-desktop.min.js`
+- `https://static.cdn-website.com/mnlt/production/6737/_dm/s/rt/dist/scripts/d-js-jquery-migrate.min.js`
 
-### Rebuild nav map (current)
-- Home → `index.html`
-- Services → `services.html`
-- Packages → `packages.html`
-- Gallery → `gallery.html`
-- Contact → `contact.html`
+### Favicon
+- `https://irp.cdn-website.com/d4f793c4/dms3rep/multi/beyondfavicon.png`
+- `https://irp.cdn-website.com/d4f793c4/site_favicon_16_1649959649884.ico`
 
-### Eng requirement
-Restore **full live header IA** (every top item + dropdown children). Collapsing only OK if every destination stays reachable with the **same labels**. Do not strip Financing / service-area / deep service pages into a thin 4–5 link bar.
-
-## Image inventory (Eng must incorporate)
-
-Homepage (and linked gallery/team) assets from live — download into `assets/` and place in matching sections (hero / gallery / team / services). Do not leave pages image-thin vs live.
-
-1. **content** — `https://irp.cdn-website.com/d4f793c4/dms3rep/multi/opt/BEYOND-1920w.png` alt="Beyond Lawn Care & Landscaping"
-2. **content** — `https://irp.cdn-website.com/d4f793c4/dms3rep/multi/opt/Graphic-3-1920w.png` alt="An orange and white triangle on a white background."
-3. **content** — `https://irt-cdn.multiscreensite.com/ce0bb35f932b47bb809d0e37905542ba/dms3rep/multi/site_background_education-2087x1173.jpg`
-
-Parsed homepage image count (raw): **3**. Also pull gallery/inner-page images when those routes are restored.
-
-## Favicon
-
-- **Live source:** `https://irp.cdn-website.com/d4f793c4/site_favicon_16_1649959649884.ico`
-- **Local capture:** `/workspace/dfw-design-briefs/favicons/beyond-lawn-care.ico`
-- **Note:** Ship this favicon (or logo-derived 32/180) — never invent a new mark.
+### Capture notes
+Duda. Hard gate: Commercial + Residential dropdown trees. Logo BEYOND. Elfsight reviews widget only — no invented quotes. Green #18793f + orange #f27c21.
 
