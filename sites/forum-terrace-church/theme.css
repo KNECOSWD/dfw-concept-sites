@@ -59,3 +59,24 @@
   min-height: 22rem;
 }
 
+
+
+.contact-band {
+  background:
+    linear-gradient(rgba(18, 35, 62, 0.58), rgba(18, 35, 62, 0.5)),
+    url("assets/contact-bg.jpg") center / cover no-repeat;
+  color: #fff;
+  padding: 3rem 0;
+}
+.contact-band a { color: #fff; text-decoration: underline; }
+.contact-band h2 { color: #fff; }
+.site-header {
+  background:
+    linear-gradient(rgba(18, 35, 62, 0.72), rgba(18, 35, 62, 0.72)),
+    url("assets/hero.jpg") center / cover no-repeat;
+}
+
+.theme-dark-header .nav-toggle { color: #f4f4f4; }
+.theme-dark-header .nav.open { background: #1a2433; }
+.theme-dark-header .nav.open .nav-toggle,
+.theme-dark-header .nav.open a { color: #f4f4f4; }

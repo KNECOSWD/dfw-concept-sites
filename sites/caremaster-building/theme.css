@@ -16,12 +16,7 @@
   --cta-ink: #ffffff;
 }
 
-.hero {
-  background:
-    linear-gradient(rgba(11, 61, 46, 0.58), rgba(11, 61, 46, 0.5)),
-    url("assets/skyline.png") center / cover no-repeat;
-  min-height: 22rem;
-}
+
 .hero::after { opacity: 0; }
 .prose a { color: #383838; }
 .btn-primary { background: #0b3d2e; color: #fff; }
@@ -61,9 +56,16 @@ h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #
 
 
 .hero {
-  background: url("assets/city.png") center / cover no-repeat;
+  background:
+    linear-gradient(rgba(40, 35, 40, 0.45), rgba(40, 35, 40, 0.38)),
+    url("assets/city.png") center / cover no-repeat;
   min-height: 26rem;
+  text-align: center;
 }
 .hero .lede, .hero .actions { display: none; }
-.hero h1 { max-width: 20ch; text-shadow: 0 2px 12px rgba(0,0,0,.45); }
+.hero h1 {
+  max-width: 22ch;
+  margin-inline: auto;
+  text-shadow: 0 2px 14px rgba(0,0,0,.55);
+}
 
