@@ -81,7 +81,9 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **Logos** are the businesses’ existing marks downloaded from their live sites (or the public Wayback copy for Ferraro) and stored under `sites/<slug>/assets/`.
 - **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
 - **Hughes Mechanical** publishes no customer reviews. None were added. Wix placeholder socials were ignored.
-- **CareMaster** current pages list (469) 233-3366 and customerservice@caremaster.biz. No street address is published on those pages.
+- **Victory Pest Control** uses the brand VPC logo (`victory-pest-control-llc-logo-0510bb09-1920w.jpg`), not the Hibu template gen-logo. Owner John Gaines. (972) 230-5526 / mobile (214) 543-6357. 234 Paradise Way, Red Oak, TX 75154. 24 hours. No email. Reviews only: Taylor Akin, Camille Henderson, Michelle Owens. Live “Lorem Ipsum” tagline and `{{placeholder_*}}` tokens were not copied.
+- **CareMaster** logo is `logo-2.jpg` from nccdn. Since 1982; Richard Lee / President John Lee. 469.233.3366; customerservice@caremaster.biz; PO Box 29303, Dallas, TX 75229. No reviews. Street hours are not published.
+- **Forum Terrace** logo is `cropped-FTCoC_Logo_646x200.png`. 2446 Arkansas Lane; Dan Vess (972) 922-3249; Sun 9:30 / 10:30 / 5:00 and Wed 7:30. Tracts, sermons, workbooks, and bulletins are links to the live HTTP pages. Member directory is gated and skipped. No reviews or email.
 - **Ferraro DDS** live site returned Cloudflare 403. Content, the published logo (`…00551Dentallogodesign…png`), and the doctor photo come from the public October 2025 archive / practice CDN. Hours used: Monday–Thursday 8–5. Friday is blank on the source. Email: danielferrarodds@sbcglobal.net. One published quote (Mrs. Conger). Top Rated Doctors 2016.
 - **B&B Complete Auto** reviews are Elfsight JS only. Gallery is empty. No reviews or photos were invented. License CO16-0388.
 - **Garden Restaurant** menu is the full priced list from `/menu.php` (10 categories). No site reviews. About/Events stay thin.

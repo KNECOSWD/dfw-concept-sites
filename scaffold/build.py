@@ -385,12 +385,15 @@ def victory() -> dict:
         "logo_class": "logo wide",
         "phone_display": "(972) 230-5526",
         "phone_tel": "+19722305526",
-        "address": "Dallas–Fort Worth Metroplex",
+        "address": "234 Paradise Way, Red Oak, TX 75154",
         "hours": "Available 24 hours a day",
         "eyebrow": "Dallas–Fort Worth pest control",
+        "contact_lede": "Call or send a message. Victory does not publish an email address.",
+        "form_status": "Thank you. This page does not send messages automatically — please call (972) 230-5526 or (214) 543-6357 so the office receives your request.",
         "nav": [
             ("index.html", "Home"),
             ("services.html", "Services"),
+            ("specials.html", "Specials"),
             ("about.html", "About"),
             ("reviews.html", "Reviews"),
             ("contact.html", "Contact"),
@@ -411,10 +414,10 @@ def victory() -> dict:
         "footer_extra": "<p>Mobile: (214) 543-6357</p>",
     }
     panel = f'''<strong>Call or text</strong>
-          <p><a href="tel:+19722305526">(972) 230-5526</a></p>
+          <p><a href="tel:+19722305526">(972) 230-5526</a> · Mobile <a href="tel:+12145436357">(214) 543-6357</a></p>
+          <p>234 Paradise Way, Red Oak, TX 75154</p>
           <p>Available 24 hours a day</p>
-          <p>One-year warranty · Free estimates within 24 hours</p>
-          {kpis([("30+", "Years in the trade"), ("2007", "Year established"), ("24/7", "Availability"), ("10%", "Yearly advance pay")])}'''
+          {kpis([("John Gaines", "Owner"), ("2007", "Year established"), ("24/7", "Availability"), ("Red Oak", "Office")])}'''
     index = page(site, title="Victory Pest Control | Dallas–Fort Worth Metroplex", description="Residential and commercial pest control, wildlife, and bed bugs. Available 24 hours. Call or text (972) 230-5526.", current="index.html", body=f'''{hero(site, "Dallas–Fort Worth pest control.", "Victory Pest Control LLC is a premier pest control company serving the Dallas–Fort Worth Metroplex. With over 30 years of experience, we provide comprehensive solutions to residential and commercial customers.", "services.html", "See services", panel)}
 {section("about", "Your trusted partner in pest management", "Our team is composed of certified pesticide applicators who design custom pest control plans. We are licensed and insured, with a one-year warranty and a promise to keep coming back until the problem is solved.", '''<div class="prose">
           <p>We offer free inspections, a 10% discount for yearly advance payments, and a referral program that rewards you with a 10% discount when a family member or friend signs up for our yearly agreement.</p>
@@ -446,6 +449,15 @@ def victory() -> dict:
     {"title": "How often should I have my property treated for pests?", "text": "The state recommends that your property be treated for pests every quarter."},
 ])}</div>')}''')
 
+    specials = page(site, title="Specials | Victory Pest Control", description="Published pest control specials from victorypestcontrol.com.", current="specials.html", body=f'''{page_hero("Special offers", "From the live Specials page. Call to confirm what is current.")}
+{section("list", "A variety of specials to choose from", "Exceptional pest control services at competitive prices.", f'<div class="cards">{cards([
+    {"title": "Yearly advance pay", "text": "Save 10% when you pay for a year in advance."},
+    {"title": "Book online", "text": "Get 5% off when you schedule an appointment online."},
+    {"title": "Referral", "text": "Refer a family member or friend and get 10% off when they sign up for the yearly agreement."},
+    {"title": "Mosquito control special", "text": "Mosquito control special as listed on the live specials page."},
+    {"title": "Free termite inspections", "text": "Free termite inspections."},
+])}</div>')}''')
+
     about = page(site, title="About | Victory Pest Control", description="John Gaines, owner. Local, minority veteran-owned, family-operated pest control since 2007.", current="about.html", body=f'''{page_hero("Make your space pest-free", "Our owner, John Gaines, has been in the pest control business for over 30 years.")}
     <section>
       <div class="wrap prose">
@@ -463,8 +475,8 @@ def victory() -> dict:
     {"quote": "I recommend Victory Pest Control because I can guarantee they will fix the problem and take care of you. Not only that they follow up to make sure the problem is or did not persist. Definitely a business I can trust.", "name": "Camille Henderson", "source": "Facebook"},
 ])}</div>')}''')
 
-    contact = contact_page(site, "<p>Main / alternate / fax: (972) 230-5526. Mobile: (214) 543-6357. Holiday hours are noted on the live contact page. Payment: American Express, cash, check, Discover, MasterCard, Visa, Zelle, invoice.</p>")
-    write_site(site, {"index.html": index, "services.html": services, "about.html": about, "reviews.html": revs, "contact.html": contact})
+    contact = contact_page(site, "<p>Owner John Gaines. Main: (972) 230-5526. Mobile: (214) 543-6357. 234 Paradise Way, Red Oak, TX 75154. Available 24 hours a day. No public email is listed. Payment: American Express, cash, check, Discover, MasterCard, Visa, Zelle, invoice.</p>")
+    write_site(site, {"index.html": index, "services.html": services, "specials.html": specials, "about.html": about, "reviews.html": revs, "contact.html": contact})
     return site
 
 
@@ -482,8 +494,7 @@ def caremaster() -> dict:
         "phone_display": "(469) 233-3366",
         "phone_tel": "+14692333366",
         "email": "customerservice@caremaster.biz",
-        "address": "Dallas / Fort Worth Metroplex",
-        "hours": "Walk-throughs during regular business hours · 24-hour customer service for emergencies",
+        "address": "PO Box 29303, Dallas, TX 75229",
         "eyebrow": "Commercial janitorial care since 1982",
         "nav": [
             ("index.html", "Home"),
@@ -509,8 +520,8 @@ def caremaster() -> dict:
     panel = f'''<strong>Talk with CareMaster</strong>
           <p><a href="tel:+14692333366">(469) 233-3366</a></p>
           <p><a href="mailto:customerservice@caremaster.biz">customerservice@caremaster.biz</a></p>
-          <p>24-hour customer service for emergencies</p>
-          {kpis([("1982", "In the industry"), ("24 hr", "Customer service"), ("IICRC", "Carpet certified"), ("DFW", "Metroplex")])}'''
+          <p>PO Box 29303, Dallas, TX 75229</p>
+          {kpis([("1982", "In the industry"), ("John Lee", "President"), ("IICRC", "Carpet certified"), ("DFW", "Metroplex")])}'''
     index = page(site, title="CareMaster Building Services | Dallas Commercial Janitorial", description="Quality janitorial care for commercial property since 1982. Call (469) 233-3366.", current="index.html", body=f'''{hero(site, "Providing quality janitorial care for the commercial property industry since 1982.", "At CareMaster, service is our business. Our goal is to provide unsurpassed janitorial care through exceptional customer service, attention to detail, and competitive pricing.", "services.html", "See services", panel)}
 {section("about", "Service is our business", "In three decades of experience we have learned to be flexible, creative, and committed from start to finish.", '''<div class="prose">
           <p>Our “coordinator” level of management provides an added benefit to our rigorous quality standards. Timely walk-throughs, inspections, and follow-ups are conducted during regular business hours. We also offer twenty-four hour customer service to guarantee a timely response to emergencies or challenges. Our commitment has resulted in far fewer tenant complaints than the industry average.</p>
@@ -546,11 +557,11 @@ def caremaster() -> dict:
         <p>We encourage and support LEED and Green Building (LEED-EB) programs. We purchase supplies and equipment that are safe for employees, customers, and the environment. Recycling and hazardous material disposal are part of regular training.</p>
         <p>You will always recognize our employees. All CareMaster employees have a neat, clean uniform appearance. We train employees to interact favorably with the people who use the building daily.</p>
         <p>Only experienced, competent laborers are offered employment. All potential employees complete a background investigation and reference check. We are IICRC Certified for Carpet Cleaning and Commercial CPT Maintenance.</p>
-        <p>A street address is not published on the current public pages. Call (469) 233-3366 or email customerservice@caremaster.biz.</p>
+        <p>Mailing address: PO Box 29303, Dallas, TX 75229. Call (469) 233-3366 or email customerservice@caremaster.biz. Street hours are not published.</p>
       </div>
     </section>''')
 
-    contact = contact_page(site, "<p>The current public site lists phone (469) 233-3366 and customerservice@caremaster.biz. A street suite is not shown on the pages fetched.</p>")
+    contact = contact_page(site, "<p>Phone 469.233.3366. Email customerservice@caremaster.biz. Mailing address: PO Box 29303, Dallas, TX 75229. Street hours are not published on caremaster.biz — none are added here. No customer reviews are published.</p>")
     write_site(site, {"index.html": index, "about.html": about, "services.html": services, "commitment.html": commit, "contact.html": contact})
     return site
 
@@ -572,10 +583,13 @@ def forum() -> dict:
         "address": "2446 Arkansas Lane, Grand Prairie, Texas 75052",
         "hours": "Sunday Bible Study 9:30 a.m. · Worship 10:30 a.m. · Worship 5:00 p.m. · Wednesday Bible Study 7:30 p.m.",
         "eyebrow": "A church family in Grand Prairie",
+        "contact_lede": "Call Dan Vess or send a message. The congregation does not publish an email address.",
+        "form_status": "Thank you. This page does not send messages automatically — please call (972) 922-3249 so someone receives your request.",
         "nav": [
             ("index.html", "Home"),
             ("location.html", "Location"),
             ("classes.html", "Bible Classes"),
+            ("resources.html", "Resources"),
             ("contact.html", "Contact"),
         ],
         "theme": {
@@ -608,14 +622,12 @@ def forum() -> dict:
     {"title": "Singing night", "text": "4th Sunday night."},
     {"title": "Quarterly prayer meeting", "text": "5th Sunday night."},
 ])}</div>')}
-{section("bulletins", "Weekly bulletins — The Forum", "Recent titles published on the homepage.", f'<div class="cards">{cards([
-    {"title": "2026-07-05 — Defeat and Destiny of the Devil", "text": "The letter to the Romans addresses the purpose of the Law of Moses and shows that no one can be justified apart from faith in the Son of God."},
-    {"title": "2026-06-21 & 28 — Letter to the Church at Ephesus", "text": "Rekindling Our First Love."},
-    {"title": "2026-06-14 — Seven Areas of Christian Stewardship", "text": "A bulletin study on stewardship."},
-    {"title": "2026-06-07 — Eight Facts About Good Stewardship", "text": "God’s people in the New Testament are called Christians, saints, disciples, brethren, and more."},
-    {"title": "2026-05-31 — Peer Pressure Relief Valves", "text": "Dealing with negative peer pressure is an unavoidable part of life."},
-    {"title": "2026-05-24 — Peer Pressure Cooker", "text": "Standing firm when the heat is on."},
-])}</div><p class="note">Full bulletin archive: <a href="http://forumterrace.org/category/the-forum/">forumterrace.org/category/the-forum/</a></p>')}''')
+{section("resources", "Tracts, sermons, workbooks, and bulletins", "Published on forumterrace.org. Open the live pages for the files — titles are not rewritten here.", '''<div class="cards">
+          <article class="card"><h3>Tracts</h3><p>Baptism, Bible, Blood, Christ, Church, Gospel, and other tracts.</p><p><a href="http://forumterrace.org/tracts/">forumterrace.org/tracts/</a></p></article>
+          <article class="card"><h3>Sermons</h3><p>Why I Am a Member of The Church Of Christ series and other audio.</p><p><a href="http://forumterrace.org/sermons/">forumterrace.org/sermons/</a></p></article>
+          <article class="card"><h3>Workbooks</h3><p>Bible class workbooks (the live Workbooks nav points here).</p><p><a href="http://forumterrace.org/bible-classes/">forumterrace.org/bible-classes/</a></p></article>
+          <article class="card"><h3>Bulletins — The Forum</h3><p>Weekly bulletin archive.</p><p><a href="http://forumterrace.org/category/the-forum/">forumterrace.org/category/the-forum/</a></p></article>
+        </div><p class="note">The member directory is gated on the live site and is not copied here.</p>''')}''')
 
     location = page(site, title="Location | Forum Terrace Church of Christ", description="2446 Arkansas Lane, Grand Prairie, Texas 75052.", current="location.html", body=f'''{page_hero("Where we are", "The Forum Terrace Church of Christ is located in the center of the Texas DFW Metroplex, on the eastern border of Arlington in Grand Prairie.")}
     <section>
@@ -634,10 +646,18 @@ def forum() -> dict:
     {"title": "2026 1st Quarter Wednesday Adult", "text": "Myth Busting"},
     {"title": "2026 1st Quarter Sunday Young Adult", "text": "Great Verses New Testament"},
     {"title": "2026 1st Quarter Wednesday Young Adult", "text": "Lord’s Supper"},
-])}</div><p class="note">Earlier workbooks and sermons remain on <a href="http://forumterrace.org/bible-classes/">forumterrace.org/bible-classes/</a> and <a href="http://forumterrace.org/sermons/">forumterrace.org/sermons/</a>.</p>')}''')
+])}</div><p class="note">The full workbook list is on <a href="http://forumterrace.org/bible-classes/">forumterrace.org/bible-classes/</a>.</p>')}''')
 
-    contact = contact_page(site, "<p>Have a question or comment? Call Dan Vess at (972) 922-3249 or send a message. Come by 2446 Arkansas Lane, Grand Prairie, Texas 75052.</p>")
-    write_site(site, {"index.html": index, "location.html": location, "classes.html": classes, "contact.html": contact})
+    resources = page(site, title="Resources | Forum Terrace Church of Christ", description="Links to published tracts, sermons, workbooks, and bulletins.", current="resources.html", body=f'''{page_hero("Resources", "Open the congregation’s published pages. Content is not rewritten here.")}
+{section("links", "On forumterrace.org", "Member directory is gated and skipped.", '''<div class="cards">
+          <article class="card"><h3>Tracts</h3><p><a href="http://forumterrace.org/tracts/">forumterrace.org/tracts/</a></p></article>
+          <article class="card"><h3>Sermons</h3><p><a href="http://forumterrace.org/sermons/">forumterrace.org/sermons/</a></p></article>
+          <article class="card"><h3>Workbooks / Bible classes</h3><p><a href="http://forumterrace.org/bible-classes/">forumterrace.org/bible-classes/</a></p></article>
+          <article class="card"><h3>Bulletins — The Forum</h3><p><a href="http://forumterrace.org/category/the-forum/">forumterrace.org/category/the-forum/</a></p></article>
+        </div>''')}''')
+
+    contact = contact_page(site, "<p>Have a question or comment? Call Dan Vess at (972) 922-3249. Come by 2446 Arkansas Lane, Grand Prairie, Texas 75052. No public email is listed. The member directory is gated and is not included here.</p>")
+    write_site(site, {"index.html": index, "location.html": location, "classes.html": classes, "resources.html": resources, "contact.html": contact})
     return site
 
 
@@ -1180,7 +1200,9 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **Logos** are the businesses’ existing marks downloaded from their live sites (or the public Wayback copy for Ferraro) and stored under `sites/<slug>/assets/`.
 - **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
 - **Hughes Mechanical** publishes no customer reviews. None were added. Wix placeholder socials were ignored.
-- **CareMaster** current pages list (469) 233-3366 and customerservice@caremaster.biz. No street address is published on those pages.
+- **Victory Pest Control** uses the brand VPC logo (`victory-pest-control-llc-logo-0510bb09-1920w.jpg`), not the Hibu template gen-logo. Owner John Gaines. (972) 230-5526 / mobile (214) 543-6357. 234 Paradise Way, Red Oak, TX 75154. 24 hours. No email. Reviews only: Taylor Akin, Camille Henderson, Michelle Owens. Live “Lorem Ipsum” tagline and `{{placeholder_*}}` tokens were not copied.
+- **CareMaster** logo is `logo-2.jpg` from nccdn. Since 1982; Richard Lee / President John Lee. 469.233.3366; customerservice@caremaster.biz; PO Box 29303, Dallas, TX 75229. No reviews. Street hours are not published.
+- **Forum Terrace** logo is `cropped-FTCoC_Logo_646x200.png`. 2446 Arkansas Lane; Dan Vess (972) 922-3249; Sun 9:30 / 10:30 / 5:00 and Wed 7:30. Tracts, sermons, workbooks, and bulletins are links to the live HTTP pages. Member directory is gated and skipped. No reviews or email.
 - **Ferraro DDS** live site returned Cloudflare 403. Content, the published logo (`…00551Dentallogodesign…png`), and the doctor photo come from the public October 2025 archive / practice CDN. Hours used: Monday–Thursday 8–5. Friday is blank on the source. Email: danielferrarodds@sbcglobal.net. One published quote (Mrs. Conger). Top Rated Doctors 2016.
 - **B&B Complete Auto** reviews are Elfsight JS only. Gallery is empty. No reviews or photos were invented. License CO16-0388.
 - **Garden Restaurant** menu is the full priced list from `/menu.php` (10 categories). No site reviews. About/Events stay thin.
