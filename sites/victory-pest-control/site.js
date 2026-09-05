@@ -81,7 +81,8 @@
       event.preventDefault();
       var name = form.elements.namedItem("name");
       var message = form.elements.namedItem("message");
-      var missing = !name || !String(name.value).trim() || !message || !String(message.value).trim();
+      var phone = form.elements.namedItem("phone");
+      var missing = !name || !String(name.value).trim() || ((!message || !String(message.value).trim()) && (!phone || !String(phone.value).trim()));
       if (missing) {
         if (error) {
           error.hidden = false;

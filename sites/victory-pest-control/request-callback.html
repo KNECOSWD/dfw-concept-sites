@@ -21,7 +21,7 @@
         <img class="logo wide" src="assets/logo.jpg" alt="Victory Pest Control LLC">
       </a>
       <a class="header-phone" href="tel:+19722305526">(972) 230-5526</a>
-      <a class="btn btn-primary header-cta" href="tel:+19722305526">Call (972) 230-5526</a>
+      <a class="btn btn-primary header-cta" href="request-callback.html">Request Callback</a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     </div>
     <nav id="site-nav" class="nav nav-bar" aria-label="Primary">
@@ -62,10 +62,20 @@
       <section><div class="wrap">
       <form class="card form" id="contact-form">
         <label>Name <input name="name" autocomplete="name" required></label>
-        <label>Phone <input name="phone" autocomplete="tel"></label>
+        <label>Phone <input name="phone" type="tel" autocomplete="tel" required></label>
+        <label>Email <input name="email" type="email" autocomplete="email"></label>
+        <label>Service
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option>Residential and Commercial Pest Control</option>
+            <option>Nuisance Wildlife Control</option>
+            <option>Bed Bug Control</option>
+            <option>Other</option>
+          </select>
+        </label>
         <label>Message <textarea name="message" rows="3" required></textarea></label>
-        <p class="form-error" id="form-error" hidden>Please enter your name and a message.</p>
-        <button class="btn btn-dark" type="submit">Request callback</button>
+        <p class="form-error" id="form-error" hidden>Please enter your name, phone, and a message.</p>
+        <button class="btn btn-primary" type="submit">Request callback</button>
         <p class="form-status" id="form-status" tabindex="-1">Thank you. This page does not send messages automatically — please call so the office receives your request.</p>
       </form>
     </div></section>

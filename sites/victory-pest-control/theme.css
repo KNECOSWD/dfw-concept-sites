@@ -65,15 +65,47 @@
 .hero h1,
 .hero .lede,
 .hero .eyebrow { color: #001a54; }
-.hero .panel {
-  background: rgba(255, 255, 255, 0.9);
-  color: #122033;
-  border-color: rgba(212, 175, 55, 0.45);
+.hero-bullets {
+  margin: 0.8rem 0 0;
+  padding-left: 1.15rem;
+  color: #001a54;
+  font-weight: 700;
 }
-.hero .btn-ghost { color: #001a54; border-color: #001a54; }
-.btn-primary {
+.hero .panel {
+  background: #fff8e8;
+  color: #122033;
+  border: 2px solid #d4af37;
+}
+.hero .panel .form {
+  margin-top: 0.7rem;
+  display: grid;
+  gap: 0.45rem;
+}
+.hero .panel .form label {
+  font-weight: 700;
+  color: #122033;
+}
+.hero .panel .form input,
+.hero .panel .form select,
+.hero .panel .form textarea {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 0.2rem;
+}
+.hero .btn-ghost { color: #001a54; border-color: #001a54; background: rgba(255,255,255,0.72); }
+.btn-primary,
+.header-cta {
   background: #d4af37;
   color: #122033;
+}
+.ratings-row {
+  color: #001a54;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.video-frame {
+  max-width: 56rem;
+  width: 100%;
 }
 .btn-primary:focus-visible { outline-color: #fff6c8; }
 .reviews { background: #11414B url("assets/content4.jpg") center / cover; }

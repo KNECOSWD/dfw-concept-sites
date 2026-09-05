@@ -61,7 +61,14 @@
 .prose a,
 .nav a:hover,
 .nav a[aria-current="page"] { color: #0e6b56; }
-.btn-primary { background: #0e6b56; color: #fff; }
+.btn-primary,
+.header-cta,
+.callbar .btn-primary {
+  background: #18A687;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 800;
+}
 .price { color: #334152; }
 h2::after {
   content: "";
@@ -88,6 +95,10 @@ h2::after {
 .header-cta {
   box-shadow: 0 0 0 2px #B8A51C;
 }
+.theme-dark-header .brand img.logo.wide,
+.hero-mark {
+  mix-blend-mode: screen;
+}
 
 .hero { position: relative; overflow: hidden; }
 .hero-banner { position: absolute; inset: 0; z-index: 0; }
@@ -101,9 +112,22 @@ h2::after {
   background: rgba(12, 16, 20, 0.28);
 }
 .hero .btn-primary {
-  background: #0e6b56;
+  background: #18A687;
   color: #fff;
   box-shadow: 0 0 0 2px #B8A51C;
+}
+.address-band {
+  background: #B8A51C;
+  color: #2a2508;
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+  padding: 0.55rem 1rem;
+}
+.address-band a {
+  color: #2a2508;
+  text-decoration: underline;
 }
 .hero :focus-visible { outline-color: #fff6c8; }
 .footer-menu {
