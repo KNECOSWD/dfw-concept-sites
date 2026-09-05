@@ -1,0 +1,10 @@
+1. speakes-plumbing | live https://www.speakesplumbing.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/speakes-plumbing/
+2. beyond-lawn-care | live https://www.beyondlawncares.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/beyond-lawn-care/
+3. hughes-mechanical | live https://www.hughescontractorsllc.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/hughes-mechanical/
+4. victory-pest-control | live https://www.victorypestcontrol.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/victory-pest-control/
+5. caremaster-building | live http://www.caremaster.biz/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/caremaster-building/
+6. forum-terrace-church | live http://forumterrace.org/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/forum-terrace-church/
+7. bb-complete-auto | live https://bbcompleteautorepair.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/bb-complete-auto/
+8. ferraro-dds | live https://www.grandprairie-arlingtondental.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/ferraro-dds/
+9. garden-restaurant | live https://gardenrestaurantgarland.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/garden-restaurant/
+10. len-conner-law | live https://www.lonestarlaw.net/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/
