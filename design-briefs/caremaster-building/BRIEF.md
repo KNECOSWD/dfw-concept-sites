@@ -2,38 +2,42 @@
 
 **Live:** http://www.caremaster.biz/  
 **Rebuild:** https://knecoswd.github.io/dfw-concept-sites/sites/caremaster-building/  
-**Vibe match: 3/10** — Rebuild invented teal `#2a9d8f` “clean SaaS.” Live Freemona/NationConnect site is **gray corporate + red `#E80000` + gold `#EDDB8C`** accents.
+**Vibe match: 3/10** — Rebuild is teal SaaS navy (`#2a9d8f`). Live is a traditional brochure: **white centered header**, **dark green + gold logo** (skyscraper + stars), light-gray all-caps nav, **Dallas skyline photo hero** with white slogan overlay. Red `#E80000` appears in CSS/contact accents — not the hero brand.
 
-## Color tokens (LIVE)
-| Token | Hex |
-| --- | --- |
-| `--brand` | `#383838` / `#1a2332` dark charcoal for header |
-| `--brand-2` / accent | `#E80000` |
-| Highlight | `#EDDB8C` (gold bar/headings sparingly) |
-| `--ink` | `#383838` |
-| `--muted` | `#686868` |
-| `--bg` | `#f0f0f0` / `#f7f7f7` |
-| `--surface` | `#ffffff` |
-| `--hero-ink` | `#ffffff` |
-| `--font-display` | `Open Sans, Source Sans Pro, sans-serif` |
+## Color tokens (LIVE — visual + CSS)
+| Token | Hex | Notes |
+| --- | --- | --- |
+| `--brand` | `#0b3d2e`–`#1a4d3a` (dark green matching logo type) | Primary brand (logo serif green) |
+| `--brand-2` / gold | `#C9A84C` / `#EDDB8C` | Logo stars / gold accents |
+| `--accent` (optional) | `#E80000` | Contact/email strip only — not hero CTAs |
+| `--ink` | `#383838` | |
+| `--muted` | `#686868` / light gray nav `#a0a0a0` | |
+| `--bg` | `#ffffff` / `#f0f0f0` | |
+| `--surface` | `#ffffff` | |
+| `--hero-ink` | `#ffffff` | On skyline photo |
+| `--font-display` | serif for logo lockup only; body `Open Sans` / sans | |
 
 ## Layout intent
-- Classic commercial janitorial brochure: horizontal text nav (Home About Services Commitment…), red email/phone strip, formal prose.
-- Not trendy teal startup.
-- Keep `logo-2.jpg` only.
+- Centered logo header (not left brand + right CTA like scaffold default).
+- Centered all-caps text nav under logo.
+- Full-bleed skyline hero with short white slogan; prose sections below.
+- Formal commercial janitorial density — not trendy teal startup.
+- Keep published `logo-2.jpg` / gold tower mark only.
 
 ## Eng change list
-1. `theme.css`: remove teal `#2a9d8f`; set accent `#E80000`; optional gold `#EDDB8C` for eyebrow/rules.
-2. Header dark charcoal; CTA red.
-3. Section heads: charcoal, not teal underlines.
-4. Softer corporate density — longer prose blocks ok (match live About/Commitment).
-5. Fonts: Open/Source Sans — drop playful patterns.
+1. Remove teal `#2a9d8f` from buttons/accents.
+2. Primary CTA → dark green (or charcoal); gold for thin rules/stars only; red only if matching live contact strip.
+3. Header layout: center logo + center nav (scaffold `header-row` left-align needs a CareMaster modifier).
+4. Hero: use published skyline photo with dark overlay + white slogan — drop teal gradient pinstripe panel.
+5. Softer corporate prose blocks for About/Commitment.
+6. Fonts: Open/Source Sans body; keep logo image (don’t recreate gold tower in CSS).
 
 ## Keep
-- Since 1982, Richard/John Lee, PO Box, phones, service list; no reviews invented.
+- Since 1982, John Lee, phones, PO Box, service list; no invented reviews.
 
 ## 508 notes
-- Red `#E80000` on white for small text may fail — use for buttons/large links; body links charcoal with underline.
-- Gold on white fails for text — decorative only.
-- Old live tables/layout had weak semantics — rebuild should keep real headings/lists (improvement).
-- Contact form labels; don’t rely on red alone for errors.
+- White text on skyline: ensure overlay dark enough (≥4.5:1).
+- Gold on white fails for small text — decorative only.
+- Light-gray nav on white may fail — darken active/hover to `#383838`.
+- Centered nav: still a real `<nav>` with focus order.
+- Form labels; don’t use red alone for errors.
