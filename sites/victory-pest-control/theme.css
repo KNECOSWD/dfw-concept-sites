@@ -1,0 +1,14 @@
+/* Brand tokens for victory-pest-control */
+:root {
+  --bg: #f4f1e6;
+  --surface: #fffdf6;
+  --ink: #24301c;
+  --muted: #5c604c;
+  --brand: #2d4a22;
+  --brand-2: #d4a017;
+  --accent: #c39212;
+  --hero-ink: #f8f3df;
+  --font-display: Georgia, serif;
+  --hero-pattern: repeating-linear-gradient(135deg, rgba(255,255,255,.12) 0 8px, transparent 8px 16px);
+  --hero-pattern-size: 24px 24px;
+}

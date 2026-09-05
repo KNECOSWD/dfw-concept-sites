@@ -1,0 +1,14 @@
+/* Brand tokens for ferraro-dds */
+:root {
+  --bg: #eef6f6;
+  --surface: #ffffff;
+  --ink: #16333a;
+  --muted: #547077;
+  --brand: #0d7377;
+  --brand-2: #14919b;
+  --accent: #0d7377;
+  --hero-ink: #eef8f8;
+  --font-display: Georgia, serif;
+  --hero-pattern: radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%);
+  --hero-pattern-size: 100% 100%;
+}

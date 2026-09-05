@@ -1,0 +1,14 @@
+/* Brand tokens for garden-restaurant */
+:root {
+  --bg: #f7efe8;
+  --surface: #fffaf4;
+  --ink: #3b1c16;
+  --muted: #6e4d42;
+  --brand: #8b1e1e;
+  --brand-2: #d4a017;
+  --accent: #c39212;
+  --hero-ink: #fff4e0;
+  --font-display: Georgia, serif;
+  --hero-pattern: radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%);
+  --hero-pattern-size: 100% 100%;
+}

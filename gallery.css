@@ -1,0 +1,32 @@
+:root {
+  --bg: #f4efe6;
+  --brand: #1b2a4a;
+  --brand-2: #c4a46a;
+  --accent: #b08948;
+  --hero-ink: #f6eedc;
+  --hero-pattern: radial-gradient(circle at 80% 10%, rgba(196, 164, 106, 0.28), transparent 28%);
+}
+
+.gallery-cards {
+  grid-template-columns: 1fr;
+}
+
+.gallery-cards .btn {
+  margin-top: 0.7rem;
+}
+
+code {
+  font-size: 0.86em;
+}
+
+@media (min-width: 760px) {
+  .gallery-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 980px) {
+  .gallery-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

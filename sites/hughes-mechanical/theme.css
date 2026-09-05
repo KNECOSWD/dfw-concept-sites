@@ -1,0 +1,14 @@
+/* Brand tokens for hughes-mechanical */
+:root {
+  --bg: #eef2f6;
+  --surface: #ffffff;
+  --ink: #152033;
+  --muted: #5a6575;
+  --brand: #1d3557;
+  --brand-2: #e76f51;
+  --accent: #e76f51;
+  --hero-ink: #f4f7fb;
+  --font-display: "Segoe UI Semibold", "Segoe UI", sans-serif;
+  --hero-pattern: linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
+  --hero-pattern-size: 24px 24px;
+}
