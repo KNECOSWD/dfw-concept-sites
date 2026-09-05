@@ -88,7 +88,7 @@ def page(site: dict, *, title: str, description: str, current: str, body: str) -
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body{(' class="' + esc(site["body_class"]) + '"') if site.get("body_class") else ""}>
 {header(site, current)}
   <main id="main">
 {body}

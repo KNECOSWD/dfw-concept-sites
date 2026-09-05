@@ -80,7 +80,7 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 
 - **Logos** are the businesses’ existing marks downloaded from their live sites (or the public Wayback copy for Ferraro) and stored under `sites/<slug>/assets/`.
 - **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
-- **Hughes Mechanical** publishes no customer reviews. None were added. Unused Wix social links were ignored.
+- **Hughes Mechanical** publishes no customer reviews. None were added. Wix placeholder socials were ignored.
 - **CareMaster** current pages list (469) 233-3366 and customerservice@caremaster.biz. No street address is published on those pages.
 - **Ferraro DDS** live site returned Cloudflare 403. Content and the published site logo come from the October 2025 Wayback snapshot of grandprairie-arlingtondental.com.
 - **Speake's** homepage slider labels MashIt / FabuFit / YesSuits are template chrome, not used as company names.

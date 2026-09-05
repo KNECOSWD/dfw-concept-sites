@@ -74,6 +74,28 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
+.theme-dark-header .site-header {
+  background: #111318;
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.theme-dark-header .brand-text strong,
+.theme-dark-header .nav a {
+  color: #f4f4f4;
+}
+
+.theme-dark-header .brand-text span,
+.theme-dark-header .nav a:hover,
+.theme-dark-header .nav a[aria-current="page"] {
+  color: #d4d4d4;
+}
+
+.theme-dark-header .menu-btn {
+  background: #1c1f24;
+  color: #f4f4f4;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 .header-row {
   display: flex;
   align-items: center;
