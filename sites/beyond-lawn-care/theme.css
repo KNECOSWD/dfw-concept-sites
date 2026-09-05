@@ -1,0 +1,13 @@
+/* Brand tokens for beyond-lawn-care */
+:root {
+  --bg: #eef5ee;
+  --surface: #fbfff6;
+  --ink: #163022;
+  --muted: #4d6156;
+  --brand: #1b4332;
+  --brand-2: #74c69d;
+  --accent: #2d6a4f;
+  --hero-ink: #f3fff6;
+  --font-display: Georgia, serif;
+  --hero-pattern: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+}

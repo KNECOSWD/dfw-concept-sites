@@ -1,0 +1,13 @@
+/* Brand tokens for bb-complete-auto */
+:root {
+  --bg: #f1eeea;
+  --surface: #fffaf6;
+  --ink: #1b1b1b;
+  --muted: #5c5854;
+  --brand: #1c1c1c;
+  --brand-2: #c1121f;
+  --accent: #c1121f;
+  --hero-ink: #f6f1ea;
+  --font-display: "Segoe UI Semibold", "Segoe UI", sans-serif;
+  --hero-pattern: repeating-linear-gradient(-18deg, rgba(255,255,255,.08) 0 10px, transparent 10px 20px);
+}

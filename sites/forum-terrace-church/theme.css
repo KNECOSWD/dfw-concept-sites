@@ -1,0 +1,13 @@
+/* Brand tokens for forum-terrace-church */
+:root {
+  --bg: #f6efe6;
+  --surface: #fffaf2;
+  --ink: #3a241f;
+  --muted: #6b5348;
+  --brand: #5c2a2a;
+  --brand-2: #e8d5a3;
+  --accent: #8b5a2b;
+  --hero-ink: #f8eedc;
+  --font-display: Georgia, serif;
+  --hero-pattern: radial-gradient(circle at 50% 0, rgba(255,255,255,.2), transparent 42%);
+}

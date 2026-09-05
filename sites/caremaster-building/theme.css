@@ -1,0 +1,13 @@
+/* Brand tokens for caremaster-building */
+:root {
+  --bg: #eef3f3;
+  --surface: #ffffff;
+  --ink: #17202a;
+  --muted: #5b6770;
+  --brand: #1a2332;
+  --brand-2: #2a9d8f;
+  --accent: #2a9d8f;
+  --hero-ink: #eef8f6;
+  --font-display: "Segoe UI", system-ui, sans-serif;
+  --hero-pattern: repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 18px);
+}

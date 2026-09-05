@@ -1,0 +1,13 @@
+/* Brand tokens for speakes-plumbing */
+:root {
+  --bg: #f3efe8;
+  --surface: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5c6570;
+  --brand: #16324f;
+  --brand-2: #c47a3a;
+  --accent: #c47a3a;
+  --hero-ink: #f7f1e8;
+  --font-display: "Palatino Linotype", Georgia, serif;
+  --hero-pattern: radial-gradient(circle at 20% 20%, #fff 0 2px, transparent 2.5px);
+}
