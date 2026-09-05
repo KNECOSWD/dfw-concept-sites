@@ -65,6 +65,11 @@
 .hero h1,
 .hero .lede,
 .hero .eyebrow { color: #fff; }
+.hero .panel {
+  background: rgba(0, 26, 84, 0.86);
+  color: #fff;
+  border-color: rgba(212, 175, 55, 0.4);
+}
 .btn-primary {
   background: #d4af37;
   color: #122033;
