@@ -71,14 +71,22 @@
 .hero .wrap,
 .hero .hero-grid { z-index: 2; }
 .hero-script {
+  position: relative;
+  overflow: hidden;
+  height: clamp(5.2rem, 13vw, 8rem);
+  aspect-ratio: 1405 / 367;
+  width: auto;
+  max-width: min(92vw, 32rem);
   margin: 0 0 0.85rem;
 }
 .hero-script img {
-  display: block;
-  height: clamp(4.4rem, 10vw, 6.6rem);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: calc(100% * 6913 / 367);
   width: auto;
-  max-width: min(92vw, 26rem);
-  mix-blend-mode: screen;
+  max-width: none;
+  transform: translate(-50%, -50%);
 }
 .hero .panel {
   background: rgba(17, 47, 91, 0.88);
@@ -119,10 +127,22 @@
 .site-header { background: #112F5B url("assets/home4.png") center / cover; }
 .theme-dark-header .site-header { border-bottom: 3px solid #fdf102; }
 .theme-dark-header .brand-text { display: none; }
+.theme-dark-header .brand {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: 64px;
+  width: min(72vw, 280px);
+  flex: none;
+}
 .theme-dark-header .brand img.logo.wide {
-  height: 58px;
-  max-width: min(74vw, 360px);
-  mix-blend-mode: screen;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: calc(64px * 6913 / 367);
+  width: auto;
+  max-width: none;
+  transform: translate(-50%, -50%);
 }
 .theme-dark-header .nav a:hover,
 .theme-dark-header .nav a[aria-current="page"] {
