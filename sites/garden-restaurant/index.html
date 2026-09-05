@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Garden Restaurant | Garland, TX</title>
   <meta name="description" content="Chinese restaurant at 3555 W Walnut St, Garland. Open daily 10 AM–10 PM. Call (972) 487-8289.">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
@@ -40,6 +43,28 @@
           </div>
       </div>
     </section>
+    <section id="banners" aria-label="Published restaurant banners">
+      <div class="wrap photo-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;padding:1rem 0;">
+        <img src="assets/banner-1.jpg" alt="Garden Restaurant banner">
+        <img src="assets/banner-2.jpg" alt="Garden Restaurant banner">
+        <img src="assets/banner-3.jpg" alt="Garden Restaurant banner">
+      </div>
+    </section>
+    <section id="specialties">
+      <div class="wrap">
+        <img src="assets/specialties.jpg" alt="Garden Restaurant specialties" class="media-frame" style="width:100%;max-width:42rem;display:block;margin:1.5rem auto;">
+      </div>
+    </section>
+    <section id="home-gallery" aria-label="Gallery">
+      <div class="wrap photo-grid">
+        <img src="assets/gallery/dish-1.jpg" alt="Garden Restaurant gallery image">
+        <img src="assets/gallery/dish-2.jpg" alt="Garden Restaurant gallery image">
+        <img src="assets/gallery/dish-3.jpg" alt="Garden Restaurant gallery image">
+        <img src="assets/gallery/dish-4.jpg" alt="Garden Restaurant gallery image">
+        <img src="assets/gallery/dish-5.jpg" alt="Garden Restaurant gallery image">
+        <img src="assets/gallery/dish-6.jpg" alt="Garden Restaurant gallery image">
+      </div>
+    </section>
     <section id="about">
       <div class="wrap">
         <div class="section-head">
@@ -63,7 +88,14 @@
       </div>
       <div>
         
-        <p><a href="events.html">Events</a> · <a href="online.html">Order PickUp | Delivery</a></p>
+                <ul class="footer-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="online.php">Order PickUp | Delivery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
         <p class="legal">© <span id="year"></span> Garden Restaurant. All rights reserved.</p>
       </div>
     </div>

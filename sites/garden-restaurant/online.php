@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Order PickUp | Delivery</title>
   <meta name="description" content="Order online.">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
@@ -44,6 +47,14 @@
       </div>
       <div>
         
+                <ul class="footer-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="online.php">Order PickUp | Delivery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
         <p class="legal">© <span id="year"></span> Garden Restaurant. All rights reserved.</p>
       </div>
     </div>
