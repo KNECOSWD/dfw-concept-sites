@@ -7,7 +7,7 @@
   --brand: #001A54;
   --brand-2: #D4AF37;
   --accent: #F7D000;
-  --hero-ink: #ffffff;
+  --hero-ink: #001A54;
   --font-display: Righteous, Muli, system-ui, sans-serif;
   --font: Muli, "Segoe UI", system-ui, sans-serif;
   --hero-pattern: none;
@@ -58,18 +58,19 @@
 
 
 .hero {
-  --hero-scrim: linear-gradient(105deg, rgba(0, 26, 84, 0.82) 0%, rgba(0, 26, 84, 0.62) 52%, rgba(17, 65, 75, 0.28) 100%);
-  background: #001a54 url("assets/hero-home.jpg") center / cover no-repeat;
+  --hero-scrim: linear-gradient(105deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.48) 52%, rgba(255, 255, 255, 0.14) 100%);
+  background: #eef2f8 url("assets/hero-home.jpg") center / cover no-repeat;
   min-height: clamp(24rem, 52vw, 34rem);
 }
 .hero h1,
 .hero .lede,
-.hero .eyebrow { color: #fff; }
+.hero .eyebrow { color: #001a54; }
 .hero .panel {
-  background: rgba(0, 26, 84, 0.86);
-  color: #fff;
-  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(255, 255, 255, 0.9);
+  color: #122033;
+  border-color: rgba(212, 175, 55, 0.45);
 }
+.hero .btn-ghost { color: #001a54; border-color: #001a54; }
 .btn-primary {
   background: #d4af37;
   color: #122033;

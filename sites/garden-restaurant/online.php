@@ -34,7 +34,7 @@
   <main id="main">
     <section class="page-hero"><div class="wrap"><h1>Order PickUp | Delivery</h1></div></section>
     <section><div class="wrap prose"><p><a href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa">Order on ZingMyOrder</a></p>
-      <p>Call the office to confirm current details and schedule.</p>
+      <p>Call <a href="tel:+19724878289">(972) 487-8289</a> to confirm current details and schedule.</p>
     </div></section>
   </main>
   <footer class="site-footer">

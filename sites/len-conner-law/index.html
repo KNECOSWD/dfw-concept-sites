@@ -62,7 +62,12 @@
       </nav>
   </header>
   <main id="main">
-    <section class="hero hero-photo hero-ink-brand" id="top">
+    <section class="hero hero-photo hero-ink-brand" id="top" data-hero-carousel aria-roledescription="carousel" aria-label="Practice banners">
+      <div class="hero-slide-layer" aria-hidden="true">
+        <div class="hero-slide is-active" style="background-image:url('assets/banner-main.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('assets/banner-main3.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('assets/banner4.jpg')"></div>
+      </div>
       <div class="wrap hero-grid">
         <div>
           
@@ -71,7 +76,7 @@
           <p class="lede">Your decisions are only as good as the information and advice you receive.</p>
           <div class="actions">
             <a class="btn btn-primary" href="tel:+19724451500">Call (972) 445-1500</a>
-            <a class="btn btn-ghost" href="practice.html">Learn more</a>
+            <a class="btn btn-ghost" href="practice-areas.html">Learn more</a>
           </div>
         </div>
         <aside class="panel"><strong>Office</strong>
@@ -80,12 +85,11 @@
           <p>Corner of John Carpenter Freeway and Rochelle Boulevard</p>
           <div class="kpis"><div><strong>Family law</strong><span>Practice focus</span></div><div><strong>J.D., M.B.A.</strong><span>Len M. Conner</span></div><div><strong>Irving</strong><span>John Carpenter Fwy</span></div><div><strong>DFW</strong><span>Surrounding counties</span></div></div></aside>
       </div>
-    </section>
-    <section id="hero-slides" aria-label="Practice banners">
-      <div class="wrap photo-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;">
-        <figure><img src="assets/banner-main.jpg" alt="Divorce &amp; Family Law"><figcaption>Divorce &amp; Family Law</figcaption></figure>
-        <figure><img src="assets/banner-main3.jpg" alt="Child Custody"><figcaption>Child Custody</figcaption></figure>
-        <figure><img src="assets/banner4.jpg" alt="Military Divorce Issues"><figcaption>Military Divorce Issues</figcaption></figure>
+      <div class="hero-carousel-ui">
+        <button type="button" data-hero-dot aria-label="Show banner 1" aria-current="true">1</button>
+        <button type="button" data-hero-dot aria-label="Show banner 2">2</button>
+        <button type="button" data-hero-dot aria-label="Show banner 3">3</button>
+        <button type="button" data-hero-pause aria-pressed="false">Pause</button>
       </div>
     </section>
     <section id="intro">

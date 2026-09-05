@@ -70,21 +70,18 @@
       </nav>
   </header>
   <main id="main">
-    <section class="hero hero-photo speake-hero" id="top" aria-label="Welcome">
-      <div class="speake-welcome">Welcome to Speake's Plumbing, Inc.</div>
-    </section>
-    <section id="hero-slides" aria-label="Shop photos">
-      <div class="wrap photo-row">
-        <img src="assets/hero-1.jpg" alt="Speake's Plumbing shop photo">
-        <img src="assets/hero-2.jpg" alt="Speake's Plumbing shop photo">
-        <img src="assets/hero-3.jpg" alt="Speake's Plumbing shop photo">
+    <section class="hero hero-photo speake-hero" id="top" data-hero-carousel aria-roledescription="carousel" aria-label="Welcome to Speake's Plumbing, Inc.">
+      <div class="hero-slide-layer" aria-hidden="true">
+        <div class="hero-slide is-active" style="background-image:url('assets/hero-1.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('assets/hero-2.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('assets/hero-3.jpg')"></div>
       </div>
-    </section>
-    <section id="home-video">
-      <div class="wrap">
-        <video controls autoplay muted playsinline>
-          <source src="https://videos.dexmedia.com/MP41280x720/950.0015316243_A.mp4" type="video/mp4">
-        </video>
+      <div class="speake-welcome">Welcome to Speake's Plumbing, Inc.</div>
+      <div class="hero-carousel-ui">
+        <button type="button" data-hero-dot aria-label="Show photo 1" aria-current="true">1</button>
+        <button type="button" data-hero-dot aria-label="Show photo 2">2</button>
+        <button type="button" data-hero-dot aria-label="Show photo 3">3</button>
+        <button type="button" data-hero-pause aria-pressed="false">Pause</button>
       </div>
     </section>
     <section>

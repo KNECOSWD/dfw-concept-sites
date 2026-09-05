@@ -32,7 +32,21 @@
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-center hero-photo" id="top">
+    <section class="hero hero-center hero-photo" id="top" data-hero-carousel aria-roledescription="carousel" aria-label="Restaurant banners">
+      <div class="hero-slide-layer" aria-hidden="true">
+        <div class="hero-slide is-active">
+          <div class="hero-slide-desk" style="background-image:url('assets/banner-1.jpg')"></div>
+          <div class="hero-slide-mob" style="background-image:url('assets/banner-m1.jpg')"></div>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-slide-desk" style="background-image:url('assets/banner-2.jpg')"></div>
+          <div class="hero-slide-mob" style="background-image:url('assets/banner-m2.jpg')"></div>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-slide-desk" style="background-image:url('assets/banner-3.jpg')"></div>
+          <div class="hero-slide-mob" style="background-image:url('assets/banner-m3.jpg')"></div>
+        </div>
+      </div>
       <div class="wrap">
         
         <h1><img class="hero-mark" src="assets/logo.png" alt="Garden Restaurant"></h1>
@@ -42,12 +56,11 @@
             <a class="btn btn-ghost" href="menu.php">See the menu</a>
           </div>
       </div>
-    </section>
-    <section id="banners" aria-label="Published restaurant banners">
-      <div class="wrap photo-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;padding:1rem 0;">
-        <img src="assets/banner-1.jpg" alt="Garden Restaurant banner">
-        <img src="assets/banner-2.jpg" alt="Garden Restaurant banner">
-        <img src="assets/banner-3.jpg" alt="Garden Restaurant banner">
+      <div class="hero-carousel-ui">
+        <button type="button" data-hero-dot aria-label="Show banner 1" aria-current="true">1</button>
+        <button type="button" data-hero-dot aria-label="Show banner 2">2</button>
+        <button type="button" data-hero-dot aria-label="Show banner 3">3</button>
+        <button type="button" data-hero-pause aria-pressed="false">Pause</button>
       </div>
     </section>
     <section id="specialties">
@@ -56,13 +69,19 @@
       </div>
     </section>
     <section id="home-gallery" aria-label="Gallery">
-      <div class="wrap photo-grid">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Gallery</h2>
+        </div>
+        <div class="photo-grid">
         <img src="assets/gallery/dish-1.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-2.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-3.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-4.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-5.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-6.jpg" alt="Garden Restaurant gallery image">
+        </div>
+        <p class="note" style="text-align:center;margin-top:1rem;"><a class="btn btn-ghost" href="gallery.php">Open the gallery</a></p>
       </div>
     </section>
     <section id="about">

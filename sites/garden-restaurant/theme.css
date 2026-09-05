@@ -7,7 +7,7 @@
   --brand: #0e6b56;
   --brand-2: #B8A51C;
   --accent: #0e6b56;
-  --hero-ink: #ffffff;
+  --hero-ink: #1c2a24;
   --font-display: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
   --font: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
   --hero-pattern: none;
@@ -17,14 +17,9 @@
 }
 
 .hero {
-  --hero-scrim: linear-gradient(180deg, rgba(12, 16, 20, 0.72) 0%, rgba(12, 16, 20, 0.52) 55%, rgba(12, 16, 20, 0.68) 100%);
-  background: #12161a url("assets/banner-1.jpg") center / cover no-repeat;
+  --hero-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.4) 48%, rgba(255, 255, 255, 0.62) 100%);
+  background: #f4f1ea;
   min-height: clamp(28rem, 62vw, 40rem);
-}
-@media (max-width: 760px) {
-  .hero {
-    background: #12161a url("assets/banner-m1.jpg") center / cover no-repeat;
-  }
 }
 .hero::after { opacity: 0; }
 .hero h1 { max-width: none; }
@@ -74,9 +69,9 @@
 .hero-banner img { width: 100%; height: 100%; object-fit: cover; }
 .hero .wrap, .hero .hero-grid { position: relative; z-index: 1; }
 .hero h1,
-.hero .lede { color: #fff; }
-.hero .btn-ghost { color: #fff; border-color: rgba(255,255,255,0.7); }
-.hero :focus-visible { outline-color: #fff6c8; }
+.hero .lede { color: #1c2a24; }
+.hero .btn-ghost { color: #0e6b56; border-color: #0e6b56; }
+.hero :focus-visible { outline-color: #111; }
 .footer-menu {
   display: flex; flex-wrap: wrap; gap: 0.65rem 1rem;
   list-style: none; margin: 0 0 0.75rem; padding: 0;

@@ -97,4 +97,65 @@
       form.reset();
     });
   }
+
+  function initHeroCarousel() {
+    var root = document.querySelector("[data-hero-carousel]");
+    if (!root) return;
+    var slides = root.querySelectorAll(".hero-slide");
+    if (slides.length < 2) return;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var index = 0;
+    var timer = null;
+    var paused = false;
+    var pauseBtn = root.querySelector("[data-hero-pause]");
+    var dots = root.querySelectorAll("[data-hero-dot]");
+
+    function show(next) {
+      index = (next + slides.length) % slides.length;
+      slides.forEach(function (slide, n) {
+        slide.classList.toggle("is-active", n === index);
+      });
+      dots.forEach(function (dot, n) {
+        var current = n === index;
+        dot.setAttribute("aria-current", current ? "true" : "false");
+      });
+    }
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+    function start() {
+      stop();
+      if (reduce.matches || paused) return;
+      timer = setInterval(function () {
+        show(index + 1);
+      }, 6500);
+    }
+    if (pauseBtn) {
+      pauseBtn.addEventListener("click", function () {
+        paused = !paused;
+        pauseBtn.setAttribute("aria-pressed", paused ? "true" : "false");
+        pauseBtn.textContent = paused ? "Play" : "Pause";
+        if (paused) stop();
+        else start();
+      });
+    }
+    dots.forEach(function (dot, n) {
+      dot.addEventListener("click", function () {
+        show(n);
+        start();
+      });
+    });
+    show(0);
+    start();
+    if (typeof reduce.addEventListener === "function") {
+      reduce.addEventListener("change", start);
+    } else if (typeof reduce.addListener === "function") {
+      reduce.addListener(start);
+    }
+  }
+  initHeroCarousel();
+
 })();

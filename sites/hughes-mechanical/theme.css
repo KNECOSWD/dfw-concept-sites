@@ -7,7 +7,7 @@
   --brand: #112F5B;
   --brand-2: #D64000;
   --accent: #D64000;
-  --hero-ink: #ffffff;
+  --hero-ink: #112F5B;
   --font-display: Arial, Helvetica, sans-serif;
   --font: Arial, Helvetica, sans-serif;
   --hero-pattern: none;
@@ -56,8 +56,8 @@
 
 
 .hero {
-  --hero-scrim: linear-gradient(115deg, rgba(17, 47, 91, 0.78) 0%, rgba(10, 29, 56, 0.55) 58%, rgba(10, 29, 56, 0.22) 100%);
-  background: #0a1d38;
+  --hero-scrim: linear-gradient(115deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.46) 52%, rgba(255, 255, 255, 0.12) 100%);
+  background: #e8eef6;
   min-height: clamp(24rem, 50vw, 34rem);
 }
 .hero::after {
@@ -71,15 +71,16 @@
 .hero .wrap,
 .hero .hero-grid { z-index: 2; }
 .hero .panel {
-  background: rgba(10, 29, 56, 0.88);
-  color: #fff;
-  border-color: rgba(253, 241, 2, 0.35);
+  background: rgba(255, 255, 255, 0.9);
+  color: #112f5b;
+  border-color: rgba(253, 241, 2, 0.55);
 }
 .hero h1 {
   max-width: 18ch;
-  color: #fff;
+  color: #112f5b;
 }
-.hero .lede { color: #fff; }
+.hero .lede { color: #152033; }
+.hero .btn-ghost { color: #112f5b; border-color: #112f5b; }
 .hero .eyebrow {
   color: #112f5b;
   background: #fdf102;
@@ -87,6 +88,6 @@
 .btn-primary { background: #d64000; color: #fff; }
 .site-header { background: #112F5B url("assets/home4.png") center / cover; }
 #services { background: #f2eae7 url("assets/services-art.png") right / contain no-repeat; }
-.theme-dark-header :focus-visible,
-.hero :focus-visible { outline-color: #fff6c8; }
+.theme-dark-header :focus-visible { outline-color: #fff6c8; }
+.hero :focus-visible { outline-color: #111; }
 
