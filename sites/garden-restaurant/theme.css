@@ -7,7 +7,7 @@
   --brand: #0e6b56;
   --brand-2: #B8A51C;
   --accent: #0e6b56;
-  --hero-ink: #1c2a24;
+  --hero-ink: #ffffff;
   --font-display: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
   --font: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
   --hero-pattern: none;
@@ -17,14 +17,14 @@
 }
 
 .hero {
-  --hero-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.4) 48%, rgba(255, 255, 255, 0.62) 100%);
-  background: #f4f1ea;
+  --hero-scrim: linear-gradient(180deg, rgba(12, 16, 20, 0.5) 0%, rgba(12, 16, 20, 0.32) 48%, rgba(12, 16, 20, 0.54) 100%);
+  background: #12161a;
   min-height: clamp(28rem, 62vw, 40rem);
 }
 .hero::after { opacity: 0; }
 .hero h1 { max-width: none; }
 .price { color: #334152; }
-.eyebrow { color: #B8A51C; }
+.eyebrow { color: #7a6e12; }
 
 
 /* Shared dropdown nav — all 10 sites */
@@ -63,15 +63,49 @@
 .nav a[aria-current="page"] { color: #0e6b56; }
 .btn-primary { background: #0e6b56; color: #fff; }
 .price { color: #334152; }
+h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: #B8A51C;
+  margin-top: 0.45rem;
+}
+.page-hero h1 { color: #0e6b56; }
+.page-hero h1::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: #B8A51C;
+  margin-top: 0.45rem;
+}
+.theme-dark-header .nav a:hover,
+.theme-dark-header .nav a[aria-current="page"] {
+  color: #18A687;
+  box-shadow: inset 0 -2px 0 #B8A51C;
+}
+.header-cta {
+  box-shadow: 0 0 0 2px #B8A51C;
+}
 
 .hero { position: relative; overflow: hidden; }
 .hero-banner { position: absolute; inset: 0; z-index: 0; }
 .hero-banner img { width: 100%; height: 100%; object-fit: cover; }
 .hero .wrap, .hero .hero-grid { position: relative; z-index: 1; }
 .hero h1,
-.hero .lede { color: #1c2a24; }
-.hero .btn-ghost { color: #0e6b56; border-color: #0e6b56; }
-.hero :focus-visible { outline-color: #111; }
+.hero .lede { color: #fff; }
+.hero .btn-ghost {
+  color: #fff;
+  border-color: #B8A51C;
+  background: rgba(12, 16, 20, 0.28);
+}
+.hero .btn-primary {
+  background: #0e6b56;
+  color: #fff;
+  box-shadow: 0 0 0 2px #B8A51C;
+}
+.hero :focus-visible { outline-color: #fff6c8; }
 .footer-menu {
   display: flex; flex-wrap: wrap; gap: 0.65rem 1rem;
   list-style: none; margin: 0 0 0.75rem; padding: 0;
