@@ -295,6 +295,19 @@ body {
   color: #fff;
 }
 
+#home-video video {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  margin: 1.25rem auto;
+  height: auto;
+}
+#hero-slides img {
+  width: 100%;
+  height: 8rem;
+  object-fit: cover;
+}
+
 .media-frame {
   width: 100%;
   border-radius: 8px;

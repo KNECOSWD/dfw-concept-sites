@@ -4,24 +4,34 @@
   --surface: #ffffff;
   --ink: #383838;
   --muted: #686868;
-  --brand: #0b3d2e;
-  --brand-2: #C9A84C;
-  --accent: #0b3d2e;
+  --brand: #1F4A3B;
+  --brand-2: #918561;
+  --accent: #1F4A3B;
   --hero-ink: #ffffff;
   --font-display: "Source Sans Pro", "Open Sans", "Segoe UI", sans-serif;
   --font: "Open Sans", "Source Sans Pro", "Segoe UI", sans-serif;
   --hero-pattern: none;
   --hero-pattern-size: 24px 24px;
-  --focus: #0b3d2e;
+  --focus: #1F4A3B;
   --cta-ink: #ffffff;
 }
 
 
 .hero::after { opacity: 0; }
 .prose a { color: #383838; }
-.btn-primary { background: #0b3d2e; color: #fff; }
-h2 { color: #0b3d2e; }
-h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #C9A84C; margin-top: 0.45rem; }
+.btn-primary { background: #1F4A3B; color: #fff; }
+h2 { color: #1F4A3B; }
+h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #918561; margin-top: 0.45rem; }
+.theme-centered-header .nav {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.theme-centered-header .nav a { color: #595959; }
+.theme-centered-header .nav a:hover,
+.theme-centered-header .nav a[aria-current="page"] {
+  color: #1F4A3B;
+  box-shadow: inset 0 -2px 0 #1F4A3B;
+}
 
 
 /* Shared dropdown nav — all 10 sites */
