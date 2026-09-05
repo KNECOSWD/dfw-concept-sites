@@ -35,7 +35,7 @@
     <section class="page-hero">
       <div class="wrap">
         <h1>Our gallery</h1>
-        <p class="lede">Dish photos published on the live Garden Restaurant gallery.</p>
+        <p class="lede">Photos from the restaurant.</p>
       </div>
     </section>
     <section id="photos">

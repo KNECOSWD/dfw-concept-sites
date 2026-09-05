@@ -33,7 +33,7 @@
   </header>
   <main id="main">
     <section class="page-hero"><div class="wrap"><h1>Events</h1></div></section>
-    <section><div class="wrap prose"><p>About/Events stay thin as on the live site. Call (972) 487-8289 for current events.</p>
+    <section><div class="wrap prose"><p>Call (972) 487-8289 for current events.</p>
       <p>Call <a href="tel:+19724878289">(972) 487-8289</a> to confirm current details and schedule.</p>
     </div></section>
   </main>

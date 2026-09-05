@@ -35,7 +35,7 @@
     <section class="page-hero">
       <div class="wrap">
         <h1>Menu</h1>
-        <p class="lede">All categories and prices as published on the restaurant menu page. Call to confirm today’s availability.</p>
+        <p class="lede">Categories and prices from the menu. Call to confirm today’s availability.</p>
       </div>
     </section>
     <section>
@@ -51,7 +51,7 @@
         <article class="card"><h3>Family Dinner</h3><ul class="menu-list"><li><span>Peking Duck Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Salt Pepper Squid Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Beef with String Bean Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Salted Fish &amp; Shrimp Fried Rice Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Peking Duck - 2 Ways Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Half of House Steamed Chicken Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Hong Kong Style Shrimp Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Beef with Chinese Broccoli Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>XO Seafood Fried Rice Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Crispy Deep Fried Flounder Fish Family Dinner (For Six)</span><span class="price">$168.00</span></li></ul></article>
         <article class="card"><h3>Drinks</h3><ul class="menu-list"><li><span>Hot Tea</span><span class="price">$1.50</span></li><li><span>Iced Tea</span><span class="price">$1.50</span></li><li><span>Soft Drink</span><span class="price">$2.00</span></li><li><span>Iced Coffee</span><span class="price">$4.00</span></li><li><span>Fresh Coconut Juice</span><span class="price">$5.50</span></li><li><span>Fresh Lemonade</span><span class="price">$4.50</span></li></ul></article>
       </div>
-      <div class="wrap"><p class="note">Full priced menu from gardenrestaurantgarland.com/menu.php. Call (972) 487-8289 to confirm today’s availability. The live site publishes no reviews; none are added here.</p></div>
+      <div class="wrap"><p class="note">Call (972) 487-8289 to confirm today’s availability.</p></div>
     </section>
   </main>
   <footer class="site-footer">
