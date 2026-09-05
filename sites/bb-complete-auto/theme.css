@@ -1,15 +1,24 @@
 /* Brand tokens sampled from the live bb-complete-auto site */
 :root {
-  --bg: #f1eeea;
-  --surface: #fffaf6;
+  --bg: #eeeeee;
+  --surface: #ffffff;
   --ink: #1b1b1b;
   --muted: #5c5854;
-  --brand: #1c1c1c;
+  --brand: #1a1a1a;
   --brand-2: #c1121f;
   --accent: #c1121f;
-  --hero-ink: #f6f1ea;
-  --font-display: "Segoe UI Semibold", "Segoe UI", sans-serif;
-  --hero-pattern: repeating-linear-gradient(-18deg, rgba(255,255,255,.08) 0 10px, transparent 10px 20px);
+  --hero-ink: #ffffff;
+  --font-display: "Segoe UI", system-ui, sans-serif;
+  --font: "Segoe UI", system-ui, sans-serif;
+  --hero-pattern: none;
   --hero-pattern-size: 24px 24px;
+  --focus: #ffffff;
+  --cta-ink: #ffffff;
 }
+
+.hero { background: #111111; }
+.hero::after { opacity: 0; }
+.prose a { color: #a50e18; }
+.cards { gap: 0.65rem; }
+.card { padding: 0.9rem 1rem; border-radius: 10px; }
 

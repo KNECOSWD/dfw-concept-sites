@@ -1,15 +1,29 @@
 /* Brand tokens sampled from the live garden-restaurant site */
 :root {
-  --bg: #f7efe8;
-  --surface: #fffaf4;
-  --ink: #3b1c16;
-  --muted: #6e4d42;
-  --brand: #8b1e1e;
-  --brand-2: #d4a017;
-  --accent: #c39212;
-  --hero-ink: #fff4e0;
-  --font-display: Georgia, serif;
-  --hero-pattern: radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%);
-  --hero-pattern-size: 100% 100%;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #334152;
+  --muted: #495057;
+  --brand: #18A687;
+  --brand-2: #B8A51C;
+  --accent: #18A687;
+  --hero-ink: #ffffff;
+  --font-display: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --font: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --hero-pattern: none;
+  --hero-pattern-size: 24px 24px;
+  --focus: #ffffff;
+  --cta-ink: #122033;
 }
+
+.hero {
+  background:
+    linear-gradient(rgba(18, 22, 26, 0.55), rgba(18, 22, 26, 0.48)),
+    url("assets/hero-food.jpg") center / cover no-repeat;
+  min-height: 28rem;
+}
+.hero::after { opacity: 0; }
+.hero h1 { max-width: none; }
+.price { color: #334152; }
+.eyebrow { color: #B8A51C; }
 

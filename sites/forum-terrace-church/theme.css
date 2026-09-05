@@ -1,15 +1,22 @@
 /* Brand tokens sampled from the live forum-terrace-church site */
 :root {
-  --bg: #f6efe6;
-  --surface: #fffaf2;
-  --ink: #3a241f;
-  --muted: #6b5348;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --ink: #363537;
+  --muted: #6b6b6b;
   --brand: #1d597c;
-  --brand-2: #e8d5a3;
-  --accent: #8b5a2b;
-  --hero-ink: #f8eedc;
-  --font-display: Georgia, serif;
-  --hero-pattern: radial-gradient(circle at 50% 0, rgba(255,255,255,.2), transparent 42%);
-  --hero-pattern-size: 100% 100%;
+  --brand-2: #4e86bf;
+  --accent: #1d597c;
+  --hero-ink: #ffffff;
+  --font-display: Georgia, Arial, Helvetica, sans-serif;
+  --font: Arial, Helvetica, sans-serif;
+  --hero-pattern: none;
+  --hero-pattern-size: 24px 24px;
+  --focus: #1d597c;
+  --cta-ink: #ffffff;
 }
+
+.hero { background: linear-gradient(145deg, #1d597c, #143d56); }
+.hero::after { opacity: 0; }
+.nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 #1d597c; color: #1d597c; }
 

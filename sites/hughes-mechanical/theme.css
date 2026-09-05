@@ -1,15 +1,25 @@
 /* Brand tokens sampled from the live hughes-mechanical site */
 :root {
-  --bg: #eef2f6;
+  --bg: #f2eae7;
   --surface: #ffffff;
   --ink: #152033;
-  --muted: #5a6575;
-  --brand: #1d3557;
-  --brand-2: #e76f51;
-  --accent: #e76f51;
-  --hero-ink: #f4f7fb;
-  --font-display: "Segoe UI Semibold", "Segoe UI", sans-serif;
-  --hero-pattern: linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
+  --muted: #5f6360;
+  --brand: #112F5B;
+  --brand-2: #D64000;
+  --accent: #D64000;
+  --hero-ink: #ffffff;
+  --font-display: Arial, Helvetica, sans-serif;
+  --font: Arial, Helvetica, sans-serif;
+  --hero-pattern: none;
   --hero-pattern-size: 24px 24px;
+  --focus: #FDF102;
+  --cta-ink: #ffffff;
 }
+
+.hero {
+  background: linear-gradient(145deg, #112F5B, #0a1d38);
+}
+.hero::after { opacity: 0; }
+.eyebrow { color: #112F5B; background: #FDF102; padding: 0.2rem 0.55rem; border-radius: 999px; }
+.chip-accent { background: #FDF102; color: #112F5B; }
 

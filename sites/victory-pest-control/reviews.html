@@ -8,28 +8,26 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="theme-bar-nav">
   <a class="skip" href="#main">Skip to content</a>
+  
   <header class="site-header">
     <div class="wrap header-row">
       <a class="brand" href="index.html">
         <img class="logo wide" src="assets/logo.jpg" alt="Victory Pest Control LLC">
-        <span class="brand-text">
-          <strong>Victory Pest Control LLC</strong>
-          <span>Dallas–Fort Worth Metroplex</span>
-        </span>
       </a>
-      <nav id="site-nav" class="nav" aria-label="Primary">
+      <a class="header-phone" href="tel:+19722305526">(972) 230-5526</a>
+      <a class="btn btn-primary header-cta" href="tel:+19722305526">Call (972) 230-5526</a>
+      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+    <nav id="site-nav" class="nav nav-bar" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="services.html">Services</a>
         <a href="specials.html">Specials</a>
         <a href="about.html">About</a>
         <a href="reviews.html" aria-current="page">Reviews</a>
         <a href="contact.html">Contact</a>
-      </nav>
-      <a class="btn btn-dark header-cta" href="tel:+19722305526">Call (972) 230-5526</a>
-      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    </div>
+    </nav>
   </header>
   <main id="main">
     <section class="page-hero">
@@ -46,18 +44,24 @@
         </div>
         <div class="cards two"><article class="card review">
           <div class="stars" aria-hidden="true">★★★★★</div>
-          <p>“I have never used a more friendly or effective pest control company. Ken is absolutely fantastic! I will never use anyone other than this company again!”</p>
-          <p class="muted">— Taylor Akin <span class="muted">(Google)</span></p>
+          <blockquote>
+            <p>“I have never used a more friendly or effective pest control company. Ken is absolutely fantastic! I will never use anyone other than this company again!”</p>
+            <footer class="muted">— Taylor Akin <span class="muted">(Google)</span></footer>
+          </blockquote>
         </article>
 <article class="card review">
           <div class="stars" aria-hidden="true">★★★★★</div>
-          <p>“Every person on staff here is amazing! They take such good care of their customers! Like family!”</p>
-          <p class="muted">— Michelle Owens <span class="muted">(Facebook)</span></p>
+          <blockquote>
+            <p>“Every person on staff here is amazing! They take such good care of their customers! Like family!”</p>
+            <footer class="muted">— Michelle Owens <span class="muted">(Facebook)</span></footer>
+          </blockquote>
         </article>
 <article class="card review">
           <div class="stars" aria-hidden="true">★★★★★</div>
-          <p>“I recommend Victory Pest Control because I can guarantee they will fix the problem and take care of you. Not only that they follow up to make sure the problem is or did not persist. Definitely a business I can trust.”</p>
-          <p class="muted">— Camille Henderson <span class="muted">(Facebook)</span></p>
+          <blockquote>
+            <p>“I recommend Victory Pest Control because I can guarantee they will fix the problem and take care of you. Not only that they follow up to make sure the problem is or did not persist. Definitely a business I can trust.”</p>
+            <footer class="muted">— Camille Henderson <span class="muted">(Facebook)</span></footer>
+          </blockquote>
         </article></div>
       </div>
     </section>

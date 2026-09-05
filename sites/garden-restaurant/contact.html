@@ -8,24 +8,22 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="theme-dark-header">
   <a class="skip" href="#main">Skip to content</a>
+  
   <header class="site-header">
     <div class="wrap header-row">
       <a class="brand" href="index.html">
         <img class="logo wide" src="assets/logo.png" alt="Garden Restaurant">
-        <span class="brand-text">
-          <strong>Garden Restaurant</strong>
-          <span>Garland, TX</span>
-        </span>
       </a>
       <nav id="site-nav" class="nav" aria-label="Primary">
         <a href="index.html">Home</a>
         <a href="about.html">About Us</a>
         <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
         <a href="contact.html" aria-current="page">Contact</a>
       </nav>
-      <a class="btn btn-dark header-cta" href="tel:+19724878289">Call (972) 487-8289</a>
+      <a class="btn btn-primary header-cta" href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa" target="_blank" rel="noopener noreferrer">Order PickUp | Delivery</a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     </div>
   </header>
@@ -39,20 +37,34 @@
     <section>
       <div class="wrap contact-grid">
         <div class="prose">
-          <p>Email gardenrestaurant@zing.com. Reservations and catering inquiries are listed on the live contact form.</p>
+          <p>Email gardenrestaurant@zing.com. Reservations and catering inquiries are listed on the live contact form. Order pickup or delivery on the restaurant’s published ordering page.</p>
           <p><strong>Phone:</strong> <a href="tel:+19724878289">(972) 487-8289</a></p>
           <p><strong>Email:</strong> <a href="mailto:gardenrestaurant@zing.com">gardenrestaurant@zing.com</a></p>
           <p><strong>Location:</strong> 3555 W Walnut St, Garland, TX 75042</p>
           <p><strong>Hours:</strong> Daily 10:00 AM–10:00 PM</p>
         </div>
-                <form class="card form" id="contact-form">
+                <form class="card form" id="contact-form" novalidate>
           <p>Send a message and follow up by phone so nothing is missed.</p>
-          <label>Name <input name="name" autocomplete="name" required></label>
-          <label>Phone <input name="phone" autocomplete="tel"></label>
-          <label>Email <input name="email" type="email" autocomplete="email"></label>
-          <label>Message <textarea name="message" rows="4" required></textarea></label>
+          <p class="note">This form stays on this page. It does not email the business.</p>
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="contact-phone">Phone</label>
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" required></textarea>
+          </div>
+          <p class="form-error" id="form-error" hidden>Please complete the required fields: name and message.</p>
           <button class="btn btn-dark" type="submit">Send message</button>
-          <p class="form-status" id="form-status" tabindex="-1">Thank you. This page does not send messages automatically — please call or email so the office receives your request.</p>
+          <p class="form-status" id="form-status" role="status" tabindex="-1">Thank you. This page does not send messages automatically — please call or email so the office receives your request.</p>
         </form>
       </div>
     </section>

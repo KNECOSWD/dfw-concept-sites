@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="theme-dark-header">
   <a class="skip" href="#main">Skip to content</a>
+  
   <header class="site-header">
     <div class="wrap header-row">
       <a class="brand" href="index.html">
@@ -47,14 +48,28 @@
           <p><strong>Location:</strong> 2206 South Shiloh Road, Garland, TX 75041</p>
           <p><strong>Hours:</strong> Monday–Saturday 8 AM–6 PM · Sunday closed</p>
         </div>
-                <form class="card form" id="contact-form">
+                <form class="card form" id="contact-form" novalidate>
           <p>Send a message and follow up by phone so nothing is missed.</p>
-          <label>Name <input name="name" autocomplete="name" required></label>
-          <label>Phone <input name="phone" autocomplete="tel"></label>
-          <label>Email <input name="email" type="email" autocomplete="email"></label>
-          <label>Message <textarea name="message" rows="4" required></textarea></label>
+          <p class="note">This form stays on this page. It does not email the business.</p>
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="contact-phone">Phone</label>
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" required></textarea>
+          </div>
+          <p class="form-error" id="form-error" hidden>Please complete the required fields: name and message.</p>
           <button class="btn btn-dark" type="submit">Send message</button>
-          <p class="form-status" id="form-status" tabindex="-1">Thank you. This page does not send messages automatically — please call or email so the office receives your request.</p>
+          <p class="form-status" id="form-status" role="status" tabindex="-1">Thank you. This page does not send messages automatically — please call or email so the office receives your request.</p>
         </form>
       </div>
     </section>

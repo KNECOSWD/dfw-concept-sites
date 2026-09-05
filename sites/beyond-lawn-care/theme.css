@@ -1,15 +1,25 @@
 /* Brand tokens sampled from the live beyond-lawn-care site */
 :root {
-  --bg: #eef5ee;
-  --surface: #fbfff6;
-  --ink: #163022;
-  --muted: #4d6156;
-  --brand: #1b4332;
-  --brand-2: #e85d04;
-  --accent: #e85d04;
-  --hero-ink: #f3fff6;
-  --font-display: Georgia, serif;
-  --hero-pattern: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+  --bg: #fcfcfc;
+  --surface: #ffffff;
+  --ink: #3a3a3a;
+  --muted: #666666;
+  --brand: #18793f;
+  --brand-2: #f27c21;
+  --accent: #d45f10;
+  --hero-ink: #ffffff;
+  --font-display: Montserrat, "Work Sans", system-ui, sans-serif;
+  --font: "Work Sans", "Segoe UI", system-ui, sans-serif;
+  --hero-pattern: radial-gradient(circle at 1px 1px, rgba(255,255,255,.35) 1px, transparent 0);
   --hero-pattern-size: 24px 24px;
+  --focus: #18793f;
+  --cta-ink: #ffffff;
 }
+
+.hero {
+  background: linear-gradient(145deg, #18793f, #0f5a2c);
+}
+.prose a, .nav a:hover, .nav a[aria-current="page"] { color: #18793f; }
+.photo-grid { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 0.4rem; }
+.photo-grid img { height: 160px; border-radius: 8px; }
 

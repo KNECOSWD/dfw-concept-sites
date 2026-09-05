@@ -1,15 +1,30 @@
 /* Brand tokens sampled from the live caremaster-building site */
 :root {
-  --bg: #eef3f3;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --ink: #17202a;
-  --muted: #5b6770;
-  --brand: #1a2332;
-  --brand-2: #2a9d8f;
-  --accent: #2a9d8f;
-  --hero-ink: #eef8f6;
-  --font-display: "Segoe UI", system-ui, sans-serif;
-  --hero-pattern: repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 18px);
+  --ink: #383838;
+  --muted: #686868;
+  --brand: #0b3d2e;
+  --brand-2: #C9A84C;
+  --accent: #0b3d2e;
+  --hero-ink: #ffffff;
+  --font-display: "Source Sans Pro", "Open Sans", "Segoe UI", sans-serif;
+  --font: "Open Sans", "Source Sans Pro", "Segoe UI", sans-serif;
+  --hero-pattern: none;
   --hero-pattern-size: 24px 24px;
+  --focus: #0b3d2e;
+  --cta-ink: #ffffff;
 }
+
+.hero {
+  background:
+    linear-gradient(rgba(11, 61, 46, 0.58), rgba(11, 61, 46, 0.5)),
+    url("assets/skyline.png") center / cover no-repeat;
+  min-height: 22rem;
+}
+.hero::after { opacity: 0; }
+.prose a { color: #383838; }
+.btn-primary { background: #0b3d2e; color: #fff; }
+h2 { color: #0b3d2e; }
+h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #C9A84C; margin-top: 0.45rem; }
 
