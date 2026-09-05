@@ -56,9 +56,24 @@
 
 
 .hero {
-  --hero-scrim: linear-gradient(115deg, rgba(17, 47, 91, 0.84) 0%, rgba(10, 29, 56, 0.62) 58%, rgba(10, 29, 56, 0.28) 100%);
-  background: #0a1d38 url("assets/home5.png") center / cover no-repeat;
+  --hero-scrim: linear-gradient(115deg, rgba(17, 47, 91, 0.78) 0%, rgba(10, 29, 56, 0.55) 58%, rgba(10, 29, 56, 0.22) 100%);
+  background: #0a1d38;
   min-height: clamp(24rem, 50vw, 34rem);
+}
+.hero::after {
+  opacity: 1;
+  background: url("assets/profile.jpg") center / cover no-repeat;
+  transform: rotate(180deg);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero::before { z-index: 1; }
+.hero .wrap,
+.hero .hero-grid { z-index: 2; }
+.hero .panel {
+  background: rgba(10, 29, 56, 0.88);
+  color: #fff;
+  border-color: rgba(253, 241, 2, 0.35);
 }
 .hero h1 {
   max-width: 18ch;
