@@ -669,7 +669,8 @@
       "accent": "#8b5a2b",
       "hero_ink": "#f8eedc",
       "display": "Georgia, serif",
-      "pattern": "radial-gradient(circle at 50% 0, rgba(255,255,255,.2), transparent 42%)"
+      "pattern": "radial-gradient(circle at 50% 0, rgba(255,255,255,.2), transparent 42%)",
+      "pattern_size": "100% 100%"
     }
   },
   {
@@ -888,7 +889,8 @@
       "accent": "#0d7377",
       "hero_ink": "#eef8f8",
       "display": "Georgia, serif",
-      "pattern": "radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%)"
+      "pattern": "radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%)",
+      "pattern_size": "100% 100%"
     }
   },
   {
@@ -999,7 +1001,8 @@
       "accent": "#c39212",
       "hero_ink": "#fff4e0",
       "display": "Georgia, serif",
-      "pattern": "radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%)"
+      "pattern": "radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%)",
+      "pattern_size": "100% 100%"
     }
   },
   {
@@ -1116,7 +1119,8 @@
       "accent": "#b08948",
       "hero_ink": "#f4efe4",
       "display": "Georgia, serif",
-      "pattern": "linear-gradient(180deg, rgba(197,165,114,.16), transparent 32%)"
+      "pattern": "linear-gradient(180deg, rgba(197,165,114,.16), transparent 32%)",
+      "pattern_size": "100% 100%"
     }
   }
 ]

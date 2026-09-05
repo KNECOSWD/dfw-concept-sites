@@ -122,7 +122,7 @@ def render(site: dict) -> str:
           <p class="lede">{esc(site["lede"])}</p>
           <div class="actions">
             <a class="btn btn-primary" href="{phone_link(site)}">{esc(cta_label)}</a>
-            <a class="btn btn-ghost" href="#contact">{esc(site["secondary_cta"])}</a>
+            <a class="btn btn-ghost" href="#services">{esc(site["secondary_cta"])}</a>
           </div>
         </div>
         <aside class="panel">
@@ -239,6 +239,7 @@ def render(site: dict) -> str:
 
 def theme_css(site: dict) -> str:
     t = site["theme"]
+    pattern_size = t.get("pattern_size", "24px 24px")
     return f"""/* Brand tokens for {site["slug"]} */
 :root {{
   --bg: {t["bg"]};
@@ -251,6 +252,7 @@ def theme_css(site: dict) -> str:
   --hero-ink: {t["hero_ink"]};
   --font-display: {t["display"]};
   --hero-pattern: {t["pattern"]};
+  --hero-pattern-size: {pattern_size};
 }}
 """
 
@@ -658,6 +660,7 @@ SITES_DATA = [
             "hero_ink": "#f8eedc",
             "display": "Georgia, serif",
             "pattern": "radial-gradient(circle at 50% 0, rgba(255,255,255,.2), transparent 42%)",
+            "pattern_size": "100% 100%",
         },
     },
     {
@@ -792,6 +795,7 @@ SITES_DATA = [
             "hero_ink": "#eef8f8",
             "display": "Georgia, serif",
             "pattern": "radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%)",
+            "pattern_size": "100% 100%",
         },
     },
     {
@@ -859,6 +863,7 @@ SITES_DATA = [
             "hero_ink": "#fff4e0",
             "display": "Georgia, serif",
             "pattern": "radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%)",
+            "pattern_size": "100% 100%",
         },
     },
     {
@@ -937,6 +942,7 @@ SITES_DATA = [
             "hero_ink": "#f4efe4",
             "display": "Georgia, serif",
             "pattern": "linear-gradient(180deg, rgba(197,165,114,.16), transparent 32%)",
+            "pattern_size": "100% 100%",
         },
     },
 ]
@@ -984,7 +990,7 @@ GALLERY = '''<!DOCTYPE html>
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <p>Concept demo / not live business sites. Prepared for KNECO $500 DFW concept test.</p>
+      <p>Concept demo / not the live business site. Prepared for KNECO $500 DFW concept test.</p>
       <p class="demo-note">GitHub Pages–ready from this repo root. No App Service, custom domains, or paid hosting required.</p>
     </div>
   </footer>

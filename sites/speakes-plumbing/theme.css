@@ -10,4 +10,5 @@
   --hero-ink: #f7f1e8;
   --font-display: "Palatino Linotype", Georgia, serif;
   --hero-pattern: radial-gradient(circle at 20% 20%, #fff 0 2px, transparent 2.5px);
+  --hero-pattern-size: 24px 24px;
 }

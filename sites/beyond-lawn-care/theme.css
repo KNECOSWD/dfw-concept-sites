@@ -10,4 +10,5 @@
   --hero-ink: #f3fff6;
   --font-display: Georgia, serif;
   --hero-pattern: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+  --hero-pattern-size: 24px 24px;
 }

@@ -10,4 +10,5 @@
   --hero-ink: #eef8f6;
   --font-display: "Segoe UI", system-ui, sans-serif;
   --hero-pattern: repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 18px);
+  --hero-pattern-size: 24px 24px;
 }

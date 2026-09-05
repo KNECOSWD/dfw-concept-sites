@@ -10,4 +10,5 @@
   --hero-ink: #f4efe4;
   --font-display: Georgia, serif;
   --hero-pattern: linear-gradient(180deg, rgba(197,165,114,.16), transparent 32%);
+  --hero-pattern-size: 100% 100%;
 }
