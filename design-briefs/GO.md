@@ -22,12 +22,12 @@
 | Beyond Lawn | 5/10 | Orange ok-ish; need live green `#18793f` + `#f27c21` + sans |
 | Hughes | 5/10 | Need `#112F5B` / `#D64000` / `#FDF102` from hughescontractorsllc.com |
 | Victory | 3/10 | Green forest wrong; live navy/gold |
-| CareMaster | 3/10 | Teal invent; live charcoal + red `#E80000` |
+| CareMaster | 3/10 | Teal invent; live dark green + gold logo + skyline |
 | Forum Terrace | 7/10 | Blue matches; tone down brown CTAs |
 | B&B Auto | 6/10 | Black/red plausible; unify exact live red |
 | Ferraro | 7/10 | Teal dental right family |
-| Garden | 3/10 | Red invent; live teal `#18A687` + gold `#B8A51C` |
-| Len Conner | 5/10 | Gold-luxury overreach; live blue `#008DCF` |
+| Garden | 3/10 | Red invent; live teal `#18A687` + gold `#B8A51C` + food hero |
+| Len Conner | 4/10 | Navy/gold invent; live maroon `#77080a` + beach hero |
 
 ## Cross-cutting Eng notes
 1. Most sites share one scaffold — after token fixes, vary header treatment (light vs dark) per brief so they don’t feel like one template wearing different paints.
@@ -41,3 +41,6 @@ See `sites` folders: `/workspace/dfw-design-briefs/<slug>/BRIEF.md`
 
 ## Status
 **DESIGN GO** — all 10 briefs ready for Gizmo. Screenshots continuing under each slug for Tick/Eng reference.
+
+## CORRECTION (2026-09-05)
+A late worker briefly overwrote Garden + Len Conner briefs to “keep rebuild invent.” **Reverted.** Standing rule remains: match **live** vibe/colors. Gizmo must use restored BRIEF.md files (Garden → teal; Len Conner → maroon).
