@@ -1,0 +1,784 @@
+[
+  [
+    "Appetizers",
+    [
+      [
+        "A02. Fresh Spring Roll",
+        "$4.50"
+      ],
+      [
+        "A03. Vietnamese Egg Rolls",
+        "$4.95"
+      ],
+      [
+        "A01. Roll",
+        "$1.00"
+      ],
+      [
+        "A04. Pot Sticker Dumpling",
+        "$4.99"
+      ],
+      [
+        "A05. Chicken Lettuce Wrap",
+        "$6.50"
+      ],
+      [
+        "A07. Shrimp Lettuce Wrap",
+        "$7.50"
+      ],
+      [
+        "A08. Butter Fried Chicken Wing",
+        "$6.95"
+      ]
+    ]
+  ],
+  [
+    "Lunch Specials",
+    [
+      [
+        "L1. Fried Flounder Fish Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L2. Crispy Whole Fish with Hunan Sauce Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L3. Salt Toasted Shrimp Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L4. Salt Toasted Squid Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L5. Clam with Black Bean Sauce Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L6. Salt & Pepper with Young Fish Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L7. Sauteed Squid with Sour Vegetable Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L8. Shrimp with Scrambled Egg Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L9. Seafood Combination Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L10. Sweet and Sour Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L11. Kung Pao Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L12. Hunan Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L13. General Tso's Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L14. Chicken with Green Pepper Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L15. Chicken with Spicy Garlic Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L16. Szechuan Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L17. Chicken with Vegetable Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L18. Chicken with Broccoli Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L19. Lemongrass Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L20. Chicken with Snow Peas Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L21. Orange Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L22. Sesame Chicken Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L23. Chicken with String Bean Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L24. Beef with Green Pepper Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L25. Beef with Ginger and Scallion Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L26. Kung Pao Beef Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L27. Hunan Beef Sauce Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L28. Mongolian Beef Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L29. Szechuan Beef Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L30. Beef with Spicy Garlic Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L31. Beef with Spicy Lemongrass Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L32. Beef with Broccoli Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L33. Beef with Snow Peas Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L34. Beef with String Sauce Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L35. Beef with Spicy Sauce Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L37. Salt Toasted Pork Ribs Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L38. Sweet and Sour Pork Ribs Lunch Special",
+        "$8.25"
+      ],
+      [
+        "L39. Spicy Tofu with Minced Pork Lunch Special",
+        "$8.25"
+      ]
+    ]
+  ],
+  [
+    "Entrees",
+    [
+      [
+        "B01. Pork Wonton Soup",
+        "$6.50"
+      ],
+      [
+        "B02. Pork Wonton Egg Noodle Soup",
+        "$6.50"
+      ],
+      [
+        "B03. BBQ Pork Egg Noodle Soup",
+        "$5.50"
+      ],
+      [
+        "B04. Roasted Duck Egg Noodle",
+        "$7.50"
+      ],
+      [
+        "B05. Savoring Soup",
+        "$7.50"
+      ],
+      [
+        "B06. Chiu Chow Style Rice Noodle Soup",
+        "$7.50"
+      ],
+      [
+        "B07. Chiu Chow Style Rice Noodle Soup",
+        "$7.50"
+      ],
+      [
+        "B08. BBQ Pork with Rice",
+        "$5.95"
+      ],
+      [
+        "B09. Roasted Duck with Rice",
+        "$7.50"
+      ],
+      [
+        "B10. Hainan Steamed Chicken with Rice",
+        "$7.95"
+      ],
+      [
+        "B11. Grilled Salmon with Tomato Sauce Rice",
+        "$8.25"
+      ],
+      [
+        "B12. BBQ Pork Fried Rice",
+        "$5.95"
+      ],
+      [
+        "B13. Chicken Fried Rice",
+        "$5.95"
+      ],
+      [
+        "B14. Beef Fried Rice",
+        "$5.95"
+      ],
+      [
+        "B15. Shrimp Fried Rice",
+        "$7.55"
+      ],
+      [
+        "B16. House Special Fried Rice",
+        "$7.50"
+      ],
+      [
+        "B17. Vegetable Fried Rice",
+        "$5.95"
+      ],
+      [
+        "B18. Chicken and Salted Fish Fried Rice",
+        "$7.95"
+      ],
+      [
+        "B19. Shrimp and Salted Fish Fried Rice",
+        "$8.25"
+      ],
+      [
+        "B20. Garlic and Seafood Fried Rice",
+        "$8.95"
+      ],
+      [
+        "B21. Combination Rice in Bamboo Stick",
+        "$7.95"
+      ],
+      [
+        "B22. Korean Style Steamed Rice Clay Pot",
+        "$7.95"
+      ],
+      [
+        "B23. Hawaiian Seafood Fried Rice",
+        "$7.95"
+      ],
+      [
+        "B24. Spanish Style Fried Rice Sizzling",
+        "$11.95"
+      ],
+      [
+        "B25. Thai Style Chicken Fried Rice Noodle",
+        "$7.95"
+      ],
+      [
+        "B26. Pad Thai Fried Clear Noodle",
+        "$7.95"
+      ],
+      [
+        "B27. Shrimp and Seafood Fried Rice Noodle",
+        "$7.95"
+      ],
+      [
+        "B28. Seafood Pan Fried Rice Noodle",
+        "$7.95"
+      ],
+      [
+        "B29. House Special Fried Rice Noodle",
+        "$7.95"
+      ],
+      [
+        "B30. Fried Rice Noodle with Beef",
+        "$7.95"
+      ],
+      [
+        "B31. Vegetables Fried Rice Noodle",
+        "$6.95"
+      ],
+      [
+        "B32. Singaporean Style Fried Rice Noodle",
+        "$7.95"
+      ],
+      [
+        "B33. Chicken and Salted Fish with Fried Vermicelli",
+        "$7.95"
+      ],
+      [
+        "B34. Cantonese Fried Noodle",
+        "$7.95"
+      ],
+      [
+        "B35. Seafood Fried Noodle",
+        "$7.95"
+      ],
+      [
+        "B36. Seafood Combination with Fried Egg Noodle",
+        "$7.95"
+      ],
+      [
+        "B37. E-fu Noodle with BBQ Pork",
+        "$7.95"
+      ],
+      [
+        "B25. Thai Style Shrimp Fried Rice Noodle",
+        "$7.95"
+      ]
+    ]
+  ],
+  [
+    "Chicken and Duck",
+    [
+      [
+        "Sweet and Sour Chicken",
+        "$11.95"
+      ],
+      [
+        "Kung Pao Chicken",
+        "$11.95"
+      ],
+      [
+        "Hunan Chicken",
+        "$11.95"
+      ],
+      [
+        "General Tso's Chicken",
+        "$11.95"
+      ],
+      [
+        "Chicken with Green Pepper",
+        "$11.95"
+      ],
+      [
+        "Chicken with Spicy Garlic",
+        "$11.95"
+      ],
+      [
+        "Szechuan Chicken",
+        "$11.95"
+      ],
+      [
+        "Chicken with Vegetables",
+        "$11.95"
+      ],
+      [
+        "Chicken with American Broccoli",
+        "$11.95"
+      ],
+      [
+        "Lemongrass Chicken",
+        "$11.95"
+      ],
+      [
+        "Chicken with Sting Bean",
+        "$11.95"
+      ],
+      [
+        "Orange Chicken",
+        "$11.95"
+      ],
+      [
+        "Sesame Chicken",
+        "$11.95"
+      ],
+      [
+        "Chicken with Curry Sauce",
+        "$11.95"
+      ],
+      [
+        "Deep Fried Chicken (Half)",
+        "$9.95"
+      ],
+      [
+        "Steamed Salty Chicken (Half)",
+        "$16.95"
+      ],
+      [
+        "Steamed Chicken (Half)",
+        "$16.95"
+      ],
+      [
+        "Peking Duck (2 Way)",
+        "$38.95"
+      ],
+      [
+        "Fried Quail",
+        "$16.99"
+      ]
+    ]
+  ],
+  [
+    "Pork and Beef",
+    [
+      [
+        "P01. Salt Toasted Pork Ribs",
+        "$7.95"
+      ],
+      [
+        "P02. Pork Ribs with Spicy Lemon Grass",
+        "$7.95"
+      ],
+      [
+        "P03. Peking Style Spare Ribs",
+        "$7.95"
+      ],
+      [
+        "P04. Sweet and Sour Pork Ribs",
+        "$7.95"
+      ],
+      [
+        "P06. Authentic Sweet and Sour Pork",
+        "$7.95"
+      ],
+      [
+        "P07. Deep Fried Pork Intestine",
+        "$8.95"
+      ],
+      [
+        "P08. Deep Fried Pork Intestine with Sour Vegetable",
+        "$8.95"
+      ],
+      [
+        "P09. Stewed Pork Belly with Salted Vegetable",
+        "$8.95"
+      ],
+      [
+        "P10. Sauteed Beef with Green Pepper",
+        "$8.95"
+      ],
+      [
+        "P11. Sauteed Beef with Ginger and Scallion",
+        "$8.95"
+      ],
+      [
+        "P12. Kung Pao Beef",
+        "$8.95"
+      ],
+      [
+        "P13. Sauteed Beef with Hunan Sauce",
+        "$8.95"
+      ],
+      [
+        "P14. Mongolian Beef",
+        "$8.95"
+      ],
+      [
+        "P15. Szechuan Beef",
+        "$8.95"
+      ],
+      [
+        "P16. Sauteed Beef with Spicy Garlic",
+        "$8.95"
+      ],
+      [
+        "P17. Sauteed Beef with Cumin Powder Sauce",
+        "$8.95"
+      ],
+      [
+        "P18. Sauteed Beef with Spicy Lemon Grass",
+        "$8.95"
+      ],
+      [
+        "P19. Sauteed Beef with Black Pepper",
+        "$8.95"
+      ],
+      [
+        "P20. Sauteed Beef with Broccoli",
+        "$8.95"
+      ],
+      [
+        "P21. Sauteed Beef with Vegetable",
+        "$8.95"
+      ],
+      [
+        "P22. Sauteed Beef with Snow Peas",
+        "$8.95"
+      ],
+      [
+        "P23. Sauteed Beef with String Bean",
+        "$8.95"
+      ],
+      [
+        "P24. Beef Curry",
+        "$8.95"
+      ],
+      [
+        "P25. Sauteed Beef with Spicy Sauce",
+        "$8.95"
+      ],
+      [
+        "P26. Sauteed Beef with Fish Sauce",
+        "$8.95"
+      ],
+      [
+        "P27. Sauteed Beef with Orange Sauce",
+        "$8.95"
+      ],
+      [
+        "P28. Sauteed Beef with Chinese Broccoli",
+        "$8.95"
+      ],
+      [
+        "P29. Sauteed Beef and Mushrooms with Shrimp Paste",
+        "$8.95"
+      ],
+      [
+        "P30. Stir Fried Steak Tips",
+        "$11.95"
+      ]
+    ]
+  ],
+  [
+    "Seafood",
+    [
+      [
+        "D13. Sauteed Shrimp with Hong Kong Style Spicy Sauce",
+        "$11.95"
+      ],
+      [
+        "D14. Salt Toasted Shrimp",
+        "$9.95"
+      ],
+      [
+        "D15. Fried Shrimp with Sweet and Spicy Sauce",
+        "$9.95"
+      ],
+      [
+        "D16. Fried Shrimp Balls",
+        "$11.95"
+      ],
+      [
+        "D17. Fried Shrimp with Walnuts",
+        "$13.95"
+      ],
+      [
+        "D18. Clams with Green Pepper",
+        "$11.95"
+      ],
+      [
+        "D19. Clams with Spicy Sauce",
+        "$11.95"
+      ],
+      [
+        "D20. Clams with Basil Leaf",
+        "$11.95"
+      ],
+      [
+        "D21. Clams Soup with Ginger and Scallion",
+        "$11.95"
+      ],
+      [
+        "D22. Oyster with Ginger and Scallion",
+        "$11.95"
+      ],
+      [
+        "D23. Fried Oyster",
+        "$11.95"
+      ],
+      [
+        "D24. Abalone with Oyster Sauce",
+        "$50.00"
+      ],
+      [
+        "D25. Fried Fish Lips",
+        "$13.99"
+      ],
+      [
+        "D26. Fried Oyster with Egg",
+        "$1.95"
+      ],
+      [
+        "D27. Sauteed Squid with Green Pepper",
+        "$10.95"
+      ],
+      [
+        "D28. Salt Toasted Squid",
+        "$10.95"
+      ],
+      [
+        "D29. Sauteed Squid with Sour Vegetable",
+        "$10.95"
+      ],
+      [
+        "D34. Fish Fillet with Shrimp Paste",
+        "$9.95"
+      ],
+      [
+        "D35. Fish Fillet with Xo Sauce",
+        "$11.95"
+      ],
+      [
+        "D36. Sliced Filet Fish, Spicy Stir Fried Over Vegetables",
+        "$8.95"
+      ]
+    ]
+  ],
+  [
+    "Sizzling Plate",
+    [
+      [
+        "Steak Tips Sizzling Plate",
+        "$16.99"
+      ],
+      [
+        "Sate Seafood Sizzling Plate",
+        "$15.99"
+      ],
+      [
+        "Chicken with Black Bean Sauce Sizzling Plate",
+        "$13.99"
+      ],
+      [
+        "Oyster with Ginger and Scallion Sizzling Plate",
+        "$16.99"
+      ]
+    ]
+  ],
+  [
+    "Clay Pot",
+    [
+      [
+        "Fish Fillet with Soft Tofu Clay Pot",
+        "$14.99"
+      ],
+      [
+        "Thai Style Shrimp with Clear Noodle Clay Pot",
+        "$14.99"
+      ],
+      [
+        "Ginger Scallion Shrimp with Clear Noodle Clay Pot",
+        "$14.99"
+      ],
+      [
+        "Sour Vegetable with Spare Ribs Clay Pot",
+        "$14.99"
+      ],
+      [
+        "XO Seafood Eggplant Clay Pot",
+        "$14.99"
+      ],
+      [
+        "Seafood Tofu Clay Pot",
+        "$14.99"
+      ],
+      [
+        "BBQ with Oyster Clay Pot",
+        "$16.99"
+      ],
+      [
+        "Beef Ribs with Eggplant Clay Pot",
+        "$14.99"
+      ],
+      [
+        "Salted Fish, Chicken with Tofu Clay Pot",
+        "$13.99"
+      ],
+      [
+        "Goat Clay Pot",
+        "$18.99"
+      ],
+      [
+        "Bitter Melon with Spare Ribs Clay Pot",
+        "$14.99"
+      ],
+      [
+        "Spare Ribs & Fun Roll with XO Sauce Clay Pot",
+        "$12.99"
+      ]
+    ]
+  ],
+  [
+    "Family Dinner",
+    [
+      [
+        "Peking Duck Family Dinner (For Four)",
+        "$88.00"
+      ],
+      [
+        "Salt Pepper Squid Family Dinner (For Four)",
+        "$88.00"
+      ],
+      [
+        "Beef with String Bean Family Dinner (For Four)",
+        "$88.00"
+      ],
+      [
+        "Salted Fish & Shrimp Fried Rice Family Dinner (For Four)",
+        "$88.00"
+      ],
+      [
+        "Peking Duck - 2 Ways Family Dinner (For Six)",
+        "$168.00"
+      ],
+      [
+        "Half of House Steamed Chicken Family Dinner (For Six)",
+        "$168.00"
+      ],
+      [
+        "Hong Kong Style Shrimp Family Dinner (For Six)",
+        "$168.00"
+      ],
+      [
+        "Beef with Chinese Broccoli Family Dinner (For Six)",
+        "$168.00"
+      ],
+      [
+        "XO Seafood Fried Rice Family Dinner (For Six)",
+        "$168.00"
+      ],
+      [
+        "Crispy Deep Fried Flounder Fish Family Dinner (For Six)",
+        "$168.00"
+      ]
+    ]
+  ],
+  [
+    "Drinks",
+    [
+      [
+        "Hot Tea",
+        "$1.50"
+      ],
+      [
+        "Iced Tea",
+        "$1.50"
+      ],
+      [
+        "Soft Drink",
+        "$2.00"
+      ],
+      [
+        "Iced Coffee",
+        "$4.00"
+      ],
+      [
+        "Fresh Coconut Juice",
+        "$5.50"
+      ],
+      [
+        "Fresh Lemonade",
+        "$4.50"
+      ]
+    ]
+  ]
+]

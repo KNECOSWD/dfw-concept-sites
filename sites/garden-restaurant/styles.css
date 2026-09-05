@@ -546,6 +546,25 @@ textarea {
   white-space: nowrap;
 }
 
+.portrait {
+  width: min(100%, 280px);
+  border-radius: 16px;
+  display: block;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.badge-row img {
+  height: 72px;
+  width: auto;
+  object-fit: contain;
+}
+
 @media (min-width: 760px) {
   .menu-btn {
     display: none;

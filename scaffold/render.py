@@ -114,9 +114,10 @@ def reviews(items: list[dict]) -> str:
     for item in items:
         stars = item.get("stars", "★★★★★")
         source = f' <span class="muted">({esc(item["source"])})</span>' if item.get("source") else ""
+        star_row = f'<div class="stars" aria-hidden="true">{esc(stars)}</div>' if stars else ""
         out.append(
             f'''<article class="card review">
-          <div class="stars" aria-hidden="true">{stars}</div>
+          {star_row}
           <p>“{esc(item["quote"])}”</p>
           <p class="muted">— {esc(item["name"])}{source}</p>
         </article>'''

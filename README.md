@@ -82,5 +82,8 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
 - **Hughes Mechanical** publishes no customer reviews. None were added. Wix placeholder socials were ignored.
 - **CareMaster** current pages list (469) 233-3366 and customerservice@caremaster.biz. No street address is published on those pages.
-- **Ferraro DDS** live site returned Cloudflare 403. Content and the published site logo come from the October 2025 Wayback snapshot of grandprairie-arlingtondental.com.
+- **Ferraro DDS** live site returned Cloudflare 403. Content, the published logo (`…00551Dentallogodesign…png`), and the doctor photo come from the public October 2025 archive / practice CDN. Hours used: Monday–Thursday 8–5. Friday is blank on the source. Email: danielferrarodds@sbcglobal.net. One published quote (Mrs. Conger). Top Rated Doctors 2016.
+- **B&B Complete Auto** reviews are Elfsight JS only. Gallery is empty. No reviews or photos were invented. License CO16-0388.
+- **Garden Restaurant** menu is the full priced list from `/menu.php` (10 categories). No site reviews. About/Events stay thin.
+- **Len Conner** homepage testimonials only (Marie, Marc and Jill, David, Dena, Kelly). `/testimonials/` is 404. No public email or hours. Super Lawyers, Avvo, and Best in Irving 2022 badges from the live site.
 - **Speake's** homepage slider labels MashIt / FabuFit / YesSuits are template chrome, not used as company names.

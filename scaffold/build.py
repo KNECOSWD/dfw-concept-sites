@@ -83,7 +83,7 @@ def contact_page(site: dict, extra: str = "") -> str:
           <p><strong>Phone:</strong> <a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a></p>
           {f'<p><strong>Email:</strong> <a href="mailto:{esc(site["email"])}">{esc(site["email"])}</a></p>' if site.get("email") else ""}
           <p><strong>Location:</strong> {esc(site.get("address") or site["city"])}</p>
-          <p><strong>Hours:</strong> {esc(site["hours"])}</p>
+          {f'<p><strong>Hours:</strong> {esc(site["hours"])}</p>' if site.get("hours") else ""}
         </div>
         {contact_form(site)}
       </div>
@@ -662,6 +662,7 @@ def bb() -> dict:
             ("index.html", "Home"),
             ("about.html", "About"),
             ("services.html", "Services"),
+            ("areas.html", "Service Areas"),
             ("faq.html", "F.A.Q."),
             ("contact.html", "Contact"),
         ],
@@ -696,10 +697,11 @@ def bb() -> dict:
     {"title": "Engine repair", "text": "Engine diagnostics and repair."},
     {"title": "Tires & alignment", "text": "Tire services, rotation, and wheel alignment."},
     {"title": "Diagnostics", "text": "Check-engine light diagnostics and computer diagnostics."},
+    {"title": "German auto repair", "text": "Service page for German vehicles, listed in the shop nav."},
     {"title": "Battery & electrical", "text": "Battery and electrical repairs."},
     {"title": "Inspections & warranties", "text": "Preventative maintenance, inspections, and warranty programs."},
 ])}</div>')}
-{section("why", "Honest automotive professionals", "Fair and honest pricing, written estimates, computer diagnostics, local shuttle services, towing services, factory trained technicians, worry-free warranty protection, brand name parts, and loaner vehicles.", "<p>German auto repair is listed among the shop’s service pages, along with differential repair.</p>")}''')
+{section("why", "Honest automotive professionals", "Fair and honest pricing, written estimates, computer diagnostics, local shuttle services, towing services, factory trained technicians, worry-free warranty protection, brand name parts, and loaner vehicles.", "<p>The live site’s gallery is empty and reviews load only through an Elfsight widget. No reviews are copied here.</p>")}''')
 
     about = page(site, title="About | B&B Complete Auto Repair", description="Certified mechanics, written estimates, and customer service in Garland.", current="about.html", body=f'''{page_hero("About B&B Complete Auto Repair", "Auto maintenance in Dallas, Richardson and Garland.")}
     <section>
@@ -710,8 +712,24 @@ def bb() -> dict:
       </div>
     </section>''')
 
-    services = page(site, title="Auto Repair Services | B&B Complete Auto Repair", description="Diagnostics, brakes, engines, transmissions, glass, and more.", current="services.html", body=f'''{page_hero("Complete automotive services", "The shop meets strict industry standards for service excellence and provides detailed estimates.")}
-{section("areas", "Service areas", "Dallas, Garland, and Richardson are named on the service-areas page for glass, brakes, collision, engine, exhaust, oil, radiator, tires, and transmission work.", f'<div class="chip-row">{chips(["Dallas", "Garland", "Richardson"])}</div>')}''')
+    services = page(site, title="Auto Repair Services | B&B Complete Auto Repair", description="Diagnostics, brakes, engines, transmissions, glass, German repair, and more.", current="services.html", body=f'''{page_hero("Complete automotive services", "Nav service lines from bbcompleteautorepair.com.")}
+{section("list", "Auto repair services", "As listed in the public navigation and homepage service list.", f'<div class="cards">{cards([
+    {"title": "Auto glass", "text": "Auto glass repair and replacement."},
+    {"title": "German auto repair", "text": "Repair for German makes."},
+    {"title": "Brake services", "text": "Brake check and repair."},
+    {"title": "Collision repair", "text": "Auto body services and collision repair."},
+    {"title": "Engine repair", "text": "Engine diagnostics and repair."},
+    {"title": "Exhaust repair", "text": "Exhaust system repair."},
+    {"title": "Oil change", "text": "Oil and filter changes."},
+    {"title": "Radiator repair and inspection", "text": "Cooling system repair and inspection."},
+    {"title": "Auto diagnostics", "text": "Check-engine light and computer diagnostics."},
+    {"title": "Tire rotation and alignment", "text": "Rotation and wheel alignment."},
+    {"title": "Tire services", "text": "Tire service and replacement."},
+    {"title": "Transmission service", "text": "Transmission repair, rebuild, inspection, and flush."},
+])}</div>')}''')
+
+    areas = page(site, title="Service Areas | B&B Complete Auto Repair", description="Dallas, Garland, and Richardson auto repair.", current="areas.html", body=f'''{page_hero("Service areas", "Cities named on the public service-areas page.")}
+{section("cities", "Dallas, Garland, and Richardson", "Each service line on their areas page is listed for these three cities.", f'<div class="chip-row">{chips(["Dallas", "Garland", "Richardson"])}</div><p class="note">Service lines named there include auto glass, maintenance and inspection, brakes, collision, differential, engine, exhaust, garage mechanic, oil change, radiator, tire rotation, tire service, and transmission.</p>')}''')
 
     faq = page(site, title="F.A.Q. | B&B Complete Auto Repair", description="Published automotive repair FAQs.", current="faq.html", body=f'''{page_hero("Frequently asked questions", "From the public F.A.Q. page.")}
 {section("q", "Answers", "Quoted from the live FAQ.", f'<div class="cards two">{cards([
@@ -726,8 +744,8 @@ def bb() -> dict:
     {"title": "My car smells funny but is running fine. Should I be worried?", "text": "The moment your vehicle begins emitting an odor, bring it in. Smells can signal a stuck brake, overheated engine, fuel leak, or electrical short."},
 ])}</div>')}''')
 
-    contact = contact_page(site, "<p>License: CO16-0388. Email ali@bbcompleteautorepair.com. 2206 South Shiloh Road, Garland, TX 75041.</p>")
-    write_site(site, {"index.html": index, "about.html": about, "services.html": services, "faq.html": faq, "contact.html": contact})
+    contact = contact_page(site, "<p>License: CO16-0388. Email ali@bbcompleteautorepair.com. 2206 South Shiloh Road, Garland, TX 75041. Monday–Saturday 8 AM–6 PM. Sunday closed.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "services.html": services, "areas.html": areas, "faq.html": faq, "contact.html": contact})
     return site
 
 
@@ -740,11 +758,13 @@ def ferraro() -> dict:
         "name": "Daniel L. Ferraro, D.D.S.",
         "tagline": "Grand Prairie & Arlington",
         "city": "Grand Prairie, TX",
-        "logo": "assets/logo.webp",
+        "logo": "assets/logo.png",
+        "body_class": "theme-dark-header",
         "phone_display": "(972) 988-8044",
         "phone_tel": "+19729888044",
+        "email": "danielferrarodds@sbcglobal.net",
         "address": "2985 S. Hwy 360, Suite 210, Grand Prairie, Texas 75052",
-        "hours": "Mon 8:00 AM–5:30 PM · Tue 8:00 AM–5:30 PM · Wed 8:00 AM–1:00 PM · Thu 8:30 AM–5:30 PM · Fri–Sun closed",
+        "hours": "Monday–Thursday 8:00 AM–5:00 PM",
         "eyebrow": "Grand Prairie / Arlington · 30+ years",
         "nav": [
             ("index.html", "Home"),
@@ -772,8 +792,9 @@ def ferraro() -> dict:
     panel = f'''<strong>Call the office</strong>
           <p><a href="tel:+19729888044">(972) 988-8044</a></p>
           <p>2985 S. Hwy 360, Suite 210<br>Grand Prairie, Texas 75052</p>
-          <p>Mon–Tue 8:00–5:30 · Wed 8:00–1:00 · Thu 8:30–5:30</p>
-          {kpis([("1986", "DDS, UT San Antonio"), ("3M", "Mini-implant certified"), ("Hwy 360", "Emerald Square"), ("Mon–Thu", "Office days")])}'''
+          <p>Monday–Thursday 8:00 AM–5:00 PM</p>
+          <p>Friday hours are not listed on the published site</p>
+          {kpis([("1986", "DDS, UT San Antonio"), ("3M", "Mini-implant certified"), ("Hwy 360", "Emerald Square"), ("Mon–Thu", "8:00–5:00")])}'''
     index = page(site, title="Grand Prairie Dentist | Dr. Daniel Ferraro, DDS", description="General dentistry and implants in Grand Prairie at Hwy 360 and Mayfield. Call (972) 988-8044.", current="index.html", body=f'''{hero(site, "Welcome to our dental practice.", "Daniel L. Ferraro, D.D.S. — proudly serving the Grand Prairie/Arlington areas’ dental needs for over 30 years. Superior dental care, comfortably, conservatively, in a relaxed environment, at a reasonable cost.", "services.html", "Our services", panel)}
 {section("welcome", "Convenient Grand Prairie location", "We are in Emerald Square Shopping Center at the N.E. corner of Hwy 360 and Mayfield Rd. in Grand Prairie, one exit north of Interstate 20 on Hwy 360.", '''<div class="prose">
           <p>Dr. Ferraro is certified by 3M in the placement of mini-implants — small diameter, self-tapping, one-piece, low-cost implants that can support fixed or removable replacement teeth.</p>
@@ -784,6 +805,7 @@ def ferraro() -> dict:
     about = page(site, title="About & Meet the Doctor | Daniel L. Ferraro, D.D.S.", description="Dr. Ferraro graduated from UT Dental School at San Antonio in 1986.", current="about.html", body=f'''{page_hero("Meet the doctor", "Daniel L. Ferraro, D.D.S.")}
     <section>
       <div class="wrap prose">
+        <p><img class="portrait" src="assets/doctor.webp" alt="Daniel L. Ferraro, D.D.S."></p>
         <p>Daniel L. Ferraro, D.D.S. graduated from The University of Texas Dental School at San Antonio in 1986, and has been in private practice in Grand Prairie, TX ever since. Originally from Pittsburgh, PA, he moved to Arlington, TX in 1978 from Rhode Island. Dr. Ferraro graduated from The University of Texas at Arlington in 1981 with a B.S. in Biology and a minor in Chemistry.</p>
         <p>2016 marked the 25th anniversary of marriage to the former Karen Flores of San Antonio. Blessed with four children: daughters Victoria and Samantha, and sons Nicolas and Christopher. Outside interests include watching all sports and being an active member of Fielder Road Baptist Church.</p>
         <h2>The practice</h2>
@@ -807,9 +829,9 @@ def ferraro() -> dict:
 ])}</div>')}''')
 
     testi = page(site, title="Testimonials | Daniel L. Ferraro, D.D.S.", description="Published patient note from the practice testimonials page.", current="testimonials.html", body=f'''{page_hero("Patient testimonials", "Selected by Dallas/Fort Worth Top Rated Doctors, 2016.")}
-{section("one", "Published comment", "From the practice testimonials page.", f'<div class="cards">{reviews([{"quote": "I am so proud of my new teeth. I can smile and smile and smile!", "name": "Mrs. Conger"}])}</div>')}''')
+{section("one", "Published comment", "The practice site publishes this one patient quote. No other reviews are copied.", f'<div class="cards">{reviews([{"quote": "I am so proud of my new teeth. I can smile and smile and smile!", "name": "Mrs. Conger", "stars": ""}])}</div>')}''')
 
-    contact = contact_page(site, "<p>The live website was behind a Cloudflare challenge when fetched; content and the published logo come from the public October 2025 archive of grandprairie-arlingtondental.com. Call (972) 988-8044 to confirm hours and email.</p>")
+    contact = contact_page(site, "<p>Email danielferrarodds@sbcglobal.net. Monday–Thursday 8:00 AM–5:00 PM. Friday hours are not listed on the published site. The live website was behind a Cloudflare challenge when fetched; the logo and copy come from the public October 2025 archive of grandprairie-arlingtondental.com.</p>")
     write_site(site, {"index.html": index, "about.html": about, "services.html": services, "testimonials.html": testi, "contact.html": contact})
     return site
 
@@ -870,26 +892,23 @@ def garden() -> dict:
       <div class="wrap prose">
         <p>We’re proud to serve a variety of delicious meals made with care and quality ingredients. Whether you’re stopping by for a quick bite or dining with family and friends, we strive to create a warm and welcoming atmosphere for everyone.</p>
         <p>Jobs: the restaurant publishes a hiring form on the live site. Call if you have questions about joining the team.</p>
+        <p>The published About and Events pages are short. No extra event copy is added here.</p>
       </div>
     </section>''')
 
-    def menu_block(title: str, items: list[tuple[str, str]]) -> str:
+    def menu_block(title: str, items: list) -> str:
         rows = "".join(f"<li><span>{esc(n)}</span><span class=\"price\">{esc(p)}</span></li>" for n, p in items)
         return f'<article class="card"><h3>{esc(title)}</h3><ul class="menu-list">{rows}</ul></article>'
 
-    menu = page(site, title="Menu | Garden Restaurant", description="Published menu from gardenrestaurantgarland.com.", current="menu.html", body=f'''{page_hero("Menu", "Prices as published on the restaurant menu page. Call to confirm today’s availability.")}
+    menu_data = json.loads((SCAFFOLD / "garden-menu.json").read_text(encoding="utf-8"))
+    blocks = "\n        ".join(menu_block(title, items) for title, items in menu_data)
+
+    menu = page(site, title="Menu | Garden Restaurant", description="Full priced menu from gardenrestaurantgarland.com/menu.php.", current="menu.html", body=f'''{page_hero("Menu", "All categories and prices as published on the restaurant menu page. Call to confirm today’s availability.")}
     <section>
       <div class="wrap cards two">
-        {menu_block("Appetizers", [("A01. Roll", "$1.00"), ("A02. Fresh Spring Roll", "$4.50"), ("A03. Vietnamese Egg Rolls", "$4.95"), ("A04. Pot Sticker Dumpling", "$4.99"), ("A05. Chicken Lettuce Wrap", "$6.50"), ("A07. Shrimp Lettuce Wrap", "$7.50"), ("A08. Butter Fried Chicken Wing", "$6.95")])}
-        {menu_block("Lunch specials", [("L1. Fried Flounder Fish", "$8.25"), ("L10. Sweet and Sour Chicken", "$8.25"), ("L11. Kung Pao Chicken", "$8.25"), ("L13. General Tso's Chicken", "$8.25"), ("L21. Orange Chicken", "$8.25"), ("L22. Sesame Chicken", "$8.25"), ("L28. Mongolian Beef", "$8.25"), ("L9. Seafood Combination", "$8.25")])}
-        {menu_block("Rice & noodles", [("B08. BBQ Pork with Rice", "$5.95"), ("B12. BBQ Pork Fried Rice", "$5.95"), ("B13. Chicken Fried Rice", "$5.95"), ("B15. Shrimp Fried Rice", "$7.55"), ("B16. House Special Fried Rice", "$7.50"), ("B26. Pad Thai Fried Clear Noodle", "$7.95"), ("B32. Singaporean Style Fried Rice Noodle", "$7.95"), ("B34. Cantonese Fried Noodle", "$7.95")])}
-        {menu_block("Chicken & duck", [("Sweet and Sour Chicken", "$11.95"), ("Kung Pao Chicken", "$11.95"), ("General Tso's Chicken", "$11.95"), ("Orange Chicken", "$11.95"), ("Sesame Chicken", "$11.95"), ("Deep Fried Chicken (Half)", "$9.95"), ("Steamed Chicken (Half)", "$16.95"), ("Peking Duck (2 Way)", "$38.95")])}
-        {menu_block("Pork & beef", [("P01. Salt Toasted Pork Ribs", "$7.95"), ("P10. Sauteed Beef with Green Pepper", "$8.95"), ("P12. Kung Pao Beef", "$8.95"), ("P14. Mongolian Beef", "$8.95"), ("P20. Sauteed Beef with Broccoli", "$8.95"), ("P30. Stir Fried Steak Tips", "$11.95")])}
-        {menu_block("Seafood, sizzling & clay pot", [("D14. Salt Toasted Shrimp", "$9.95"), ("D24. Abalone with Oyster Sauce", "$50.00"), ("Steak Tips Sizzling Plate", "$16.99"), ("Seafood Tofu Clay Pot", "$14.99"), ("Goat Clay Pot", "$18.99")])}
-        {menu_block("Family dinner", [("Peking Duck Family Dinner (For Four)", "$88.00"), ("Salt Pepper Squid Family Dinner (For Four)", "$88.00"), ("Peking Duck - 2 Ways Family Dinner (For Six)", "$168.00"), ("XO Seafood Fried Rice Family Dinner (For Six)", "$168.00")])}
-        {menu_block("Drinks", [("Hot Tea", "$1.50"), ("Iced Tea", "$1.50"), ("Soft Drink", "$2.00"), ("Iced Coffee", "$4.00"), ("Fresh Lemonade", "$4.50"), ("Fresh Coconut Juice", "$5.50")])}
+        {blocks}
       </div>
-      <div class="wrap"><p class="note">Additional lunch specials, entrees, and clay-pot dishes are on the live menu. Call (972) 487-8289 for today’s options.</p></div>
+      <div class="wrap"><p class="note">Full priced menu from gardenrestaurantgarland.com/menu.php. Call (972) 487-8289 to confirm today’s availability. The live site publishes no reviews; none are added here.</p></div>
     </section>''')
 
     contact = contact_page(site, "<p>Email gardenrestaurant@zing.com. Reservations and catering inquiries are listed on the live contact form.</p>")
@@ -911,7 +930,6 @@ def len_conner() -> dict:
         "phone_display": "(972) 445-1500",
         "phone_tel": "+19724451500",
         "address": "600 John Carpenter Freeway, Ste 238, Irving, Texas 75062",
-        "hours": "Call to schedule a confidential consultation",
         "eyebrow": "Divorce & family law",
         "nav": [
             ("index.html", "Home"),
@@ -946,20 +964,24 @@ def len_conner() -> dict:
           <p><a href="tel:+19724451500">(972) 445-1500</a></p>
           <p>600 John Carpenter Freeway, Ste 238<br>Irving, Texas 75062</p>
           <p>Corner of John Carpenter Freeway and Rochelle Boulevard</p>
-          {kpis([("Family law", "Practice focus"), ("J.D., M.B.A.", "Len M. Conner"), ("4.8", "Facebook rating"), ("DFW", "Surrounding counties")])}'''
+          {kpis([("Family law", "Practice focus"), ("J.D., M.B.A.", "Len M. Conner"), ("Irving", "John Carpenter Fwy"), ("DFW", "Surrounding counties")])}'''
+    badges = '''<div class="badge-row">
+          <img src="assets/badge-best-in-irving.png" alt="Best in Irving 2022 Winner">
+          <img src="assets/badge-superlawyers.jpg" alt="Rated by Super Lawyers — Len Michael Conner">
+          <img src="assets/badge-avvo.jpeg" alt="Avvo Rating 10.0 Superb">
+        </div>'''
     index = page(site, title="Attorney Len Conner | Irving Divorce & Family Law", description="The Law Office of Len Conner focuses on comprehensive divorce and family law. Call (972) 445-1500.", current="index.html", body=f'''{hero(site, "Irving & Dallas County family law lawyer.", "The Law Office of Len Conner focuses on comprehensive divorce and family law representation. Len has spent his entire legal career on family law matters, identifying and implementing the best solutions for his clients.", "practice.html", "Practice areas", panel)}
-{section("intro", "Your decisions are only as good as the information and advice you receive.", "Though Len has extensive family law litigation experience, he will also help you use negotiated settlements, mediation, and a collaborative divorce process.", '''<div class="prose">
+{section("intro", "Your decisions are only as good as the information and advice you receive.", "Though Len has extensive family law litigation experience, he will also help you use negotiated settlements, mediation, and a collaborative divorce process.", f'''<div class="prose">
           <p>Our office partners with psychologists, social workers, financial advisors, private investigators, and tax professionals. To set up a confidential meeting, call 972-445-1500. Our office is in Irving; we represent clients in surrounding cities and counties.</p>
           <p>Fully licensed by the Texas Supreme Court. Admitted to the U.S. Federal Courts, Northern District of Texas. Member of the Texas Family Law Section of the Texas State Bar Association.</p>
+          {badges}
         </div>''')}
-{section("reviews", "Client testimonials", "Comments published on lonestarlaw.net.", f'<div class="cards two">{reviews([
-    {"quote": "Len is an outstanding, sensible lawyer that makes wise decisions with time and money, consistently considering what's in the best interest of his client in the long term. I'm thankful he walked me through such a difficult time. I highly recommend him.", "name": "Marie"},
-    {"quote": "Len Conner is an exceptional attorney with an incredible disposition and knowledge for family law. He helped us with a child support case that had been drowning us for years. He cares for his clients and the outcome of the case.", "name": "Marc and Jill"},
-    {"quote": "Len is a great lawyer that keeps his clients needs top of mind. I felt like Mr. Conner and his team truly understood my needs and was genuine in their approach. I believe they really cared for my children and their well-being.", "name": "David"},
-    {"quote": "Len Conner and his staff are the real deal. They tell you like it is. They have always been available when I needed them. He will guide you to do what is best for you and your pocket book, not his pocket book.", "name": "Dena"},
-    {"quote": "From the very start I was confident Len Conner and his team were indeed experts at Family Law. They were patient with me in walking me through the process of divorce, and continually informed me of all of my options.", "name": "Kelly"},
-    {"quote": "The best lawyer in Irving, TX!", "name": "Angel G.", "source": "Facebook"},
-    {"quote": "Len Conner has a great reputation in our community as he is trusted and truly effective at his craft.", "name": "Derek B.", "source": "Facebook"},
+{section("reviews", "Client testimonials", "The five comments published on the lonestarlaw.net homepage. The /testimonials/ page returns 404.", f'<div class="cards two">{reviews([
+    {"quote": "Len is an outstanding, sensible lawyer that makes wise decisions with time and money, consistently considering what's in the best interest of his client in the long term. I'm thankful he walked me through such a difficult time. I highly recommend him.", "name": "Marie", "stars": ""},
+    {"quote": "Len Conner is an exceptional attorney with an incredible disposition and knowledge for family law. He helped us with a child support case that had been drowning us for years. He cares for his clients and the outcome of the case.", "name": "Marc and Jill", "stars": ""},
+    {"quote": "Len is a great lawyer that keeps his clients needs top of mind. I felt like Mr. Conner and his team truly understood my needs and was genuine in their approach. I believe they really cared for my children and their well-being.", "name": "David", "stars": ""},
+    {"quote": "Len Conner and his staff are the real deal. They tell you like it is. They have always been available when I needed them. He will guide you to do what is best for you and your pocket book, not his pocket book.", "name": "Dena", "stars": ""},
+    {"quote": "From the very start I was confident Len Conner and his team were indeed experts at Family Law. They were patient with me in walking me through the process of divorce, and continually informed me of all of my options.", "name": "Kelly", "stars": ""},
 ])}</div>', "reviews")}
 {section("area", "Cities and counties we serve", "Listed on the public site.", f'<div class="chip-row">{chips(cities)}</div>')}''')
 
@@ -996,7 +1018,7 @@ def len_conner() -> dict:
     {"title": "Fathers’ rights", "text": "Fathers’ rights in Texas."},
 ])}</div><p class="note">Also published: divorce myths, divorce FAQs, and a legal glossary on lonestarlaw.net.</p>')}''')
 
-    contact = contact_page(site, "<p>The office is at the corner of John Carpenter Freeway and Rochelle Boulevard. Do not send confidential case facts through this page — call (972) 445-1500.</p>")
+    contact = contact_page(site, "<p>The office is at the corner of John Carpenter Freeway and Rochelle Boulevard. No public email or office hours are listed on lonestarlaw.net. Do not send confidential case facts through this page — call (972) 445-1500.</p>")
     write_site(site, {"index.html": index, "about.html": about, "practice.html": practice, "contact.html": contact})
     return site
 
@@ -1159,7 +1181,10 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
 - **Hughes Mechanical** publishes no customer reviews. None were added. Wix placeholder socials were ignored.
 - **CareMaster** current pages list (469) 233-3366 and customerservice@caremaster.biz. No street address is published on those pages.
-- **Ferraro DDS** live site returned Cloudflare 403. Content and the published site logo come from the October 2025 Wayback snapshot of grandprairie-arlingtondental.com.
+- **Ferraro DDS** live site returned Cloudflare 403. Content, the published logo (`…00551Dentallogodesign…png`), and the doctor photo come from the public October 2025 archive / practice CDN. Hours used: Monday–Thursday 8–5. Friday is blank on the source. Email: danielferrarodds@sbcglobal.net. One published quote (Mrs. Conger). Top Rated Doctors 2016.
+- **B&B Complete Auto** reviews are Elfsight JS only. Gallery is empty. No reviews or photos were invented. License CO16-0388.
+- **Garden Restaurant** menu is the full priced list from `/menu.php` (10 categories). No site reviews. About/Events stay thin.
+- **Len Conner** homepage testimonials only (Marie, Marc and Jill, David, Dena, Kelly). `/testimonials/` is 404. No public email or hours. Super Lawyers, Avvo, and Best in Irving 2022 badges from the live site.
 - **Speake's** homepage slider labels MashIt / FabuFit / YesSuits are template chrome, not used as company names.
 """
 
