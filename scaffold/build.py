@@ -1166,7 +1166,9 @@ def len_conner() -> dict:
 .header-phone { color: #77080a; font-size: 1.25rem; }
 .btn-dark { background: #77080a; }
 .badge-row img { background: #fff; padding: 0.25rem; }
-.nav-bar a:hover, .nav-bar a:focus-visible, .nav-bar a[aria-current="page"] { box-shadow: inset 0 -3px 0 #fff; }
+.theme-bar-nav .nav-bar a:hover,
+.theme-bar-nav .nav-bar a:focus-visible,
+.theme-bar-nav .nav-bar a[aria-current="page"] { box-shadow: inset 0 -3px 0 #fff; }
 .eyebrow { color: #77080a; }
 """,
         },
