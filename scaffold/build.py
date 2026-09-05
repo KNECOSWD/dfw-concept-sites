@@ -194,9 +194,11 @@ def speakes() -> dict:
     {"quote": "Very friendly and prompt plumbing service. Used to repair our hot water heater twice and they had a plumber at our house within a couple hours of our phone call both times. Rates are reasonable. Plumber polite, knowledgeable and thorough.", "name": "Christy H."},
     {"quote": "We only call Speakes Plumbing for our house and my mother's house. They have taken care of water heaters, foundation leaks, gas lines, and water lines. Lucas, Casey, or Lee are always friendly and professional. Highly recommend them!", "name": "Patricia W."},
     {"quote": "My brother hooked me up with them after I've been dealing with a leaky tub faucet for almost two years. My service technician Lee was fast and efficient. I would recommend them to anyone.", "name": "Martin W."},
+    {"quote": "Speake's replaced two water heaters for me and did a great job. They were fast, friendly and prompt. I'll definitely use them again.", "name": "Michael W."},
+    {"quote": "This is a great company. We've used them several times and recommend them to everyone who asks us for a plumber. Very friendly guys, honest and fair prices.", "name": "Brandon G."},
 ])}</div>')}''')
 
-    contact = contact_page(site, "<p>Call us for emergency plumbing repairs in Garland, TX. Hours of operation: Mon–Fri 7:00 AM–5:00 PM. Payment options are available — ask when you call.</p>")
+    contact = contact_page(site, "<p>Call (972) 271-9144. Hours: Monday–Friday 7:00 AM–5:00 PM. Email <a href=\"mailto:spi87@icloud.com\">spi87@icloud.com</a> or <a href=\"mailto:grantspeake@verizon.net\">grantspeake@verizon.net</a>. Master Plumber Grant Speake, Lic #16836.</p>")
     write_site(site, {"index.html": index, "about.html": about, "services.html": services, "testimonials.html": testi, "contact.html": contact})
     return site
 
@@ -215,13 +217,14 @@ def beyond() -> dict:
         "phone_display": "(972) 803-7495",
         "phone_tel": "+19728037495",
         "email": "Info@beyondlawncares.com",
-        "address": "Mesquite, TX 75149",
+        "address": "Mesquite, TX",
         "hours": "Mon–Fri 8 AM–5 PM · Sat 9 AM–2 PM · Sun closed",
         "eyebrow": "Mesquite, TX & surrounding areas",
         "nav": [
             ("index.html", "Home"),
             ("services.html", "Services"),
             ("packages.html", "Packages"),
+            ("gallery.html", "Gallery"),
             ("contact.html", "Contact"),
         ],
         "theme": {
@@ -252,7 +255,8 @@ def beyond() -> dict:
     {"title": "Commercial lawn care", "text": "Mowing, edging, and debris cleanup for offices, retail, HOAs, and other commercial sites."},
     {"title": "Commercial landscape maintenance", "text": "Professional landscaping upkeep for business properties."},
     {"title": "Seasonal flower installations", "text": "Seasonal color for beds and frontage."},
-    {"title": "Bush & hedge trimming", "text": "Trimming and landscape pruning."},
+    {"title": "Bush & hedge trimming", "text": "Trimming listed on the residential service tree."},
+    {"title": "Landscape pruning", "text": "Landscape pruning, listed separately from hedge trimming."},
     {"title": "Mulch installations", "text": "Mulch installed after an on-site look at beds and plants."},
     {"title": "Core aeration", "text": "Aeration so nutrients and water reach grass roots."},
     {"title": "Overseeding", "text": "Help for patching and bare areas."},
@@ -261,16 +265,31 @@ def beyond() -> dict:
     {"title": "Sprinkler inspection & maintenance", "text": "Sprinkler system inspection and maintenance."},
     {"title": "Leaf cleanup", "text": "Seasonal leaf cleanup."},
 ])}</div>')}
-{section("area", "Service area", "Cities named on the public site.", f'<div class="chip-row">{chips(["Mesquite, TX", "Sunnyvale, TX", "Garland, TX", "Forney, TX", "Rowlett, TX", "Balch Springs, TX", "Dallas"])}</div>')}''')
+{section("area", "Service area", "Cities named on the public site.", f'<div class="chip-row">{chips(["Mesquite, TX", "Sunnyvale, TX", "Garland, TX", "Forney, TX", "Rowlett, TX", "Balch Springs, TX", "Dallas"])}</div>')}
+{section("reviews", "What our customers say", "Google reviews load from the published Elfsight widget. Text is not copied or invented.", '''<script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-b24927f7-78c6-4b72-a73d-29dff77360f2" data-elfsight-app-lazy></div>
+        <p class="note">The widget is the same Elfsight Google reviews embed used on beyondlawncares.com (including names such as David Lopez and Nick Porter when Google returns them). No static review quotes are written here.</p>''')}''')
 
-    services = page(site, title="Lawn Care Services | Beyond Lawn Care", description="Residential and commercial mowing, landscape maintenance, and cleanups in Mesquite, TX.", current="services.html", body=f'''{page_hero("Lawn care & mowing in Mesquite, TX", "When it comes to routine lawn services, Beyond Lawn Care & Landscaping is your trusted source for residential lawn mowing throughout Mesquite.")}
-    <section>
-      <div class="wrap prose">
-        <p>We know you are busy, and keeping up with your property can be very time-consuming. We make it a priority to provide professional mowing and year-round lawn maintenance so you can enjoy your outdoor space without the work involved to maintain it. Contact us for a lawn care quote in Sunnyvale, Rowlett, Garland, Dallas, and Forney.</p>
-        <h2>Commercial lawn care</h2>
-        <p>Beyond Lawn Care & Landscaping provides commercial grass mowing and year-round lawn maintenance. Our team handles routine mowing, edging, and debris cleanup to ensure your business exterior stays neat and professional. We work with offices, retail spaces, HOAs, and other commercial sites. Request a free estimate to get started in Mesquite, Rowlett, Sunnyvale, Garland, Dallas and Forney.</p>
-      </div>
-    </section>''')
+    services = page(site, title="Lawn Care Services | Beyond Lawn Care", description="Residential and commercial mowing, landscape maintenance, and cleanups in Mesquite, TX.", current="services.html", body=f'''{page_hero("Our services", "The commercial and residential service tree published in the live navigation.")}
+{section("commercial", "Commercial", "Commercial lawn care services and commercial landscape maintenance.", f'<div class="cards">{cards([
+    {"title": "Commercial lawn care services", "text": "Routine mowing, edging, and debris cleanup for offices, retail, HOAs, and other commercial sites."},
+    {"title": "Commercial landscape maintenance", "text": "Professional landscaping upkeep for business properties."},
+])}</div>')}
+{section("residential", "Residential", "Residential lines listed under the live Services menu.", f'<div class="cards">{cards([
+    {"title": "Lawn care & mowing", "text": "Routine residential lawn mowing and year-round lawn maintenance in Mesquite."},
+    {"title": "Landscape maintenance", "text": "Keeping residential landscapes well maintained."},
+    {"title": "Seasonal flower installations", "text": "Seasonal color for beds and frontage."},
+    {"title": "Bush & hedge trimming", "text": "Trimming around the property."},
+    {"title": "Landscape pruning", "text": "Landscape pruning."},
+    {"title": "Property clean ups", "text": "Autumn leaves and other seasonal debris."},
+    {"title": "Leaf cleanup", "text": "Seasonal leaf cleanup."},
+    {"title": "Mulch installations", "text": "Mulch installed after an on-site look at beds and plants."},
+    {"title": "Overseeding", "text": "Help for patching and bare areas."},
+    {"title": "Core aeration", "text": "Aeration so nutrients and water reach grass roots."},
+    {"title": "Sod installation", "text": "New sod for a green lawn reset."},
+    {"title": "Salt application", "text": "Winter salt application as listed on the public service menu."},
+    {"title": "Sprinkler system inspection & maintenance", "text": "Sprinkler system inspection and maintenance."},
+])}</div>')}''')
 
     packages = page(site, title="Lawn Care Packages | Beyond Lawn Care", description="Weekly, biweekly, tall grass, and recurring lawn care packages in Mesquite, TX.", current="packages.html", body=f'''{page_hero("Lawn care packages", "Get a quote: send photos to 972-803-7495 or use the estimate form. Include your name and address if submitting by phone.")}
 {section("weekly", "Weekly lawn care package", "Ideal for customers who want a pristine lawn with consistent maintenance.", '''<div class="card prose">
@@ -298,8 +317,16 @@ def beyond() -> dict:
     {"title": "Landscaping & bush trimming", "text": "Deweeding and flower-bed pricing during the initial mow or from photos. Mulch, rock, and plant installs are quoted in person."},
 ])}</div>')}''')
 
-    contact = contact_page(site, "<p>Complete the estimate form and a representative will be with you. No street address is published on the public site; service is based in Mesquite (75149) and the cities listed on the homepage.</p><p>The live site embeds a Google reviews widget. Those comments load in the browser and were not copied here.</p>")
-    write_site(site, {"index.html": index, "services.html": services, "packages.html": packages, "contact.html": contact})
+    gallery_dir = SITES / site["slug"] / "assets" / "gallery"
+    photos = sorted(p.name for p in gallery_dir.iterdir() if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}) if gallery_dir.exists() else []
+    photo_html = '<div class="photo-grid">' + "".join(
+        f'<img src="assets/gallery/{esc(n)}" alt="Beyond Lawn Care &amp; Landscaping job photo">' for n in photos
+    ) + "</div>"
+    gallery = page(site, title="Gallery | Beyond Lawn Care", description="Published lawn and landscape job photos from beyondlawncares.com.", current="gallery.html", body=f'''{page_hero("Gallery", "Job photos published on the live gallery page. Downloaded from the business CDN — none were generated.")}
+{section("photos", "Yard and landscape photos", "As shown on beyondlawncares.com/gallery.", photo_html)}''')
+
+    contact = contact_page(site, "<p>Complete the estimate form and a representative will be with you. No street address is published on the Contact page. Service is based in Mesquite and the cities listed on the homepage.</p><p>Google reviews appear through the Elfsight widget on the homepage. Review text is not copied here.</p>")
+    write_site(site, {"index.html": index, "services.html": services, "packages.html": packages, "gallery.html": gallery, "contact.html": contact})
     return site
 
 
@@ -312,7 +339,7 @@ def hughes() -> dict:
         "name": "Hughes Mechanical and Electrical Contractors",
         "tagline": "Arlington, TX since 1970",
         "city": "Arlington, TX",
-        "logo": "assets/wordmark-header.png",
+        "logo": "assets/wordmark.png",
         "logo_class": "logo wide",
         "body_class": "theme-dark-header",
         "phone_display": "(817) 461-9241",
@@ -367,7 +394,7 @@ def hughes() -> dict:
     {"title": "Jordan Johnson", "text": "HVAC Technician"},
     {"title": "Hunter Hughes Jr.", "text": "Electrician"},
 ])}</div>')}''')
-    contact = contact_page(site, "<p>Call (817) 461-9241 or email sales@hughes-mech-elect.com. The office is at 423 Dodson Lake Drive, Arlington, TX 76012.</p>")
+    contact = contact_page(site, "<p>Call (817) 461-9241 or email sales@hughes-mech-elect.com. The office is at 423 Dodson Lake Drive, Arlington, TX 76012. The live Wix site publishes no customer reviews, and its placeholder social links are ignored.</p>")
     write_site(site, {"index.html": index, "contact.html": contact})
     return site
 
@@ -1197,9 +1224,10 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 
 ## Source notes
 
-- **Logos** are the businesses’ existing marks downloaded from their live sites (or the public Wayback copy for Ferraro) and stored under `sites/<slug>/assets/`.
-- **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
-- **Hughes Mechanical** publishes no customer reviews. None were added. Wix placeholder socials were ignored.
+- **Logos** are the businesses’ existing marks, downloaded from the specified live URLs and stored under `sites/<slug>/assets/`.
+- **Speake's** logo is `077-162h.png`. Grant Speake, Master Plumber #16836, est. 1987. 633 N 5th St, Garland; 972-271-9144; Mon–Fri 7–5; spi87@icloud.com and grantspeake@verizon.net. Testimonials are published quotes only. MashIt / FabuFit / YesSuits slider labels were not used.
+- **Beyond Lawn Care** logo is `BEYOND-1920w.png`. 972-803-7495; Info@beyondlawncares.com; Mon–Fri 8–5, Sat 9–2; no street on Contact. Full commercial/residential service tree, published package price bands, and the live gallery photos. Google reviews load via the published Elfsight widget only — review text was not invented.
+- **Hughes Mechanical** wordmark and bug are the specified Wix files. 817-461-9241; sales@hughes-mech-elect.com; 423 Dodson Lake Dr, Arlington. HVAC plus electrical, lighting, and refrigeration. Team names as published. No reviews. Wix Studio social placeholders ignored.
 - **Victory Pest Control** uses the brand VPC logo (`victory-pest-control-llc-logo-0510bb09-1920w.jpg`), not the Hibu template gen-logo. Owner John Gaines. (972) 230-5526 / mobile (214) 543-6357. 234 Paradise Way, Red Oak, TX 75154. 24 hours. No email. Reviews only: Taylor Akin, Camille Henderson, Michelle Owens. Live “Lorem Ipsum” tagline and `{{placeholder_*}}` tokens were not copied.
 - **CareMaster** logo is `logo-2.jpg` from nccdn. Since 1982; Richard Lee / President John Lee. 469.233.3366; customerservice@caremaster.biz; PO Box 29303, Dallas, TX 75229. No reviews. Street hours are not published.
 - **Forum Terrace** logo is `cropped-FTCoC_Logo_646x200.png`. 2446 Arkansas Lane; Dan Vess (972) 922-3249; Sun 9:30 / 10:30 / 5:00 and Wed 7:30. Tracts, sermons, workbooks, and bulletins are links to the live HTTP pages. Member directory is gated and skipped. No reviews or email.
@@ -1207,7 +1235,6 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **B&B Complete Auto** reviews are Elfsight JS only. Gallery is empty. No reviews or photos were invented. License CO16-0388.
 - **Garden Restaurant** menu is the full priced list from `/menu.php` (10 categories). No site reviews. About/Events stay thin.
 - **Len Conner** homepage testimonials only (Marie, Marc and Jill, David, Dena, Kelly). `/testimonials/` is 404. No public email or hours. Super Lawyers, Avvo, and Best in Irving 2022 badges from the live site.
-- **Speake's** homepage slider labels MashIt / FabuFit / YesSuits are template chrome, not used as company names.
 """
 
 
