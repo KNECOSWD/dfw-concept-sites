@@ -2,53 +2,41 @@
 
 **Live:** https://www.lonestarlaw.net/  
 **Rebuild:** https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/  
-**Vibe match: 8/10** — Sell-as-is target is **navy/gold law firm**. Rebuild hero is deep navy `#0f2744` family + gold CTA `#b08948` / `#c5a572` — correct. Live Enterprise WP is **maroon/burgundy** chrome (`#77080a` nav + CTAs) on white with a bright beach family photo — not navy. Do **not** retune primary to maroon or scraped WP blues; keep navy/gold and keep the maroon **logo** as-is.
+**Vibe match: 4/10** — Rebuild invented navy/gold “prestige firm.” Live is **maroon `#77080a`** chrome (nav bar, CTAs, logo type), **white header**, **beach family photo hero** with maroon headline. Standing rule: match live — do **not** keep navy/gold as primary.
 
-## Color tokens (LIVE — reference only)
-| Token | Hex | Notes |
-| --- | --- | --- |
-| `--brand` (live nav/CTA) | `#77080a` | Maroon bar + “learn more” — **don’t make rebuild primary** |
-| Logo maroon | `#6b1a19` | Keep in logo asset only |
-| Badge gold | `#f3ae05` / `#ffbe01` | Super Lawyers / Best in Irving — accent only |
-| Badge blue | `#0259b1` | Award seal only |
-| `--ink` | `#333333` | Body |
-| `--bg` | `#f5f5f5` / cream | Below hero |
-| `--surface` | `#ffffff` | Header |
-| `--hero-ink` | `#77080a` on light beach photo | Live places maroon type on photo |
-
-## Target tokens (rebuild / Eng)
+## Color tokens (LIVE — use these)
 | Token | Hex |
 | --- | --- |
-| `--brand` | `#0f2744` |
-| `--brand-2` / accent | `#c5a572` |
-| `--accent` (CTA fill) | `#b08948` |
-| `--bg` | `#eef2f6` |
-| `--surface` | `#fbfcfe` |
-| `--ink` | `#122033` |
-| `--muted` | `#5a6573` |
-| `--hero-ink` | `#f4efe4` |
+| `--brand` | `#77080a` |
+| Logo maroon | keep in `assets/logo.jpg` (don’t recolor mark) |
+| Badge gold | `#ffbe01` / `#f3ae05` — Super Lawyers / Best in Irving **only** |
+| Badge blue | award seals only |
+| `--ink` | `#333333` |
+| `--muted` | `#666666` |
+| `--bg` | `#f5f5f5` / cream |
+| `--surface` | `#ffffff` |
+| `--hero-ink` | `#77080a` on light photo (or white if overlay darkens) |
+| `--font-display` | serif for firm name/headings; sans for nav/CTAs |
 
 ## Layout intent
-- Authoritative family-law marketing: navy hero, gold primary Call, white header with existing diamond logo, trust badges, five homepage testimonials, cities chips.
-- Live pattern to borrow (optional): soft family/beach photography as a **secondary** band or muted hero underlay — never recolor the whole site maroon.
-- Phone `(972) 445-1500` in header, hero primary, and callbar.
-- Keep existing logo (`assets/logo.jpg`).
+- Traditional family-law site: white header + diamond LC logo + phone, full-width maroon nav, lifestyle beach hero, practice copy, trust badges, five homepage testimonials only.
+- Phone `972-445-1500` everywhere it matters.
+- No public email/hours invent. `/testimonials/` 404 — don’t add fake page.
 
-## Eng change list (concrete CSS/HTML)
-1. `theme.css`: lock `--brand:#0f2744`, `--brand-2:#c5a572`, `--accent:#b08948`; ensure `.btn-primary` uses gold fill + dark navy or white text that passes contrast (prefer `#122033` on gold if white fails).
-2. `.header-cta.btn-dark`: navy fill (not maroon); active nav link gold or navy underline — not live burgundy.
-3. `.hero`: keep navy radial; optional subtle photo underlay at ≤30% opacity; keep gold `.eyebrow` (“Divorce & family law”).
-4. `.badge-row`: keep Best in Irving / Super Lawyers / Avvo images; don’t recolor badges gold-wash the page.
-5. Testimonials: five published quotes only (Marie, Marc and Jill, David, Dena, Kelly); remove meta copy about `/testimonials/` 404 from visible UI.
-6. Soften duplicate brand text next to logo (logo already says Len Conner & Associates) — one clear wordmark.
-7. Practice/areas: sober navy headings on light cards; avoid gold gradient overload on interior pages.
+## Eng change list
+1. `theme.css`: `--brand` → `#77080a`; drop navy `#0f2744` as primary; gold only on badges/eyebrows.
+2. Header: white bar; maroon phone; maroon nav strip with white links (scaffold needs a maroon-nav modifier).
+3. Hero: beach/family photo underlay (published asset if available) + maroon headline/CTA — not solid navy wash.
+4. `.btn-primary` → maroon fill, white text.
+5. Keep five quotes (Marie, Marc and Jill, David, Dena, Kelly); keep badge images with alts.
+6. Strip any “404” meta/debug copy if present.
 
 ## Keep
-- Logo/marks; badge assets; Irving address; cities/counties list; homepage testimonials only; Texas marketing disclaimer in footer; no invented email/hours.
+- Cities served; Irving address; logo; badges; homepage quotes only.
 
 ## 508 notes
-- White on `#0f2744`: pass. Gold `#b08948` on white fails for small text — large CTAs only, or dark ink on gold.
-- Maroon logo on white: OK; don’t use `#77080a` for body links on cream without checking ≥4.5:1.
-- Badge `alt` must include award name + year; portrait in Super Lawyers graphic is informative.
-- Skip link present; focus ring on navy/gold buttons needs light outline on dark hero and dark outline on white header.
-- One `h1`; testimonials as `h2` + quote markup; don’t rely on gold alone for emphasis.
+- Maroon `#77080a` on white: verify body links ≥4.5:1 (darken if needed).
+- Maroon nav + white links: OK if ≥4.5:1.
+- Hero maroon on beach photo: ensure overlay/shadow for contrast.
+- Badge `alt` includes award name + year.
+- Form labels; focus visible on maroon controls (light ring).
