@@ -59,56 +59,77 @@ Drop scaffold copper `#c47a3a` and navy `#16324f` entirely for this site.
 
 ---
 
-## Content / nav parity (HARD GATE)
+## Content / nav / image / favicon parity (Scout fold — authoritative)
 
-**Parity status:** EXEMPLAR FAIL — live ~11 top items + Service Areas dropdown (4 children) + Blog; rebuild only Home/About/Services/Testimonials/Contact. Financing, Residential, Commercial, Water Heaters, Products, Service Areas pages, and Blog are missing destinations.
+_Folded from `/workspace/dfw-parity/speakes-plumbing.md` (Scout public HTML inventory, 2026-09-05). Supersedes thinner lists for Eng._
 
-### Live nav map
-- **Home** → `https://www.speakesplumbing.com/`
-- **About Us** → `https://www.speakesplumbing.com/about-us`
-- **Financing** → `https://www.speakesplumbing.com/financing`
-- **Residential** → `https://www.speakesplumbing.com/residential`
-- **Commercial** → `https://www.speakesplumbing.com/commercial`
-- **Water Heaters** → `https://www.speakesplumbing.com/water-heaters`
-- **Products** → `https://www.speakesplumbing.com/products`
-- **Testimonials** → `https://www.speakesplumbing.com/testimonials`
-- **Contact Us** → `https://www.speakesplumbing.com/contact-us`
-- **Service Areas** (dropdown)
-  - Garland, TX — Hot Water Heater Repair → `https://www.speakesplumbing.com/hot-water-heater-repair-garland-tx`
-  - Garland, TX — Plumbers → `https://www.speakesplumbing.com/plumbers-garland-tx`
-  - Richardson, TX — Hot Water Heater Repair → `https://www.speakesplumbing.com/hot-water-heater-repair-richardson-tx`
-  - Richardson, TX — Plumbers Serving Richardson → `https://www.speakesplumbing.com/plumbers-serving-richardson-tx`
-- **Blog** → `https://www.speakesplumbing.com/blog`
+## speakes-plumbing
+
+Source: https://www.speakesplumbing.com/ (public homepage HTML via curl + WebFetch, 2026-09-05). URLs below are copied as present in live markup (including `cdn-website.com//` double-slash paths).
+
+### Primary nav (with dropdown children)
+
+Header `<nav class="u_1322900430 … main-navigation unifiednav">` — **11 top-level items** in order:
+
+1. **Home** → `/`
+2. **About Us** → `/about-us`
+3. **Financing** → `/financing` *(angle-down icon present; no submenu children in HTML)*
+4. **Residential** → `/residential`
+5. **Commercial** → `/commercial`
+6. **Water Heaters** → `/water-heaters`
+7. **Products** → `/products`
+8. **Testimonials** → `/testimonials`
+9. **Contact Us** → `/contact-us`
+10. **Service Areas** → `#` *(has submenu; `aria-haspopup="true"`)*
+    - **Garland, TX** → `#` *(nested submenu)*
+      - **Hot Water Heater Repair Garland, TX** → `/hot-water-heater-repair-garland-tx`
+      - **Plumbers in Garland, TX** → `/plumbers-garland-tx`
+    - **Richardson, TX** → `#` *(nested submenu)*
+      - **Hot Water Heater Repair  Richardson, TX** → `/hot-water-heater-repair-richardson-tx` *(label has two spaces before “Richardson” in live `data-link-text`)*
+      - **Plumbers Serving Richardson** → `/plumbers-serving-richardson-tx`
+11. **Blog** → `/blog` *(angle-down icon present; no submenu children in HTML)*
+
+**Footer nav:** Distinct footer `<nav class="u_1961877140 …">` (`hide-for-small hide-for-medium`) duplicates the **same 11 labels, hrefs, and Service Areas nested children** as the header (pipe dividers via `data-divider="PIPE"`). Not a separate service-area-only footer menu.
+
+**Parity note:** Live header = **11** top-level items. Site JS `Parameters.NavigationAreaParams.NavbarSize` = **5** (matches flagged “~11 header items vs rebuild 5”).
+
+### Key images / heroes
+
+| Role | Absolute URL | Notes from live HTML |
+| --- | --- | --- |
+| **Logo** | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/077-162h.png` | Header `img`; alt/title `Speake's Plumbing, Inc.`; `data-dm-image-path` → `https://cdn.website.thryv.com/07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/077.png` |
+| **Hero / banner slides (gallery-bg)** | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/84182db-1920w.jpg` | First of 3 slides in base64 `data-gallery-bg` on hero rows (`u_1250640656` / `u_1992283242`); also CSS `background-image` on those rows |
+| | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/842-1920w.jpg` | Hero gallery slide 2 (`data-gallery-bg`) |
+| | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/843-1920w.jpg` | Hero gallery slide 3 (`data-gallery-bg`) |
+| **About / team photo** | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/839-1920w.jpg` | `img` alt: `Grant Speak next to van - Plumbing in Garland, TX` (also `839-486w.jpg` responsive variant of same asset) |
+| **Mid-page parallax / CTA band** | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/74882db-472838cf-1920w.jpg` | `data-background-image` on row with “Proudly serving Garland…” copy |
+| **Testimonials / lower parallax band** | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/74782db-0fba6051-1920w.jpg` | `data-background-image` + CSS on parallax rows (`u_1831147509`, `u_1013970563`, etc.) |
+| **Header/footer texture** | `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/11782db-1920w.png` | Header top bar CSS bg; footer row `data-background-image` |
+| **Homepage video (no poster)** | `https://videos.dexmedia.com/MP41280x720/950.0015316243_A.mp4` | `<video controls autoplay>` custom HTML; **no `poster` attribute**. Extra fallback source in markup: `https://www.quirksmode.org/html5/videos/big_buck_bunny.webmwe` |
+
+**Not found on homepage as dedicated assets:** separate service-card images; photo gallery notables beyond hero slides / team photo; video poster image.
+
+### Favicon
+
+- **apple-touch-icon:** `https://irp.cdn-website.com/07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/077.png`
+- **icon (x-icon):** `https://irp.cdn-website.com/07f850f089c4441eb0eefb4dceb83ed0/site_favicon_16_1619588441097.ico`
+
+No `rel="shortcut icon"` link found in homepage HTML.
+
+### Capture notes
+
+- Platform: Duda / Thryv (`irp.cdn-website.com`, SiteAlias `07f850f089c4441eb0eefb4dceb83ed0`).
+- Captured from public homepage HTML only (`curl -sL` + WebFetch). No invented labels or URLs.
+- Primary nav labels taken from `data-link-text` / visible nav text inside header `unifiednav`.
+- Only **Service Areas** has real dropdown children in the DOM; Financing/Blog show decorative `icon-angle-down` without child `<ul>`.
+- Many CDN paths use a literal double slash after the host (`…com//07f850…`); reported as in source.
+- Tiny footer share-related `img` also present: `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/511-81bc6217-24w.png` (20×20; not a hero/brand asset).
 
 
+### Parity emphasis (exemplar)
+- **11 top-level** items; only Service Areas has real nested children (Garland + Richardson, 2 each).
+- Eng must ship hero gallery slides 84182db / 842 / 843 + Grant-at-van photo + parallax bands — not logo-only.
+- Homepage video URL present; **no poster** — do not invent poster art.
+- Favicon: live `.ico` + apple-touch from `077.png`.
 
-### Rebuild nav map (current)
-- Home → `index.html`
-- About Us → `about.html`
-- Services → `services.html`
-- Testimonials → `testimonials.html`
-- Contact → `contact.html`
-
-### Eng requirement
-Restore **full live header IA** (every top item + dropdown children). Collapsing only OK if every destination stays reachable with the **same labels**. Do not strip Financing / service-area / deep service pages into a thin 4–5 link bar.
-
-## Image inventory (Eng must incorporate)
-
-Homepage (and linked gallery/team) assets from live — download into `assets/` and place in matching sections (hero / gallery / team / services). Do not leave pages image-thin vs live.
-
-1. **content** — `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/077-162h.png` alt="Speake"
-2. **hero/banner** — `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/839-1920w.jpg` alt="Grant Speak next to van - Plumbing in Garland, TX"
-3. **hero/banner** — `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/839-486w.jpg` alt="Grant Speak next to van - Plumbing in Garland, TX"
-4. **content** — `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/511-81bc6217-24w.png`
-5. **content** — `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/11782db-1920w.png`
-6. **content** — `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/84182db-1920w.jpg`
-7. **content** — `https://irp.cdn-website.com//07f850f089c4441eb0eefb4dceb83ed0/dms3rep/multi/opt/74782db-0fba6051-1920w.jpg`
-
-Parsed homepage image count (raw): **9**. Also pull gallery/inner-page images when those routes are restored.
-
-## Favicon
-
-- **Live source:** `https://irp.cdn-website.com/07f850f089c4441eb0eefb4dceb83ed0/site_favicon_16_1619588441097.ico`
-- **Local capture:** `/workspace/dfw-design-briefs/favicons/speakes-plumbing.ico`
-- **Note:** Ship this favicon (or logo-derived 32/180) — never invent a new mark.
 
