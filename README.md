@@ -1,11 +1,10 @@
-# KNECO DFW concept sites
+# DFW site rebuilds
 
-Ten static marketing mocks for a **$500 DFW concept test**.  
-Matthew Sullivan / KNECOSWD.
+Ten static website rebuilds for local Dallas–Fort Worth businesses.  
+Each folder under `sites/` is a finished site Matthew can open or zip and sell as-is.
 
-These pages are **concept demos / not the live business sites**.  
-**$0 Azure:** no App Service, no Azure resources, no custom domains, no paid hosting.  
-**No outreach:** no emails, calls, or live-site form submissions were made.
+**$0 Azure.** No App Service, no custom domains, no paid hosting.  
+**No outreach.** Public pages were fetched only. No emails, calls, or live-site form submissions.
 
 ## Open locally
 
@@ -24,30 +23,43 @@ Or open any file directly:
 
 ## Zip one site
 
-Each folder under `sites/` is self-contained (`index.html`, `styles.css`, `theme.css`, `site.js`).
+Each folder under `sites/` is self-contained (`index.html`, extra pages, `styles.css`, `theme.css`, `site.js`, `assets/`).
 
 ```bash
 cd sites
 zip -r speakes-plumbing.zip speakes-plumbing
 ```
 
-Unzip and open `index.html`. No build step, no node, no Azure.
+Unzip and open `index.html`. No build step, no Node, no Azure.
 
 ## GitHub Pages
 
-Publish this repo root (or `/docs` if you copy the files there). The gallery at `/` links to `/sites/<slug>/`.
+Publish this repo root. Keep `.nojekyll`. The gallery at `/` links to `/sites/<slug>/`.
 
-## The 10 paths
+Preview URLs:
+
+1. https://knecoswd.github.io/dfw-concept-sites/sites/speakes-plumbing/
+2. https://knecoswd.github.io/dfw-concept-sites/sites/beyond-lawn-care/
+3. https://knecoswd.github.io/dfw-concept-sites/sites/hughes-mechanical/
+4. https://knecoswd.github.io/dfw-concept-sites/sites/victory-pest-control/
+5. https://knecoswd.github.io/dfw-concept-sites/sites/caremaster-building/
+6. https://knecoswd.github.io/dfw-concept-sites/sites/forum-terrace-church/
+7. https://knecoswd.github.io/dfw-concept-sites/sites/bb-complete-auto/
+8. https://knecoswd.github.io/dfw-concept-sites/sites/ferraro-dds/
+9. https://knecoswd.github.io/dfw-concept-sites/sites/garden-restaurant/
+10. https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/
+
+## The 10 sites
 
 | # | Business | City | Folder |
 | --- | --- | --- | --- |
-| 1 | Speake's Plumbing | Garland | [`sites/speakes-plumbing/`](sites/speakes-plumbing/) |
-| 2 | Beyond Lawn Care | Mesquite | [`sites/beyond-lawn-care/`](sites/beyond-lawn-care/) |
-| 3 | Hughes Mechanical | Arlington | [`sites/hughes-mechanical/`](sites/hughes-mechanical/) |
-| 4 | Victory Pest Control | Red Oak / DeSoto | [`sites/victory-pest-control/`](sites/victory-pest-control/) |
-| 5 | CareMaster Building | Dallas | [`sites/caremaster-building/`](sites/caremaster-building/) |
+| 1 | Speake's Plumbing, Inc. | Garland | [`sites/speakes-plumbing/`](sites/speakes-plumbing/) |
+| 2 | Beyond Lawn Care & Landscaping | Mesquite | [`sites/beyond-lawn-care/`](sites/beyond-lawn-care/) |
+| 3 | Hughes Mechanical and Electrical | Arlington | [`sites/hughes-mechanical/`](sites/hughes-mechanical/) |
+| 4 | Victory Pest Control LLC | DFW | [`sites/victory-pest-control/`](sites/victory-pest-control/) |
+| 5 | CareMaster Building Services | Dallas / Fort Worth | [`sites/caremaster-building/`](sites/caremaster-building/) |
 | 6 | Forum Terrace Church of Christ | Grand Prairie | [`sites/forum-terrace-church/`](sites/forum-terrace-church/) |
-| 7 | B&B Complete Auto | Garland | [`sites/bb-complete-auto/`](sites/bb-complete-auto/) |
+| 7 | B&B Complete Auto Repair | Garland | [`sites/bb-complete-auto/`](sites/bb-complete-auto/) |
 | 8 | Daniel L. Ferraro, D.D.S. | Grand Prairie | [`sites/ferraro-dds/`](sites/ferraro-dds/) |
 | 9 | Garden Restaurant | Garland | [`sites/garden-restaurant/`](sites/garden-restaurant/) |
 | 10 | Law Office of Len Conner | Irving | [`sites/len-conner-law/`](sites/len-conner-law/) |
@@ -55,15 +67,20 @@ Publish this repo root (or `/docs` if you copy the files there). The gallery at 
 ## Shared scaffold
 
 - [`scaffold/styles.css`](scaffold/styles.css) — layout, mobile nav, forms
-- [`scaffold/site.js`](scaffold/site.js) — menu + demo form (never posts)
+- [`scaffold/site.js`](scaffold/site.js) — menu + on-page form confirmation (does not email the business)
 - [`scaffold/build.py`](scaffold/build.py) — rebuilds all 10 folders from the shared files
 
 ```bash
 python3 scaffold/build.py
 ```
 
-## Research notes
+Contact forms stay on the page. They do not email, store, or submit to the businesses. Please call so the office receives the request.
 
-Public homepages were fetched for name, phone, services, and tone. Reviews on each mock are **labeled placeholders**. License numbers are included only when the business published them. If a street address was not on the public homepage, the mock marks it as a **placeholder**. Church and veteran-owned language does **not** impersonate government or VA.
+## Source notes
 
-Contact forms only show an on-page confirmation. They do not email, store, or submit to the businesses.
+- **Logos** are the businesses’ existing marks downloaded from their live sites (or the public Wayback copy for Ferraro) and stored under `sites/<slug>/assets/`.
+- **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
+- **Hughes Mechanical** publishes no customer reviews. None were added. Unused Wix social links were ignored.
+- **CareMaster** current pages list (469) 233-3366 and customerservice@caremaster.biz. No street address is published on those pages.
+- **Ferraro DDS** live site returned Cloudflare 403. Content and the published site logo come from the October 2025 Wayback snapshot of grandprairie-arlingtondental.com.
+- **Speake's** homepage slider labels MashIt / FabuFit / YesSuits are template chrome, not used as company names.

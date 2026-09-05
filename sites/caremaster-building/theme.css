@@ -1,4 +1,4 @@
-/* Brand tokens for caremaster-building */
+/* Brand tokens sampled from the live caremaster-building site */
 :root {
   --bg: #eef3f3;
   --surface: #ffffff;
@@ -12,3 +12,4 @@
   --hero-pattern: repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 18px);
   --hero-pattern-size: 24px 24px;
 }
+

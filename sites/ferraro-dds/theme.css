@@ -1,4 +1,4 @@
-/* Brand tokens for ferraro-dds */
+/* Brand tokens sampled from the live ferraro-dds site */
 :root {
   --bg: #eef6f6;
   --surface: #ffffff;
@@ -12,3 +12,4 @@
   --hero-pattern: radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%);
   --hero-pattern-size: 100% 100%;
 }
+

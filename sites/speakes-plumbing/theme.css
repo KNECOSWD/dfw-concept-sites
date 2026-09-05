@@ -1,4 +1,4 @@
-/* Brand tokens for speakes-plumbing */
+/* Brand tokens sampled from the live speakes-plumbing site */
 :root {
   --bg: #f3efe8;
   --surface: #fffdf8;
@@ -12,3 +12,4 @@
   --hero-pattern: radial-gradient(circle at 20% 20%, #fff 0 2px, transparent 2.5px);
   --hero-pattern-size: 24px 24px;
 }
+

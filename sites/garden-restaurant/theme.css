@@ -1,4 +1,4 @@
-/* Brand tokens for garden-restaurant */
+/* Brand tokens sampled from the live garden-restaurant site */
 :root {
   --bg: #f7efe8;
   --surface: #fffaf4;
@@ -12,3 +12,4 @@
   --hero-pattern: radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%);
   --hero-pattern-size: 100% 100%;
 }
+

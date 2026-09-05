@@ -1,4 +1,4 @@
-/* Brand tokens for beyond-lawn-care */
+/* Brand tokens sampled from the live beyond-lawn-care site */
 :root {
   --bg: #eef5ee;
   --surface: #fbfff6;
@@ -12,3 +12,4 @@
   --hero-pattern: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
   --hero-pattern-size: 24px 24px;
 }
+

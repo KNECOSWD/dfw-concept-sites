@@ -1,318 +1,119 @@
 #!/usr/bin/env python3
-"""Generate 10 self-contained KNECO concept sites from the shared scaffold."""
+"""Build 10 sell-as-is DFW business sites from published live-site content."""
 
 from __future__ import annotations
 
 import json
 import shutil
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from render import cards, chips, contact_form, esc, page, reviews, theme_css
 
 ROOT = Path(__file__).resolve().parents[1]
 SCAFFOLD = Path(__file__).resolve().parent
 SITES = ROOT / "sites"
 
-MARKS = {
-    "drop": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s7 8.2 7 13a7 7 0 1 1-14 0C5 10.2 12 2 12 2z"/></svg>',
-    "leaf": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c8-1 13-7 14-15-8 1-13 7-14 15zm0 0c2-4 6-7 11-8"/></svg>',
-    "bolt": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 10-14h-7l0-6z"/></svg>',
-    "shield": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5.2 3.4 9.8 8 11 4.6-1.2 8-5.8 8-11V6l-8-4z"/></svg>',
-    "building": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5l8-3 8 3v16H4zm4-3h2v-3H8v3zm6 0h2v-3h-2v3zM8 12h2V9H8v3zm6 0h2V9h-2v3z"/></svg>',
-    "cross": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4v6h6v4h-6v8h-4v-8H4V9h6V3z"/></svg>',
-    "wrench": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 7a5 5 0 0 1-6.7 4.7L7 19.1 4.9 17l7.4-7.3A5 5 0 1 1 21 7z"/></svg>',
-    "tooth": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4c2-.8 3.2.4 5 .4S15 3.2 17 4c2 .8 2.6 3 2.2 5.2C18.6 12 17 21 14.5 21S13 15 12 15s-1.2 6-2.5 6S5.4 12 4.8 9.2C4.4 7 5 4.8 7 4z"/></svg>',
-    "bowl": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16l-1.2 5.2A5 5 0 0 1 13.9 19h-3.8a5 5 0 0 1-4.9-3.8L4 10zm4-5h8l1 3H7l1-3z"/></svg>',
-    "scale": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v2l8 3-4.2 7H16c0 2.2-1.8 4-4 4s-4-1.8-4-4h.2L4 7l8-3V2zm-5.2 8.1L8.8 7.4 6.8 10.1h5.6L8.8 7.4 6.8 10.1zM15.2 7.4l2 2.7h-4zM11 21h2v-3h-2v3z"/></svg>',
-}
 
-
-def esc(text: str) -> str:
-    return (
-        text.replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace('"', "&quot;")
-    )
-
-
-def phone_link(site: dict) -> str:
-    return f'tel:{site["phone_tel"]}'
-
-
-def address_html(site: dict) -> str:
-    flag = ' <span class="placeholder-flag">placeholder</span>' if site.get("address_placeholder") else ""
-    return f'{esc(site["address"])}{flag}'
-
-
-def phone_html(site: dict) -> str:
-    flag = ' <span class="placeholder-flag">placeholder</span>' if site.get("phone_placeholder") else ""
-    return f'<a href="{phone_link(site)}">{esc(site["phone_display"])}</a>{flag}'
-
-
-def chips(items: list[str]) -> str:
-    return "\n".join(f'<span class="chip">{esc(item)}</span>' for item in items)
-
-
-def cards(items: list[dict]) -> str:
-    return "\n".join(
-        f'<article class="card"><h3>{esc(item["title"])}</h3><p>{esc(item["text"])}</p></article>'
-        for item in items
-    )
-
-
-def reviews(items: list[dict]) -> str:
-    return "\n".join(
-        f'''<article class="card review">
-          <div class="stars" aria-label="Five star placeholder">★★★★★</div>
-          <p>“{esc(item["quote"])}”</p>
-          <p class="muted">— {esc(item["name"])}</p>
-        </article>'''
-        for item in items
-    )
-
-
-def render(site: dict) -> str:
-    theme = site["theme"]
-    mark = MARKS[site["mark"]]
-    cta_label = site["cta_label"]
-    form_note = site.get(
-        "form_note",
-        "This form is a concept demo only. It does not send a message to the business.",
-    )
-    extra_note = site.get("extra_note", "")
-    extra_block = f"<p class=\"note\">{esc(extra_note)}</p>" if extra_note else ""
-    return f'''<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{esc(site["title"])}</title>
-  <meta name="description" content="{esc(site["description"])}">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="theme.css">
-</head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="site-header">
-    <div class="wrap header-row">
-      <a class="brand" href="#top">
-        <span class="mark">{mark}</span>
-        <span class="brand-text">
-          <strong>{esc(site["name"])}</strong>
-          <span>{esc(site["city"])}</span>
-        </span>
-      </a>
-      <nav id="site-nav" class="nav" aria-label="Primary">
-        <a href="#services">{esc(site["services_nav"])}</a>
-        <a href="#area">Service area</a>
-        <a href="#reviews">{esc(site["reviews_nav"])}</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn btn-dark header-cta" href="{phone_link(site)}">{esc(cta_label)}</a>
-      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="hero" id="top">
+def hero(site: dict, h1: str, lede: str, secondary_href: str, secondary_label: str, panel: str) -> str:
+    tel = site["phone_tel"]
+    phone = site["phone_display"]
+    return f'''    <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div>
           <p class="eyebrow">{esc(site["eyebrow"])}</p>
-          <h1>{esc(site["headline"])}</h1>
-          <p class="lede">{esc(site["lede"])}</p>
+          <h1>{esc(h1)}</h1>
+          <p class="lede">{esc(lede)}</p>
           <div class="actions">
-            <a class="btn btn-primary" href="{phone_link(site)}">{esc(cta_label)}</a>
-            <a class="btn btn-ghost" href="#services">{esc(site["secondary_cta"])}</a>
+            <a class="btn btn-primary" href="tel:{esc(tel)}">Call {esc(phone)}</a>
+            <a class="btn btn-ghost" href="{esc(secondary_href)}">{esc(secondary_label)}</a>
           </div>
         </div>
-        <aside class="panel">
-          <strong>{esc(site["panel_title"])}</strong>
-          <p>{phone_html(site)}</p>
-          <p>{address_html(site)}</p>
-          <p>{esc(site["hours"])}</p>
-          <div class="kpis">
-            {"".join(f'<div><strong>{esc(k["value"])}</strong><span>{esc(k["label"])}</span></div>' for k in site["kpis"])}
-          </div>
-        </aside>
+        <aside class="panel">{panel}</aside>
       </div>
-    </section>
+    </section>'''
 
-    <section id="services">
+
+def page_hero(h1: str, lede: str) -> str:
+    return f'''    <section class="page-hero">
+      <div class="wrap">
+        <h1>{esc(h1)}</h1>
+        <p class="lede">{esc(lede)}</p>
+      </div>
+    </section>'''
+
+
+def section(sid: str, heading: str, intro: str, inner: str, extra_class: str = "") -> str:
+    cls = f' class="{extra_class}"' if extra_class else ""
+    return f'''    <section{cls} id="{sid}">
       <div class="wrap">
         <div class="section-head">
-          <h2>{esc(site["services_heading"])}</h2>
-          <p>{esc(site["services_intro"])}</p>
+          <h2>{esc(heading)}</h2>
+          <p>{esc(intro)}</p>
         </div>
-        <div class="cards">
-          {cards(site["services"])}
-        </div>
+        {inner}
       </div>
-    </section>
+    </section>'''
 
-    <section id="about">
-      <div class="wrap about-grid">
-        <div>
-          <div class="section-head">
-            <h2>{esc(site["about_heading"])}</h2>
-            <p>{esc(site["about"])}</p>
-          </div>
-          {extra_block}
-        </div>
-        <div class="card">
-          <h3>{esc(site["why_heading"])}</h3>
-          <p>{esc(site["why"])}</p>
-        </div>
-      </div>
-    </section>
 
-    <section id="area">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Service area</h2>
-          <p>{esc(site["area_intro"])}</p>
-        </div>
-        <div class="chip-row">
-          {chips(site["areas"])}
-        </div>
-      </div>
-    </section>
+def kpis(items: list[tuple[str, str]]) -> str:
+    return '<div class="kpis">' + "".join(
+        f"<div><strong>{esc(v)}</strong><span>{esc(l)}</span></div>" for v, l in items
+    ) + "</div>"
 
-    <section class="reviews" id="reviews">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>{esc(site["reviews_heading"])}</h2>
-          <p>Placeholder comments for this concept demo — not copied from the live site and not claimed as verified reviews.</p>
-        </div>
-        <div class="cards">
-          {reviews(site["reviews"])}
-        </div>
-      </div>
-    </section>
 
-    <section id="contact">
+def write_site(site: dict, pages: dict[str, str]) -> None:
+    dest = SITES / site["slug"]
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "assets").mkdir(exist_ok=True)
+    (dest / "theme.css").write_text(theme_css(site), encoding="utf-8")
+    shutil.copyfile(SCAFFOLD / "styles.css", dest / "styles.css")
+    shutil.copyfile(SCAFFOLD / "site.js", dest / "site.js")
+    for name, html in pages.items():
+        (dest / name).write_text(html, encoding="utf-8")
+
+
+def contact_page(site: dict, extra: str = "") -> str:
+    body = f'''{page_hero("Contact", site.get("contact_lede", "Call, email, or send a message."))}
+    <section>
       <div class="wrap contact-grid">
-        <div>
-          <div class="section-head">
-            <h2>{esc(site["contact_heading"])}</h2>
-            <p>{esc(site["contact_intro"])}</p>
-          </div>
-          <p><strong>Phone:</strong> {phone_html(site)}</p>
-          <p><strong>Location:</strong> {address_html(site)}</p>
+        <div class="prose">
+          {extra}
+          <p><strong>Phone:</strong> <a href="tel:{esc(site["phone_tel"])}">{esc(site["phone_display"])}</a></p>
+          {f'<p><strong>Email:</strong> <a href="mailto:{esc(site["email"])}">{esc(site["email"])}</a></p>' if site.get("email") else ""}
+          <p><strong>Location:</strong> {esc(site.get("address") or site["city"])}</p>
           <p><strong>Hours:</strong> {esc(site["hours"])}</p>
-          <p class="note">Reference homepage: {esc(site["source"])}</p>
         </div>
-        <form class="card form" id="demo-form" novalidate>
-          <label>Name <input name="name" autocomplete="name"></label>
-          <label>Phone <input name="phone" autocomplete="tel"></label>
-          <label>Message <textarea name="message" rows="4"></textarea></label>
-          <button class="btn btn-dark" type="submit">{esc(site["form_cta"])}</button>
-          <p class="note">{esc(form_note)}</p>
-          <p class="form-status" id="form-status" tabindex="-1">Thanks — this concept page stored nothing and did not contact the business.</p>
-        </form>
+        {contact_form(site)}
       </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="wrap footer-grid">
-      <div>
-        <strong>{esc(site["name"])}</strong>
-        <p>{esc(site["city"])} · {esc(site["industry"])}</p>
-      </div>
-      <p>KNECO $500 DFW concept test · Matthew Sullivan / KNECOSWD</p>
-    </div>
-    <div class="wrap">
-      <p class="demo-note">Concept demo / not the live business site. Static HTML only. No Azure hosting. No outreach was sent to this business.</p>
-      <p class="demo-note">© <span id="year"></span> concept layout by KNECO. Business names used only for a private mock.</p>
-    </div>
-  </footer>
-
-  <div class="callbar">
-    <a class="btn btn-primary" href="{phone_link(site)}">{esc(cta_label)}</a>
-    <a class="btn btn-dark" href="#contact">Contact</a>
-  </div>
-  <script src="site.js"></script>
-</body>
-</html>
-'''
+    </section>'''
+    return page(site, title=f"Contact | {site['name']}", description=f"Contact {site['name']}.", current="contact.html", body=body)
 
 
-def theme_css(site: dict) -> str:
-    t = site["theme"]
-    pattern_size = t.get("pattern_size", "24px 24px")
-    return f"""/* Brand tokens for {site["slug"]} */
-:root {{
-  --bg: {t["bg"]};
-  --surface: {t["surface"]};
-  --ink: {t["ink"]};
-  --muted: {t["muted"]};
-  --brand: {t["brand"]};
-  --brand-2: {t["brand2"]};
-  --accent: {t["accent"]};
-  --hero-ink: {t["hero_ink"]};
-  --font-display: {t["display"]};
-  --hero-pattern: {t["pattern"]};
-  --hero-pattern-size: {pattern_size};
-}}
-"""
-
-
-SITES_DATA = [
-    {
+# ---------------------------------------------------------------------------
+# 1 Speake's Plumbing
+# ---------------------------------------------------------------------------
+def speakes() -> dict:
+    site = {
         "slug": "speakes-plumbing",
-        "name": "Speake's Plumbing",
-        "title": "Speake's Plumbing | Garland & Richardson concept",
-        "description": "Concept marketing page for Speake's Plumbing, a local Garland plumber.",
+        "name": "Speake's Plumbing, Inc.",
+        "tagline": "Garland & Richardson",
         "city": "Garland, TX",
-        "industry": "Residential & commercial plumbing",
-        "source": "https://www.speakesplumbing.com/",
+        "logo": "assets/logo.png",
         "phone_display": "(972) 271-9144",
         "phone_tel": "+19722719144",
-        "phone_placeholder": False,
+        "email": "spi87@icloud.com",
         "address": "633 N 5th St, Garland, TX 75040",
-        "address_placeholder": False,
-        "hours": "Free estimates by phone · Emergency service available",
-        "eyebrow": "Local · family owned since 1987",
-        "headline": "Licensed plumbers for Garland and Richardson.",
-        "lede": "Drain cleaning, water heaters, fixture repair, and line replacement from a shop that has served Garland, Plano, and Richardson for decades.",
-        "cta_label": "Call (972) 271-9144",
-        "secondary_cta": "See services",
-        "panel_title": "Call the shop",
-        "services_nav": "Services",
-        "reviews_nav": "Reviews",
-        "services_heading": "Plumbing services",
-        "services_intro": "Public homepage services, rewritten for this concept layout.",
-        "about_heading": "A neighborhood plumbing shop",
-        "about": "Speake's Plumbing, Inc. presents itself as a complete source for residential and commercial plumbing in Garland and nearby cities. The live site notes licensed plumbers on the job and a Master Plumber license number published on their homepage.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A clear phone estimate, a short service list, and a Garland address — the basics a homeowner needs before they call.",
-        "extra_note": "Their public homepage lists Master Plumber Lic #16836. This mock does not add any other credentials.",
-        "area_intro": "Areas named on their public site.",
-        "areas": ["Garland", "Richardson", "Plano", "Nearby Dallas County"],
-        "reviews_heading": "Sample neighbor comments",
-        "contact_heading": "Request a phone estimate",
-        "contact_intro": "Use the public shop number from their homepage. The form below is demo-only.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "1987", "label": "Serving since"},
-            {"value": "Licensed", "label": "Plumber on site"},
-            {"value": "Free", "label": "Phone estimates"},
-            {"value": "Local", "label": "Family owned"},
+        "hours": "Monday–Friday 7:00 AM–5:00 PM",
+        "eyebrow": "Local & family owned since 1987",
+        "nav": [
+            ("index.html", "Home"),
+            ("about.html", "About Us"),
+            ("services.html", "Services"),
+            ("testimonials.html", "Testimonials"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Drain & sewer cleaning", "text": "Electric sewer and sink drain cleaning, plus video inspection when a line needs a closer look."},
-            {"title": "Water heaters", "text": "Service and replacement for hot water systems in homes and small commercial spaces."},
-            {"title": "Gas, water & sewer lines", "text": "Line replacement when leaks or aging pipe need more than a patch."},
-            {"title": "Fixtures & disposals", "text": "Faucets, fixtures, and garbage disposal repair or swap-outs."},
-            {"title": "Remodel plumbing", "text": "Repair and remodel support for kitchens and baths in the Garland area."},
-            {"title": "Emergency help", "text": "Their public site highlights emergency service for urgent leaks and backups."},
-        ],
-        "reviews": [
-            {"quote": "They showed up, explained the leak, and finished without a sales pitch.", "name": "A. Rivera, concept placeholder"},
-            {"quote": "Water heater swap was scheduled quickly and the crew stayed tidy.", "name": "J. Nguyen, concept placeholder"},
-            {"quote": "Fair price for a drain clean-out. Would call the same shop again.", "name": "M. Ellis, concept placeholder"},
-        ],
-        "mark": "drop",
         "theme": {
             "bg": "#f3efe8",
             "surface": "#fffdf8",
@@ -325,61 +126,103 @@ SITES_DATA = [
             "display": '"Palatino Linotype", Georgia, serif',
             "pattern": "radial-gradient(circle at 20% 20%, #fff 0 2px, transparent 2.5px)",
         },
-    },
-    {
+        "legal": '© <span id="year"></span> Speake\'s Plumbing, Inc. Master Plumber Lic #16836. Licensed &amp; insured.',
+        "footer_extra": "<p>Fax: (972) 278-6610</p><p>grantspeake@verizon.net</p>",
+    }
+    panel = f'''<strong>Call the shop</strong>
+          <p><a href="tel:+19722719144">(972) 271-9144</a></p>
+          <p>633 N 5th St, Garland, TX 75040</p>
+          <p>Free estimates by phone · Emergency services available</p>
+          {kpis([("1987", "Serving since"), ("#16836", "Master plumber"), ("9", "Licensed plumbers"), ("Mon–Fri", "7 AM–5 PM")])}'''
+    index = page(site, title="Speake's Plumbing, Inc. | Garland & Richardson, TX", description="Licensed plumbers in Garland and Richardson. Drain cleaning, water heaters, fixtures, and emergency service. Master Plumber Lic #16836.", current="index.html", body=f'''{hero(site, "Local plumbing contractors in Garland & Richardson.", "Speake's Plumbing, Inc. is your complete source for residential and commercial plumbing needs. We have been serving Garland, Plano, and Richardson since 1987.", "services.html", "See services", panel)}
+{section("services", "Services we provide", "Published on the Speake's Plumbing homepage.", f'<div class="cards">{cards([
+    {"title": "Electric sewer & sink drain cleaning", "text": "High quality sewer and drain cleaning, service, and repair."},
+    {"title": "Gas, water & sewer lines replaced", "text": "Line replacement when leaks or aging pipe need more than a patch."},
+    {"title": "Water heaters serviced & installed", "text": "Hot water heater repair and installation for gas or electric units."},
+    {"title": "Fixtures & fixture repair", "text": "Faucets, fixtures, and fixture replacement."},
+    {"title": "Disposals", "text": "Garbage disposal repair, replacement, sales, and parts."},
+    {"title": "Sewer & drain video inspection", "text": "Video inspection when a line needs a closer look."},
+])}</div>')}
+{section("about", "A licensed plumber on every job", "Grant Speake is the founder, president, owner, and master plumber. He started Speake's Plumbing, Inc. in 1987. His father and three brothers are licensed plumbers. He was born and raised in Garland.", f'<div class="chip-row">{chips(["Garland", "Richardson", "Plano", "Master Plumber Lic #16836", "Licensed & insured"])}</div>')}
+{section("reviews", "Customer testimonials", "Reviews published on Speake's Plumbing.", f'<div class="cards">{reviews([
+    {"quote": "Very fast service after calling them in the AM they arrived in the afternoon. Pretty fair pricing and the gentleman that came was very personable and answered any questions my husband had. Will definitely use them again!", "name": "Pamela J."},
+    {"quote": "Speake's replaced two water heaters for me and did a great job. They were fast, friendly and prompt. I'll definitely use them again.", "name": "Michael W."},
+    {"quote": "This is a great company. We've used them several times and recommend them to everyone who asks us for a plumber. Very friendly guys, honest and fair prices.", "name": "Brandon G."},
+])}</div><p class="note"><a href="testimonials.html">Read more testimonials</a></p>', "reviews")}''')
+
+    about = page(site, title="About Us | Speake's Plumbing, Inc.", description="Grant Speake founded Speake's Plumbing in 1987. Nine licensed plumbers, three master plumbers, eight stocked vans.", current="about.html", body=f'''{page_hero("About Speake's Plumbing, Inc.", "Professional plumbing contractors in Garland, TX.")}
+    <section>
+      <div class="wrap about-grid">
+        <div class="prose">
+          <p>Grant Speake is the Founder/President/Owner and Master Plumber. He started Speake's Plumbing, Inc. in 1987. His father and 3 brothers are licensed plumbers. He was born and raised in Garland.</p>
+          <h2>Fully insured</h2>
+          <p>We have many years of plumbing experience and 8 fully stocked vans. We employ 9 licensed plumbers, of which 3 are master plumbers. We are insured for your protection. We always send a licensed plumber to do the work.</p>
+          <p>We keep a history of work done for each customer, which helps for future problems. We have weekly meetings to discuss how best to handle each situation and new products.</p>
+          <p>If you have located us through this website, please mention this for our marketing purposes.</p>
+          <p>Master Plumber Lic #16836. Fax: (972) 278-6610. Email: <a href="mailto:spi87@icloud.com">spi87@icloud.com</a> or <a href="mailto:grantspeake@verizon.net">grantspeake@verizon.net</a>.</p>
+        </div>
+        <div class="card">
+          <h3>Finance options</h3>
+          <p>Finance options are available in Garland, TX. Call (972) 271-9144 to ask about current terms.</p>
+        </div>
+      </div>
+    </section>''')
+
+    services = page(site, title="Plumbing Services | Speake's Plumbing, Inc.", description="Residential and commercial plumbing, water heaters, and products in Garland and Richardson.", current="services.html", body=f'''{page_hero("Residential, commercial, and water heaters", "No matter how big, small, or complicated your problem, our licensed and insured plumbers can fix it.")}
+{section("residential", "Residential plumbing", "Clogged drains can be a sign of pipe damage from weather or tree roots. Catch problems early.", f'<div class="cards">{cards([
+    {"title": "Bath and kitchen remodeling", "text": "Repair and remodel support for kitchens and baths."},
+    {"title": "Drain cleaning, maintenance and repair", "text": "Electric snake service and pipe clearing."},
+    {"title": "Garbage disposal repair and replacement", "text": "Disposal service, sales, and parts."},
+    {"title": "Kitchen and bath fixture installation", "text": "Fixtures, faucets, tubs, and showers."},
+    {"title": "Rooter service & sewer cleanout", "text": "Sewer cleanout, repair, and installation."},
+    {"title": "Underground leak and pipe repair", "text": "Water line repair and replacement."},
+    {"title": "Water heater repair and replacement", "text": "Gas or electric water heaters and pump installation."},
+])}</div>')}
+{section("commercial", "Commercial plumbing", "From a drain clog to new sewer lines or a water heating system, Speake's can handle commercial repair. We advise when to keep repairing a system and when it makes sense to replace it.", "<p class=\"prose\">We offer affordable and energy-efficient water heating equipment for business needs. You will always speak to a licensed plumber at 972-271-9144.</p>")}
+{section("products", "Products & fixtures", "We stock options from Badger, Bradford White, Kohler, Moen, Rheem, Ruud, and more.", f'<div class="chip-row">{chips(["Backflow preventers", "Bathtubs & showers", "Boilers & water heaters", "Catch basins & traps", "Copper piping", "Faucets", "Flush valves", "Garbage disposals", "Pumps", "PVC & plastic pipe", "Sewer lines", "Sinks", "Tankless water heaters", "Thermostats", "Toilets", "Water mains"])}</div>')}''')
+
+    testi = page(site, title="Testimonials | Speake's Plumbing, Inc.", description="Customer testimonials published by Speake's Plumbing in Garland, TX.", current="testimonials.html", body=f'''{page_hero("Plumbing company testimonials in Garland, TX", "Reviews published on the Speake's testimonials page.")}
+{section("list", "What customers wrote", "Quoted as published. Template product slogans from the homepage slider are not included.", f'<div class="cards two">{reviews([
+    {"quote": "Very fast service after calling them in the AM they arrived in the afternoon. Pretty fair pricing and the gentleman that came was very personable and answered any questions my husband had. Will definitely use them again!", "name": "Pamela J."},
+    {"quote": "Speake's replaced the faucets in a old shower (circa 1955), unclogged the drain, replaced the sink hardware and the shower head in another bathroom. They even had to removed some of the vintage tile to install the new shower faucet. They were extremely careful and did a great job for an extremely reasonable price. Excellent, excellent experience!! I had requested an estimate from another plumber who told me (without looking at the house) that the job would take 3 times longer and cost 4 times as much as Speake's. I'm so glad I used Speake's. Definitely will recommend to all my friends.", "name": "Lyn B."},
+    {"quote": "I was delighted this morning to hear a strong rainstorm with water pouring on my kitchen window. BUT it was not rain. It was a busted water spigot. I immediately found Speake's Plumbing and read the outstanding reviews, so I called Speake's. Plumbing genius Garlan made a replacement with a special kit he had in his truck. The whole issue was resolved in less than 20 minutes after his arrival and it only cost $189. Garlan was personable, professional and knew his trade. I would recommend Speake's over any plumbing company in the Metroplex.", "name": "Rex M."},
+    {"quote": "Once again you guys have proven to be the very best plumbing company we've ever used! Late afternoon yesterday our hot water tank sprang a leak and soaked our hall carpet. Rusty was great to tell us exactly what we needed to do and he called another company out (Dry Force) to soak up the water. Kasey from Speaks was out first thing this morning to replace our tank. Very happy with them!", "name": "Debora G."},
+    {"quote": "Very quick service. Had to power auger drain lines. Finally broke through whatever was backing up the sewage. We've used Speake's for a long time and they are still our go-to. After unclogging, they even went the extra step to add recommendations to the service bill.", "name": "Ashley S."},
+    {"quote": "We called speakes to snake the main line on the roof. Due to a break down in communication they just snaked the bath tub. I call them and tell them of the error. And they came back out. Snaked the roof. Very happy with the service. Honest people and I appreciate that.", "name": "Ashley D."},
+    {"quote": "Hot water heater went out Sunday night ... Speake's came Monday Morning! I called in soon after they opened at 7am. They were very polite, explained what they needed to do and were very clean. He showed me how to turn on the water heater and what to do if we ever needed to turn it off.", "name": "Janet U."},
+    {"quote": "Very friendly and prompt plumbing service. Used to repair our hot water heater twice and they had a plumber at our house within a couple hours of our phone call both times. Rates are reasonable. Plumber polite, knowledgeable and thorough.", "name": "Christy H."},
+    {"quote": "We only call Speakes Plumbing for our house and my mother's house. They have taken care of water heaters, foundation leaks, gas lines, and water lines. Lucas, Casey, or Lee are always friendly and professional. Highly recommend them!", "name": "Patricia W."},
+    {"quote": "My brother hooked me up with them after I've been dealing with a leaky tub faucet for almost two years. My service technician Lee was fast and efficient. I would recommend them to anyone.", "name": "Martin W."},
+])}</div>')}''')
+
+    contact = contact_page(site, "<p>Call us for emergency plumbing repairs in Garland, TX. Hours of operation: Mon–Fri 7:00 AM–5:00 PM. Payment options are available — ask when you call.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "services.html": services, "testimonials.html": testi, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 2 Beyond Lawn Care
+# ---------------------------------------------------------------------------
+def beyond() -> dict:
+    site = {
         "slug": "beyond-lawn-care",
-        "name": "Beyond Lawn Care",
-        "title": "Beyond Lawn Care | Mesquite landscaping concept",
-        "description": "Concept marketing page for Beyond Lawn Care & Landscaping in Mesquite.",
+        "name": "Beyond Lawn Care & Landscaping",
+        "tagline": "Mesquite, TX",
         "city": "Mesquite, TX",
-        "industry": "Lawn care & landscaping",
-        "source": "https://www.beyondlawncares.com/",
+        "logo": "assets/logo.png",
+        "logo_class": "logo wide",
         "phone_display": "(972) 803-7495",
         "phone_tel": "+19728037495",
-        "phone_placeholder": False,
-        "address": "Mesquite, TX — street not listed on their public homepage",
-        "address_placeholder": True,
+        "email": "Info@beyondlawncares.com",
+        "address": "Mesquite, TX 75149",
         "hours": "Mon–Fri 8 AM–5 PM · Sat 9 AM–2 PM · Sun closed",
-        "eyebrow": "Mesquite lawns and commercial grounds",
-        "headline": "Keep the yard ready so your week stays easier.",
-        "lede": "Mowing, landscape maintenance, cleanups, sod, aeration, and commercial groundskeeping for Mesquite, Rowlett, Sunnyvale, and nearby cities.",
-        "cta_label": "Call (972) 803-7495",
-        "secondary_cta": "Browse services",
-        "panel_title": "Ask for a quote",
-        "services_nav": "Services",
-        "reviews_nav": "Reviews",
-        "services_heading": "Outdoor care",
-        "services_intro": "Service list taken from their public homepage, rewritten for this mock.",
-        "about_heading": "Beyond the weekly cut",
-        "about": "Beyond Lawn Care & Landscaping describes itself as a residential and commercial crew focused on year-round upkeep. Primary service cities on their site are Rowlett and Sunnyvale, with more coverage in Garland, Forney, and Dallas.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A simple estimate path, a readable service grid, and hours a property manager can scan on a phone.",
-        "area_intro": "Cities named on their public homepage.",
-        "areas": ["Mesquite", "Rowlett", "Sunnyvale", "Garland", "Forney", "Dallas"],
-        "reviews_heading": "Sample yard comments",
-        "contact_heading": "Request a service quote",
-        "contact_intro": "Call the public number from their site. No street address was clearly published there, so the location line is marked placeholder.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "Residential", "label": "Weekly lawns"},
-            {"value": "Commercial", "label": "Groundskeeping"},
-            {"value": "Seasonal", "label": "Cleanups"},
-            {"value": "Sod", "label": "New turf installs"},
+        "eyebrow": "Mesquite, TX & surrounding areas",
+        "nav": [
+            ("index.html", "Home"),
+            ("services.html", "Services"),
+            ("packages.html", "Packages"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Lawn care & mowing", "text": "Routine cuts and basic lawn care so the frontage stays consistent."},
-            {"title": "Landscape maintenance", "text": "Beds, edges, and planted areas kept on a regular schedule."},
-            {"title": "Property cleanups", "text": "Seasonal debris, leaf drops, and catch-up visits after weather."},
-            {"title": "Commercial grounds", "text": "Mowing and landscape maintenance for business properties."},
-            {"title": "Aeration & overseeding", "text": "Help for compacted soil and thin, patchy turf."},
-            {"title": "Sod installation", "text": "New sod when a lawn needs a reset instead of another overseed."},
-        ],
-        "reviews": [
-            {"quote": "They kept the HOA frontage tidy without us chasing the schedule.", "name": "R. Patel, concept placeholder"},
-            {"quote": "Cleanup after the storm was the difference between messy and presentable.", "name": "C. Brooks, concept placeholder"},
-            {"quote": "Sod install looked even. Communication was plain and useful.", "name": "L. Ortiz, concept placeholder"},
-        ],
-        "mark": "leaf",
         "theme": {
             "bg": "#eef5ee",
             "surface": "#fbfff6",
@@ -392,61 +235,96 @@ SITES_DATA = [
             "display": "Georgia, serif",
             "pattern": "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> Beyond Lawn Care &amp; Landscaping.",
+    }
+    panel = f'''<strong>Get an estimate</strong>
+          <p><a href="tel:+19728037495">(972) 803-7495</a></p>
+          <p><a href="mailto:Info@beyondlawncares.com">Info@beyondlawncares.com</a></p>
+          <p>Mon–Fri 8 AM–5 PM · Sat 9 AM–2 PM · Sun closed</p>
+          {kpis([("Weekly", "Mowing packages"), ("Commercial", "Groundskeeping"), ("Sod", "New installs"), ("Mesquite", "Home base")])}'''
+    index = page(site, title="Lawn Care & Landscape Maintenance | Mesquite, TX", description="Professional lawn care and landscaping in Mesquite, Rowlett, Sunnyvale, Garland, Forney, Dallas, and Balch Springs.", current="index.html", body=f'''{hero(site, "Professional lawn care & landscaping in Mesquite, TX.", "We offer residential and commercial lawn care in Mesquite and surrounding areas — mowing, landscape maintenance, cleanups, sod, aeration, and commercial groundskeeping.", "packages.html", "View packages", panel)}
+{section("about", "About Beyond Lawn Care & Landscaping", "We're committed to delivering top-tier residential and commercial lawn care in Mesquite, TX. We proudly serve Rowlett and Sunnyvale as our primary service areas, with additional coverage in Garland, Forney, and Dallas.", "<p>From routine lawn mowing and seasonal yard maintenance to landscaping, sod installation, grass seeding, weed control, property cleanups, and full-scale commercial groundskeeping, we handle every aspect of your outdoor upkeep. Our goal is to keep your property in excellent shape year-round, making your day-to-day a little easier.</p>")}
+{section("services", "Our services", "Service lines published on the Beyond Lawn Care site.", f'<div class="cards">{cards([
+    {"title": "Lawn care & mowing", "text": "Routine residential lawn mowing and year-round lawn maintenance in Mesquite."},
+    {"title": "Landscape maintenance", "text": "Keeping residential landscapes well maintained."},
+    {"title": "Property clean ups", "text": "Autumn leaves and other seasonal debris."},
+    {"title": "Commercial lawn care", "text": "Mowing, edging, and debris cleanup for offices, retail, HOAs, and other commercial sites."},
+    {"title": "Commercial landscape maintenance", "text": "Professional landscaping upkeep for business properties."},
+    {"title": "Seasonal flower installations", "text": "Seasonal color for beds and frontage."},
+    {"title": "Bush & hedge trimming", "text": "Trimming and landscape pruning."},
+    {"title": "Mulch installations", "text": "Mulch installed after an on-site look at beds and plants."},
+    {"title": "Core aeration", "text": "Aeration so nutrients and water reach grass roots."},
+    {"title": "Overseeding", "text": "Help for patching and bare areas."},
+    {"title": "Sod installation", "text": "New sod for a green lawn reset."},
+    {"title": "Salt application", "text": "Winter salt application as listed on the public service menu."},
+    {"title": "Sprinkler inspection & maintenance", "text": "Sprinkler system inspection and maintenance."},
+    {"title": "Leaf cleanup", "text": "Seasonal leaf cleanup."},
+])}</div>')}
+{section("area", "Service area", "Cities named on the public site.", f'<div class="chip-row">{chips(["Mesquite, TX", "Sunnyvale, TX", "Garland, TX", "Forney, TX", "Rowlett, TX", "Balch Springs, TX", "Dallas"])}</div>')}''')
+
+    services = page(site, title="Lawn Care Services | Beyond Lawn Care", description="Residential and commercial mowing, landscape maintenance, and cleanups in Mesquite, TX.", current="services.html", body=f'''{page_hero("Lawn care & mowing in Mesquite, TX", "When it comes to routine lawn services, Beyond Lawn Care & Landscaping is your trusted source for residential lawn mowing throughout Mesquite.")}
+    <section>
+      <div class="wrap prose">
+        <p>We know you are busy, and keeping up with your property can be very time-consuming. We make it a priority to provide professional mowing and year-round lawn maintenance so you can enjoy your outdoor space without the work involved to maintain it. Contact us for a lawn care quote in Sunnyvale, Rowlett, Garland, Dallas, and Forney.</p>
+        <h2>Commercial lawn care</h2>
+        <p>Beyond Lawn Care & Landscaping provides commercial grass mowing and year-round lawn maintenance. Our team handles routine mowing, edging, and debris cleanup to ensure your business exterior stays neat and professional. We work with offices, retail spaces, HOAs, and other commercial sites. Request a free estimate to get started in Mesquite, Rowlett, Sunnyvale, Garland, Dallas and Forney.</p>
+      </div>
+    </section>''')
+
+    packages = page(site, title="Lawn Care Packages | Beyond Lawn Care", description="Weekly, biweekly, tall grass, and recurring lawn care packages in Mesquite, TX.", current="packages.html", body=f'''{page_hero("Lawn care packages", "Get a quote: send photos to 972-803-7495 or use the estimate form. Include your name and address if submitting by phone.")}
+{section("weekly", "Weekly lawn care package", "Ideal for customers who want a pristine lawn with consistent maintenance.", '''<div class="card prose">
+          <p><strong>What's included:</strong> Weekly mowing and edging. Trimming around driveways, sidewalks, and flower beds. Grass clippings mulched as standard. Bagging available for an additional charge (half the standard service fee, added to the listed price). Basic debris removal (leaves, twigs, etc.). Quick inspection for pests or lawn health issues.</p>
+          <ul class="hours-list">
+            <li><span>Regular lawn</span><span class="price">$40–$50 / week</span></li>
+            <li><span>Medium-large yard</span><span class="price">$60–$70 / week</span></li>
+            <li><span>Large yard</span><span class="price">$90–$130 / week</span></li>
+          </ul>
+        </div>''')}
+{section("biweekly", "Biweekly lawn care package", "Maintenance without the weekly commitment. Perfect for moderately growing lawns.", '''<div class="card prose">
+          <p><strong>What's included:</strong> Biweekly mowing and edging, trimming around driveways, sidewalks, and flower beds, basic debris removal. Clippings mulched as standard; bagging extra as above.</p>
+          <ul class="hours-list">
+            <li><span>Regular lawn</span><span class="price">$60–$70 / visit</span></li>
+            <li><span>Medium-large yard</span><span class="price">$90–$100 / visit</span></li>
+            <li><span>Large yard</span><span class="price">$135–$200 / visit</span></li>
+          </ul>
+        </div>''')}
+{section("addons", "Custom add-ons & other packages", "Initial mowing is the biweekly rate times a height multiplier (1x normal, 2x slightly tall, 3x very tall). After the first cut, standard recurring rates apply.", f'<div class="cards">{cards([
+    {"title": "Fertilization", "text": "$50–$250 per application, depending on yard size."},
+    {"title": "Aeration and overseeding", "text": "$150–$350 per session."},
+    {"title": "Spring/fall clean-up", "text": "$150–$1,000 per session."},
+    {"title": "Tall grass mowing", "text": "Published as a best-value package for overgrown lawns. Ask for current pricing."},
+    {"title": "Recurring maintenance plan", "text": "Mowing plus landscaping bed trimming every 4–6 weeks. Pricing after the first mow or via photo submission."},
+    {"title": "Landscaping & bush trimming", "text": "Deweeding and flower-bed pricing during the initial mow or from photos. Mulch, rock, and plant installs are quoted in person."},
+])}</div>')}''')
+
+    contact = contact_page(site, "<p>Complete the estimate form and a representative will be with you. No street address is published on the public site; service is based in Mesquite (75149) and the cities listed on the homepage.</p><p>The live site embeds a Google reviews widget. Those comments load in the browser and were not copied here.</p>")
+    write_site(site, {"index.html": index, "services.html": services, "packages.html": packages, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 3 Hughes Mechanical
+# ---------------------------------------------------------------------------
+def hughes() -> dict:
+    site = {
         "slug": "hughes-mechanical",
-        "name": "Hughes Mechanical",
-        "title": "Hughes Mechanical | Arlington HVAC concept",
-        "description": "Concept marketing page for Hughes Mechanical and Electrical Contractors.",
+        "name": "Hughes Mechanical and Electrical Contractors",
+        "tagline": "Arlington, TX since 1970",
         "city": "Arlington, TX",
-        "industry": "HVAC & electrical contractors",
-        "source": "https://www.hughescontractorsllc.com/",
+        "logo": "assets/wordmark-header.png",
+        "logo_class": "logo wide",
         "phone_display": "(817) 461-9241",
         "phone_tel": "+18174619241",
-        "phone_placeholder": False,
-        "address": "Arlington, TX — street not listed on their public homepage",
-        "address_placeholder": True,
-        "hours": "Phones highlighted as available around the clock on their site",
-        "eyebrow": "Family owned since 1970",
-        "headline": "HVAC and electrical crews who treat the customer like family.",
-        "lede": "Hughes Mechanical and Electrical Contractors serves commercial, industrial, and residential jobs from Arlington across DFW and other Texas work.",
-        "cta_label": "Call (817) 461-9241",
-        "secondary_cta": "View trades",
-        "panel_title": "Talk to the office",
-        "services_nav": "Services",
-        "reviews_nav": "Reviews",
-        "services_heading": "Mechanical & electrical",
-        "services_intro": "Trades listed on their public homepage.",
-        "about_heading": "A long-running Arlington shop",
-        "about": "Their site leads with family ownership and a 1970 start date. The public team list includes owner/manager Chris Hughes, HVAC technicians, and electrician Hunter Hughes Jr.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A 24/7 phone path and a short trade list for facility managers who need HVAC, lighting, or refrigeration help.",
-        "area_intro": "Geography described on their public homepage.",
-        "areas": ["Arlington", "Dallas–Fort Worth", "Texas job sites"],
-        "reviews_heading": "Sample customer notes",
-        "contact_heading": "Ask for a quote",
-        "contact_intro": "Use the number published on their homepage. Street address is marked placeholder because it was not on that page.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "1970", "label": "Family shop since"},
-            {"value": "HVAC", "label": "Resi to industrial"},
-            {"value": "Electrical", "label": "Commercial lighting"},
-            {"value": "24/7", "label": "Phone coverage"},
+        "email": "sales@hughes-mech-elect.com",
+        "address": "423 Dodson Lake Drive, Arlington, TX 76012",
+        "hours": "Phones online 24/7 — a representative is available to take your call",
+        "eyebrow": "Family owned. Family operated. Family oriented.",
+        "nav": [
+            ("index.html", "Home"),
+            ("index.html#services", "Services"),
+            ("index.html#about", "About"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Residential HVAC", "text": "Comfort system service for homes in and around Arlington."},
-            {"title": "Commercial HVAC", "text": "Equipment support for offices, retail, and other commercial spaces."},
-            {"title": "Industrial HVAC", "text": "Heavier mechanical work when a facility needs more than a rooftop swap."},
-            {"title": "Commercial electrical", "text": "Electrical contracting for business properties."},
-            {"title": "Commercial lighting", "text": "Lighting work listed alongside their electrical services."},
-            {"title": "Commercial refrigeration", "text": "Refrigeration support for businesses that depend on cold storage."},
-        ],
-        "reviews": [
-            {"quote": "They treated a rooftop repair like a relationship, not a ticket.", "name": "S. Hale, concept placeholder"},
-            {"quote": "Electrician and HVAC tech coordinated instead of bouncing us around.", "name": "D. Kim, concept placeholder"},
-            {"quote": "Quoted clearly and showed up when the walk-in started failing.", "name": "P. Grant, concept placeholder"},
-        ],
-        "mark": "bolt",
         "theme": {
             "bg": "#eef2f6",
             "surface": "#ffffff",
@@ -459,62 +337,62 @@ SITES_DATA = [
             "display": '"Segoe UI Semibold", "Segoe UI", sans-serif',
             "pattern": "linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px)",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> Hughes Mechanical and Electrical Contractors.",
+    }
+    panel = f'''<img class="logo" src="assets/logo.png" alt="Hughes Mechanical logo">
+          <strong>Have questions or need a quote?</strong>
+          <p><a href="tel:+18174619241">(817) 461-9241</a></p>
+          <p><a href="mailto:sales@hughes-mech-elect.com">sales@hughes-mech-elect.com</a></p>
+          <p>423 Dodson Lake Drive<br>Arlington, TX 76012</p>
+          {kpis([("1970", "Family shop since"), ("24/7", "Phones online"), ("HVAC", "Resi to industrial"), ("Electrical", "Commercial lighting")])}'''
+    index = page(site, title="Hughes Mechanical and Electrical Contractors | Arlington, TX", description="Family-owned HVAC and electrical contractors since 1970. 423 Dodson Lake Drive, Arlington. Call (817) 461-9241.", current="index.html", body=f'''{hero(site, "Your local family owned and operated HVAC and electrical contractors since 1970.", "Since 1970, Hughes Mechanical and Electrical Contractors has provided HVAC and electrical services to customers throughout the Dallas–Fort Worth Metroplex and areas spanning Texas. To us, our customers are family — a core value our company was founded and continues to operate upon.", "contact.html", "Get in touch", panel)}
+{section("services", "Our services", "Interested in any of these services or additional ones not listed? Get in touch today.", f'<div class="cards">{cards([
+    {"title": "Commercial HVAC", "text": "Equipment support for commercial properties across DFW and Texas job sites."},
+    {"title": "Industrial HVAC", "text": "Heavier mechanical work for industrial facilities."},
+    {"title": "Residential HVAC", "text": "Comfort system service for homes."},
+    {"title": "Commercial electrical", "text": "Electrical contracting for business properties."},
+    {"title": "Commercial lighting", "text": "Lighting work listed alongside electrical services."},
+    {"title": "Commercial refrigeration", "text": "Refrigeration support for businesses that depend on cold storage."},
+])}</div>')}
+{section("about", "About Hughes", "Family owned. Family operated. Family oriented.", '''<div class="prose">
+          <p>Our phones are online 24/7 and a representative is always readily available to take your call.</p>
+          <p>Contact us today to experience it for yourself.</p>
+        </div>''')}
+{section("team", "Our team", "Names and roles published on the Hughes homepage.", f'<div class="cards">{cards([
+    {"title": "Chris Hughes", "text": "Owner / Manager"},
+    {"title": "Tony LaQuey", "text": "HVAC Technician"},
+    {"title": "Jeff Johnson", "text": "HVAC Technician"},
+    {"title": "Jordan Johnson", "text": "HVAC Technician"},
+    {"title": "Hunter Hughes Jr.", "text": "Electrician"},
+])}</div>')}''')
+    contact = contact_page(site, "<p>Call (817) 461-9241 or email sales@hughes-mech-elect.com. The office is at 423 Dodson Lake Drive, Arlington, TX 76012.</p>")
+    write_site(site, {"index.html": index, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 4 Victory Pest Control
+# ---------------------------------------------------------------------------
+def victory() -> dict:
+    site = {
         "slug": "victory-pest-control",
-        "name": "Victory Pest Control",
-        "title": "Victory Pest Control | Red Oak & DeSoto concept",
-        "description": "Concept marketing page for Victory Pest Control LLC in the DFW Metroplex.",
-        "city": "Red Oak / DeSoto, TX",
-        "industry": "Pest & wildlife control",
-        "source": "https://www.victorypestcontrol.com/",
+        "name": "Victory Pest Control LLC",
+        "tagline": "Dallas–Fort Worth Metroplex",
+        "city": "Dallas–Fort Worth, TX",
+        "logo": "assets/logo.jpg",
+        "logo_class": "logo wide",
         "phone_display": "(972) 230-5526",
         "phone_tel": "+19722305526",
-        "phone_placeholder": False,
-        "address": "Red Oak / DeSoto, TX — street not listed on their public homepage",
-        "address_placeholder": True,
-        "hours": "Available 24 hours a day, per their public site",
+        "address": "Dallas–Fort Worth Metroplex",
+        "hours": "Available 24 hours a day",
         "eyebrow": "Dallas–Fort Worth pest control",
-        "headline": "Custom pest plans, then they keep coming back until it is solved.",
-        "lede": "Residential and commercial pest control, wildlife work, and bed bug service from a local family-operated company that publishes a one-year warranty and free estimates within 24 hours.",
-        "cta_label": "Call (972) 230-5526",
-        "secondary_cta": "See programs",
-        "panel_title": "Call or text the office",
-        "services_nav": "Services",
-        "reviews_nav": "Reviews",
-        "services_heading": "Pest programs",
-        "services_intro": "Service lines named on their public homepage.",
-        "about_heading": "A local family operation",
-        "about": "Victory Pest Control LLC describes 30+ years in the trade, certified pesticide applicators, and membership in industry associations. They also describe the company as local, minority veteran-owned, and family-operated. This mock uses none of the official seals of any government or VA office.",
-        "why_heading": "What this mock emphasizes",
-        "why": "After-hours phone access, a warranty promise, and three clear service lanes instead of a long chemical catalog.",
-        "extra_note": "No license number was published on the pages reviewed, so none is shown here.",
-        "area_intro": "They publicly serve the Dallas–Fort Worth Metroplex, including the Red Oak and DeSoto area named for this test.",
-        "areas": ["Red Oak", "DeSoto", "Dallas–Fort Worth Metroplex"],
-        "reviews_heading": "Sample service notes",
-        "contact_heading": "Request a callback",
-        "contact_intro": "Main phone is from their public contact page. Alternate mobile listed there is (214) 543-6357.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "30+", "label": "Years in the trade"},
-            {"value": "24/7", "label": "Availability"},
-            {"value": "1 year", "label": "Warranty language"},
-            {"value": "Free", "label": "Estimate in 24 hours"},
+        "nav": [
+            ("index.html", "Home"),
+            ("services.html", "Services"),
+            ("about.html", "About"),
+            ("reviews.html", "Reviews"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Residential pest control", "text": "Custom plans for homes, with a public promise to return until the problem is handled."},
-            {"title": "Commercial pest control", "text": "Service for businesses that need a reliable, documented vendor."},
-            {"title": "Nuisance wildlife", "text": "Humane removal language from their site for animals that should not be in the structure."},
-            {"title": "Bed bug control", "text": "Targeted bed bug work for homes and commercial properties."},
-            {"title": "Termite inspections", "text": "They advertise free termite inspections and paperwork help for mortgage approvals."},
-            {"title": "Yearly agreements", "text": "Advance-pay and referral discounts are described on their public homepage."},
-        ],
-        "reviews": [
-            {"quote": "They explained the plan, then actually followed up after the first visit.", "name": "T. Cole, concept placeholder"},
-            {"quote": "Wildlife issue was handled without turning the backyard into a mess.", "name": "H. Daniels, concept placeholder"},
-            {"quote": "Night call picked up. That mattered more than a brochure.", "name": "K. Sims, concept placeholder"},
-        ],
-        "mark": "shield",
         "theme": {
             "bg": "#f4f1e6",
             "surface": "#fffdf6",
@@ -527,61 +405,91 @@ SITES_DATA = [
             "display": "Georgia, serif",
             "pattern": "repeating-linear-gradient(135deg, rgba(255,255,255,.12) 0 8px, transparent 8px 16px)",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> Victory Pest Control LLC. Member TPCA and NPMA.",
+        "footer_extra": "<p>Mobile: (214) 543-6357</p>",
+    }
+    panel = f'''<strong>Call or text</strong>
+          <p><a href="tel:+19722305526">(972) 230-5526</a></p>
+          <p>Available 24 hours a day</p>
+          <p>One-year warranty · Free estimates within 24 hours</p>
+          {kpis([("30+", "Years in the trade"), ("2007", "Year established"), ("24/7", "Availability"), ("10%", "Yearly advance pay")])}'''
+    index = page(site, title="Victory Pest Control | Dallas–Fort Worth Metroplex", description="Residential and commercial pest control, wildlife, and bed bugs. Available 24 hours. Call or text (972) 230-5526.", current="index.html", body=f'''{hero(site, "Dallas–Fort Worth pest control.", "Victory Pest Control LLC is a premier pest control company serving the Dallas–Fort Worth Metroplex. With over 30 years of experience, we provide comprehensive solutions to residential and commercial customers.", "services.html", "See services", panel)}
+{section("about", "Your trusted partner in pest management", "Our team is composed of certified pesticide applicators who design custom pest control plans. We are licensed and insured, with a one-year warranty and a promise to keep coming back until the problem is solved.", '''<div class="prose">
+          <p>We offer free inspections, a 10% discount for yearly advance payments, and a referral program that rewards you with a 10% discount when a family member or friend signs up for our yearly agreement.</p>
+          <p>Worried about termites? We provide free termite inspections and the necessary paperwork for mortgage approvals. Victory Pest Control is a local, minority veteran-owned, family-operated business. Owner John Gaines has been in the pest control business for over 30 years.</p>
+        </div>''')}
+{section("services", "Services", "Published service lines.", f'<div class="cards">{cards([
+    {"title": "Residential & commercial pest control", "text": "Custom plans for homes and businesses, from flying insects to stored-product pests."},
+    {"title": "Nuisance wildlife control", "text": "Humane small-animal trapping and wildlife removal."},
+    {"title": "Bed bug control", "text": "Identification, elimination, and follow-up plans for homes and commercial properties."},
+    {"title": "Termite inspections", "text": "Free termite inspections and mortgage paperwork."},
+    {"title": "Integrated pest management", "text": "IPM inspections and reporting to AIB, ASI, FDA, and USDA standards."},
+    {"title": "Specials", "text": "10% off yearly advance pay, 5% off when you schedule online, 10% referral credit, mosquito specials, and free termite inspections."},
+])}</div>')}''')
+
+    services = page(site, title="Pest Control Services | Victory Pest Control", description="Residential, commercial, wildlife, and bed bug services in DFW.", current="services.html", body=f'''{page_hero("Residential and commercial pest control", "Services range from flying insect control to small animal trapping. Established 2007.")}
+{section("list", "Complete pest control services", "We're here to relieve your home and office of pests.", f'<div class="cards">{cards([
+    {"title": "Rodent control and exclusion", "text": "Rodent work for homes and commercial accounts."},
+    {"title": "Stored product pest control", "text": "Elimination of stored-product pests."},
+    {"title": "Bird control", "text": "Bird control solutions."},
+    {"title": "Integrated pest management", "text": "IPM inspections and reporting."},
+    {"title": "Trailer and railcar fumigations", "text": "Fumigation work as published on the service list."},
+    {"title": "Flying insect control", "text": "Flying insect programs."},
+    {"title": "Small animal trapping", "text": "Nuisance wildlife and small-animal trapping."},
+    {"title": "Bed bug control", "text": "Custom plans from certified pesticide applicators."},
+])}</div>')}
+{section("faq", "FAQs", "Published on the Victory FAQs page.", f'<div class="cards">{cards([
+    {"title": "How long does it take for the pest treatment to become effective?", "text": "It varies depending on the pest or the type of treatment."},
+    {"title": "Do you offer any natural or eco-friendly pest control options?", "text": "Yes! All of our treatments are eco-friendly."},
+    {"title": "How often should I have my property treated for pests?", "text": "The state recommends that your property be treated for pests every quarter."},
+])}</div>')}''')
+
+    about = page(site, title="About | Victory Pest Control", description="John Gaines, owner. Local, minority veteran-owned, family-operated pest control since 2007.", current="about.html", body=f'''{page_hero("Make your space pest-free", "Our owner, John Gaines, has been in the pest control business for over 30 years.")}
+    <section>
+      <div class="wrap prose">
+        <p>We are proud of the work we do here at Victory Pest Control LLC and the numerous challenges that have come our way, which we have attacked with a smile and a work ethic that has gained us an excellent reputation and a strong base of satisfied customers.</p>
+        <p>Our goal is simple: to bring you a cleaner, safer place to live, work, and play by offering an efficient, affordable pest control service to the Dallas–Fort Worth Metroplex.</p>
+        <p>We are regulated by the Texas Department of Agriculture with continued education through the Structural Pest Control Services program. Victory Pest Control offers a unique SOS program: Solutions, Options, and Services. We take a customized approach to every residential, educational, governmental, and commercial account.</p>
+        <p>Associations: TPCA (Texas Pest Control Association) and NPMA (National Pest Control Management Association). Year established: 2007. Payments: American Express, Cash, Check, Discover, MasterCard, Visa, Zelle, Invoice. Languages: English. Identifies as veteran-owned.</p>
+      </div>
+    </section>''')
+
+    revs = page(site, title="Reviews | Victory Pest Control", description="Customer comments published on Victory Pest Control service pages.", current="reviews.html", body=f'''{page_hero("What customers are saying", "Comments published on Victory service pages. The dedicated reviews page on the live site does not list additional quotes.")}
+{section("list", "Published reviews", "Quoted as they appear on the live site.", f'<div class="cards two">{reviews([
+    {"quote": "I have never used a more friendly or effective pest control company. Ken is absolutely fantastic! I will never use anyone other than this company again!", "name": "Taylor Akin", "source": "Google"},
+    {"quote": "Every person on staff here is amazing! They take such good care of their customers! Like family!", "name": "Michelle Owens", "source": "Facebook"},
+    {"quote": "I recommend Victory Pest Control because I can guarantee they will fix the problem and take care of you. Not only that they follow up to make sure the problem is or did not persist. Definitely a business I can trust.", "name": "Camille Henderson", "source": "Facebook"},
+])}</div>')}''')
+
+    contact = contact_page(site, "<p>Main / alternate / fax: (972) 230-5526. Mobile: (214) 543-6357. Holiday hours are noted on the live contact page. Payment: American Express, cash, check, Discover, MasterCard, Visa, Zelle, invoice.</p>")
+    write_site(site, {"index.html": index, "services.html": services, "about.html": about, "reviews.html": revs, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 5 CareMaster
+# ---------------------------------------------------------------------------
+def caremaster() -> dict:
+    site = {
         "slug": "caremaster-building",
-        "name": "CareMaster Building",
-        "title": "CareMaster Building Services | Dallas janitorial concept",
-        "description": "Concept marketing page for CareMaster Building Services in Dallas.",
-        "city": "Dallas, TX",
-        "industry": "Commercial janitorial & building services",
-        "source": "http://www.caremaster.biz/",
-        "phone_display": "(214) 366-3366",
-        "phone_tel": "+12143663366",
-        "phone_placeholder": False,
-        "address": "10031 Monroe Drive, Suite 201, Dallas, TX 75229",
-        "address_placeholder": False,
-        "hours": "Coordinator walk-throughs in business hours · 24-hour customer service for emergencies",
-        "eyebrow": "Commercial property care since 1982",
-        "headline": "Janitorial care with a coordinator, not just a night crew.",
-        "lede": "CareMaster Building Services sells cleaner, safer buildings through inspections, follow-ups, and one vendor for multiple facility needs.",
-        "cta_label": "Call (214) 366-3366",
-        "secondary_cta": "See building services",
-        "panel_title": "Property contacts",
-        "services_nav": "Services",
-        "reviews_nav": "Reviews",
-        "services_heading": "Building services",
-        "services_intro": "Core and add-on work listed on their public pages.",
-        "about_heading": "Service is the product",
-        "about": "Their homepage focuses on three decades in building services, coordinator-level management, daytime inspections, and fewer tenant complaints than the industry average. Email published on their site: customerservice@caremaster.biz.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A single-invoice vendor story for property managers who are tired of juggling cleaners, floors, and after-hours calls.",
-        "area_intro": "Cities named on their public services page.",
-        "areas": ["Dallas", "Plano", "Richardson", "Addison", "Arlington", "Mesquite", "Garland", "Frisco", "Carrollton"],
-        "reviews_heading": "Sample manager comments",
-        "contact_heading": "Talk with CareMaster",
-        "contact_intro": "Phone and suite address come from their public site. This form does not email the company.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "1982", "label": "In the industry"},
-            {"value": "24 hr", "label": "Customer service"},
-            {"value": "One vendor", "label": "Many building tasks"},
-            {"value": "Daytime", "label": "Walk-throughs"},
+        "name": "CareMaster Building Services",
+        "tagline": "Dallas / Fort Worth since 1982",
+        "city": "Dallas / Fort Worth, TX",
+        "logo": "assets/logo.jpg",
+        "logo_class": "logo wide",
+        "phone_display": "(469) 233-3366",
+        "phone_tel": "+14692333366",
+        "email": "customerservice@caremaster.biz",
+        "address": "Dallas / Fort Worth Metroplex",
+        "hours": "Walk-throughs during regular business hours · 24-hour customer service for emergencies",
+        "eyebrow": "Commercial janitorial care since 1982",
+        "nav": [
+            ("index.html", "Home"),
+            ("about.html", "About Us"),
+            ("services.html", "Services"),
+            ("commitment.html", "Our Commitment"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Full janitorial", "text": "Commercial cleaning programs tailored to a building and its tenants."},
-            {"title": "Carpet & hard floors", "text": "Low-moisture or extraction carpet work, plus strip and refinish for hard floors."},
-            {"title": "Windows & power washing", "text": "Exterior presentation work for glass, sidewalks, and building skin."},
-            {"title": "Post-construction", "text": "Make-ready and post-construction cleanup when a space turns over."},
-            {"title": "Emergency & event cleaning", "text": "After-hours response plus event support when a property needs extra hands."},
-            {"title": "Added facility help", "text": "Their public list also mentions parking lots, marble, temporary labor, and other add-ons on request."},
-        ],
-        "reviews": [
-            {"quote": "The coordinator checked the floors before tenants complained. That is rare.", "name": "N. Alvarez, concept placeholder"},
-            {"quote": "One invoice for nights, carpets, and a weekend event. Easier accounting.", "name": "B. Cho, concept placeholder"},
-            {"quote": "Emergency water mess was handled without waiting for the next business day.", "name": "I. Freeman, concept placeholder"},
-        ],
-        "mark": "building",
         "theme": {
             "bg": "#eef3f3",
             "surface": "#ffffff",
@@ -594,67 +502,85 @@ SITES_DATA = [
             "display": '"Segoe UI", system-ui, sans-serif',
             "pattern": "repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 18px)",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> CareMaster Building Services.",
+    }
+    panel = f'''<strong>Talk with CareMaster</strong>
+          <p><a href="tel:+14692333366">(469) 233-3366</a></p>
+          <p><a href="mailto:customerservice@caremaster.biz">customerservice@caremaster.biz</a></p>
+          <p>24-hour customer service for emergencies</p>
+          {kpis([("1982", "In the industry"), ("24 hr", "Customer service"), ("IICRC", "Carpet certified"), ("DFW", "Metroplex")])}'''
+    index = page(site, title="CareMaster Building Services | Dallas Commercial Janitorial", description="Quality janitorial care for commercial property since 1982. Call (469) 233-3366.", current="index.html", body=f'''{hero(site, "Providing quality janitorial care for the commercial property industry since 1982.", "At CareMaster, service is our business. Our goal is to provide unsurpassed janitorial care through exceptional customer service, attention to detail, and competitive pricing.", "services.html", "See services", panel)}
+{section("about", "Service is our business", "In three decades of experience we have learned to be flexible, creative, and committed from start to finish.", '''<div class="prose">
+          <p>Our “coordinator” level of management provides an added benefit to our rigorous quality standards. Timely walk-throughs, inspections, and follow-ups are conducted during regular business hours. We also offer twenty-four hour customer service to guarantee a timely response to emergencies or challenges. Our commitment has resulted in far fewer tenant complaints than the industry average.</p>
+          <p>We tailor offerings to the special needs of your building, facility, and tenants. Our integrated approach to cleaner, safer, and healthier environments enables the highest level of quality and service.</p>
+        </div>''')}''')
+
+    about = page(site, title="About Us | CareMaster Building Services", description="Founded from Richard Lee's vision; led by President John Lee since 1997.", current="about.html", body=f'''{page_hero("About CareMaster", "Commercial cleaning and building maintenance in the Dallas/Fort Worth Metroplex since 1982.")}
+    <section>
+      <div class="wrap prose">
+        <p>In the early 1980s, Richard Lee, President John Lee’s brother, acted upon his desire to create viable career opportunities for fellow Korean-Americans. CareMaster Building Services evolved from this vision into a company offering superior quality, affordability and professionalism in janitorial services.</p>
+        <p>Since taking over the business in 1997, John has successfully implemented many new concepts and strategies. His dedication is evident through his emphasis on personal attention to the buildings as well as building management. John is committed to building long-term customer relationships and maintaining superior customer service standards.</p>
+        <h2>Mission</h2>
+        <p>We strive to deliver quality janitorial care to the commercial property industry. We believe in offering a customized approach to a wide variety of customers while remaining 100% accountable to our clients and 100% committed to top-notch service. At CareMaster Building Services, you are our business.</p>
+        <h2>Affiliations</h2>
+        <div class="chip-row">{chips(["BOMA Dallas", "DFW Minority Business Development Council", "IFMA DFW", "North Central Texas Regional Certification Agency", "State of Texas — HUB", "The Rotary Club of Dallas", "Corporate Recycling Council"])}</div>
+      </div>
+    </section>''')
+
+    services = page(site, title="Services | CareMaster Building Services", description="Full-service janitorial and maintenance contractor.", current="services.html", body=f'''{page_hero("Building services", "CareMaster Building Services is a full-service contractor for all your janitorial and maintenance needs.")}
+{section("list", "Our services include", "Coordinator-level management on every program.", f'<div class="cards">{cards([
+    {"title": "Full janitorial and commercial cleaning", "text": "Programs tailored to the building and its tenants."},
+    {"title": "Carpet cleaning", "text": "Low moisture and full extraction."},
+    {"title": "Hard floor stripping and refinishing", "text": "Hard-surface floor care."},
+    {"title": "Move-in and make-ready cleaning", "text": "Turnover cleaning when a space changes hands."},
+    {"title": "Post construction clean up and make-ready", "text": "After construction or renovation."},
+    {"title": "Event cleaning", "text": "Extra hands when a property hosts an event."},
+])}</div>')}''')
+
+    commit = page(site, title="Our Commitment | CareMaster Building Services", description="Quality control, environmental responsibility, and 24-hour customer service.", current="commitment.html", body=f'''{page_hero("Our commitment", "Quality control is a team effort.")}
+    <section>
+      <div class="wrap prose">
+        <p>After a background investigation, we provide all employees with intensive training and supervisory support. On-site orientation and training are conducted for every customer site, and we use a “team cleaning” method.</p>
+        <p>We encourage and support LEED and Green Building (LEED-EB) programs. We purchase supplies and equipment that are safe for employees, customers, and the environment. Recycling and hazardous material disposal are part of regular training.</p>
+        <p>You will always recognize our employees. All CareMaster employees have a neat, clean uniform appearance. We train employees to interact favorably with the people who use the building daily.</p>
+        <p>Only experienced, competent laborers are offered employment. All potential employees complete a background investigation and reference check. We are IICRC Certified for Carpet Cleaning and Commercial CPT Maintenance.</p>
+        <p>A street address is not published on the current public pages. Call (469) 233-3366 or email customerservice@caremaster.biz.</p>
+      </div>
+    </section>''')
+
+    contact = contact_page(site, "<p>The current public site lists phone (469) 233-3366 and customerservice@caremaster.biz. A street suite is not shown on the pages fetched.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "services.html": services, "commitment.html": commit, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 6 Forum Terrace Church of Christ
+# ---------------------------------------------------------------------------
+def forum() -> dict:
+    site = {
         "slug": "forum-terrace-church",
         "name": "Forum Terrace Church of Christ",
-        "title": "Forum Terrace Church of Christ | Grand Prairie concept",
-        "description": "Concept welcome page for Forum Terrace Church of Christ in Grand Prairie.",
+        "tagline": "Grand Prairie, TX",
         "city": "Grand Prairie, TX",
-        "industry": "Congregation welcome site",
-        "source": "http://forumterrace.org/",
+        "logo": "assets/logo.png",
+        "logo_class": "logo wide",
         "phone_display": "(972) 922-3249",
         "phone_tel": "+19729223249",
-        "phone_placeholder": False,
-        "address": "2446 Arkansas Lane, Grand Prairie, TX 75052",
-        "address_placeholder": False,
-        "hours": "Call for this week’s gathering times — Sunday morning times were not listed on the homepage reviewed",
+        "address": "2446 Arkansas Lane, Grand Prairie, Texas 75052",
+        "hours": "Sunday Bible Study 9:30 a.m. · Worship 10:30 a.m. · Worship 5:00 p.m. · Wednesday Bible Study 7:30 p.m.",
         "eyebrow": "A church family in Grand Prairie",
-        "headline": "Welcome. We will open the Bible with you.",
-        "lede": "Forum Terrace Church of Christ is a congregation that points visitors to salvation in Jesus Christ and to answers in Scripture — not to any government office.",
-        "cta_label": "Call (972) 922-3249",
-        "secondary_cta": "See gatherings",
-        "panel_title": "Come see us",
-        "services_nav": "Gatherings",
-        "reviews_nav": "Welcome notes",
-        "services_heading": "Scheduled gatherings",
-        "services_intro": "Events named on their public homepage. This mock does not invent Sunday morning times they did not publish.",
-        "about_heading": "Who we are",
-        "about": "They describe themselves as a family of Christians helping people toward an eternal home in Heaven, with questions answered from the Bible. The public contact name on their site is Dan Vess.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A warm welcome, a street address, and a phone a visitor can actually dial — without looking official or civic.",
-        "area_intro": "A Grand Prairie congregation, open to neighbors across nearby cities.",
-        "areas": ["Grand Prairie", "Arlington", "Dallas", "Nearby Mid-Cities"],
-        "reviews_heading": "Sample visitor notes",
-        "contact_heading": "Plan a visit",
-        "contact_intro": "Call the number published on their site or use the demo form. Nothing is sent to the congregation.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "Bible", "label": "Open-book answers"},
-            {"value": "Family", "label": "Congregation life"},
-            {"value": "Welcome", "label": "Visitors included"},
-            {"value": "Local", "label": "Arkansas Lane"},
+        "nav": [
+            ("index.html", "Home"),
+            ("location.html", "Location"),
+            ("classes.html", "Bible Classes"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Lord’s Day gatherings", "text": "Weekly worship and teaching. Call for the current Sunday times before you drive."},
-            {"title": "Leadership class", "text": "Listed on their site for the first Sunday night of each month."},
-            {"title": "Visitor status", "text": "Second Sunday night gathering named on their public calendar."},
-            {"title": "Children’s Bible drill", "text": "Third Sunday night activity listed for families."},
-            {"title": "Singing night", "text": "Fourth Sunday night, with practice on the Friday or Saturday before."},
-            {"title": "Quarterly prayer meeting", "text": "Fifth Sunday night when the calendar includes one."},
-        ],
-        "reviews": [
-            {"quote": "Someone met us at the door and sat with us. That was enough to come back.", "name": "Visitor note, concept placeholder"},
-            {"quote": "Classes stayed in the text. No pressure to fill out a civic form.", "name": "Neighbor note, concept placeholder"},
-            {"quote": "Bulletin writing was practical. We knew what this Sunday was about.", "name": "Member note, concept placeholder"},
-        ],
-        "mark": "cross",
         "theme": {
             "bg": "#f6efe6",
             "surface": "#fffaf2",
             "ink": "#3a241f",
             "muted": "#6b5348",
-            "brand": "#5c2a2a",
+            "brand": "#1d597c",
             "brand2": "#e8d5a3",
             "accent": "#8b5a2b",
             "hero_ink": "#f8eedc",
@@ -662,61 +588,80 @@ SITES_DATA = [
             "pattern": "radial-gradient(circle at 50% 0, rgba(255,255,255,.2), transparent 42%)",
             "pattern_size": "100% 100%",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> Forum Terrace Church of Christ.",
+        "footer_extra": "<p>Dan Vess · (972) 922-3249</p>",
+    }
+    panel = f'''<strong>Service times</strong>
+          <p>Sunday Bible Study 9:30 a.m.<br>Sunday Worship 10:30 a.m.<br>Sunday Worship 5:00 p.m.<br>Wednesday Bible Study 7:30 p.m.</p>
+          <p>2446 Arkansas Lane, Grand Prairie, Texas 75052</p>
+          {kpis([("Sunday", "Bible study & worship"), ("Wednesday", "7:30 p.m. study"), ("Dan Vess", "Contact"), ("Arkansas Ln", "Grand Prairie")])}'''
+    index = page(site, title="Forum Terrace Church of Christ | Grand Prairie", description="A family of Christians in Grand Prairie. Sunday Bible study 9:30 a.m., worship 10:30 a.m. and 5:00 p.m.", current="index.html", body=f'''{hero(site, "The Forum Terrace Church of Christ in Grand Prairie welcomes you!", "We are a family of Christians who believe in God’s promise of salvation through His Son, Jesus Christ. We are here to help you on your journey to reach an eternal, spiritual home in Heaven.", "location.html", "Find us", panel)}
+{section("who", "Who we are", "If you have questions about God, your soul, or the Church of Christ, we can help you find answers in God’s Word, the Bible.", "<p>Come by and see us at 2446 Arkansas Lane, Grand Prairie, Texas 75052. Give us a ring: Dan Vess, (972) 922-3249.</p>")}
+{section("events", "Scheduled events", "Listed on the public homepage.", f'<div class="cards">{cards([
+    {"title": "Leadership class", "text": "1st Sunday night of each month."},
+    {"title": "Men’s business meeting / visitor status", "text": "2nd Sunday night."},
+    {"title": "Children’s Bible drill", "text": "3rd Sunday night."},
+    {"title": "Saturday singing", "text": "Day before singing night (Friday or Saturday practice)."},
+    {"title": "Singing night", "text": "4th Sunday night."},
+    {"title": "Quarterly prayer meeting", "text": "5th Sunday night."},
+])}</div>')}
+{section("bulletins", "Weekly bulletins — The Forum", "Recent titles published on the homepage.", f'<div class="cards">{cards([
+    {"title": "2026-07-05 — Defeat and Destiny of the Devil", "text": "The letter to the Romans addresses the purpose of the Law of Moses and shows that no one can be justified apart from faith in the Son of God."},
+    {"title": "2026-06-21 & 28 — Letter to the Church at Ephesus", "text": "Rekindling Our First Love."},
+    {"title": "2026-06-14 — Seven Areas of Christian Stewardship", "text": "A bulletin study on stewardship."},
+    {"title": "2026-06-07 — Eight Facts About Good Stewardship", "text": "God’s people in the New Testament are called Christians, saints, disciples, brethren, and more."},
+    {"title": "2026-05-31 — Peer Pressure Relief Valves", "text": "Dealing with negative peer pressure is an unavoidable part of life."},
+    {"title": "2026-05-24 — Peer Pressure Cooker", "text": "Standing firm when the heat is on."},
+])}</div><p class="note">Full bulletin archive: <a href="http://forumterrace.org/category/the-forum/">forumterrace.org/category/the-forum/</a></p>')}''')
+
+    location = page(site, title="Location | Forum Terrace Church of Christ", description="2446 Arkansas Lane, Grand Prairie, Texas 75052.", current="location.html", body=f'''{page_hero("Where we are", "The Forum Terrace Church of Christ is located in the center of the Texas DFW Metroplex, on the eastern border of Arlington in Grand Prairie.")}
+    <section>
+      <div class="wrap prose">
+        <p>Since we are centrally located, we are easy to get to from multiple surrounding communities. We’d love for you to come visit!</p>
+        <p><strong>Forum Terrace Church of Christ</strong><br>2446 Arkansas Lane<br>Grand Prairie, Texas 75052<br>(972) 922-3249</p>
+      </div>
+    </section>''')
+
+    classes = page(site, title="Bible Classes | Forum Terrace Church of Christ", description="Current and recent adult, young adult, and teen Bible classes.", current="classes.html", body=f'''{page_hero("Bible classes", "Class titles published on the Bible Classes page.")}
+{section("current", "2026 classes", "Quarterly adult and young-adult studies.", f'<div class="cards">{cards([
+    {"title": "2026 3rd Quarter Sunday Adult", "text": "Church Discipline"},
+    {"title": "2026 2nd Quarter Sunday Adult", "text": "Job"},
+    {"title": "2026 2nd Quarter Wednesday Adult", "text": "Dynamic Christian Life"},
+    {"title": "2026 1st Quarter Sunday Adult", "text": "Spiritual Health CheckUp"},
+    {"title": "2026 1st Quarter Wednesday Adult", "text": "Myth Busting"},
+    {"title": "2026 1st Quarter Sunday Young Adult", "text": "Great Verses New Testament"},
+    {"title": "2026 1st Quarter Wednesday Young Adult", "text": "Lord’s Supper"},
+])}</div><p class="note">Earlier workbooks and sermons remain on <a href="http://forumterrace.org/bible-classes/">forumterrace.org/bible-classes/</a> and <a href="http://forumterrace.org/sermons/">forumterrace.org/sermons/</a>.</p>')}''')
+
+    contact = contact_page(site, "<p>Have a question or comment? Call Dan Vess at (972) 922-3249 or send a message. Come by 2446 Arkansas Lane, Grand Prairie, Texas 75052.</p>")
+    write_site(site, {"index.html": index, "location.html": location, "classes.html": classes, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 7 B&B Complete Auto
+# ---------------------------------------------------------------------------
+def bb() -> dict:
+    site = {
         "slug": "bb-complete-auto",
-        "name": "B&B Complete Auto",
-        "title": "B&B Complete Auto Repair | Garland concept",
-        "description": "Concept marketing page for B&B Complete Auto Repair in Garland.",
+        "name": "B&B Complete Auto Repair",
+        "tagline": "Garland, Richardson & Dallas",
         "city": "Garland, TX",
-        "industry": "Auto repair & maintenance",
-        "source": "https://bbcompleteautorepair.com/",
+        "logo": "assets/logo.png",
+        "logo_class": "logo wide",
         "phone_display": "(214) 994-6989",
         "phone_tel": "+12149946989",
-        "phone_placeholder": False,
+        "email": "ali@bbcompleteautorepair.com",
         "address": "2206 South Shiloh Road, Garland, TX 75041",
-        "address_placeholder": False,
         "hours": "Monday–Saturday 8 AM–6 PM · Sunday closed",
-        "eyebrow": "Garland, Richardson, and Dallas drivers",
-        "headline": "One shop for diagnostics, repairs, and getting you back on the road.",
-        "lede": "B&B Complete Auto Repair lists full-service care for foreign and domestic vehicles, with written estimates and factory-trained technicians.",
-        "cta_label": "Call (214) 994-6989",
-        "secondary_cta": "See shop services",
-        "panel_title": "Book the bay",
-        "services_nav": "Services",
-        "reviews_nav": "Reviews",
-        "services_heading": "Shop services",
-        "services_intro": "Work listed on their public site, condensed for a phone-first page.",
-        "about_heading": "Honest repairs, plain estimates",
-        "about": "Their site stresses fair pricing, computer diagnostics, shuttle and towing help, loaner vehicles, and brand-name parts. Public contact email: ali@bbcompleteautorepair.com.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A Shiloh Road address, Saturday hours, and a service list that covers the usual ‘check engine’ week.",
-        "area_intro": "Cities named on their public homepage.",
-        "areas": ["Garland", "Richardson", "Dallas"],
-        "reviews_heading": "Sample driver comments",
-        "contact_heading": "Schedule an inspection",
-        "contact_intro": "Phone, hours, and street address come from their public contact page.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "Sat", "label": "Open 8–6"},
-            {"value": "All makes", "label": "Foreign & domestic"},
-            {"value": "Written", "label": "Estimates"},
-            {"value": "Shuttle", "label": "Local ride help"},
+        "eyebrow": "Complete car care at affordable rates",
+        "nav": [
+            ("index.html", "Home"),
+            ("about.html", "About"),
+            ("services.html", "Services"),
+            ("faq.html", "F.A.Q."),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Diagnostics", "text": "Check-engine and computer diagnostics before parts get thrown at the car."},
-            {"title": "Brakes, tires & alignment", "text": "Brake work, tire service, rotation, and wheel alignment."},
-            {"title": "Engines & transmissions", "text": "Repair and rebuild work when the problem is deeper than a sensor."},
-            {"title": "Oil, cooling & batteries", "text": "Maintenance, radiator work, and electrical / battery repairs."},
-            {"title": "Body & glass", "text": "Collision, auto body, and auto glass repair or replacement."},
-            {"title": "Inspections & warranties", "text": "Preventative maintenance, inspections, and warranty programs listed on their site."},
-        ],
-        "reviews": [
-            {"quote": "They showed me the worn pad instead of just pointing at a total.", "name": "E. Vargas, concept placeholder"},
-            {"quote": "Shuttle saved the workday. Car was ready when they said.", "name": "A. Moss, concept placeholder"},
-            {"quote": "Domestic truck and a European sedan — both left sorted.", "name": "J. Hale, concept placeholder"},
-        ],
-        "mark": "wrench",
         "theme": {
             "bg": "#f1eeea",
             "surface": "#fffaf6",
@@ -729,61 +674,82 @@ SITES_DATA = [
             "display": '"Segoe UI Semibold", "Segoe UI", sans-serif',
             "pattern": "repeating-linear-gradient(-18deg, rgba(255,255,255,.08) 0 10px, transparent 10px 20px)",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> B&amp;B Complete Auto Repair. License CO16-0388.",
+    }
+    panel = f'''<strong>Book the bay</strong>
+          <p><a href="tel:+12149946989">(214) 994-6989</a></p>
+          <p>2206 South Shiloh Road, Garland, TX 75041</p>
+          <p>Monday–Saturday 8 AM–6 PM · Sunday closed</p>
+          {kpis([("Sat", "Open 8–6"), ("All makes", "Foreign & domestic"), ("CO16-0388", "License"), ("Written", "Estimates")])}'''
+    index = page(site, title="B&B Complete Auto Repair | Garland, Richardson & Dallas", description="One-stop auto repair on South Shiloh Road. Call (214) 994-6989. Open Monday–Saturday 8–6.", current="index.html", body=f'''{hero(site, "Automotive repair in Dallas, Richardson and Garland.", "B&B Complete Auto Repair is the one-stop auto repair shop you need, providing a complete range of car care services at affordable rates.", "services.html", "See shop services", panel)}
+{section("services", "Services include", "Fully equipped for maintenance and repair on all makes and models, foreign or domestic.", f'<div class="cards">{cards([
+    {"title": "Oil and filter changes", "text": "Factory-scheduled maintenance and oil service."},
+    {"title": "Radiator repair", "text": "Cooling system repair and inspection."},
+    {"title": "Auto body & collision", "text": "Auto body services and collision repair."},
+    {"title": "Auto glass", "text": "Auto glass repair and replacement."},
+    {"title": "Brakes", "text": "Brake check and repair."},
+    {"title": "Exhaust", "text": "Exhaust system repair."},
+    {"title": "Transmission", "text": "Transmission repair and rebuild."},
+    {"title": "Engine repair", "text": "Engine diagnostics and repair."},
+    {"title": "Tires & alignment", "text": "Tire services, rotation, and wheel alignment."},
+    {"title": "Diagnostics", "text": "Check-engine light diagnostics and computer diagnostics."},
+    {"title": "Battery & electrical", "text": "Battery and electrical repairs."},
+    {"title": "Inspections & warranties", "text": "Preventative maintenance, inspections, and warranty programs."},
+])}</div>')}
+{section("why", "Honest automotive professionals", "Fair and honest pricing, written estimates, computer diagnostics, local shuttle services, towing services, factory trained technicians, worry-free warranty protection, brand name parts, and loaner vehicles.", "<p>German auto repair is listed among the shop’s service pages, along with differential repair.</p>")}''')
+
+    about = page(site, title="About | B&B Complete Auto Repair", description="Certified mechanics, written estimates, and customer service in Garland.", current="about.html", body=f'''{page_hero("About B&B Complete Auto Repair", "Auto maintenance in Dallas, Richardson and Garland.")}
+    <section>
+      <div class="wrap prose">
+        <p>B&B Complete Auto Repair is committed to offering quality customer service from our fully equipped car care center. Our certified mechanics can handle any repair or maintenance problem from basic tire services to complete transmission repair and have developed long-standing working relationships with clients based on honesty and personalized service.</p>
+        <p>We’ll discuss everything with you and try to remain within your budget. Regular tune-ups add longevity. We use the latest methods, tools and techniques. Our skilled technicians take the time to clearly explain your repair options, provide detailed written estimates, and help with insurance processing.</p>
+        <p>When your vehicle must remain in the shop, our staff will make arrangements for a loaner vehicle, shuttle services, or discounted car rentals.</p>
+      </div>
+    </section>''')
+
+    services = page(site, title="Auto Repair Services | B&B Complete Auto Repair", description="Diagnostics, brakes, engines, transmissions, glass, and more.", current="services.html", body=f'''{page_hero("Complete automotive services", "The shop meets strict industry standards for service excellence and provides detailed estimates.")}
+{section("areas", "Service areas", "Dallas, Garland, and Richardson are named on the service-areas page for glass, brakes, collision, engine, exhaust, oil, radiator, tires, and transmission work.", f'<div class="chip-row">{chips(["Dallas", "Garland", "Richardson"])}</div>')}''')
+
+    faq = page(site, title="F.A.Q. | B&B Complete Auto Repair", description="Published automotive repair FAQs.", current="faq.html", body=f'''{page_hero("Frequently asked questions", "From the public F.A.Q. page.")}
+{section("q", "Answers", "Quoted from the live FAQ.", f'<div class="cards two">{cards([
+    {"title": "What kind of cars do you repair?", "text": "A complete range of repair and maintenance services. We handle all makes and models of cars, trucks and SUVs whether imported or domestic."},
+    {"title": "What are my payment options?", "text": "VISA, MasterCard, debit, and cash. Payment plans for major repairs — call for more information."},
+    {"title": "How often do I need an oil change?", "text": "The general rule is every 5000 miles. Follow the manufacturer’s instructions and consult our auto repair experts."},
+    {"title": "How often should my brake system be inspected?", "text": "According to the manufacturer’s recommendation, every 12 months."},
+    {"title": "What if my check-engine light comes on?", "text": "It doesn’t necessarily signal a need for major repairs. Have your vehicle checked by a professional."},
+    {"title": "Do you offer transmission maintenance?", "text": "Inspection and transmission flush services that include filter, gasket and fluid replacement. Certified mechanics provide complete transmission repairs and rebuilds for any foreign or domestic vehicle."},
+    {"title": "Is preventative maintenance important?", "text": "Yes. If your vehicle is properly maintained it will last longer, operate more efficiently and save you money. Your owner’s manual outlines recommended schedules."},
+    {"title": "My car is leaking clear fluid. Is that dangerous?", "text": "Liquid leaking is usually a sign that something is wrong. Clear liquid may be water condensation from the AC, which is normal, or brake fluid, which is usually yellowish with an oily feel."},
+    {"title": "My car smells funny but is running fine. Should I be worried?", "text": "The moment your vehicle begins emitting an odor, bring it in. Smells can signal a stuck brake, overheated engine, fuel leak, or electrical short."},
+])}</div>')}''')
+
+    contact = contact_page(site, "<p>License: CO16-0388. Email ali@bbcompleteautorepair.com. 2206 South Shiloh Road, Garland, TX 75041.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "services.html": services, "faq.html": faq, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 8 Ferraro DDS
+# ---------------------------------------------------------------------------
+def ferraro() -> dict:
+    site = {
         "slug": "ferraro-dds",
         "name": "Daniel L. Ferraro, D.D.S.",
-        "title": "Daniel L. Ferraro, D.D.S. | Grand Prairie dental concept",
-        "description": "Concept marketing page for Dr. Daniel L. Ferraro in Grand Prairie.",
+        "tagline": "Grand Prairie & Arlington",
         "city": "Grand Prairie, TX",
-        "industry": "General dentistry",
-        "source": "https://www.grandprairie-arlingtondental.com/",
+        "logo": "assets/logo.webp",
         "phone_display": "(972) 988-8044",
         "phone_tel": "+19729888044",
-        "phone_placeholder": False,
-        "address": "2985 S. Highway 360, Suite 210, Grand Prairie, TX 75052",
-        "address_placeholder": False,
-        "hours": "Monday–Thursday 8:00 AM–5:00 PM · Friday–Sunday closed, per their public office hours",
-        "eyebrow": "Grand Prairie & Arlington · 30+ years",
-        "headline": "Comfortable, conservative dentistry in a relaxed office.",
-        "lede": "Dr. Ferraro’s public site highlights general dentistry, implants, and free consultations from Emerald Square Shopping Center at Hwy 360 and Mayfield.",
-        "cta_label": "Call (972) 988-8044",
-        "secondary_cta": "See dental care",
-        "panel_title": "Call the office",
-        "services_nav": "Care",
-        "reviews_nav": "Notes",
-        "services_heading": "Dental care",
-        "services_intro": "Treatments described on their public homepage. Prices mentioned there can change — confirm by phone.",
-        "about_heading": "A long-standing neighborhood practice",
-        "about": "The practice presents conservative care at a reasonable cost. They note 3M certification for mini-implants and offer free implant consults, second opinions, and consults for patients without dental insurance if you call and ask.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A map-able suite, weekday hours, and a calm tone instead of a coupon wall.",
-        "area_intro": "Communities named on their public homepage.",
-        "areas": ["Grand Prairie", "Arlington"],
-        "reviews_heading": "Sample patient notes",
-        "contact_heading": "Schedule a visit",
-        "contact_intro": "Phone and suite come from public listings tied to their practice site. This form does not book an appointment.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "30+", "label": "Years of care"},
-            {"value": "Hwy 360", "label": "Emerald Square"},
-            {"value": "Mon–Thu", "label": "Office days"},
-            {"value": "Consults", "label": "Call to ask"},
+        "address": "2985 S. Hwy 360, Suite 210, Grand Prairie, Texas 75052",
+        "hours": "Mon 8:00 AM–5:30 PM · Tue 8:00 AM–5:30 PM · Wed 8:00 AM–1:00 PM · Thu 8:30 AM–5:30 PM · Fri–Sun closed",
+        "eyebrow": "Grand Prairie / Arlington · 30+ years",
+        "nav": [
+            ("index.html", "Home"),
+            ("about.html", "About"),
+            ("services.html", "Services"),
+            ("testimonials.html", "Testimonials"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Checkups & cleanings", "text": "Routine visits they describe as the path to healthier teeth over a lifetime."},
-            {"title": "Fillings, crowns & bridges", "text": "Metal-free crowns and bridges plus everyday restorative work."},
-            {"title": "Veneers & whitening", "text": "Cosmetic options listed alongside conservative general dentistry."},
-            {"title": "Root canals & extractions", "text": "Same-visit root canal therapy and extractions as published on their site."},
-            {"title": "Dentures", "text": "Removable replacement teeth when a fixed option is not the plan."},
-            {"title": "Implants", "text": "Mini-implants and conventional implant placement/restoration, with consults by phone."},
-        ],
-        "reviews": [
-            {"quote": "The visit felt unhurried. They explained options without rushing a crown.", "name": "S. Bell, concept placeholder"},
-            {"quote": "Easy to find off 360. Front desk booked a second-opinion slot the same week.", "name": "R. Diaz, concept placeholder"},
-            {"quote": "Conservative plan, which is what I wanted.", "name": "M. Price, concept placeholder"},
-        ],
-        "mark": "tooth",
         "theme": {
             "bg": "#eef6f6",
             "surface": "#ffffff",
@@ -797,61 +763,77 @@ SITES_DATA = [
             "pattern": "radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%)",
             "pattern_size": "100% 100%",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> Daniel L. Ferraro, D.D.S.",
+        "footer_extra": "<p>Emerald Square Shopping Center · N.E. corner of Hwy 360 and Mayfield Rd.</p>",
+    }
+    panel = f'''<strong>Call the office</strong>
+          <p><a href="tel:+19729888044">(972) 988-8044</a></p>
+          <p>2985 S. Hwy 360, Suite 210<br>Grand Prairie, Texas 75052</p>
+          <p>Mon–Tue 8:00–5:30 · Wed 8:00–1:00 · Thu 8:30–5:30</p>
+          {kpis([("1986", "DDS, UT San Antonio"), ("3M", "Mini-implant certified"), ("Hwy 360", "Emerald Square"), ("Mon–Thu", "Office days")])}'''
+    index = page(site, title="Grand Prairie Dentist | Dr. Daniel Ferraro, DDS", description="General dentistry and implants in Grand Prairie at Hwy 360 and Mayfield. Call (972) 988-8044.", current="index.html", body=f'''{hero(site, "Welcome to our dental practice.", "Daniel L. Ferraro, D.D.S. — proudly serving the Grand Prairie/Arlington areas’ dental needs for over 30 years. Superior dental care, comfortably, conservatively, in a relaxed environment, at a reasonable cost.", "services.html", "Our services", panel)}
+{section("welcome", "Convenient Grand Prairie location", "We are in Emerald Square Shopping Center at the N.E. corner of Hwy 360 and Mayfield Rd. in Grand Prairie, one exit north of Interstate 20 on Hwy 360.", '''<div class="prose">
+          <p>Dr. Ferraro is certified by 3M in the placement of mini-implants — small diameter, self-tapping, one-piece, low-cost implants that can support fixed or removable replacement teeth.</p>
+          <p>We provide all phases of general dentistry including guaranteed beautiful veneers, metal-free crowns and bridge, fillings, one-appointment root canal therapy, extractions, dentures, and bleaching. We also provide routine placement and restoration of conventional implants.</p>
+          <p>Published implant special: $1100/implant, or $2100 including the abutment and the crown (sometimes a specialist is necessary if there is not enough available bone). The homepage also lists implant specials at $2400 — call to confirm current pricing. Free implant consultations, free second opinions, and free consultations for patients without dental insurance if you call and ask. X-rays included if needed.</p>
+        </div>''')}''')
+
+    about = page(site, title="About & Meet the Doctor | Daniel L. Ferraro, D.D.S.", description="Dr. Ferraro graduated from UT Dental School at San Antonio in 1986.", current="about.html", body=f'''{page_hero("Meet the doctor", "Daniel L. Ferraro, D.D.S.")}
+    <section>
+      <div class="wrap prose">
+        <p>Daniel L. Ferraro, D.D.S. graduated from The University of Texas Dental School at San Antonio in 1986, and has been in private practice in Grand Prairie, TX ever since. Originally from Pittsburgh, PA, he moved to Arlington, TX in 1978 from Rhode Island. Dr. Ferraro graduated from The University of Texas at Arlington in 1981 with a B.S. in Biology and a minor in Chemistry.</p>
+        <p>2016 marked the 25th anniversary of marriage to the former Karen Flores of San Antonio. Blessed with four children: daughters Victoria and Samantha, and sons Nicolas and Christopher. Outside interests include watching all sports and being an active member of Fielder Road Baptist Church.</p>
+        <h2>The practice</h2>
+        <p>We are proud to provide a state-of-the-art facility. Our office meets and surpasses OSHA and CDC standards. We welcome all patients as if they were family.</p>
+        <p>We submit insurance forms and help you recover benefits. Payment: check, cash, any major credit card, and CareCredit (a one-year interest-free financing option). Please provide at least 24 hours notice if you cannot keep an appointment; a fee may be charged for no-shows without sufficient notice.</p>
+      </div>
+    </section>''')
+
+    services = page(site, title="Our Services | Daniel L. Ferraro, D.D.S.", description="Hygiene, implants, cosmetic, endodontics, restorative, pediatric, periodontics, and oral surgery.", current="services.html", body=f'''{page_hero("Our services", "Treatments listed on the practice site.")}
+{section("list", "Care we provide", "Confirm current details by phone.", f'<div class="cards">{cards([
+    {"title": "Dental hygiene", "text": "Annual checkups and cleanings to keep teeth happy and healthy."},
+    {"title": "Implants & mini-implants", "text": "Conventional implants and 3M-certified mini-implants. Free consults."},
+    {"title": "Cosmetic", "text": "Beautiful veneers, whitening, and bonding."},
+    {"title": "Endodontics", "text": "Root canal therapy (including one-appointment) and retreatment."},
+    {"title": "Restorative", "text": "Bridges, metal-free crowns, dentures, and bonding."},
+    {"title": "Pediatric", "text": "Sealants and mouth guards."},
+    {"title": "Periodontics", "text": "Crown lengthening, frenectomy, occlusal adjustment, cosmetic periodontal surgery, gum disease, scaling and root planing."},
+    {"title": "Oral surgery", "text": "Extractions, wisdom teeth, extraction site preservation."},
+    {"title": "TMJ & night guards", "text": "TMJ care and night guards."},
+    {"title": "Technology", "text": "Panorex, rotary endodontics, and oral cancer screenings."},
+])}</div>')}''')
+
+    testi = page(site, title="Testimonials | Daniel L. Ferraro, D.D.S.", description="Published patient note from the practice testimonials page.", current="testimonials.html", body=f'''{page_hero("Patient testimonials", "Selected by Dallas/Fort Worth Top Rated Doctors, 2016.")}
+{section("one", "Published comment", "From the practice testimonials page.", f'<div class="cards">{reviews([{"quote": "I am so proud of my new teeth. I can smile and smile and smile!", "name": "Mrs. Conger"}])}</div>')}''')
+
+    contact = contact_page(site, "<p>The live website was behind a Cloudflare challenge when fetched; content and the published logo come from the public October 2025 archive of grandprairie-arlingtondental.com. Call (972) 988-8044 to confirm hours and email.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "services.html": services, "testimonials.html": testi, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 9 Garden Restaurant
+# ---------------------------------------------------------------------------
+def garden() -> dict:
+    site = {
         "slug": "garden-restaurant",
         "name": "Garden Restaurant",
-        "title": "Garden Restaurant | Garland dining concept",
-        "description": "Concept marketing page for Garden Restaurant in Garland.",
+        "tagline": "Garland, TX",
         "city": "Garland, TX",
-        "industry": "Chinese restaurant",
-        "source": "https://gardenrestaurantgarland.com/",
+        "logo": "assets/logo.png",
+        "logo_class": "logo wide",
         "phone_display": "(972) 487-8289",
         "phone_tel": "+19724878289",
-        "phone_placeholder": False,
+        "email": "gardenrestaurant@zing.com",
         "address": "3555 W Walnut St, Garland, TX 75042",
-        "address_placeholder": False,
-        "hours": "Public listings commonly show 10 AM–10 PM daily — call to confirm tonight",
-        "eyebrow": "Fresh plates in Garland",
-        "headline": "Come in for a family table, or call ahead for pickup.",
-        "lede": "Garden Restaurant’s public site describes a warm Garland dining room with takeout, delivery partners, and meals made with care.",
-        "cta_label": "Call (972) 487-8289",
-        "secondary_cta": "See the table",
-        "panel_title": "Order or visit",
-        "services_nav": "The table",
-        "reviews_nav": "Notes",
-        "services_heading": "How people eat here",
-        "services_intro": "Offerings described on their public site, without copying a copyrighted menu.",
-        "about_heading": "A neighborhood dining room",
-        "about": "They invite guests for a quick bite or a meal with family and friends. Takeout can be ordered ahead online or by phone. Contact-free delivery is offered through third-party partners at checkout.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A Walnut Street address, a tap-to-call number, and dining options a hungry guest can scan in ten seconds.",
-        "area_intro": "A Garland restaurant serving nearby neighborhoods.",
-        "areas": ["Garland", "Richardson", "Mesquite", "North Dallas"],
-        "reviews_heading": "Sample diner notes",
-        "contact_heading": "Call the restaurant",
-        "contact_intro": "Phone and street address are on their public homepage. Public email listed there: gardenrestaurant@zing.com.",
-        "form_cta": "Show demo confirmation",
-        "kpis": [
-            {"value": "Dine-in", "label": "Family tables"},
-            {"value": "Takeout", "label": "Call or order ahead"},
-            {"value": "Delivery", "label": "Partner checkout"},
-            {"value": "Walnut", "label": "Easy Garland stop"},
+        "hours": "Daily 10:00 AM–10:00 PM",
+        "eyebrow": "Chinese restaurant in Garland",
+        "nav": [
+            ("index.html", "Home"),
+            ("about.html", "About Us"),
+            ("menu.html", "Menu"),
+            ("contact.html", "Contact"),
         ],
-        "services": [
-            {"title": "Dine-in", "text": "A welcoming room for weeknights, weekends, and family gatherings."},
-            {"title": "Takeout", "text": "Order ahead online or call during regular hours for pickup."},
-            {"title": "Delivery", "text": "Third-party delivery, including a contact-free option at checkout."},
-            {"title": "Chinese favorites", "text": "A broad menu of cooked-to-order dishes. Ask the restaurant for today’s specials."},
-            {"title": "Shareable plates", "text": "Better for a table than a solo desk lunch — come with people if you can."},
-            {"title": "Weeknight pickup", "text": "A simple phone path when you want dinner without the dining room."},
-        ],
-        "reviews": [
-            {"quote": "Hot takeout, easy parking, and enough food for leftovers.", "name": "Y. Chen, concept placeholder"},
-            {"quote": "We go when the whole family wants one table and no decisions at home.", "name": "The Ramirez family, concept placeholder"},
-            {"quote": "Called ahead, walked in, and the bag was waiting.", "name": "G. Stone, concept placeholder"},
-        ],
-        "mark": "bowl",
         "theme": {
             "bg": "#f7efe8",
             "surface": "#fffaf4",
@@ -865,72 +847,75 @@ SITES_DATA = [
             "pattern": "radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%)",
             "pattern_size": "100% 100%",
         },
-    },
-    {
+        "legal": "© <span id=\"year\"></span> Garden Restaurant. All rights reserved.",
+    }
+    panel = f'''<strong>Visit or call ahead</strong>
+          <p><a href="tel:+19724878289">(972) 487-8289</a></p>
+          <p>3555 W Walnut St, Garland, TX 75042</p>
+          <p>Open daily 10:00 AM–10:00 PM</p>
+          {kpis([("Dine-in", "Family tables"), ("Takeout", "Call or order ahead"), ("Delivery", "3rd-party partners"), ("Walnut", "Garland")])}'''
+    index = page(site, title="Garden Restaurant | Garland, TX", description="Chinese restaurant at 3555 W Walnut St, Garland. Open daily 10 AM–10 PM. Call (972) 487-8289.", current="index.html", body=f'''{hero(site, "Fresh and flavorful dishes in Garland, TX.", "Welcome to Garden Restaurant. We’re proud to serve a variety of delicious meals made with care and quality ingredients — for a quick bite or dining with family and friends.", "menu.html", "See the menu", panel)}
+{section("about", "About us", "We strive to create a warm and welcoming atmosphere for everyone. Join us today and enjoy great food, great service, and a cozy experience.", f'<div class="cards">{cards([
+    {"title": "Takeout", "text": "Yes. We offer takeout during regular business hours. Order ahead online and pick up during the estimated time, or call to place an order."},
+    {"title": "Hours", "text": "Monday–Sunday 10:00 AM–10:00 PM, as published on the contact page."},
+    {"title": "Location", "text": "3555 W Walnut St, Garland, TX 75042, USA."},
+    {"title": "Contact-free delivery", "text": "Yes — via 3rd-party partners if you select that option during checkout."},
+])}</div>')}''')
+
+    about = page(site, title="About Us | Garden Restaurant", description="Chinese restaurant in Garland serving dine-in, takeout, and delivery.", current="about.html", body=f'''{page_hero("About Garden Restaurant", "Your go-to spot for fresh and flavorful dishes in Garland, TX.")}
+    <section>
+      <div class="wrap prose">
+        <p>We’re proud to serve a variety of delicious meals made with care and quality ingredients. Whether you’re stopping by for a quick bite or dining with family and friends, we strive to create a warm and welcoming atmosphere for everyone.</p>
+        <p>Jobs: the restaurant publishes a hiring form on the live site. Call if you have questions about joining the team.</p>
+      </div>
+    </section>''')
+
+    def menu_block(title: str, items: list[tuple[str, str]]) -> str:
+        rows = "".join(f"<li><span>{esc(n)}</span><span class=\"price\">{esc(p)}</span></li>" for n, p in items)
+        return f'<article class="card"><h3>{esc(title)}</h3><ul class="menu-list">{rows}</ul></article>'
+
+    menu = page(site, title="Menu | Garden Restaurant", description="Published menu from gardenrestaurantgarland.com.", current="menu.html", body=f'''{page_hero("Menu", "Prices as published on the restaurant menu page. Call to confirm today’s availability.")}
+    <section>
+      <div class="wrap cards two">
+        {menu_block("Appetizers", [("A01. Roll", "$1.00"), ("A02. Fresh Spring Roll", "$4.50"), ("A03. Vietnamese Egg Rolls", "$4.95"), ("A04. Pot Sticker Dumpling", "$4.99"), ("A05. Chicken Lettuce Wrap", "$6.50"), ("A07. Shrimp Lettuce Wrap", "$7.50"), ("A08. Butter Fried Chicken Wing", "$6.95")])}
+        {menu_block("Lunch specials", [("L1. Fried Flounder Fish", "$8.25"), ("L10. Sweet and Sour Chicken", "$8.25"), ("L11. Kung Pao Chicken", "$8.25"), ("L13. General Tso's Chicken", "$8.25"), ("L21. Orange Chicken", "$8.25"), ("L22. Sesame Chicken", "$8.25"), ("L28. Mongolian Beef", "$8.25"), ("L9. Seafood Combination", "$8.25")])}
+        {menu_block("Rice & noodles", [("B08. BBQ Pork with Rice", "$5.95"), ("B12. BBQ Pork Fried Rice", "$5.95"), ("B13. Chicken Fried Rice", "$5.95"), ("B15. Shrimp Fried Rice", "$7.55"), ("B16. House Special Fried Rice", "$7.50"), ("B26. Pad Thai Fried Clear Noodle", "$7.95"), ("B32. Singaporean Style Fried Rice Noodle", "$7.95"), ("B34. Cantonese Fried Noodle", "$7.95")])}
+        {menu_block("Chicken & duck", [("Sweet and Sour Chicken", "$11.95"), ("Kung Pao Chicken", "$11.95"), ("General Tso's Chicken", "$11.95"), ("Orange Chicken", "$11.95"), ("Sesame Chicken", "$11.95"), ("Deep Fried Chicken (Half)", "$9.95"), ("Steamed Chicken (Half)", "$16.95"), ("Peking Duck (2 Way)", "$38.95")])}
+        {menu_block("Pork & beef", [("P01. Salt Toasted Pork Ribs", "$7.95"), ("P10. Sauteed Beef with Green Pepper", "$8.95"), ("P12. Kung Pao Beef", "$8.95"), ("P14. Mongolian Beef", "$8.95"), ("P20. Sauteed Beef with Broccoli", "$8.95"), ("P30. Stir Fried Steak Tips", "$11.95")])}
+        {menu_block("Seafood, sizzling & clay pot", [("D14. Salt Toasted Shrimp", "$9.95"), ("D24. Abalone with Oyster Sauce", "$50.00"), ("Steak Tips Sizzling Plate", "$16.99"), ("Seafood Tofu Clay Pot", "$14.99"), ("Goat Clay Pot", "$18.99")])}
+        {menu_block("Family dinner", [("Peking Duck Family Dinner (For Four)", "$88.00"), ("Salt Pepper Squid Family Dinner (For Four)", "$88.00"), ("Peking Duck - 2 Ways Family Dinner (For Six)", "$168.00"), ("XO Seafood Fried Rice Family Dinner (For Six)", "$168.00")])}
+        {menu_block("Drinks", [("Hot Tea", "$1.50"), ("Iced Tea", "$1.50"), ("Soft Drink", "$2.00"), ("Iced Coffee", "$4.00"), ("Fresh Lemonade", "$4.50"), ("Fresh Coconut Juice", "$5.50")])}
+      </div>
+      <div class="wrap"><p class="note">Additional lunch specials, entrees, and clay-pot dishes are on the live menu. Call (972) 487-8289 for today’s options.</p></div>
+    </section>''')
+
+    contact = contact_page(site, "<p>Email gardenrestaurant@zing.com. Reservations and catering inquiries are listed on the live contact form.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "menu.html": menu, "contact.html": contact})
+    return site
+
+
+# ---------------------------------------------------------------------------
+# 10 Law Office of Len Conner
+# ---------------------------------------------------------------------------
+def len_conner() -> dict:
+    site = {
         "slug": "len-conner-law",
         "name": "Law Office of Len Conner",
-        "title": "Law Office of Len Conner | Irving family law concept",
-        "description": "Concept marketing page for the Law Office of Len Conner in Irving.",
+        "tagline": "Irving family law",
         "city": "Irving, TX",
-        "industry": "Divorce & family law",
-        "source": "https://www.lonestarlaw.net/",
+        "logo": "assets/logo.jpg",
+        "logo_class": "logo wide",
         "phone_display": "(972) 445-1500",
         "phone_tel": "+19724451500",
-        "phone_placeholder": False,
-        "address": "600 John Carpenter Freeway, Ste 238, Irving, TX 75062",
-        "address_placeholder": False,
+        "address": "600 John Carpenter Freeway, Ste 238, Irving, Texas 75062",
         "hours": "Call to schedule a confidential consultation",
-        "eyebrow": "Irving family law",
-        "headline": "Clear guidance when the family case is the whole case.",
-        "lede": "Len Conner’s public site focuses on divorce and family law, with litigation experience plus settlement, mediation, and collaborative options.",
-        "cta_label": "Call (972) 445-1500",
-        "secondary_cta": "See practice focus",
-        "panel_title": "Office",
-        "services_nav": "Practice",
-        "reviews_nav": "Notes",
-        "services_heading": "Family law focus",
-        "services_intro": "Matters described on their public pages. This is not legal advice.",
-        "about_heading": "A family-law practice",
-        "about": "The firm is in Irving at John Carpenter Freeway and Rochelle Boulevard and lists work across Dallas, Tarrant, Denton, and Collin Counties. Their site states attorneys are fully licensed by the Texas Supreme Court and admitted to the U.S. Federal Courts, Northern District of Texas, and that unless otherwise indicated they are not certified by the Texas Board of Legal Specialization.",
-        "why_heading": "What this mock emphasizes",
-        "why": "A confidential phone path, a mapped Irving suite, and a tone that stays human without promising outcomes.",
-        "extra_note": "Information on this concept page is general only. It does not create an attorney-client relationship.",
-        "area_intro": "Communities named on their public contact page.",
-        "areas": [
-            "Irving",
-            "Dallas",
-            "Garland",
-            "Grand Prairie",
-            "Arlington",
-            "Plano",
-            "Fort Worth",
-            "Dallas / Tarrant / Denton / Collin Counties",
+        "eyebrow": "Divorce & family law",
+        "nav": [
+            ("index.html", "Home"),
+            ("about.html", "Firm & Attorney"),
+            ("practice.html", "Practice Areas"),
+            ("contact.html", "Contact"),
         ],
-        "reviews_heading": "Sample client notes",
-        "contact_heading": "Request a confidential call",
-        "contact_intro": "Phone and suite are published on their contact page. Do not send confidential facts through this demo form.",
-        "form_cta": "Show demo confirmation",
-        "form_note": "Demo only — nothing is sent, stored, or reviewed by an attorney. Do not include confidential case facts.",
-        "kpis": [
-            {"value": "Family law", "label": "Practice focus"},
-            {"value": "Irving", "label": "John Carpenter office"},
-            {"value": "DFW", "label": "Surrounding counties"},
-            {"value": "Call", "label": "Confidential intake"},
-        ],
-        "services": [
-            {"title": "Divorce", "text": "Guidance through divorce options, including negotiation and litigation when needed."},
-            {"title": "Children & support", "text": "Child-related matters and support issues as described in their public materials."},
-            {"title": "Mediation", "text": "A path to settle differences without trying every issue in a courtroom."},
-            {"title": "Collaborative process", "text": "A structured alternative they list alongside traditional case work."},
-            {"title": "Settlement strategy", "text": "Their public tone stresses wise use of time and money, not a fight for its own sake."},
-            {"title": "Professional team", "text": "They mention working with financial, counseling, and other specialists when a case needs it."},
-        ],
-        "reviews": [
-            {"quote": "They explained likely paths without pretending the case was simple.", "name": "A. Morgan, concept placeholder"},
-            {"quote": "I never felt like the meter mattered more than the children.", "name": "R. Walsh, concept placeholder"},
-            {"quote": "Staff returned calls. In a family case, that is the whole job some days.", "name": "C. Bennett, concept placeholder"},
-        ],
-        "mark": "scale",
         "theme": {
             "bg": "#eef2f6",
             "surface": "#fbfcfe",
@@ -944,18 +929,107 @@ SITES_DATA = [
             "pattern": "linear-gradient(180deg, rgba(197,165,114,.16), transparent 32%)",
             "pattern_size": "100% 100%",
         },
-    },
+        "legal": "© <span id=\"year\"></span> Len Conner &amp; Associates. Unless otherwise indicated, attorneys listed are not certified by the Texas Board of Legal Specialization. This site is general information only and does not create an attorney-client relationship.",
+        "form_status": "Thank you. Do not include confidential case facts here. Please call (972) 445-1500 so the office receives your request.",
+    }
+    cities = [
+        "Irving", "Dallas", "Cedar Hill", "Mesquite", "Garland", "Grand Prairie", "Las Colinas",
+        "Richardson", "Plano", "Highland Park", "Arlington", "Hurst", "Euless", "Bedford",
+        "Southlake", "Grapevine", "Colleyville", "Lewisville", "Denton", "The Colony", "Coppell",
+        "Flower Mound", "Corinth", "Argyle", "Fort Worth", "Frisco", "Sachse", "McKinney",
+        "Park Cities", "Duncanville", "Desoto", "Dallas County", "Tarrant County", "Denton County", "Collin County",
+    ]
+    panel = f'''<strong>Office</strong>
+          <p><a href="tel:+19724451500">(972) 445-1500</a></p>
+          <p>600 John Carpenter Freeway, Ste 238<br>Irving, Texas 75062</p>
+          <p>Corner of John Carpenter Freeway and Rochelle Boulevard</p>
+          {kpis([("Family law", "Practice focus"), ("J.D., M.B.A.", "Len M. Conner"), ("4.8", "Facebook rating"), ("DFW", "Surrounding counties")])}'''
+    index = page(site, title="Attorney Len Conner | Irving Divorce & Family Law", description="The Law Office of Len Conner focuses on comprehensive divorce and family law. Call (972) 445-1500.", current="index.html", body=f'''{hero(site, "Irving & Dallas County family law lawyer.", "The Law Office of Len Conner focuses on comprehensive divorce and family law representation. Len has spent his entire legal career on family law matters, identifying and implementing the best solutions for his clients.", "practice.html", "Practice areas", panel)}
+{section("intro", "Your decisions are only as good as the information and advice you receive.", "Though Len has extensive family law litigation experience, he will also help you use negotiated settlements, mediation, and a collaborative divorce process.", '''<div class="prose">
+          <p>Our office partners with psychologists, social workers, financial advisors, private investigators, and tax professionals. To set up a confidential meeting, call 972-445-1500. Our office is in Irving; we represent clients in surrounding cities and counties.</p>
+          <p>Fully licensed by the Texas Supreme Court. Admitted to the U.S. Federal Courts, Northern District of Texas. Member of the Texas Family Law Section of the Texas State Bar Association.</p>
+        </div>''')}
+{section("reviews", "Client testimonials", "Comments published on lonestarlaw.net.", f'<div class="cards two">{reviews([
+    {"quote": "Len is an outstanding, sensible lawyer that makes wise decisions with time and money, consistently considering what's in the best interest of his client in the long term. I'm thankful he walked me through such a difficult time. I highly recommend him.", "name": "Marie"},
+    {"quote": "Len Conner is an exceptional attorney with an incredible disposition and knowledge for family law. He helped us with a child support case that had been drowning us for years. He cares for his clients and the outcome of the case.", "name": "Marc and Jill"},
+    {"quote": "Len is a great lawyer that keeps his clients needs top of mind. I felt like Mr. Conner and his team truly understood my needs and was genuine in their approach. I believe they really cared for my children and their well-being.", "name": "David"},
+    {"quote": "Len Conner and his staff are the real deal. They tell you like it is. They have always been available when I needed them. He will guide you to do what is best for you and your pocket book, not his pocket book.", "name": "Dena"},
+    {"quote": "From the very start I was confident Len Conner and his team were indeed experts at Family Law. They were patient with me in walking me through the process of divorce, and continually informed me of all of my options.", "name": "Kelly"},
+    {"quote": "The best lawyer in Irving, TX!", "name": "Angel G.", "source": "Facebook"},
+    {"quote": "Len Conner has a great reputation in our community as he is trusted and truly effective at his craft.", "name": "Derek B.", "source": "Facebook"},
+])}</div>', "reviews")}
+{section("area", "Cities and counties we serve", "Listed on the public site.", f'<div class="chip-row">{chips(cities)}</div>')}''')
+
+    about = page(site, title="Firm Overview & Len M. Conner | Law Office of Len Conner", description="Dallas-born Irving family law attorney and mediator.", current="about.html", body=f'''{page_hero("Firm overview", "Dallas divorce and family law attorney serving Fort Worth, Irving, Plano & Frisco.")}
+    <section>
+      <div class="wrap prose">
+        <p>Len Conner & Associates maintains the ability to provide quality representation throughout Texas. We routinely represent clients from across the United States and throughout the world, including Afghanistan, Costa Rica, India, Iraq, Germany, Mexico, Japan, and the Philippines.</p>
+        <p>The firm focuses exclusively on Texas family law and divorce. Attorney Len Conner often lectures lawyers on family and divorce topics for continuing legal education.</p>
+        <h2>Len M. Conner, J.D., M.B.A., B.B.A.</h2>
+        <p>Len Conner was born in Dallas, Texas and raised in Irving. He attended the University of North Texas and earned his Bachelor’s degree in business management in 1990. He worked in the pharmaceutical industry while he attended Dallas Baptist University and earned his Master’s in Business Administration. He then attended Texas Wesleyan University School of Law, earned his Juris Doctor, and was a member of Law Review.</p>
+        <p>Mr. Conner is a family law mediator and conflict resolution mediator. He is licensed by the Texas Supreme Court and admitted to practice in the United States Federal District Courts in the Northern District of Texas. Memberships include the American Bar Association, Texas Bar Association, Dallas Bar Association, Tarrant County Bar Association, American Trial Lawyers Association, the Family Law Section of the State Bar of Texas, and the Annette Stewart Inn of Court. He has lectured on alimony, spousal support, spousal maintenance, and contested temporary orders hearings.</p>
+        <p>Mr. Conner limits the number of matters he handles so every client receives personal attention. He personally supervises every case and typically returns calls the same day.</p>
+      </div>
+    </section>''')
+
+    practice = page(site, title="Practice Areas | Law Office of Len Conner", description="Contested and uncontested divorce, custody, support, military divorce, mediation, and more.", current="practice.html", body=f'''{page_hero("Practice areas", "We dedicate our practice exclusively to divorce and family law.")}
+{section("list", "Matters we handle", "Published practice-area list.", f'<div class="cards">{cards([
+    {"title": "Contested divorce", "text": "Litigation when the parties cannot agree."},
+    {"title": "Uncontested divorce", "text": "Agreed-upon divorce."},
+    {"title": "Modifications & enforcements", "text": "Changing or enforcing existing orders."},
+    {"title": "Child support", "text": "Support matters for Texas families."},
+    {"title": "Child custody", "text": "Custody and visitation."},
+    {"title": "Interstate visitation", "text": "Visitation across state lines."},
+    {"title": "Collaborative divorce", "text": "Resolving issues without court intervention."},
+    {"title": "Military divorce", "text": "Unique issues and challenges in military divorce proceedings."},
+    {"title": "Termination of parental rights", "text": "Parental-rights termination matters."},
+    {"title": "Stepparent adoptions", "text": "Stepparent adoption."},
+    {"title": "Mediation & arbitration", "text": "Family law mediation and arbitration."},
+    {"title": "Paternity rights", "text": "Paternity determinations."},
+    {"title": "Marital property", "text": "Property issues in divorce."},
+    {"title": "Domestic violence", "text": "Family-violence related matters."},
+    {"title": "Criminal law in divorce", "text": "When criminal issues intersect with the family case."},
+    {"title": "Grandparents’ rights", "text": "Grandparent rights under Texas law."},
+    {"title": "Fathers’ rights", "text": "Fathers’ rights in Texas."},
+])}</div><p class="note">Also published: divorce myths, divorce FAQs, and a legal glossary on lonestarlaw.net.</p>')}''')
+
+    contact = contact_page(site, "<p>The office is at the corner of John Carpenter Freeway and Rochelle Boulevard. Do not send confidential case facts through this page — call (972) 445-1500.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "practice.html": practice, "contact.html": contact})
+    return site
+
+
+GALLERY_META = [
+    ("speakes-plumbing", "Speake's Plumbing, Inc.", "Garland, TX", "Residential & commercial plumbing"),
+    ("beyond-lawn-care", "Beyond Lawn Care & Landscaping", "Mesquite, TX", "Lawn care & landscaping"),
+    ("hughes-mechanical", "Hughes Mechanical and Electrical", "Arlington, TX", "HVAC & electrical contractors"),
+    ("victory-pest-control", "Victory Pest Control LLC", "Dallas–Fort Worth", "Pest & wildlife control"),
+    ("caremaster-building", "CareMaster Building Services", "Dallas / Fort Worth", "Commercial janitorial"),
+    ("forum-terrace-church", "Forum Terrace Church of Christ", "Grand Prairie, TX", "Congregation site"),
+    ("bb-complete-auto", "B&B Complete Auto Repair", "Garland, TX", "Auto repair & maintenance"),
+    ("ferraro-dds", "Daniel L. Ferraro, D.D.S.", "Grand Prairie, TX", "General dentistry"),
+    ("garden-restaurant", "Garden Restaurant", "Garland, TX", "Chinese restaurant"),
+    ("len-conner-law", "Law Office of Len Conner", "Irving, TX", "Divorce & family law"),
 ]
 
 
-GALLERY = '''<!DOCTYPE html>
+def write_gallery() -> None:
+    cards_html = "\n".join(
+        f'''<article class="card">
+      <p class="muted">{esc(city)}</p>
+      <h3>{esc(name)}</h3>
+      <p>{esc(industry)}</p>
+      <p><a class="btn btn-dark" href="sites/{esc(slug)}/index.html">Open site</a></p>
+      <p class="note"><code>sites/{esc(slug)}/</code></p>
+    </article>'''
+        for slug, name, city, industry in GALLERY_META
+    )
+    html = f'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KNECO DFW concept gallery</title>
-  <meta name="description" content="Ten static marketing concept mocks for a KNECO $500 DFW test.">
-  <meta name="robots" content="noindex, nofollow">
+  <title>DFW site rebuilds</title>
+  <meta name="description" content="Ten local-business website rebuilds.">
   <link rel="stylesheet" href="scaffold/styles.css">
   <link rel="stylesheet" href="gallery.css">
 </head>
@@ -964,10 +1038,9 @@ GALLERY = '''<!DOCTYPE html>
   <header class="site-header">
     <div class="wrap header-row">
       <a class="brand" href="#top">
-        <span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V6l8-3 8 3v12l-8 3-8-3zm8-12v12"></path></svg></span>
         <span class="brand-text">
-          <strong>KNECO concept gallery</strong>
-          <span>$500 DFW test · Matthew Sullivan / KNECOSWD</span>
+          <strong>DFW site rebuilds</strong>
+          <span>Ten local business websites</span>
         </span>
       </a>
     </div>
@@ -975,55 +1048,131 @@ GALLERY = '''<!DOCTYPE html>
   <main id="main">
     <section class="hero" id="top">
       <div class="wrap">
-        <p class="eyebrow">Static HTML only · $0 Azure</p>
-        <h1>Ten local-business concept sites.</h1>
-        <p class="lede">Open any card, or zip a single folder under <code>sites/</code>. None of these pages is the live business site. No forms were submitted to the companies.</p>
+        <p class="eyebrow">Static HTML · GitHub Pages</p>
+        <h1>DFW site rebuilds.</h1>
+        <p class="lede">Open any card, or zip a single folder under <code>sites/</code>. Each folder is a finished site with the business’s published content and existing logo.</p>
       </div>
     </section>
     <section>
       <div class="wrap">
         <div class="cards gallery-cards">
-          {cards}
+          {cards_html}
         </div>
       </div>
     </section>
   </main>
   <footer class="site-footer">
     <div class="wrap">
-      <p>Concept demo / not the live business site. Prepared for KNECO $500 DFW concept test.</p>
-      <p class="demo-note">GitHub Pages–ready from this repo root. No App Service, custom domains, or paid hosting required.</p>
+      <p>GitHub Pages from this repo root. No custom domains. No Azure hosting.</p>
     </div>
   </footer>
 </body>
 </html>
 '''
+    (ROOT / "index.html").write_text(html, encoding="utf-8")
 
 
-def gallery_card(site: dict) -> str:
-    return f'''<article class="card">
-      <p class="muted">{esc(site["city"])}</p>
-      <h3>{esc(site["name"])}</h3>
-      <p>{esc(site["industry"])}</p>
-      <p><a class="btn btn-dark" href="sites/{esc(site["slug"])}/index.html">Open mock</a></p>
-      <p class="note"><code>sites/{esc(site["slug"])}/</code></p>
-    </article>'''
+README = """# DFW site rebuilds
+
+Ten static website rebuilds for local Dallas–Fort Worth businesses.  
+Each folder under `sites/` is a finished site Matthew can open or zip and sell as-is.
+
+**$0 Azure.** No App Service, no custom domains, no paid hosting.  
+**No outreach.** Public pages were fetched only. No emails, calls, or live-site form submissions.
+
+## Open locally
+
+From this repo root:
+
+```bash
+python3 -m http.server 8080
+```
+
+Then open [http://127.0.0.1:8080/](http://127.0.0.1:8080/).
+
+Or open any file directly:
+
+- Gallery: `index.html`
+- A single site: `sites/<slug>/index.html`
+
+## Zip one site
+
+Each folder under `sites/` is self-contained (`index.html`, extra pages, `styles.css`, `theme.css`, `site.js`, `assets/`).
+
+```bash
+cd sites
+zip -r speakes-plumbing.zip speakes-plumbing
+```
+
+Unzip and open `index.html`. No build step, no Node, no Azure.
+
+## GitHub Pages
+
+Publish this repo root. Keep `.nojekyll`. The gallery at `/` links to `/sites/<slug>/`.
+
+Preview URLs:
+
+1. https://knecoswd.github.io/dfw-concept-sites/sites/speakes-plumbing/
+2. https://knecoswd.github.io/dfw-concept-sites/sites/beyond-lawn-care/
+3. https://knecoswd.github.io/dfw-concept-sites/sites/hughes-mechanical/
+4. https://knecoswd.github.io/dfw-concept-sites/sites/victory-pest-control/
+5. https://knecoswd.github.io/dfw-concept-sites/sites/caremaster-building/
+6. https://knecoswd.github.io/dfw-concept-sites/sites/forum-terrace-church/
+7. https://knecoswd.github.io/dfw-concept-sites/sites/bb-complete-auto/
+8. https://knecoswd.github.io/dfw-concept-sites/sites/ferraro-dds/
+9. https://knecoswd.github.io/dfw-concept-sites/sites/garden-restaurant/
+10. https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/
+
+## The 10 sites
+
+| # | Business | City | Folder |
+| --- | --- | --- | --- |
+| 1 | Speake's Plumbing, Inc. | Garland | [`sites/speakes-plumbing/`](sites/speakes-plumbing/) |
+| 2 | Beyond Lawn Care & Landscaping | Mesquite | [`sites/beyond-lawn-care/`](sites/beyond-lawn-care/) |
+| 3 | Hughes Mechanical and Electrical | Arlington | [`sites/hughes-mechanical/`](sites/hughes-mechanical/) |
+| 4 | Victory Pest Control LLC | DFW | [`sites/victory-pest-control/`](sites/victory-pest-control/) |
+| 5 | CareMaster Building Services | Dallas / Fort Worth | [`sites/caremaster-building/`](sites/caremaster-building/) |
+| 6 | Forum Terrace Church of Christ | Grand Prairie | [`sites/forum-terrace-church/`](sites/forum-terrace-church/) |
+| 7 | B&B Complete Auto Repair | Garland | [`sites/bb-complete-auto/`](sites/bb-complete-auto/) |
+| 8 | Daniel L. Ferraro, D.D.S. | Grand Prairie | [`sites/ferraro-dds/`](sites/ferraro-dds/) |
+| 9 | Garden Restaurant | Garland | [`sites/garden-restaurant/`](sites/garden-restaurant/) |
+| 10 | Law Office of Len Conner | Irving | [`sites/len-conner-law/`](sites/len-conner-law/) |
+
+## Shared scaffold
+
+- [`scaffold/styles.css`](scaffold/styles.css) — layout, mobile nav, forms
+- [`scaffold/site.js`](scaffold/site.js) — menu + on-page form confirmation (does not email the business)
+- [`scaffold/build.py`](scaffold/build.py) — rebuilds all 10 folders from the shared files
+
+```bash
+python3 scaffold/build.py
+```
+
+Contact forms stay on the page. They do not email, store, or submit to the businesses. Please call so the office receives the request.
+
+## Source notes
+
+- **Logos** are the businesses’ existing marks downloaded from their live sites (or the public Wayback copy for Ferraro) and stored under `sites/<slug>/assets/`.
+- **Beyond Lawn Care** embeds Google reviews via Elfsight. Review text is not in the HTML and was not invented.
+- **Hughes Mechanical** publishes no customer reviews. None were added. Wix placeholder socials were ignored.
+- **CareMaster** current pages list (469) 233-3366 and customerservice@caremaster.biz. No street address is published on those pages.
+- **Ferraro DDS** live site returned Cloudflare 403. Content and the published site logo come from the October 2025 Wayback snapshot of grandprairie-arlingtondental.com.
+- **Speake's** homepage slider labels MashIt / FabuFit / YesSuits are template chrome, not used as company names.
+"""
 
 
-def write_sites() -> None:
-    SITES.mkdir(exist_ok=True)
-    for site in SITES_DATA:
-        dest = SITES / site["slug"]
-        dest.mkdir(parents=True, exist_ok=True)
-        (dest / "index.html").write_text(render(site), encoding="utf-8")
-        (dest / "theme.css").write_text(theme_css(site), encoding="utf-8")
-        shutil.copyfile(SCAFFOLD / "styles.css", dest / "styles.css")
-        shutil.copyfile(SCAFFOLD / "site.js", dest / "site.js")
-
-    cards_html = "\n".join(gallery_card(site) for site in SITES_DATA)
-    (ROOT / "index.html").write_text(GALLERY.replace("{cards}", cards_html), encoding="utf-8")
-    (ROOT / "sites-data.json").write_text(json.dumps(SITES_DATA, indent=2), encoding="utf-8")
-    print(f"Wrote {len(SITES_DATA)} sites")
+def main() -> None:
+    builders = [speakes, beyond, hughes, victory, caremaster, forum, bb, ferraro, garden, len_conner]
+    built = [fn() for fn in builders]
+    write_gallery()
+    (ROOT / "README.md").write_text(README, encoding="utf-8")
+    (ROOT / "sites-data.json").write_text(
+        json.dumps([{"slug": s["slug"], "name": s["name"], "city": s["city"]} for s in built], indent=2),
+        encoding="utf-8",
+    )
+    (ROOT / ".nojekyll").write_text("", encoding="utf-8")
+    print(f"Wrote {len(built)} sites")
 
 
 if __name__ == "__main__":
-    write_sites()
+    main()

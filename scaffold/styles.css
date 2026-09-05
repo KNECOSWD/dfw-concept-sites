@@ -1,21 +1,21 @@
-/* KNECO DFW concept scaffold — shared local-business layout */
+/* Shared sell-as-is layout — local-business sites */
 :root {
-  --bg: #f6f4ef;
+  --bg: #f4f2ed;
   --surface: #ffffff;
-  --ink: #1a1d21;
-  --muted: #5b616a;
-  --line: rgba(26, 29, 33, 0.12);
+  --ink: #16191d;
+  --muted: #5a616b;
+  --line: rgba(22, 25, 29, 0.12);
   --brand: #1e3a5f;
   --brand-2: #c47a3a;
   --brand-ink: #ffffff;
   --accent: #c47a3a;
   --hero-ink: #ffffff;
-  --radius: 18px;
-  --shadow: 0 16px 40px rgba(20, 24, 30, 0.1);
+  --radius: 16px;
+  --shadow: 0 14px 36px rgba(20, 24, 30, 0.1);
   --max: 1120px;
   --font: "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
-  --font-display: "Georgia", "Palatino Linotype", "Times New Roman", serif;
-  --space: clamp(1.25rem, 3vw, 2.5rem);
+  --font-display: Georgia, "Palatino Linotype", "Times New Roman", serif;
+  --space: clamp(1.35rem, 3vw, 2.6rem);
 }
 
 *,
@@ -39,6 +39,7 @@ body {
 
 img {
   max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -68,7 +69,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
@@ -78,7 +79,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  min-height: 4.25rem;
+  min-height: 4.4rem;
   flex-wrap: nowrap;
 }
 
@@ -90,21 +91,18 @@ a {
   min-width: 0;
 }
 
-.mark {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 12px;
-  background: var(--brand);
-  color: var(--brand-ink);
-  display: grid;
-  place-items: center;
+.brand img.logo {
+  display: block;
+  height: 48px;
+  width: auto;
+  max-width: min(46vw, 200px);
+  object-fit: contain;
   flex: none;
 }
 
-.mark svg {
-  width: 1.35rem;
-  height: 1.35rem;
-  fill: currentColor;
+.brand img.logo.wide {
+  height: 40px;
+  max-width: min(52vw, 240px);
 }
 
 .brand-text {
@@ -131,17 +129,18 @@ a {
 
 .nav {
   display: none;
-  gap: 1.1rem;
+  gap: 1rem;
   align-items: center;
 }
 
 .nav a {
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 0.94rem;
 }
 
 .nav a:hover,
-.nav a:focus-visible {
+.nav a:focus-visible,
+.nav a[aria-current="page"] {
   color: var(--brand);
 }
 
@@ -174,7 +173,7 @@ a {
   position: relative;
   color: var(--hero-ink);
   overflow: hidden;
-  padding: clamp(2.8rem, 8vw, 5.5rem) 0;
+  padding: clamp(2.8rem, 8vw, 5.4rem) 0;
   background:
     radial-gradient(circle at 12% 18%, color-mix(in srgb, var(--brand-2) 42%, transparent), transparent 36%),
     linear-gradient(145deg, var(--brand), color-mix(in srgb, var(--brand) 70%, #000));
@@ -190,16 +189,15 @@ a {
   pointer-events: none;
 }
 
-.hero-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 1.5rem;
-}
-
+.hero-grid,
 .hero .wrap {
   position: relative;
   z-index: 1;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 1.5rem;
 }
 
 .eyebrow {
@@ -213,18 +211,33 @@ a {
   opacity: 0.92;
 }
 
-.hero h1 {
+.hero h1,
+.page-hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 7vw, 3.6rem);
+  font-size: clamp(2rem, 6.4vw, 3.4rem);
   line-height: 1.08;
   margin: 0.35rem 0 0.8rem;
-  max-width: 14ch;
+  max-width: 16ch;
 }
 
 .lede {
-  max-width: 38rem;
+  max-width: 40rem;
   font-size: 1.05rem;
   opacity: 0.94;
+}
+
+.page-hero {
+  padding: clamp(1.8rem, 5vw, 3rem) 0 0.4rem;
+}
+
+.page-hero h1 {
+  color: var(--ink);
+  max-width: 22ch;
+}
+
+.page-hero .lede {
+  color: var(--muted);
+  opacity: 1;
 }
 
 .actions {
@@ -245,6 +258,9 @@ a {
   text-decoration: none;
   border: 1px solid transparent;
   font-weight: 700;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .btn-primary {
@@ -276,6 +292,10 @@ a {
   font-size: 1.15rem;
 }
 
+.panel a {
+  color: inherit;
+}
+
 .kpis {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -302,7 +322,7 @@ section {
 .section-head p {
   margin: 0;
   color: var(--muted);
-  max-width: 40rem;
+  max-width: 46rem;
 }
 
 h2 {
@@ -310,6 +330,26 @@ h2 {
   font-size: clamp(1.6rem, 4vw, 2.2rem);
   margin: 0;
   line-height: 1.15;
+}
+
+h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.08rem;
+}
+
+.prose p,
+.prose li {
+  color: var(--ink);
+}
+
+.prose p {
+  margin: 0 0 0.9rem;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
 }
 
 .cards {
@@ -325,14 +365,14 @@ h2 {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
 }
 
-.card h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1.08rem;
-}
-
 .card p {
   margin: 0;
   color: var(--muted);
+}
+
+.card p + p,
+.review p + p {
+  margin-top: 0.55rem;
 }
 
 .about-grid,
@@ -377,6 +417,24 @@ h2 {
 .note {
   font-size: 0.88rem;
   color: var(--muted);
+}
+
+.hours-list,
+.menu-list {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hours-list li,
+.menu-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding: 0.35rem 0;
 }
 
 label {
@@ -431,7 +489,11 @@ textarea {
   gap: 1.1rem;
 }
 
-.demo-note {
+.site-footer a {
+  color: inherit;
+}
+
+.legal {
   opacity: 0.86;
   font-size: 0.86rem;
   border-top: 1px solid color-mix(in srgb, #fff 18%, transparent);
@@ -456,16 +518,10 @@ textarea {
   flex: 1;
 }
 
-.placeholder-flag {
-  display: inline-block;
-  margin-left: 0.35rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: color-mix(in srgb, var(--accent) 16%, #fff);
+.price {
+  font-weight: 700;
   color: var(--ink);
-  border-radius: 999px;
-  padding: 0.1rem 0.4rem;
+  white-space: nowrap;
 }
 
 @media (min-width: 760px) {
@@ -486,7 +542,11 @@ textarea {
   .contact-grid,
   .split,
   .footer-grid {
-    grid-template-columns: 1.3fr 0.9fr;
+    grid-template-columns: 1.25fr 0.95fr;
+    align-items: start;
+  }
+
+  .hero-grid {
     align-items: center;
   }
 
@@ -506,6 +566,10 @@ textarea {
 @media (min-width: 980px) {
   .cards {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cards.two {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
