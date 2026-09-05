@@ -52,60 +52,92 @@ Current rebuild `theme.css` uses `#c1121f` — close; **prefer `#ee0101`** to ma
 
 ---
 
-## Content / nav parity (HARD GATE)
+## Content / nav / image / favicon parity (Scout fold — authoritative)
 
-**Parity status:** FAIL risk — Services dropdown with ~12 children missing; Gallery missing from rebuild nav.
+_Folded from `/workspace/dfw-parity/bb-complete-auto.md` (Scout public HTML inventory, 2026-09-05). Supersedes thinner lists for Eng._
 
-### Live nav map
-- **Home** → `https://bbcompleteautorepair.com/home/`
-- **About** → `https://bbcompleteautorepair.com/about-us/`
-- **Auto Repair Services** (dropdown)
-  - Auto Glass → `https://bbcompleteautorepair.com/auto-repair-services/auto-glass/`
-  - German Auto Repair → `https://bbcompleteautorepair.com/auto-repair-services/german-auto-repair/`
-  - Brake Services → `https://bbcompleteautorepair.com/auto-repair-services/brake-services/`
-  - Collision Repair → `https://bbcompleteautorepair.com/auto-repair-services/collision-repair/`
-  - Engine Repair → `https://bbcompleteautorepair.com/auto-repair-services/engine-repair/`
-  - Exhaust Repair → `https://bbcompleteautorepair.com/auto-repair-services/exhaust-repair/`
-  - Oil Change → `https://bbcompleteautorepair.com/auto-repair-services/oil-change/`
-  - Radiator Repair and Inspection → `https://bbcompleteautorepair.com/auto-repair-services/radiator-repair-and-inspection/`
-  - Auto Diagnostics → `https://bbcompleteautorepair.com/auto-repair-services/auto-diagnostics/`
-  - Tire Rotation and Alignment → `https://bbcompleteautorepair.com/auto-repair-services/tire-rotation-and-alignment/`
-  - Tire Services → `https://bbcompleteautorepair.com/auto-repair-services/tire-services/`
-  - Transmission Service → `https://bbcompleteautorepair.com/auto-repair-services/transmission-service/`
-- **F.A.Q.** → `https://bbcompleteautorepair.com/faq/`
-- **Gallery** → `https://bbcompleteautorepair.com/gallery/`
-- **Contact** → `https://bbcompleteautorepair.com/contact-us/`
-- **Service Areas** → `https://bbcompleteautorepair.com/service-areas/`
+# CONTENT PARITY — bb-complete-auto
+
+**Live source:** https://bbcompleteautorepair.com/  
+**Fetched:** 2026-09-05 (HTTPS 200; public homepage HTML only)  
+**Page title:** B&B Complete Auto Repair | Contact Us Now  
+**Notes:** No invented URLs or labels.
+
+---
+
+## 1. Primary navigation (+ dropdown children)
+
+Source: homepage `<nav>` page-list menu (Foundation top-bar).
+
+| Label | Absolute URL | Dropdown children |
+|-------|--------------|-------------------|
+| Home | https://bbcompleteautorepair.com/home/ | *(none)* |
+| About | https://bbcompleteautorepair.com/about-us/ | *(none)* |
+| Auto Repair Services | https://bbcompleteautorepair.com/auto-repair-services/ | **see below** |
+| F.A.Q. | https://bbcompleteautorepair.com/faq/ | *(none)* |
+| Gallery | https://bbcompleteautorepair.com/gallery/ | *(none)* |
+| Contact | https://bbcompleteautorepair.com/contact-us/ | *(none)* |
+| Service Areas | https://bbcompleteautorepair.com/service-areas/ | *(none)* |
+
+**Dropdown — Auto Repair Services** (`page_item_has_children` / nested `<ul>`):
+
+| Child label | Absolute URL |
+|-------------|--------------|
+| Auto Glass | https://bbcompleteautorepair.com/auto-repair-services/auto-glass/ |
+| German Auto Repair | https://bbcompleteautorepair.com/auto-repair-services/german-auto-repair/ |
+| Brake Services | https://bbcompleteautorepair.com/auto-repair-services/brake-services/ |
+| Collision Repair | https://bbcompleteautorepair.com/auto-repair-services/collision-repair/ |
+| Engine Repair | https://bbcompleteautorepair.com/auto-repair-services/engine-repair/ |
+| Exhaust Repair | https://bbcompleteautorepair.com/auto-repair-services/exhaust-repair/ |
+| Oil Change | https://bbcompleteautorepair.com/auto-repair-services/oil-change/ |
+| Radiator Repair and Inspection | https://bbcompleteautorepair.com/auto-repair-services/radiator-repair-and-inspection/ |
+| Auto Diagnostics | https://bbcompleteautorepair.com/auto-repair-services/auto-diagnostics/ |
+| Tire Rotation and Alignment | https://bbcompleteautorepair.com/auto-repair-services/tire-rotation-and-alignment/ |
+| Tire Services | https://bbcompleteautorepair.com/auto-repair-services/tire-services/ |
+| Transmission Service | https://bbcompleteautorepair.com/auto-repair-services/transmission-service/ |
+
+**Header chrome (not primary nav items):** Facebook, Instagram, Google Maps place link, phone `tel:+12149946989` → (214) 994-6989.
+
+---
+
+## 2. Key live images / heroes (absolute URLs)
+
+### Logo (header)
+- https://bbcompleteautorepair.com/wp-content/uploads/sites/515/2022/04/logo.png  
+  *(alt: B&B Complete Auto Repair)*
+
+### Hero / location image (header)
+- https://bbcompleteautorepair.com/wp-content/uploads/sites/515/2022/03/home-bg.jpg  
+  *(alt: B&B Complete Auto Repair Location)*
+
+### Homepage section images (theme)
+- https://bbcompleteautorepair.com/wp-content/themes/gbm/images/home-01.jpg
+- https://bbcompleteautorepair.com/wp-content/themes/gbm/images/home-02.jpg
+
+### Google review badge
+- https://bbcompleteautorepair.com/wp-content/uploads/sites/515/2025/11/review-w.png  
+  *(alt: Leave A Google Review)*
+
+### Footer host logo (present on page; third-party)
+- https://linknow.com/linknow_images/linknow-logo-white.png  
+  *(alt: Website Hosted By LinkNow™ Media)*
+
+---
+
+## 3. Favicon URL(s)
+
+**None declared** in homepage `<head>` (no `rel="icon"`, `shortcut icon`, or `apple-touch-icon` links).
+
+Probes from this inventory pass:
+- `https://bbcompleteautorepair.com/favicon.ico` → **HTTP 404**
+- `https://bbcompleteautorepair.com/favicon.png` → **HTTP 404**
+- `https://bbcompleteautorepair.com/apple-touch-icon.png` → **HTTP 404**
 
 
 
-### Rebuild nav map (current)
-- Home → `index.html`
-- About → `about.html`
-- Services → `services.html`
-- Service Areas → `areas.html`
-- F.A.Q. → `faq.html`
-- Contact → `contact.html`
+### Parity emphasis
+- **Auto Repair Services** dropdown = **12 children** (restore all).
+- Gallery + Service Areas are top-level — rebuild must not drop Gallery.
+- Favicon: none on live — **derive from** `…/logo.png` (local `favicons/bb-complete-auto.png`). Never invent a mark.
 
-### Eng requirement
-Restore **full live header IA** (every top item + dropdown children). Collapsing only OK if every destination stays reachable with the **same labels**. Do not strip Financing / service-area / deep service pages into a thin 4–5 link bar.
-
-## Image inventory (Eng must incorporate)
-
-Homepage (and linked gallery/team) assets from live — download into `assets/` and place in matching sections (hero / gallery / team / services). Do not leave pages image-thin vs live.
-
-1. **logo** — `https://bbcompleteautorepair.com/wp-content/uploads/sites/515/2022/04/logo.png` alt="B&B Complete Auto Repair"
-2. **hero/banner** — `https://bbcompleteautorepair.com/wp-content/uploads/sites/515/2022/03/home-bg.jpg` alt="B&B Complete Auto Repair Location"
-3. **hero/banner** — `https://bbcompleteautorepair.com/wp-content/themes/gbm/images/home-01.jpg`
-4. **hero/banner** — `https://bbcompleteautorepair.com/wp-content/themes/gbm/images/home-02.jpg`
-5. **content** — `https://bbcompleteautorepair.com/wp-content/uploads/sites/515/2025/11/review-w.png` alt="Leave A Google Review"
-6. **logo** — `https://linknow.com/linknow_images/linknow-logo-white.png` alt="Website Hosted By LinkNow&trade Media"
-
-Parsed homepage image count (raw): **6**. Also pull gallery/inner-page images when those routes are restored.
-
-## Favicon
-
-- **Live source:** `https://bbcompleteautorepair.com/favicon.ico`
-- **Local capture:** `/workspace/dfw-design-briefs/favicons/bb-complete-auto.ico`
-- **Note:** Ship this favicon (or logo-derived 32/180) — never invent a new mark.
 
