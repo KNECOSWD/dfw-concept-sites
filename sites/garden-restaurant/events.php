@@ -22,10 +22,10 @@
       </a>
       <nav id="site-nav" class="nav" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="about.php">About Us</a>
-        <a href="menu.php">Menu</a>
-        <a href="gallery.php">Gallery</a>
-        <a href="contact.php">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <a class="btn btn-primary header-cta" href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa" target="_blank" rel="noopener noreferrer">Order PickUp | Delivery</a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
@@ -33,8 +33,8 @@
   </header>
   <main id="main">
     <section class="page-hero"><div class="wrap"><h1>Events</h1></div></section>
-    <section><div class="wrap prose"><p>About/Events stay thin as on the live site. Call (972) 487-8289 for current events.</p>
-      <p>Call the office to confirm current details and schedule.</p>
+    <section><div class="wrap prose"><p>Call (972) 487-8289 for current events.</p>
+      <p>Call <a href="tel:+19724878289">(972) 487-8289</a> to confirm current details and schedule.</p>
     </div></section>
   </main>
   <footer class="site-footer">
@@ -49,11 +49,11 @@
         
                 <ul class="footer-menu">
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.php">About Us</a></li>
-          <li><a href="menu.php">Menu</a></li>
-          <li><a href="events.php">Events</a></li>
-          <li><a href="online.php">Order PickUp | Delivery</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="online.html">Order PickUp | Delivery</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
         <p class="legal">© <span id="year"></span> Garden Restaurant. All rights reserved.</p>
       </div>
@@ -61,7 +61,7 @@
   </footer>
   <div class="callbar">
     <a class="btn btn-primary" href="tel:+19724878289">Call (972) 487-8289</a>
-    <a class="btn btn-dark" href="contact.php">Contact</a>
+    <a class="btn btn-dark" href="contact.html">Contact</a>
   </div>
   <script src="site.js"></script>
 </body>

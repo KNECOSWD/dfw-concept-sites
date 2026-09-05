@@ -9,7 +9,7 @@
   --brand: #7a001a;
   --brand-2: #990021;
   --accent: #990021;
-  --hero-ink: #ffffff;
+  --hero-ink: #3a0010;
   --nav-bar: #5a5a5a;
   --font-display: Acme, "Open Sans", "Segoe UI", sans-serif;
   --font: "Open Sans", "Segoe UI", system-ui, sans-serif;
@@ -237,10 +237,10 @@ body {
 }
 
 .speake-hero.hero {
-  --hero-scrim: linear-gradient(90deg, rgba(122, 0, 26, 0.82) 0%, rgba(122, 0, 26, 0.55) 55%, rgba(122, 0, 26, 0.08) 100%);
+  --hero-scrim: linear-gradient(90deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.38) 46%, rgba(255, 255, 255, 0.1) 100%);
   min-height: clamp(18rem, 46vw, 28rem);
   padding: 0;
-  background: #3a0010 url("assets/hero-1.jpg") center / cover no-repeat;
+  background: #f3eee8;
 }
 
 .speake-hero::after {
@@ -252,12 +252,13 @@ body {
   left: 0;
   bottom: 0;
   z-index: 2;
-  background: rgba(122, 0, 26, 0.92);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.86);
+  color: #5a0014;
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 3.4vw, 2.1rem);
-  padding: 0.85rem 1.35rem;
+  padding: 0.95rem 1.5rem;
   max-width: min(92vw, 36rem);
+  box-shadow: 0 12px 32px rgba(26, 0, 8, 0.08);
 }
 
 .page-hero.speake-page-hero {
@@ -285,35 +286,27 @@ body {
 }
 
 .band-photo {
-  --band-scrim: rgba(26, 26, 26, 0.55);
-  background: #1a1a1a url("assets/parallax.jpg") center / cover no-repeat;
-  color: #fff;
+  --band-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.64) 100%);
+  background: #f3eee8 url("assets/parallax.jpg") center / cover no-repeat;
+  color: #2a1014;
   text-align: center;
   padding: clamp(2.8rem, 6vw, 4.2rem) 1rem;
 }
 
 .reviews.band-photo {
-  --band-scrim: rgba(26, 26, 26, 0.55);
-  background: #1a1a1a url("assets/testimonials-band.jpg") center / cover no-repeat;
+  --band-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.68) 100%);
+  background: #f3eee8 url("assets/testimonials-band.jpg") center / cover no-repeat;
   padding: clamp(2.4rem, 5vw, 3.6rem) 0;
 }
 
 .band-photo h2,
 .band-photo p {
-  color: #fff;
+  color: #2a1014;
 }
 
-#home-video video {
-  display: block;
-  width: 100%;
-  max-width: 48rem;
-  margin: 1.25rem auto;
-  height: auto;
-}
-#hero-slides img {
-  width: 100%;
-  height: 8rem;
-  object-fit: cover;
+.reviews.band-photo .card {
+  background: rgba(255, 255, 255, 0.92);
+  color: #2a1014;
 }
 
 .media-frame {

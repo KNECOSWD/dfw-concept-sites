@@ -7,7 +7,7 @@
   --brand: #18793f;
   --brand-2: #f27c21;
   --accent: #d45f10;
-  --hero-ink: #ffffff;
+  --hero-ink: #163022;
   --font-display: Montserrat, "Work Sans", system-ui, sans-serif;
   --font: "Work Sans", "Segoe UI", system-ui, sans-serif;
   --hero-pattern: radial-gradient(circle at 1px 1px, rgba(255,255,255,.35) 1px, transparent 0);
@@ -17,8 +17,8 @@
 }
 
 .hero {
-  --hero-scrim: linear-gradient(90deg, rgba(22, 48, 34, 0.78) 0%, rgba(22, 48, 34, 0.45) 60%, transparent 100%);
-  background: linear-gradient(145deg, #18793f, #0f5a2c);
+  --hero-scrim: linear-gradient(90deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.42) 52%, rgba(255, 255, 255, 0.08) 100%);
+  background: #eef6f0;
 }
 .prose a, .nav a:hover, .nav a[aria-current="page"] { color: #18793f; }
 .photo-grid { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 0.4rem; }
@@ -57,11 +57,11 @@
 
 
 .hero.video-hero {
-  --hero-scrim: linear-gradient(90deg, rgba(22, 48, 34, 0.78) 0%, rgba(22, 48, 34, 0.58) 42%, rgba(22, 48, 34, 0.18) 72%, rgba(22, 48, 34, 0) 100%);
+  --hero-scrim: linear-gradient(90deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.48) 42%, rgba(255, 255, 255, 0.12) 72%, rgba(255, 255, 255, 0.04) 100%);
   position: relative;
   min-height: clamp(28rem, 58vw, 38rem);
   overflow: hidden;
-  background: #163022 url("assets/hero-poster.jpg") center / cover no-repeat;
+  background: #eef6f0 url("assets/hero-poster.jpg") center / cover no-repeat;
 }
 .hero.video-hero .videobgframe {
   position: absolute;
@@ -75,13 +75,19 @@
 .hero.video-hero .hero-grid { position: relative; z-index: 1; }
 .hero.video-hero::after { opacity: 0; }
 .hero.video-hero h1 {
-  color: #fff;
+  color: #163022;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   max-width: 14ch;
 }
 .hero.video-hero .lede,
-.hero.video-hero .eyebrow { color: #fff; }
+.hero.video-hero .eyebrow { color: #163022; }
+.hero.video-hero .btn-ghost { color: #18793f; border-color: #18793f; }
+.hero.video-hero .panel {
+  background: rgba(255, 255, 255, 0.9);
+  color: #163022;
+  border-color: rgba(24, 121, 63, 0.22);
+}
 .prose a { color: #18793f; }
 .btn-primary { background: #d45f10; color: #fff; }
 .nav a { color: #f27c21; }

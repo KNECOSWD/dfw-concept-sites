@@ -7,7 +7,7 @@
   --brand: #1a1a1a;
   --brand-2: #ee0101;
   --accent: #ee0101;
-  --hero-ink: #ffffff;
+  --hero-ink: #1a1a1a;
   --font-display: "Segoe UI", system-ui, sans-serif;
   --font: "Segoe UI", system-ui, sans-serif;
   --hero-pattern: none;
@@ -55,18 +55,19 @@
 
 
 .hero {
-  --hero-scrim: linear-gradient(105deg, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.58) 52%, rgba(10, 10, 10, 0.28) 100%);
-  background: #111 url("assets/home-bg.jpg") center / cover no-repeat;
+  --hero-scrim: linear-gradient(105deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.48) 52%, rgba(255, 255, 255, 0.14) 100%);
+  background: #f3f3f3 url("assets/home-bg.jpg") center / cover no-repeat;
   min-height: clamp(22rem, 50vw, 32rem);
 }
 .hero h1,
 .hero .lede,
-.hero .eyebrow { color: #fff; }
+.hero .eyebrow { color: #1a1a1a; }
 .hero .panel {
-  background: rgba(10, 10, 10, 0.86);
-  color: #fff;
-  border-color: rgba(238, 1, 1, 0.45);
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a;
+  border-color: rgba(238, 1, 1, 0.35);
 }
+.hero .btn-ghost { color: #1a1a1a; border-color: #1a1a1a; }
 .btn-primary { background: #ee0101; color: #fff; }
 .prose a { color: #b80000; }
 .cards { gap: 0.75rem; }

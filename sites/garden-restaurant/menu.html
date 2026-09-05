@@ -22,10 +22,10 @@
       </a>
       <nav id="site-nav" class="nav" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="about.php">About Us</a>
-        <a href="menu.php">Menu</a>
-        <a href="gallery.php">Gallery</a>
-        <a href="contact.php">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <a class="btn btn-primary header-cta" href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa" target="_blank" rel="noopener noreferrer">Order PickUp | Delivery</a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
@@ -35,7 +35,7 @@
     <section class="page-hero">
       <div class="wrap">
         <h1>Menu</h1>
-        <p class="lede">All categories and prices as published on the restaurant menu page. Call to confirm today’s availability.</p>
+        <p class="lede">Categories and prices from the menu. Call to confirm today’s availability.</p>
       </div>
     </section>
     <section>
@@ -51,7 +51,7 @@
         <article class="card"><h3>Family Dinner</h3><ul class="menu-list"><li><span>Peking Duck Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Salt Pepper Squid Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Beef with String Bean Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Salted Fish &amp; Shrimp Fried Rice Family Dinner (For Four)</span><span class="price">$88.00</span></li><li><span>Peking Duck - 2 Ways Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Half of House Steamed Chicken Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Hong Kong Style Shrimp Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Beef with Chinese Broccoli Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>XO Seafood Fried Rice Family Dinner (For Six)</span><span class="price">$168.00</span></li><li><span>Crispy Deep Fried Flounder Fish Family Dinner (For Six)</span><span class="price">$168.00</span></li></ul></article>
         <article class="card"><h3>Drinks</h3><ul class="menu-list"><li><span>Hot Tea</span><span class="price">$1.50</span></li><li><span>Iced Tea</span><span class="price">$1.50</span></li><li><span>Soft Drink</span><span class="price">$2.00</span></li><li><span>Iced Coffee</span><span class="price">$4.00</span></li><li><span>Fresh Coconut Juice</span><span class="price">$5.50</span></li><li><span>Fresh Lemonade</span><span class="price">$4.50</span></li></ul></article>
       </div>
-      <div class="wrap"><p class="note">Full priced menu from gardenrestaurantgarland.com/menu.php. Call (972) 487-8289 to confirm today’s availability. The live site publishes no reviews; none are added here.</p></div>
+      <div class="wrap"><p class="note">Call (972) 487-8289 to confirm today’s availability.</p></div>
     </section>
   </main>
   <footer class="site-footer">
@@ -66,11 +66,11 @@
         
                 <ul class="footer-menu">
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.php">About Us</a></li>
-          <li><a href="menu.php">Menu</a></li>
-          <li><a href="events.php">Events</a></li>
-          <li><a href="online.php">Order PickUp | Delivery</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="online.html">Order PickUp | Delivery</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
         <p class="legal">© <span id="year"></span> Garden Restaurant. All rights reserved.</p>
       </div>
@@ -78,7 +78,7 @@
   </footer>
   <div class="callbar">
     <a class="btn btn-primary" href="tel:+19724878289">Call (972) 487-8289</a>
-    <a class="btn btn-dark" href="contact.php">Contact</a>
+    <a class="btn btn-dark" href="contact.html">Contact</a>
   </div>
   <script src="site.js"></script>
 </body>

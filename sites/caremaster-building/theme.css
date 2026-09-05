@@ -7,7 +7,7 @@
   --brand: #1F4A3B;
   --brand-2: #918561;
   --accent: #1F4A3B;
-  --hero-ink: #ffffff;
+  --hero-ink: #1F4A3B;
   --font-display: "Source Sans Pro", "Open Sans", "Segoe UI", sans-serif;
   --font: "Open Sans", "Source Sans Pro", "Segoe UI", sans-serif;
   --hero-pattern: none;
@@ -66,8 +66,8 @@ h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #
 
 
 .hero {
-  --hero-scrim: linear-gradient(180deg, rgba(40, 35, 40, 0.48) 0%, rgba(40, 35, 40, 0.62) 50%, rgba(40, 35, 40, 0.55) 100%);
-  background: #2a252a url("assets/city.png") center / cover no-repeat;
+  --hero-scrim: linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.48) 50%, rgba(255, 255, 255, 0.58) 100%);
+  background: #e8e6e2 url("assets/city.png") center / cover no-repeat;
   min-height: clamp(22rem, 48vw, 30rem);
   text-align: center;
   padding: clamp(4.5rem, 10vw, 7rem) 0;
@@ -79,7 +79,7 @@ h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #
 .hero h1 {
   max-width: 22ch;
   margin-inline: auto;
-  color: #fff;
+  color: #1f4a3b;
   font-weight: 600;
   font-size: clamp(1.4rem, 2.6vw, 1.9rem);
   letter-spacing: 0.01em;

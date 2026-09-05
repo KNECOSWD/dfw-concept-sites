@@ -22,47 +22,65 @@
       </a>
       <nav id="site-nav" class="nav" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="about.php">About Us</a>
-        <a href="menu.php">Menu</a>
-        <a href="gallery.php">Gallery</a>
-        <a href="contact.php">Contact</a>
+        <a href="about.html">About Us</a>
+        <a href="menu.html">Menu</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <a class="btn btn-primary header-cta" href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa" target="_blank" rel="noopener noreferrer">Order PickUp | Delivery</a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     </div>
   </header>
   <main id="main">
-    <section class="hero hero-center hero-photo" id="top">
+    <section class="hero hero-center hero-photo" id="top" data-hero-carousel aria-roledescription="carousel" aria-label="Restaurant banners">
+      <div class="hero-slide-layer" aria-hidden="true">
+        <div class="hero-slide is-active">
+          <div class="hero-slide-desk" style="background-image:url('assets/banner-1.jpg')"></div>
+          <div class="hero-slide-mob" style="background-image:url('assets/banner-m1.jpg')"></div>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-slide-desk" style="background-image:url('assets/banner-2.jpg')"></div>
+          <div class="hero-slide-mob" style="background-image:url('assets/banner-m2.jpg')"></div>
+        </div>
+        <div class="hero-slide">
+          <div class="hero-slide-desk" style="background-image:url('assets/banner-3.jpg')"></div>
+          <div class="hero-slide-mob" style="background-image:url('assets/banner-m3.jpg')"></div>
+        </div>
+      </div>
       <div class="wrap">
-        
         <h1><img class="hero-mark" src="assets/logo.png" alt="Garden Restaurant"></h1>
         <p class="lede">Welcome to Garden Restaurant. We’re proud to serve a variety of delicious meals made with care and quality ingredients — for a quick bite or dining with family and friends.</p>
         <div class="actions">
             <a class="btn btn-primary" href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa" target="_blank" rel="noopener noreferrer">Order PickUp | Delivery</a>
-            <a class="btn btn-ghost" href="menu.php">See the menu</a>
+            <a class="btn btn-ghost" href="menu.html">See the menu</a>
           </div>
       </div>
-    </section>
-    <section id="banners" aria-label="Published restaurant banners">
-      <div class="wrap photo-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.5rem;padding:1rem 0;">
-        <img src="assets/banner-1.jpg" alt="Garden Restaurant banner">
-        <img src="assets/banner-2.jpg" alt="Garden Restaurant banner">
-        <img src="assets/banner-3.jpg" alt="Garden Restaurant banner">
+      <div class="hero-carousel-ui">
+        <button type="button" data-hero-dot aria-label="Show banner 1" aria-current="true"></button>
+        <button type="button" data-hero-dot aria-label="Show banner 2"></button>
+        <button type="button" data-hero-dot aria-label="Show banner 3"></button>
+        <button type="button" data-hero-pause aria-pressed="false">Pause</button>
       </div>
     </section>
     <section id="specialties">
       <div class="wrap">
-        <img src="assets/specialties.jpg" alt="Garden Restaurant specialties" class="media-frame" style="width:100%;max-width:42rem;display:block;margin:1.5rem auto;">
+        <img src="assets/specialties.jpg" alt="Garden Restaurant specialties" class="media-frame media-well">
       </div>
     </section>
     <section id="home-gallery" aria-label="Gallery">
-      <div class="wrap photo-grid">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Gallery</h2>
+        </div>
+        <div class="photo-grid">
         <img src="assets/gallery/dish-1.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-2.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-3.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-4.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-5.jpg" alt="Garden Restaurant gallery image">
         <img src="assets/gallery/dish-6.jpg" alt="Garden Restaurant gallery image">
+        </div>
+        <p class="section-cta"><a class="btn btn-ghost" href="gallery.html">Open the gallery</a></p>
       </div>
     </section>
     <section id="about">
@@ -72,7 +90,7 @@
           <p>We strive to create a warm and welcoming atmosphere for everyone. Join us today and enjoy great food, great service, and a cozy experience.</p>
         </div>
         <div class="cards"><article class="card"><h3>Takeout</h3><p>Yes. We offer takeout during regular business hours. Order ahead online and pick up during the estimated time, or call to place an order.</p></article>
-<article class="card"><h3>Hours</h3><p>Monday–Sunday 10:00 AM–10:00 PM, as published on the contact page.</p></article>
+<article class="card"><h3>Hours</h3><p>Monday–Sunday 10:00 AM–10:00 PM.</p></article>
 <article class="card"><h3>Location</h3><p>3555 W Walnut St, Garland, TX 75042, USA.</p></article>
 <article class="card"><h3>Contact-free delivery</h3><p>Yes — via 3rd-party partners if you select that option during checkout.</p></article></div>
       </div>
@@ -90,11 +108,11 @@
         
                 <ul class="footer-menu">
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.php">About Us</a></li>
-          <li><a href="menu.php">Menu</a></li>
-          <li><a href="events.php">Events</a></li>
-          <li><a href="online.php">Order PickUp | Delivery</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="online.html">Order PickUp | Delivery</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
         <p class="legal">© <span id="year"></span> Garden Restaurant. All rights reserved.</p>
       </div>
@@ -102,7 +120,7 @@
   </footer>
   <div class="callbar">
     <a class="btn btn-primary" href="tel:+19724878289">Call (972) 487-8289</a>
-    <a class="btn btn-dark" href="contact.php">Contact</a>
+    <a class="btn btn-dark" href="contact.html">Contact</a>
   </div>
   <script src="site.js"></script>
 </body>
