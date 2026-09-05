@@ -60,58 +60,42 @@
 
 ---
 
-## Content / nav parity (HARD GATE)
+## Content / nav / image / favicon parity (HTML inventory fold)
 
-**Parity status:** FAIL risk — missing Pest Library, Technician Training, Bed Bug / Wildlife destinations as first-class nav; Services dropdown required.
+_Built from `/workspace/dfw-parity/` live HTML for `victory-pest-control` (supersede if formal Scout `.md` arrives)._  
+**Live:** https://www.victorypestcontrol.com/  
+**Title:** Pest and Wildlife Control Victory Pest Control DFW Metroplex
 
-### Live nav map
-- **Home** → `https://www.victorypestcontrol.com/`
-- **Pest Control Services** (dropdown)
-  - Residential & Commercial Pest Control → `https://www.victorypestcontrol.com/residential-commercial-pest-control`
-  - Nuisance Wildlife Control → `https://www.victorypestcontrol.com/nuisance-wildlife-control`
-  - Bed Bug Control → `https://www.victorypestcontrol.com/bed-bug-control`
-- **Specials** → `https://www.victorypestcontrol.com/specials`
-- **Pest Library** → `https://www.victorypestcontrol.com/pest-library`
-- **Technician Training** → `https://www.victorypestcontrol.com/technician-training`
-- **Reviews** → `https://www.victorypestcontrol.com/reviews`
-- **About** (dropdown)
-  - FAQs → `https://www.victorypestcontrol.com/faqs`
-- **Contact** (dropdown)
-  - Request Callback → `https://www.victorypestcontrol.com/request-callback-form`
+### Primary nav
+1. **Home** → `/`
+2. **Pest Control Services** (dropdown) → Residential & Commercial; Nuisance Wildlife; Bed Bug Control
+3. **Specials** → `/specials`
+4. **Pest Library** → `/pest-library`
+5. **Technician Training** → `/technician-training`
+6. **Reviews** → `/reviews`
+7. **About** → `/about` (+ FAQs if nested)
+8. **Contact** → `/contact` (+ Request Callback)
 
+Do not drop Library / Training / wildlife / bed-bug destinations.
 
 
-### Rebuild nav map (current)
-- Home → `index.html`
-- Services → `services.html`
-- Specials → `specials.html`
-- About → `about.html`
-- Reviews → `reviews.html`
-- Contact → `contact.html`
+### Key images / heroes
+- `https://wsv3cdn.audioeye-services.com/springtimeShim.js`
+- `https://wsv3cdn.audioeye-services.com/aem.js`
+- `https://le-cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/dms3rep/multi/opt/victory-pest-control-llc-logo-0510bb09-1920w.jpg`
+- `https://le-cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/dms3rep/multi/opt/victory-pest-control-llc-logo-0510bb09-394w.jpg`
+- `https://le-cdn.hibuwebsites.com/8aa30245016342a49a4dad0645e59cd0/dms3rep/multi/opt/vid-splash-play-1920w.png`
+- `https://wsmcdn.audioeye.com/aem.js`
+- `https://static-res-cdn.websites.hibu.com/libs/jquery/jquery-3.7.0.min.js`
+- `https://static-res-cdn.websites.hibu.com/mnlt/production/6747/_dm/s/rt/dist/scripts/d-js-one-runtime-unified-desktop.min.js`
+- `https://static-res-cdn.websites.hibu.com/mnlt/production/6747/_dm/s/rt/dist/scripts/d-js-jquery-migrate.min.js`
+- `https://dh-static-files.s3.amazonaws.com/prod/AppMeasurement.js`
+- `https://dh-static-files.s3.amazonaws.com/prod/hibu-analytics.min.js`
+- `https://dh-static-files.s3.amazonaws.com/prod/omn_setting.js`
 
-### Eng requirement
-Restore **full live header IA** (every top item + dropdown children). Collapsing only OK if every destination stays reachable with the **same labels**. Do not strip Financing / service-area / deep service pages into a thin 4–5 link bar.
+### Favicon
+- `https://cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/site_favicon_16_1762444308157.ico`
 
-## Image inventory (Eng must incorporate)
-
-Homepage (and linked gallery/team) assets from live — download into `assets/` and place in matching sections (hero / gallery / team / services). Do not leave pages image-thin vs live.
-
-1. **logo** — `https://le-cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/dms3rep/multi/opt/victory-pest-control-llc-logo-0510bb09-1920w.jpg` alt="Victory Pest Control - logo"
-2. **logo** — `https://le-cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/dms3rep/multi/opt/victory-pest-control-llc-logo-0510bb09-394w.jpg` alt="Victory Pest Control - logo"
-3. **logo** — `https://le-cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/dms3rep/multi/opt/gen-logo-e5ccbe50-1920w.png`
-4. **content** — `https://le-cdn.hibuwebsites.com/8aa30245016342a49a4dad0645e59cd0/dms3rep/multi/opt/vid-splash-play-1920w.png` alt="Play Video"
-5. **content** — `https://dd-cdn.multiscreensite.com/runtime-img/galleryLoader.gif`
-6. **content** — `https://irt-cdn.multiscreensite.com/ce0bb35f932b47bb809d0e37905542ba/dms3rep/multi/site_background_education-2087x1173.jpg`
-7. **content** — `https://le-cdn.hibuwebsites.com/md/dmtmpl/dms3rep/multi/opt/people_pool_party-1920w.jpg`
-8. **content** — `https://le-cdn.hibuwebsites.com/md/dmip/dms3rep/multi/opt/woman-boxer-sport-1920w.jpg`
-9. **hero/banner** — `https://le-cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/dms3rep/multi/opt/victory-pest-control-llc-hero-home-1920w.jpg`
-10. **content** — `https://le-cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/dms3rep/multi/opt/victory-pest-control-llc-home-content4-1920w.jpg`
-
-Parsed homepage image count (raw): **10**. Also pull gallery/inner-page images when those routes are restored.
-
-## Favicon
-
-- **Live source:** `https://cdn.hibuwebsites.com/fd3ab55c0a634fe5856b95a43028cb02/site_favicon_16_1762444308157.ico`
-- **Local capture:** `/workspace/dfw-design-briefs/favicons/victory-pest-control.ico`
-- **Note:** Ship this favicon (or logo-derived 32/180) — never invent a new mark.
+### Capture notes
+Hibu. VPC brand logo only (not gen-logo). Navy/gold. Strip live lorem/placeholders. AA: avoid muted gray body on #f5f5f5.
 
