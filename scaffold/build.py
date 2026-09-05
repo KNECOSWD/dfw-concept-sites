@@ -16,21 +16,57 @@ SCAFFOLD = Path(__file__).resolve().parent
 SITES = ROOT / "sites"
 
 
-def hero(site: dict, h1: str, lede: str, secondary_href: str, secondary_label: str, panel: str) -> str:
+def hero(
+    site: dict,
+    h1: str,
+    lede: str,
+    secondary_href: str,
+    secondary_label: str,
+    panel: str,
+    *,
+    variant: str = "split",
+    primary_href: str | None = None,
+    primary_label: str | None = None,
+    extra: str = "",
+) -> str:
     tel = site["phone_tel"]
     phone = site["phone_display"]
-    return f'''    <section class="hero" id="top">
+    primary_href = primary_href or f"tel:{tel}"
+    primary_label = primary_label or f"Call {phone}"
+    p_extra = ' target="_blank" rel="noopener noreferrer"' if primary_href.startswith("http") else ""
+    s_extra = ' target="_blank" rel="noopener noreferrer"' if secondary_href.startswith("http") else ""
+    classes = "hero"
+    if variant == "center":
+        classes += " hero-center hero-photo"
+    elif variant == "photo":
+        classes += " hero-photo"
+    elif variant == "photo-ink":
+        classes += " hero-photo hero-ink-brand"
+    actions = f'''<div class="actions">
+            <a class="btn btn-primary" href="{esc(primary_href)}"{p_extra}>{esc(primary_label)}</a>
+            <a class="btn btn-ghost" href="{esc(secondary_href)}"{s_extra}>{esc(secondary_label)}</a>
+          </div>'''
+    heading = h1 if site.get("hero_html") else esc(h1)
+    if variant == "center":
+        return f'''    <section class="{classes}" id="top">
+      <div class="wrap">
+        {extra}
+        <h1>{heading}</h1>
+        <p class="lede">{esc(lede)}</p>
+        {actions}
+      </div>
+    </section>'''
+    aside = f'<aside class="panel">{panel}</aside>' if panel else ""
+    return f'''    <section class="{classes}" id="top">
       <div class="wrap hero-grid">
         <div>
+          {extra}
           <p class="eyebrow">{esc(site["eyebrow"])}</p>
-          <h1>{esc(h1)}</h1>
+          <h1>{heading}</h1>
           <p class="lede">{esc(lede)}</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="tel:{esc(tel)}">Call {esc(phone)}</a>
-            <a class="btn btn-ghost" href="{esc(secondary_href)}">{esc(secondary_label)}</a>
-          </div>
+          {actions}
         </div>
-        <aside class="panel">{panel}</aside>
+        {aside}
       </div>
     </section>'''
 
@@ -101,7 +137,6 @@ def speakes() -> dict:
         "tagline": "Garland & Richardson",
         "city": "Garland, TX",
         "logo": "assets/logo.png",
-        "body_class": "theme-dark-header",
         "phone_display": "(972) 271-9144",
         "phone_tel": "+19722719144",
         "email": "spi87@icloud.com",
@@ -116,16 +151,25 @@ def speakes() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#f3efe8",
-            "surface": "#fffdf8",
-            "ink": "#1c2430",
-            "muted": "#5c6570",
-            "brand": "#16324f",
-            "brand2": "#c47a3a",
-            "accent": "#c47a3a",
-            "hero_ink": "#f7f1e8",
-            "display": '"Palatino Linotype", Georgia, serif',
-            "pattern": "radial-gradient(circle at 20% 20%, #fff 0 2px, transparent 2.5px)",
+            "bg": "#faf9f9",
+            "surface": "#ffffff",
+            "ink": "#333333",
+            "muted": "#617379",
+            "brand": "#7a001a",
+            "brand2": "#990021",
+            "accent": "#7a001a",
+            "hero_ink": "#ffffff",
+            "display": 'Acme, "Open Sans", "Segoe UI", sans-serif',
+            "font": '"Open Sans", "Segoe UI", system-ui, sans-serif',
+            "pattern": "none",
+            "focus": "#7a001a",
+            "extra_css": """
+.hero {
+  background: #7a001a;
+}
+.hero::after { opacity: 0; }
+.nav a:hover, .nav a:focus-visible, .nav a[aria-current="page"] { color: #7a001a; }
+""",
         },
         "legal": '© <span id="year"></span> Speake\'s Plumbing, Inc. Master Plumber Lic #16836. Licensed &amp; insured.',
         "footer_extra": "<p>Fax: (972) 278-6610</p><p>grantspeake@verizon.net</p>",
@@ -228,16 +272,26 @@ def beyond() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#eef5ee",
-            "surface": "#fbfff6",
-            "ink": "#163022",
-            "muted": "#4d6156",
-            "brand": "#1b4332",
-            "brand2": "#e85d04",
-            "accent": "#e85d04",
-            "hero_ink": "#f3fff6",
-            "display": "Georgia, serif",
-            "pattern": "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
+            "bg": "#fcfcfc",
+            "surface": "#ffffff",
+            "ink": "#3a3a3a",
+            "muted": "#666666",
+            "brand": "#18793f",
+            "brand2": "#f27c21",
+            "accent": "#d45f10",
+            "hero_ink": "#ffffff",
+            "display": 'Montserrat, "Work Sans", system-ui, sans-serif',
+            "font": '"Work Sans", "Segoe UI", system-ui, sans-serif',
+            "pattern": "radial-gradient(circle at 1px 1px, rgba(255,255,255,.35) 1px, transparent 0)",
+            "focus": "#18793f",
+            "extra_css": """
+.hero {
+  background: linear-gradient(145deg, #18793f, #0f5a2c);
+}
+.prose a, .nav a:hover, .nav a[aria-current="page"] { color: #18793f; }
+.photo-grid { grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 0.4rem; }
+.photo-grid img { height: 160px; border-radius: 8px; }
+""",
         },
         "legal": "© <span id=\"year\"></span> Beyond Lawn Care &amp; Landscaping.",
     }
@@ -355,16 +409,26 @@ def hughes() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#eef2f6",
+            "bg": "#f2eae7",
             "surface": "#ffffff",
             "ink": "#152033",
-            "muted": "#5a6575",
-            "brand": "#1d3557",
-            "brand2": "#e76f51",
-            "accent": "#e76f51",
-            "hero_ink": "#f4f7fb",
-            "display": '"Segoe UI Semibold", "Segoe UI", sans-serif',
-            "pattern": "linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px)",
+            "muted": "#5f6360",
+            "brand": "#112F5B",
+            "brand2": "#D64000",
+            "accent": "#D64000",
+            "hero_ink": "#ffffff",
+            "display": "Arial, Helvetica, sans-serif",
+            "font": "Arial, Helvetica, sans-serif",
+            "pattern": "none",
+            "focus": "#FDF102",
+            "extra_css": """
+.hero {
+  background: linear-gradient(145deg, #112F5B, #0a1d38);
+}
+.hero::after { opacity: 0; }
+.eyebrow { color: #112F5B; background: #FDF102; padding: 0.2rem 0.55rem; border-radius: 999px; }
+.chip-accent { background: #FDF102; color: #112F5B; }
+""",
         },
         "legal": "© <span id=\"year\"></span> Hughes Mechanical and Electrical Contractors.",
     }
@@ -410,6 +474,9 @@ def victory() -> dict:
         "city": "Dallas–Fort Worth, TX",
         "logo": "assets/logo.jpg",
         "logo_class": "logo wide",
+        "body_class": "theme-bar-nav",
+        "hide_brand_text": True,
+        "header_cta_class": "btn btn-primary header-cta",
         "phone_display": "(972) 230-5526",
         "phone_tel": "+19722305526",
         "address": "234 Paradise Way, Red Oak, TX 75154",
@@ -426,16 +493,29 @@ def victory() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#f4f1e6",
-            "surface": "#fffdf6",
-            "ink": "#24301c",
-            "muted": "#5c604c",
-            "brand": "#2d4a22",
-            "brand2": "#d4a017",
-            "accent": "#c39212",
-            "hero_ink": "#f8f3df",
-            "display": "Georgia, serif",
-            "pattern": "repeating-linear-gradient(135deg, rgba(255,255,255,.12) 0 8px, transparent 8px 16px)",
+            "bg": "#f5f5f5",
+            "surface": "#ffffff",
+            "ink": "#333333",
+            "muted": "#888787",
+            "brand": "#001A54",
+            "brand2": "#D4AF37",
+            "accent": "#F7D000",
+            "hero_ink": "#ffffff",
+            "display": "Righteous, Muli, system-ui, sans-serif",
+            "font": "Muli, \"Segoe UI\", system-ui, sans-serif",
+            "pattern": "none",
+            "focus": "#F7D000",
+            "cta_ink": "#122033",
+            "extra_css": """
+.hero {
+  background: linear-gradient(160deg, #001A54 0 72%, #11414B 100%);
+  border-top: 6px solid #D4AF37;
+}
+.hero::after { opacity: 0; }
+.btn-dark { background: #001A54; color: #fff; }
+.reviews { background: #11414B; color: #fff; }
+.reviews .section-head p, .reviews h2 { color: #fff; }
+""",
         },
         "legal": "© <span id=\"year\"></span> Victory Pest Control LLC. Member TPCA and NPMA.",
         "footer_extra": "<p>Mobile: (214) 543-6357</p>",
@@ -476,14 +556,15 @@ def victory() -> dict:
     {"title": "How often should I have my property treated for pests?", "text": "The state recommends that your property be treated for pests every quarter."},
 ])}</div>')}''')
 
+    special_cards = cards([
+        {"title": "Yearly advance pay", "text": "Save 10% when you pay for a year in advance.", "extra": '<p class="price">10% off</p>'},
+        {"title": "Book online", "text": "Get 5% off when you schedule an appointment online.", "extra": '<p class="price">5% off</p>'},
+        {"title": "Referral", "text": "Refer a family member or friend and get 10% off when they sign up for the yearly agreement.", "extra": '<p class="price">10% off</p>'},
+        {"title": "Mosquito control special", "text": "Mosquito control special as listed on the live specials page."},
+        {"title": "Free termite inspections", "text": "Free termite inspections.", "extra": '<p class="price">Free</p>'},
+    ]).replace('<article class="card">', '<article class="card special-card">')
     specials = page(site, title="Specials | Victory Pest Control", description="Published pest control specials from victorypestcontrol.com.", current="specials.html", body=f'''{page_hero("Special offers", "From the live Specials page. Call to confirm what is current.")}
-{section("list", "A variety of specials to choose from", "Exceptional pest control services at competitive prices.", f'<div class="cards">{cards([
-    {"title": "Yearly advance pay", "text": "Save 10% when you pay for a year in advance."},
-    {"title": "Book online", "text": "Get 5% off when you schedule an appointment online."},
-    {"title": "Referral", "text": "Refer a family member or friend and get 10% off when they sign up for the yearly agreement."},
-    {"title": "Mosquito control special", "text": "Mosquito control special as listed on the live specials page."},
-    {"title": "Free termite inspections", "text": "Free termite inspections."},
-])}</div>')}''')
+{section("list", "A variety of specials to choose from", "Exceptional pest control services at competitive prices.", f'<div class="cards">{special_cards}</div>')}''')
 
     about = page(site, title="About | Victory Pest Control", description="John Gaines, owner. Local, minority veteran-owned, family-operated pest control since 2007.", current="about.html", body=f'''{page_hero("Make your space pest-free", "Our owner, John Gaines, has been in the pest control business for over 30 years.")}
     <section>
@@ -518,6 +599,10 @@ def caremaster() -> dict:
         "city": "Dallas / Fort Worth, TX",
         "logo": "assets/logo.jpg",
         "logo_class": "logo wide",
+        "body_class": "theme-centered-header",
+        "hide_brand_text": True,
+        "hide_header_cta": True,
+        "contact_strip": '<div class="contact-strip"><a href="mailto:customerservice@caremaster.biz">customerservice@caremaster.biz</a> · <a href="tel:+14692333366">(469) 233-3366</a></div>',
         "phone_display": "(469) 233-3366",
         "phone_tel": "+14692333366",
         "email": "customerservice@caremaster.biz",
@@ -531,16 +616,31 @@ def caremaster() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#eef3f3",
+            "bg": "#ffffff",
             "surface": "#ffffff",
-            "ink": "#17202a",
-            "muted": "#5b6770",
-            "brand": "#1a2332",
-            "brand2": "#2a9d8f",
-            "accent": "#2a9d8f",
-            "hero_ink": "#eef8f6",
-            "display": '"Segoe UI", system-ui, sans-serif',
-            "pattern": "repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 18px)",
+            "ink": "#383838",
+            "muted": "#686868",
+            "brand": "#0b3d2e",
+            "brand2": "#C9A84C",
+            "accent": "#0b3d2e",
+            "hero_ink": "#ffffff",
+            "display": '"Source Sans Pro", "Open Sans", "Segoe UI", sans-serif',
+            "font": '"Open Sans", "Source Sans Pro", "Segoe UI", sans-serif',
+            "pattern": "none",
+            "focus": "#0b3d2e",
+            "extra_css": """
+.hero {
+  background:
+    linear-gradient(rgba(11, 61, 46, 0.58), rgba(11, 61, 46, 0.5)),
+    url("assets/skyline.png") center / cover no-repeat;
+  min-height: 22rem;
+}
+.hero::after { opacity: 0; }
+.prose a { color: #383838; }
+.btn-primary { background: #0b3d2e; color: #fff; }
+h2 { color: #0b3d2e; }
+h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #C9A84C; margin-top: 0.45rem; }
+""",
         },
         "legal": "© <span id=\"year\"></span> CareMaster Building Services.",
     }
@@ -549,7 +649,7 @@ def caremaster() -> dict:
           <p><a href="mailto:customerservice@caremaster.biz">customerservice@caremaster.biz</a></p>
           <p>PO Box 29303, Dallas, TX 75229</p>
           {kpis([("1982", "In the industry"), ("John Lee", "President"), ("IICRC", "Carpet certified"), ("DFW", "Metroplex")])}'''
-    index = page(site, title="CareMaster Building Services | Dallas Commercial Janitorial", description="Quality janitorial care for commercial property since 1982. Call (469) 233-3366.", current="index.html", body=f'''{hero(site, "Providing quality janitorial care for the commercial property industry since 1982.", "At CareMaster, service is our business. Our goal is to provide unsurpassed janitorial care through exceptional customer service, attention to detail, and competitive pricing.", "services.html", "See services", panel)}
+    index = page(site, title="CareMaster Building Services | Dallas Commercial Janitorial", description="Quality janitorial care for commercial property since 1982. Call (469) 233-3366.", current="index.html", body=f'''{hero(site, "Providing quality janitorial care for the commercial property industry since 1982.", "At CareMaster, service is our business. Our goal is to provide our clients with unsurpassed janitorial care through exceptional customer service, attention to detail and competitive pricing.", "services.html", "See services", "", variant="center")}
 {section("about", "Service is our business", "In three decades of experience we have learned to be flexible, creative, and committed from start to finish.", '''<div class="prose">
           <p>Our “coordinator” level of management provides an added benefit to our rigorous quality standards. Timely walk-throughs, inspections, and follow-ups are conducted during regular business hours. We also offer twenty-four hour customer service to guarantee a timely response to emergencies or challenges. Our commitment has resulted in far fewer tenant complaints than the industry average.</p>
           <p>We tailor offerings to the special needs of your building, facility, and tenants. Our integrated approach to cleaner, safer, and healthier environments enables the highest level of quality and service.</p>
@@ -604,7 +704,6 @@ def forum() -> dict:
         "city": "Grand Prairie, TX",
         "logo": "assets/logo.png",
         "logo_class": "logo wide",
-        "body_class": "theme-dark-header",
         "phone_display": "(972) 922-3249",
         "phone_tel": "+19729223249",
         "address": "2446 Arkansas Lane, Grand Prairie, Texas 75052",
@@ -620,17 +719,23 @@ def forum() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#f6efe6",
-            "surface": "#fffaf2",
-            "ink": "#3a241f",
-            "muted": "#6b5348",
+            "bg": "#ffffff",
+            "surface": "#ffffff",
+            "ink": "#363537",
+            "muted": "#6b6b6b",
             "brand": "#1d597c",
-            "brand2": "#e8d5a3",
-            "accent": "#8b5a2b",
-            "hero_ink": "#f8eedc",
-            "display": "Georgia, serif",
-            "pattern": "radial-gradient(circle at 50% 0, rgba(255,255,255,.2), transparent 42%)",
-            "pattern_size": "100% 100%",
+            "brand2": "#4e86bf",
+            "accent": "#1d597c",
+            "hero_ink": "#ffffff",
+            "display": "Georgia, Arial, Helvetica, sans-serif",
+            "font": "Arial, Helvetica, sans-serif",
+            "pattern": "none",
+            "focus": "#1d597c",
+            "extra_css": """
+.hero { background: linear-gradient(145deg, #1d597c, #143d56); }
+.hero::after { opacity: 0; }
+.nav a[aria-current="page"] { box-shadow: inset 0 -2px 0 #1d597c; color: #1d597c; }
+""",
         },
         "legal": "© <span id=\"year\"></span> Forum Terrace Church of Christ.",
         "footer_extra": "<p>Dan Vess · (972) 922-3249</p>",
@@ -650,10 +755,10 @@ def forum() -> dict:
     {"title": "Quarterly prayer meeting", "text": "5th Sunday night."},
 ])}</div>')}
 {section("resources", "Tracts, sermons, workbooks, and bulletins", "Published on forumterrace.org. Open the live pages for the files — titles are not rewritten here.", '''<div class="cards">
-          <article class="card"><h3>Tracts</h3><p>Baptism, Bible, Blood, Christ, Church, Gospel, and other tracts.</p><p><a href="http://forumterrace.org/tracts/">forumterrace.org/tracts/</a></p></article>
-          <article class="card"><h3>Sermons</h3><p>Why I Am a Member of The Church Of Christ series and other audio.</p><p><a href="http://forumterrace.org/sermons/">forumterrace.org/sermons/</a></p></article>
-          <article class="card"><h3>Workbooks</h3><p>Bible class workbooks (the live Workbooks nav points here).</p><p><a href="http://forumterrace.org/bible-classes/">forumterrace.org/bible-classes/</a></p></article>
-          <article class="card"><h3>Bulletins — The Forum</h3><p>Weekly bulletin archive.</p><p><a href="http://forumterrace.org/category/the-forum/">forumterrace.org/category/the-forum/</a></p></article>
+          <article class="card"><h3>Tracts</h3><p>Baptism, Bible, Blood, Christ, Church, Gospel, and other tracts.</p><p><a href="http://forumterrace.org/tracts/" target="_blank" rel="noopener noreferrer">forumterrace.org/tracts/</a> <span class="ext">(opens congregation site)</span></p></article>
+          <article class="card"><h3>Sermons</h3><p>Why I Am a Member of The Church Of Christ series and other audio.</p><p><a href="http://forumterrace.org/sermons/" target="_blank" rel="noopener noreferrer">forumterrace.org/sermons/</a> <span class="ext">(opens congregation site)</span></p></article>
+          <article class="card"><h3>Workbooks</h3><p>Bible class workbooks (the live Workbooks nav points here).</p><p><a href="http://forumterrace.org/bible-classes/" target="_blank" rel="noopener noreferrer">forumterrace.org/bible-classes/</a> <span class="ext">(opens congregation site)</span></p></article>
+          <article class="card"><h3>Bulletins — The Forum</h3><p>Weekly bulletin archive.</p><p><a href="http://forumterrace.org/category/the-forum/" target="_blank" rel="noopener noreferrer">forumterrace.org/category/the-forum/</a> <span class="ext">(opens congregation site)</span></p></article>
         </div><p class="note">The member directory is gated on the live site and is not copied here.</p>''')}''')
 
     location = page(site, title="Location | Forum Terrace Church of Christ", description="2446 Arkansas Lane, Grand Prairie, Texas 75052.", current="location.html", body=f'''{page_hero("Where we are", "The Forum Terrace Church of Christ is located in the center of the Texas DFW Metroplex, on the eastern border of Arlington in Grand Prairie.")}
@@ -677,10 +782,10 @@ def forum() -> dict:
 
     resources = page(site, title="Resources | Forum Terrace Church of Christ", description="Links to published tracts, sermons, workbooks, and bulletins.", current="resources.html", body=f'''{page_hero("Resources", "Open the congregation’s published pages. Content is not rewritten here.")}
 {section("links", "On forumterrace.org", "Member directory is gated and skipped.", '''<div class="cards">
-          <article class="card"><h3>Tracts</h3><p><a href="http://forumterrace.org/tracts/">forumterrace.org/tracts/</a></p></article>
-          <article class="card"><h3>Sermons</h3><p><a href="http://forumterrace.org/sermons/">forumterrace.org/sermons/</a></p></article>
-          <article class="card"><h3>Workbooks / Bible classes</h3><p><a href="http://forumterrace.org/bible-classes/">forumterrace.org/bible-classes/</a></p></article>
-          <article class="card"><h3>Bulletins — The Forum</h3><p><a href="http://forumterrace.org/category/the-forum/">forumterrace.org/category/the-forum/</a></p></article>
+          <article class="card"><h3>Tracts</h3><p><a href="http://forumterrace.org/tracts/" target="_blank" rel="noopener noreferrer">forumterrace.org/tracts/</a> <span class="ext">(opens congregation site)</span></p></article>
+          <article class="card"><h3>Sermons</h3><p><a href="http://forumterrace.org/sermons/" target="_blank" rel="noopener noreferrer">forumterrace.org/sermons/</a> <span class="ext">(opens congregation site)</span></p></article>
+          <article class="card"><h3>Workbooks / Bible classes</h3><p><a href="http://forumterrace.org/bible-classes/" target="_blank" rel="noopener noreferrer">forumterrace.org/bible-classes/</a> <span class="ext">(opens congregation site)</span></p></article>
+          <article class="card"><h3>Bulletins — The Forum</h3><p><a href="http://forumterrace.org/category/the-forum/" target="_blank" rel="noopener noreferrer">forumterrace.org/category/the-forum/</a> <span class="ext">(opens congregation site)</span></p></article>
         </div>''')}''')
 
     contact = contact_page(site, "<p>Have a question or comment? Call Dan Vess at (972) 922-3249. Come by 2446 Arkansas Lane, Grand Prairie, Texas 75052. No public email is listed. The member directory is gated and is not included here.</p>")
@@ -699,6 +804,7 @@ def bb() -> dict:
         "city": "Garland, TX",
         "logo": "assets/logo.png",
         "logo_class": "logo wide",
+        "body_class": "theme-dark-header",
         "phone_display": "(214) 994-6989",
         "phone_tel": "+12149946989",
         "email": "ali@bbcompleteautorepair.com",
@@ -714,16 +820,25 @@ def bb() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#f1eeea",
-            "surface": "#fffaf6",
+            "bg": "#eeeeee",
+            "surface": "#ffffff",
             "ink": "#1b1b1b",
             "muted": "#5c5854",
-            "brand": "#1c1c1c",
+            "brand": "#1a1a1a",
             "brand2": "#c1121f",
             "accent": "#c1121f",
-            "hero_ink": "#f6f1ea",
-            "display": '"Segoe UI Semibold", "Segoe UI", sans-serif',
-            "pattern": "repeating-linear-gradient(-18deg, rgba(255,255,255,.08) 0 10px, transparent 10px 20px)",
+            "hero_ink": "#ffffff",
+            "display": '"Segoe UI", system-ui, sans-serif',
+            "font": '"Segoe UI", system-ui, sans-serif',
+            "pattern": "none",
+            "focus": "#ffffff",
+            "extra_css": """
+.hero { background: #111111; }
+.hero::after { opacity: 0; }
+.prose a { color: #a50e18; }
+.cards { gap: 0.65rem; }
+.card { padding: 0.9rem 1rem; border-radius: 10px; }
+""",
         },
         "legal": "© <span id=\"year\"></span> B&amp;B Complete Auto Repair. License CO16-0388.",
     }
@@ -806,7 +921,6 @@ def ferraro() -> dict:
         "tagline": "Grand Prairie & Arlington",
         "city": "Grand Prairie, TX",
         "logo": "assets/logo.png",
-        "body_class": "theme-dark-header",
         "phone_display": "(972) 988-8044",
         "phone_tel": "+19729888044",
         "email": "danielferrarodds@sbcglobal.net",
@@ -826,12 +940,23 @@ def ferraro() -> dict:
             "ink": "#16333a",
             "muted": "#547077",
             "brand": "#0d7377",
-            "brand2": "#14919b",
+            "brand2": "#3bc0e1",
             "accent": "#0d7377",
-            "hero_ink": "#eef8f8",
-            "display": "Georgia, serif",
-            "pattern": "radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%)",
-            "pattern_size": "100% 100%",
+            "hero_ink": "#16333a",
+            "display": "Georgia, \"Times New Roman\", serif",
+            "font": '"Segoe UI", system-ui, sans-serif',
+            "pattern": "none",
+            "focus": "#0d7377",
+            "extra_css": """
+.hero {
+  background: linear-gradient(180deg, #e7f4f5, #d4ecee);
+  color: #16333a;
+}
+.hero::after { opacity: 0; }
+.hero .btn-ghost { color: #16333a; border-color: #0d7377; }
+.hero .panel { background: #fff; color: #16333a; border-color: #c5e4e6; }
+.chip { background: #e7f8fb; border-color: #3bc0e1; }
+""",
         },
         "legal": "© <span id=\"year\"></span> Daniel L. Ferraro, D.D.S.",
         "footer_extra": "<p>Emerald Square Shopping Center · N.E. corner of Hwy 360 and Mayfield Rd.</p>",
@@ -894,30 +1019,51 @@ def garden() -> dict:
         "city": "Garland, TX",
         "logo": "assets/logo.png",
         "logo_class": "logo wide",
+        "body_class": "theme-dark-header",
+        "hide_brand_text": True,
+        "header_cta_href": "https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa",
+        "header_cta_label": "Order PickUp | Delivery",
+        "header_cta_class": "btn btn-primary header-cta",
         "phone_display": "(972) 487-8289",
         "phone_tel": "+19724878289",
         "email": "gardenrestaurant@zing.com",
         "address": "3555 W Walnut St, Garland, TX 75042",
         "hours": "Daily 10:00 AM–10:00 PM",
         "eyebrow": "Chinese restaurant in Garland",
+        "hero_html": True,
         "nav": [
             ("index.html", "Home"),
             ("about.html", "About Us"),
             ("menu.html", "Menu"),
+            ("gallery.html", "Gallery"),
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#f7efe8",
-            "surface": "#fffaf4",
-            "ink": "#3b1c16",
-            "muted": "#6e4d42",
-            "brand": "#8b1e1e",
-            "brand2": "#d4a017",
-            "accent": "#c39212",
-            "hero_ink": "#fff4e0",
-            "display": "Georgia, serif",
-            "pattern": "radial-gradient(circle at 30% 20%, rgba(255,220,140,.25), transparent 26%), radial-gradient(circle at 80% 70%, rgba(255,255,255,.12), transparent 22%)",
-            "pattern_size": "100% 100%",
+            "bg": "#ffffff",
+            "surface": "#ffffff",
+            "ink": "#334152",
+            "muted": "#495057",
+            "brand": "#18A687",
+            "brand2": "#B8A51C",
+            "accent": "#18A687",
+            "hero_ink": "#ffffff",
+            "display": '"Nunito Sans", "Segoe UI", system-ui, sans-serif',
+            "font": '"Nunito Sans", "Segoe UI", system-ui, sans-serif',
+            "pattern": "none",
+            "focus": "#ffffff",
+            "cta_ink": "#122033",
+            "extra_css": """
+.hero {
+  background:
+    linear-gradient(rgba(18, 22, 26, 0.55), rgba(18, 22, 26, 0.48)),
+    url("assets/hero-food.jpg") center / cover no-repeat;
+  min-height: 28rem;
+}
+.hero::after { opacity: 0; }
+.hero h1 { max-width: none; }
+.price { color: #334152; }
+.eyebrow { color: #B8A51C; }
+""",
         },
         "legal": "© <span id=\"year\"></span> Garden Restaurant. All rights reserved.",
     }
@@ -926,7 +1072,8 @@ def garden() -> dict:
           <p>3555 W Walnut St, Garland, TX 75042</p>
           <p>Open daily 10:00 AM–10:00 PM</p>
           {kpis([("Dine-in", "Family tables"), ("Takeout", "Call or order ahead"), ("Delivery", "3rd-party partners"), ("Walnut", "Garland")])}'''
-    index = page(site, title="Garden Restaurant | Garland, TX", description="Chinese restaurant at 3555 W Walnut St, Garland. Open daily 10 AM–10 PM. Call (972) 487-8289.", current="index.html", body=f'''{hero(site, "Fresh and flavorful dishes in Garland, TX.", "Welcome to Garden Restaurant. We’re proud to serve a variety of delicious meals made with care and quality ingredients — for a quick bite or dining with family and friends.", "menu.html", "See the menu", panel)}
+    garden_h1 = '<img class="hero-mark" src="assets/logo.png" alt="Garden Restaurant">'
+    index = page(site, title="Garden Restaurant | Garland, TX", description="Chinese restaurant at 3555 W Walnut St, Garland. Open daily 10 AM–10 PM. Call (972) 487-8289.", current="index.html", body=f'''{hero(site, garden_h1, "Welcome to Garden Restaurant. We’re proud to serve a variety of delicious meals made with care and quality ingredients — for a quick bite or dining with family and friends.", "menu.html", "See the menu", "", variant="center", primary_href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa", primary_label="Order PickUp | Delivery")}
 {section("about", "About us", "We strive to create a warm and welcoming atmosphere for everyone. Join us today and enjoy great food, great service, and a cozy experience.", f'<div class="cards">{cards([
     {"title": "Takeout", "text": "Yes. We offer takeout during regular business hours. Order ahead online and pick up during the estimated time, or call to place an order."},
     {"title": "Hours", "text": "Monday–Sunday 10:00 AM–10:00 PM, as published on the contact page."},
@@ -958,8 +1105,16 @@ def garden() -> dict:
       <div class="wrap"><p class="note">Full priced menu from gardenrestaurantgarland.com/menu.php. Call (972) 487-8289 to confirm today’s availability. The live site publishes no reviews; none are added here.</p></div>
     </section>''')
 
-    contact = contact_page(site, "<p>Email gardenrestaurant@zing.com. Reservations and catering inquiries are listed on the live contact form.</p>")
-    write_site(site, {"index.html": index, "about.html": about, "menu.html": menu, "contact.html": contact})
+    gallery_dir = SITES / site["slug"] / "assets" / "gallery"
+    photos = sorted(p.name for p in gallery_dir.iterdir() if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}) if gallery_dir.exists() else []
+    photo_html = '<div class="photo-grid">' + "".join(
+        f'<img src="assets/gallery/{esc(n)}" alt="Garden Restaurant dish photo">' for n in photos
+    ) + "</div>"
+    gallery = page(site, title="Gallery | Garden Restaurant", description="Published food photos from gardenrestaurantgarland.com.", current="gallery.html", body=f'''{page_hero("Our gallery", "Dish photos published on the live Garden Restaurant gallery.")}
+{section("photos", "Food photos", "As shown on gardenrestaurantgarland.com. None were generated.", photo_html)}''')
+
+    contact = contact_page(site, "<p>Email gardenrestaurant@zing.com. Reservations and catering inquiries are listed on the live contact form. Order pickup or delivery on the restaurant’s published ordering page.</p>")
+    write_site(site, {"index.html": index, "about.html": about, "menu.html": menu, "gallery.html": gallery, "contact.html": contact})
     return site
 
 
@@ -974,6 +1129,8 @@ def len_conner() -> dict:
         "city": "Irving, TX",
         "logo": "assets/logo.jpg",
         "logo_class": "logo wide",
+        "body_class": "theme-bar-nav",
+        "hide_brand_text": True,
         "phone_display": "(972) 445-1500",
         "phone_tel": "+19724451500",
         "address": "600 John Carpenter Freeway, Ste 238, Irving, Texas 75062",
@@ -985,17 +1142,35 @@ def len_conner() -> dict:
             ("contact.html", "Contact"),
         ],
         "theme": {
-            "bg": "#eef2f6",
-            "surface": "#fbfcfe",
-            "ink": "#122033",
-            "muted": "#5a6573",
-            "brand": "#0f2744",
-            "brand2": "#c5a572",
-            "accent": "#b08948",
-            "hero_ink": "#f4efe4",
-            "display": "Georgia, serif",
-            "pattern": "linear-gradient(180deg, rgba(197,165,114,.16), transparent 32%)",
-            "pattern_size": "100% 100%",
+            "bg": "#f5f5f5",
+            "surface": "#ffffff",
+            "ink": "#333333",
+            "muted": "#666666",
+            "brand": "#77080a",
+            "brand2": "#ffbe01",
+            "accent": "#77080a",
+            "hero_ink": "#77080a",
+            "display": "Georgia, \"Times New Roman\", serif",
+            "font": '"Segoe UI", Arial, sans-serif',
+            "pattern": "none",
+            "focus": "#77080a",
+            "extra_css": """
+.hero {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.58), rgba(255,248,240,0.28)),
+    url("assets/hero-beach.jpg") center / cover no-repeat;
+  min-height: 20rem;
+}
+.hero::after { opacity: 0; }
+.hero h1 { color: #77080a; text-shadow: 0 1px 0 #fff, 0 0 12px rgba(255,255,255,.7); }
+.header-phone { color: #77080a; font-size: 1.25rem; }
+.btn-dark { background: #77080a; }
+.badge-row img { background: #fff; padding: 0.25rem; }
+.theme-bar-nav .nav-bar a:hover,
+.theme-bar-nav .nav-bar a:focus-visible,
+.theme-bar-nav .nav-bar a[aria-current="page"] { box-shadow: inset 0 -3px 0 #fff; }
+.eyebrow { color: #77080a; }
+""",
         },
         "legal": "© <span id=\"year\"></span> Len Conner &amp; Associates. Unless otherwise indicated, attorneys listed are not certified by the Texas Board of Legal Specialization. This site is general information only and does not create an attorney-client relationship.",
         "form_status": "Thank you. Do not include confidential case facts here. Please call (972) 445-1500 so the office receives your request.",
@@ -1017,13 +1192,14 @@ def len_conner() -> dict:
           <img src="assets/badge-superlawyers.jpg" alt="Rated by Super Lawyers — Len Michael Conner">
           <img src="assets/badge-avvo.jpeg" alt="Avvo Rating 10.0 Superb">
         </div>'''
-    index = page(site, title="Attorney Len Conner | Irving Divorce & Family Law", description="The Law Office of Len Conner focuses on comprehensive divorce and family law. Call (972) 445-1500.", current="index.html", body=f'''{hero(site, "Irving & Dallas County family law lawyer.", "The Law Office of Len Conner focuses on comprehensive divorce and family law representation. Len has spent his entire legal career on family law matters, identifying and implementing the best solutions for his clients.", "practice.html", "Practice areas", panel)}
-{section("intro", "Your decisions are only as good as the information and advice you receive.", "Though Len has extensive family law litigation experience, he will also help you use negotiated settlements, mediation, and a collaborative divorce process.", f'''<div class="prose">
+    index = page(site, title="Attorney Len Conner | Irving Divorce & Family Law", description="The Law Office of Len Conner focuses on comprehensive divorce and family law. Call (972) 445-1500.", current="index.html", body=f'''{hero(site, "Divorce & family law", "Your decisions are only as good as the information and advice you receive.", "practice.html", "Learn more", panel, variant="photo-ink")}
+{section("intro", "Family Law | Divorce | Child Custody", "Irving & Dallas County family law lawyer.", f'''<div class="prose">
+          <p>The Law Office of Len Conner focuses on comprehensive divorce and family law representation. Len has spent his entire legal career on family law matters, identifying and implementing the best solutions for his clients.</p>
           <p>Our office partners with psychologists, social workers, financial advisors, private investigators, and tax professionals. To set up a confidential meeting, call 972-445-1500. Our office is in Irving; we represent clients in surrounding cities and counties.</p>
           <p>Fully licensed by the Texas Supreme Court. Admitted to the U.S. Federal Courts, Northern District of Texas. Member of the Texas Family Law Section of the Texas State Bar Association.</p>
           {badges}
         </div>''')}
-{section("reviews", "Client testimonials", "The five comments published on the lonestarlaw.net homepage. The /testimonials/ page returns 404.", f'<div class="cards two">{reviews([
+{section("reviews", "Client testimonials", "Comments published on the lonestarlaw.net homepage.", f'<div class="cards two">{reviews([
     {"quote": "Len is an outstanding, sensible lawyer that makes wise decisions with time and money, consistently considering what's in the best interest of his client in the long term. I'm thankful he walked me through such a difficult time. I highly recommend him.", "name": "Marie", "stars": ""},
     {"quote": "Len Conner is an exceptional attorney with an incredible disposition and knowledge for family law. He helped us with a child support case that had been drowning us for years. He cares for his clients and the outcome of the case.", "name": "Marc and Jill", "stars": ""},
     {"quote": "Len is a great lawyer that keeps his clients needs top of mind. I felt like Mr. Conner and his team truly understood my needs and was genuine in their approach. I believe they really cared for my children and their well-being.", "name": "David", "stars": ""},
@@ -1227,7 +1403,7 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **Logos** are the businesses’ existing marks, downloaded from the specified live URLs and stored under `sites/<slug>/assets/`.
 - **Speake's** logo is `077-162h.png`. Grant Speake, Master Plumber #16836, est. 1987. 633 N 5th St, Garland; 972-271-9144; Mon–Fri 7–5; spi87@icloud.com and grantspeake@verizon.net. Testimonials are published quotes only. MashIt / FabuFit / YesSuits slider labels were not used.
 - **Beyond Lawn Care** logo is `BEYOND-1920w.png`. 972-803-7495; Info@beyondlawncares.com; Mon–Fri 8–5, Sat 9–2; no street on Contact. Full commercial/residential service tree, published package price bands, and the live gallery photos. Google reviews load via the published Elfsight widget only — review text was not invented.
-- **Hughes Mechanical** wordmark and bug are the specified Wix files. 817-461-9241; sales@hughes-mech-elect.com; 423 Dodson Lake Dr, Arlington. HVAC plus electrical, lighting, and refrigeration. Team names as published. No reviews. Wix Studio social placeholders ignored.
+- **Hughes Mechanical** live site is hughescontractorsllc.com (not hughes-mech-elect.com). Wordmark and bug are the published Wix files. 817-461-9241; the live page still lists sales@hughes-mech-elect.com; 423 Dodson Lake Dr, Arlington. HVAC plus electrical, lighting, and refrigeration. Team names as published. No reviews. Wix Studio social placeholders ignored.
 - **Victory Pest Control** uses the brand VPC logo (`victory-pest-control-llc-logo-0510bb09-1920w.jpg`), not the Hibu template gen-logo. Owner John Gaines. (972) 230-5526 / mobile (214) 543-6357. 234 Paradise Way, Red Oak, TX 75154. 24 hours. No email. Reviews only: Taylor Akin, Camille Henderson, Michelle Owens. Live “Lorem Ipsum” tagline and `{{placeholder_*}}` tokens were not copied.
 - **CareMaster** logo is `logo-2.jpg` from nccdn. Since 1982; Richard Lee / President John Lee. 469.233.3366; customerservice@caremaster.biz; PO Box 29303, Dallas, TX 75229. No reviews. Street hours are not published.
 - **Forum Terrace** logo is `cropped-FTCoC_Logo_646x200.png`. 2446 Arkansas Lane; Dan Vess (972) 922-3249; Sun 9:30 / 10:30 / 5:00 and Wed 7:30. Tracts, sermons, workbooks, and bulletins are links to the live HTTP pages. Member directory is gated and skipped. No reviews or email.

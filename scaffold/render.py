@@ -23,6 +23,10 @@ def nav_links(site: dict, current: str) -> str:
 def brand(site: dict) -> str:
     logo = site["logo"]
     logo_class = site.get("logo_class", "logo")
+    if site.get("hide_brand_text"):
+        return f'''<a class="brand" href="index.html">
+        <img class="{esc(logo_class)}" src="{esc(logo)}" alt="{esc(site["name"])}">
+      </a>'''
     return f'''<a class="brand" href="index.html">
         <img class="{esc(logo_class)}" src="{esc(logo)}" alt="{esc(site["name"])}">
         <span class="brand-text">
@@ -32,18 +36,67 @@ def brand(site: dict) -> str:
       </a>'''
 
 
+def header_cta(site: dict) -> str:
+    if site.get("hide_header_cta"):
+        return ""
+    phone = site["phone_display"]
+    tel = site["phone_tel"]
+    href = site.get("header_cta_href", f"tel:{esc(tel)}")
+    label = site.get("header_cta_label", f"Call {phone}")
+    css = site.get("header_cta_class", "btn btn-dark header-cta")
+    extra = ' target="_blank" rel="noopener noreferrer"' if href.startswith("http") else ""
+    return f'<a class="{esc(css)}" href="{esc(href)}"{extra}>{esc(label)}</a>'
+
+
 def header(site: dict, current: str) -> str:
     phone = site["phone_display"]
     tel = site["phone_tel"]
-    return f'''  <a class="skip" href="#main">Skip to content</a>
+    body = site.get("body_class", "")
+    strip = site.get("contact_strip", "")
+    links = nav_links(site, current)
+    cta = header_cta(site)
+    skip = '  <a class="skip" href="#main">Skip to content</a>'
+    menu = '<button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>'
+
+    if "theme-centered-header" in body:
+        return f'''{skip}
+  {strip}
+  <header class="site-header">
+    <div class="wrap header-centered">
+      {brand(site)}
+      {menu}
+      <nav id="site-nav" class="nav" aria-label="Primary">
+        {links}
+      </nav>
+    </div>
+  </header>'''
+
+    if "theme-bar-nav" in body:
+        phone_link = f'<a class="header-phone" href="tel:{esc(tel)}">{esc(phone)}</a>'
+        return f'''{skip}
+  {strip}
+  <header class="site-header">
+    <div class="wrap header-row">
+      {brand(site)}
+      {phone_link}
+      {cta}
+      {menu}
+    </div>
+    <nav id="site-nav" class="nav nav-bar" aria-label="Primary">
+        {links}
+    </nav>
+  </header>'''
+
+    return f'''{skip}
+  {strip}
   <header class="site-header">
     <div class="wrap header-row">
       {brand(site)}
       <nav id="site-nav" class="nav" aria-label="Primary">
-        {nav_links(site, current)}
+        {links}
       </nav>
-      <a class="btn btn-dark header-cta" href="tel:{esc(tel)}">Call {esc(phone)}</a>
-      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      {cta}
+      {menu}
     </div>
   </header>'''
 
@@ -118,8 +171,10 @@ def reviews(items: list[dict]) -> str:
         out.append(
             f'''<article class="card review">
           {star_row}
-          <p>“{esc(item["quote"])}”</p>
-          <p class="muted">— {esc(item["name"])}{source}</p>
+          <blockquote>
+            <p>“{esc(item["quote"])}”</p>
+            <footer class="muted">— {esc(item["name"])}{source}</footer>
+          </blockquote>
         </article>'''
         )
     return "\n".join(out)
@@ -134,14 +189,28 @@ def contact_form(site: dict, intro: str = "") -> str:
         "form_status",
         "Thank you. This page does not send messages automatically — please call or email so the office receives your request.",
     )
-    return f'''        <form class="card form" id="contact-form">
+    return f'''        <form class="card form" id="contact-form" novalidate>
           <p>{esc(intro or "Send a message and follow up by phone so nothing is missed.")}</p>
-          <label>Name <input name="name" autocomplete="name" required></label>
-          <label>Phone <input name="phone" autocomplete="tel"></label>
-          <label>Email <input name="email" type="email" autocomplete="email"></label>
-          <label>Message <textarea name="message" rows="4" required></textarea></label>
+          <p class="note">This form stays on this page. It does not email the business.</p>
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="contact-phone">Phone</label>
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" required></textarea>
+          </div>
+          <p class="form-error" id="form-error" hidden>Please complete the required fields: name and message.</p>
           <button class="btn btn-dark" type="submit">Send message</button>
-          <p class="form-status" id="form-status" tabindex="-1">{esc(status)}</p>
+          <p class="form-status" id="form-status" role="status" tabindex="-1">{esc(status)}</p>
         </form>'''
 
 
@@ -158,8 +227,11 @@ def theme_css(site: dict) -> str:
   --accent: {t["accent"]};
   --hero-ink: {t["hero_ink"]};
   --font-display: {t["display"]};
+  --font: {t.get("font", '"Segoe UI", "Helvetica Neue", system-ui, sans-serif')};
   --hero-pattern: {t["pattern"]};
   --hero-pattern-size: {t.get("pattern_size", "24px 24px")};
+  --focus: {t.get("focus", "#111111")};
+  --cta-ink: {t.get("cta_ink", "#ffffff")};
 }}
 {t.get("extra_css", "")}
 """

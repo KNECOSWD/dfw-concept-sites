@@ -5,11 +5,23 @@
   --ink: #16333a;
   --muted: #547077;
   --brand: #0d7377;
-  --brand-2: #14919b;
+  --brand-2: #3bc0e1;
   --accent: #0d7377;
-  --hero-ink: #eef8f8;
-  --font-display: Georgia, serif;
-  --hero-pattern: radial-gradient(circle at 12% 80%, rgba(255,255,255,.25), transparent 28%), radial-gradient(circle at 88% 20%, rgba(255,255,255,.18), transparent 24%);
-  --hero-pattern-size: 100% 100%;
+  --hero-ink: #16333a;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font: "Segoe UI", system-ui, sans-serif;
+  --hero-pattern: none;
+  --hero-pattern-size: 24px 24px;
+  --focus: #0d7377;
+  --cta-ink: #ffffff;
 }
+
+.hero {
+  background: linear-gradient(180deg, #e7f4f5, #d4ecee);
+  color: #16333a;
+}
+.hero::after { opacity: 0; }
+.hero .btn-ghost { color: #16333a; border-color: #0d7377; }
+.hero .panel { background: #fff; color: #16333a; border-color: #c5e4e6; }
+.chip { background: #e7f8fb; border-color: #3bc0e1; }
 
