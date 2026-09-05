@@ -1,4 +1,4 @@
-/* Brand tokens for len-conner-law */
+/* Brand tokens sampled from the live len-conner-law site */
 :root {
   --bg: #eef2f6;
   --surface: #fbfcfe;
@@ -12,3 +12,4 @@
   --hero-pattern: linear-gradient(180deg, rgba(197,165,114,.16), transparent 32%);
   --hero-pattern-size: 100% 100%;
 }
+

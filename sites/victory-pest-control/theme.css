@@ -1,4 +1,4 @@
-/* Brand tokens for victory-pest-control */
+/* Brand tokens sampled from the live victory-pest-control site */
 :root {
   --bg: #f4f1e6;
   --surface: #fffdf6;
@@ -12,3 +12,4 @@
   --hero-pattern: repeating-linear-gradient(135deg, rgba(255,255,255,.12) 0 8px, transparent 8px 16px);
   --hero-pattern-size: 24px 24px;
 }
+

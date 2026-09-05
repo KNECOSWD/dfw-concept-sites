@@ -2,7 +2,7 @@
   var nav = document.getElementById("site-nav");
   var toggle = document.getElementById("menu-toggle");
   var year = document.getElementById("year");
-  var form = document.getElementById("demo-form");
+  var form = document.getElementById("contact-form");
   var status = document.getElementById("form-status");
 
   if (year) {

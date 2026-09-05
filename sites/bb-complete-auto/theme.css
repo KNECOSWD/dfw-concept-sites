@@ -1,4 +1,4 @@
-/* Brand tokens for bb-complete-auto */
+/* Brand tokens sampled from the live bb-complete-auto site */
 :root {
   --bg: #f1eeea;
   --surface: #fffaf6;
@@ -12,3 +12,4 @@
   --hero-pattern: repeating-linear-gradient(-18deg, rgba(255,255,255,.08) 0 10px, transparent 10px 20px);
   --hero-pattern-size: 24px 24px;
 }
+
