@@ -58,7 +58,7 @@
 
 
 .hero {
-  --hero-scrim: linear-gradient(105deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.18) 58%, rgba(255, 255, 255, 0.08) 100%);
+  --hero-scrim: linear-gradient(105deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 58%, rgba(255, 255, 255, 0.04) 100%);
   background: #e7f4f5;
   min-height: clamp(22rem, 46vw, 30rem);
   color: #16333a;
