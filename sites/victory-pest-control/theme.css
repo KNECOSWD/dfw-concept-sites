@@ -3,7 +3,7 @@
   --bg: #f5f5f5;
   --surface: #ffffff;
   --ink: #333333;
-  --muted: #888787;
+  --muted: #5c5c5c;
   --brand: #001A54;
   --brand-2: #D4AF37;
   --accent: #F7D000;
@@ -57,12 +57,19 @@
 
 
 
-:root { --muted: #4a4a4a; }
 .hero {
-  background:
-    linear-gradient(160deg, rgba(0,26,84,.55) 0 72%, rgba(17,65,75,.45) 100%),
-    url("assets/hero-home.jpg") center / cover no-repeat;
-  min-height: 24rem;
+  --hero-scrim: linear-gradient(105deg, rgba(0, 26, 84, 0.82) 0%, rgba(0, 26, 84, 0.62) 52%, rgba(17, 65, 75, 0.28) 100%);
+  background: #001a54 url("assets/hero-home.jpg") center / cover no-repeat;
+  min-height: clamp(24rem, 52vw, 34rem);
 }
+.hero h1,
+.hero .lede,
+.hero .eyebrow { color: #fff; }
+.btn-primary {
+  background: #d4af37;
+  color: #122033;
+}
+.btn-primary:focus-visible { outline-color: #fff6c8; }
 .reviews { background: #11414B url("assets/content4.jpg") center / cover; }
+.card p { color: #5c5c5c; }
 

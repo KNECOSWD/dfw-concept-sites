@@ -17,13 +17,24 @@
 }
 
 .hero {
-  background:
-    linear-gradient(90deg, rgba(255,255,255,0.58), rgba(255,248,240,0.28)),
-    url("assets/banner-main.jpg") center / cover no-repeat;
-  min-height: 20rem;
+  --hero-scrim: none;
+  background: #f3efe8 url("assets/banner-main.jpg") center / cover no-repeat;
+  min-height: clamp(22rem, 48vw, 32rem);
 }
 .hero::after { opacity: 0; }
-.hero h1 { color: #77080a; text-shadow: 0 1px 0 #fff, 0 0 12px rgba(255,255,255,.7); }
+.hero h1 { color: #77080a; }
+.hero.hero-ink-brand .hero-grid > div:first-child {
+  background: rgba(255, 255, 255, 0.86);
+  padding: 1.45rem 1.55rem 1.55rem;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(80, 20, 24, 0.12);
+  max-width: 34rem;
+}
+.hero.hero-ink-brand .panel {
+  background: rgba(255, 255, 255, 0.86);
+  color: #333;
+  border-color: rgba(119, 8, 10, 0.16);
+}
 .header-phone { color: #77080a; font-size: 1.25rem; }
 .btn-dark { background: #77080a; }
 .badge-row img { background: #fff; padding: 0.25rem; }
