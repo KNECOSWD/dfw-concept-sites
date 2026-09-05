@@ -1,46 +1,48 @@
-# DFW $500 — Sketch DESIGN GO pack (10 briefs)
+# DFW $500 — Sketch DESIGN GO (parity re-brief)
 
-**Owner:** Sketch (design first). **No code from Sketch.** Eng = Gizmo. Test/508 score = Tick.  
-**Rules:** existing logo only; full real published content; no demo/lorem/sample reviews; match live vibe/colors; polish ok; sell-as-is.
+**Date:** 2026-09-05  
+**Rules (Matthew):** match live vibe/colors; **full content/nav parity** (dropdowns); **image inventory incorporated**; **favicon from live / logo-derived**; 508 notes; sell-as-is; no invent logos/reviews.
 
-## Live URL map (Scout inventory)
-1. Speake's → https://www.speakesplumbing.com/
-2. Beyond Lawn → https://www.beyondlawncares.com/
-3. Hughes → https://www.hughescontractorsllc.com/  ← not hughes-mech-elect.com
-4. Victory → https://www.victorypestcontrol.com/
-5. CareMaster → http://www.caremaster.biz/
-6. Forum Terrace → http://forumterrace.org/
-7. B&B Auto → https://bbcompleteautorepair.com/
-8. Ferraro → https://www.grandprairie-arlingtondental.com/
-9. Garden → https://gardenrestaurantgarland.com/
-10. Len Conner → https://www.lonestarlaw.net/
+## Status: DESIGN GO (parity pack)
 
-## Vibe match scores (rebuild vs live)
-| Site | Score | One-line |
+All 10 `BRIEF.md` files updated with nav map (live vs rebuild), image list, favicon source, plus prior tokens/layout/508.
+
+### Exemplar — Speake's Plumbing
+Live header ≈ **11 top items** including **Service Areas** dropdown (Garland/Richardson heater + plumbers pages) + **Blog**. Rebuild has **5** flat links → **parity FAIL** until Eng restores destinations with same labels.
+
+### Parity risk rollup
+| Site | Nav parity | Notes |
 | --- | --- | --- |
-| Speake's | 4/10 | Navy/copper invented; live is burgundy `#7a001a` |
-| Beyond Lawn | 5/10 | Orange ok-ish; need live green `#18793f` + `#f27c21` + sans |
-| Hughes | 5/10 | Need `#112F5B` / `#D64000` / `#FDF102` from hughescontractorsllc.com |
-| Victory | 3/10 | Green forest wrong; live navy/gold |
-| CareMaster | 3/10 | Teal invent; live dark green + gold logo + skyline |
-| Forum Terrace | 7/10 | Blue matches; tone down brown CTAs |
-| B&B Auto | 6/10 | Black/red plausible; unify exact live red |
-| Ferraro | 7/10 | Teal dental right family |
-| Garden | 3/10 | Red invent; live teal `#18A687` + gold `#B8A51C` + food hero |
-| Len Conner | 4/10 | Navy/gold invent; live maroon `#77080a` + beach hero |
+| Speake's | FAIL | Exemplar under-build |
+| Beyond Lawn | FAIL risk | Commercial/Residential dropdown trees |
+| Hughes | SOFT | Wix anchors OK as pages |
+| Victory | FAIL risk | Library / Training / wildlife / bed bug |
+| CareMaster | Closer | Keep 4 live items + skyline image |
+| Forum Terrace | FAIL risk | Resources + Bulletins |
+| B&B Auto | FAIL risk | 12-service dropdown + Gallery |
+| Ferraro | FAIL | 40+ service destinations |
+| Garden | FAIL | Gallery + Order CTA |
+| Len Conner | FAIL | Practice Areas tree + Blog + Payment |
 
-## Cross-cutting Eng notes
-1. Most sites share one scaffold — after token fixes, vary header treatment (light vs dark) per brief so they don’t feel like one template wearing different paints.
-2. Keep skip link; ensure `:focus-visible` works on both light and dark headers.
-3. Contact forms: visible labels, `autocomplete`, non-color-only errors; forms must not email businesses (standing rule).
-4. Images: real logos/photos only; meaningful alt.
-5. Yellow/gold accents: never small body text on white.
+### Artifacts
+- Briefs: `/workspace/dfw-design-briefs/<slug>/BRIEF.md`
+- Inventory JSON: `/workspace/dfw-design-briefs/PARITY-INVENTORY.json`
+- Favicons: `/workspace/dfw-design-briefs/favicons/` + `FAVICON-MAP.json`
+- Shots: existing `live-*.png` / `rebuild-*.png`
 
-## Per-site briefs
-See `sites` folders: `/workspace/dfw-design-briefs/<slug>/BRIEF.md`
+### 508 reminders (Tick FAIL already noted)
+- Garden: avoid teal `#18A687` as body text on white — darken for AA or use for large buttons only with verified contrast.
+- Victory: avoid muted `#888787` on `#f5f5f5` for body copy.
+- CareMaster: hero should be skyline-forward (not lede+CTA heavy) per Tick SOFT.
 
-## Status
-**DESIGN GO** — all 10 briefs ready for Gizmo. Screenshots continuing under each slug for Tick/Eng reference.
+No Sketch code. Gizmo implements.
 
-## CORRECTION (2026-09-05)
-A late worker briefly overwrote Garden + Len Conner briefs to “keep rebuild invent.” **Reverted.** Standing rule remains: match **live** vibe/colors. Gizmo must use restored BRIEF.md files (Garden → teal; Len Conner → maroon).
+## Scout fold (2026-09-05)
+Ferraro / Garden / Len Conner BRIEF.md updated from `/workspace/dfw-parity/*.md`.
+- Len Conner: **20** Practice Areas children (full list).
+- Garden: favicon **logo-derived** (no live icon).
+- Ferraro: full nested services + Patient Resources tree.
+
+## Scout fold wave 2
+Speake’s, B&B, CareMaster, Forum Terrace BRIEF.md updated from `/workspace/dfw-parity/*.md`.
+Beyond / Hughes / Victory folded from Scout HTML dumps (formal Scout `.md` can supersede later).

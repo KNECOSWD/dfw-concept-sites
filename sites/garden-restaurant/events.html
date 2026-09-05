@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Events | Garden Restaurant</title>
+  <meta name="description" content="Events as published.">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body class="theme-dark-header">
+  <a class="skip" href="#main">Skip to content</a>
+  
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">
+        <img class="logo wide" src="assets/logo.png" alt="Garden Restaurant">
+      </a>
+      <nav id="site-nav" class="nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="about.php">About Us</a>
+        <a href="menu.php">Menu</a>
+        <a href="gallery.php">Gallery</a>
+        <a href="contact.php">Contact</a>
+      </nav>
+      <a class="btn btn-primary header-cta" href="https://zingmyorder.com/restaurants/garden-restaurant-3555-w-walnut-st-garland-tx-75042-usa" target="_blank" rel="noopener noreferrer">Order PickUp | Delivery</a>
+      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="page-hero"><div class="wrap"><h1>Events</h1></div></section>
+    <section><div class="wrap prose"><p>About/Events stay thin as on the live site. Call (972) 487-8289 for current events.</p>
+      <p>Call the office to confirm current details and schedule.</p>
+    </div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>Garden Restaurant</strong>
+        <p>Garland, TX</p>
+        <p><a href="tel:+19724878289">(972) 487-8289</a></p>
+        <p>3555 W Walnut St, Garland, TX 75042</p>
+      </div>
+      <div>
+        
+                <ul class="footer-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.php">About Us</a></li>
+          <li><a href="menu.php">Menu</a></li>
+          <li><a href="events.php">Events</a></li>
+          <li><a href="online.php">Order PickUp | Delivery</a></li>
+          <li><a href="contact.php">Contact</a></li>
+        </ul>
+        <p class="legal">© <span id="year"></span> Garden Restaurant. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <div class="callbar">
+    <a class="btn btn-primary" href="tel:+19724878289">Call (972) 487-8289</a>
+    <a class="btn btn-dark" href="contact.php">Contact</a>
+  </div>
+  <script src="site.js"></script>
+</body>
+</html>

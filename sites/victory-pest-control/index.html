@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Victory Pest Control | Dallas–Fort Worth Metroplex</title>
   <meta name="description" content="Residential and commercial pest control, wildlife, and bed bugs. Available 24 hours. Call or text (972) 230-5526.">
+  <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Victory Pest Control LLC","logo":"assets/schema-logo.jpg","image":"assets/logo.jpg","telephone":"+19722305526","address":{"@type":"PostalAddress","streetAddress":"234 Paradise Way","addressLocality":"Red Oak","addressRegion":"TX","postalCode":"75154"}}
+  </script>
 </head>
 <body class="theme-bar-nav">
   <a class="skip" href="#main">Skip to content</a>
@@ -21,13 +25,34 @@
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     </div>
     <nav id="site-nav" class="nav nav-bar" aria-label="Primary">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="services.html">Services</a>
+        <a href="index.html">Home</a>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Pest Control Services</button>
+          <ul class="nav-sub">
+            <li><a href="residential-commercial-pest-control.html">Residential &amp; Commercial Pest Control</a></li>
+            <li><a href="nuisance-wildlife-control.html">Nuisance Wildlife Control</a></li>
+            <li><a href="bed-bug-control.html">Bed Bug Control</a></li>
+          </ul>
+        </div>
         <a href="specials.html">Specials</a>
-        <a href="about.html">About</a>
+        <a href="pest-library.html">Pest Library</a>
+        <a href="technician-training.html">Technician Training</a>
         <a href="reviews.html">Reviews</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false">About</button>
+          <ul class="nav-sub">
+            <li><a href="about.html">About</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false">Contact</button>
+          <ul class="nav-sub">
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="request-callback.html">Request Callback</a></li>
+          </ul>
+        </div>
+      </nav>
   </header>
   <main id="main">
     <section class="hero" id="top">
@@ -39,7 +64,7 @@
           <p class="lede">Victory Pest Control LLC is a premier pest control company serving the Dallas–Fort Worth Metroplex. With over 30 years of experience, we provide comprehensive solutions to residential and commercial customers.</p>
           <div class="actions">
             <a class="btn btn-primary" href="tel:+19722305526">Call (972) 230-5526</a>
-            <a class="btn btn-ghost" href="services.html">See services</a>
+            <a class="btn btn-ghost" href="residential-commercial-pest-control.html">See services</a>
           </div>
         </div>
         <aside class="panel"><strong>Call or text</strong>
@@ -75,11 +100,19 @@
 <article class="card"><h3>Specials</h3><p>10% off yearly advance pay, 5% off when you schedule online, 10% referral credit, mosquito specials, and free termite inspections.</p></article></div>
       </div>
     </section>
+    <section id="video">
+      <div class="wrap">
+        <h2>See our work</h2>
+        <video controls poster="assets/vid-play.png" style="width:100%;max-width:720px;border-radius:8px;">
+          <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="wrap footer-grid">
       <div>
-        <strong>Victory Pest Control LLC</strong>
+        <img src="assets/logo.jpg" alt="Victory Pest Control LLC" style="height:48px;width:auto;display:block;margin-bottom:0.5rem;"><strong>Victory Pest Control LLC</strong>
         <p>Dallas–Fort Worth, TX</p>
         <p><a href="tel:+19722305526">(972) 230-5526</a></p>
         <p>234 Paradise Way, Red Oak, TX 75154</p>

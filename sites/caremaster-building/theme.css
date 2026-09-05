@@ -4,27 +4,78 @@
   --surface: #ffffff;
   --ink: #383838;
   --muted: #686868;
-  --brand: #0b3d2e;
-  --brand-2: #C9A84C;
-  --accent: #0b3d2e;
+  --brand: #1F4A3B;
+  --brand-2: #918561;
+  --accent: #1F4A3B;
   --hero-ink: #ffffff;
   --font-display: "Source Sans Pro", "Open Sans", "Segoe UI", sans-serif;
   --font: "Open Sans", "Source Sans Pro", "Segoe UI", sans-serif;
   --hero-pattern: none;
   --hero-pattern-size: 24px 24px;
-  --focus: #0b3d2e;
+  --focus: #1F4A3B;
   --cta-ink: #ffffff;
 }
 
-.hero {
-  background:
-    linear-gradient(rgba(11, 61, 46, 0.58), rgba(11, 61, 46, 0.5)),
-    url("assets/skyline.png") center / cover no-repeat;
-  min-height: 22rem;
-}
+
 .hero::after { opacity: 0; }
 .prose a { color: #383838; }
-.btn-primary { background: #0b3d2e; color: #fff; }
-h2 { color: #0b3d2e; }
-h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #C9A84C; margin-top: 0.45rem; }
+.btn-primary { background: #1F4A3B; color: #fff; }
+h2 { color: #1F4A3B; }
+h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #918561; margin-top: 0.45rem; }
+.theme-centered-header .nav {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.theme-centered-header .nav a { color: #595959; }
+.theme-centered-header .nav a:hover,
+.theme-centered-header .nav a[aria-current="page"] {
+  color: #1F4A3B;
+  box-shadow: inset 0 -2px 0 #1F4A3B;
+}
+
+
+/* Shared dropdown nav — all 10 sites */
+.nav, .nav-bar { flex-wrap: wrap; }
+.nav-item, .nav-sub-item { position: relative; }
+.nav-toggle {
+  background: none; border: 0; font: inherit; font-weight: 700; color: inherit;
+  cursor: pointer; padding: 0; text-align: left;
+}
+.nav-sub, .nav-sub2 {
+  display: none; list-style: none; margin: 0; padding: 0.35rem 0;
+  background: #fff; min-width: 15rem; box-shadow: 0 10px 26px rgba(0,0,0,.16); z-index: 40;
+}
+.nav-sub a, .nav-sub .nav-toggle {
+  display: block; width: 100%; text-align: left; color: #222; background: none; border: 0;
+  font: inherit; font-weight: 600; font-size: 0.88rem; padding: 0.4rem 0.8rem;
+  cursor: pointer; text-decoration: none;
+}
+.nav-sub a:hover, .nav-sub .nav-toggle:hover { background: #f4f4f4; color: inherit; }
+.nav-item.open > .nav-sub,
+.nav-item:hover > .nav-sub,
+.nav-item:focus-within > .nav-sub,
+.nav-sub-item.open > .nav-sub2,
+.nav-sub-item:hover > .nav-sub2,
+.nav-sub-item:focus-within > .nav-sub2 { display: block; }
+.nav-sub2 { padding-left: 0; }
+@media (min-width: 760px) {
+  .nav-sub { position: absolute; top: 100%; left: 0; }
+  .nav-sub2 { position: absolute; top: 0; left: 100%; min-width: 16rem; }
+}
+
+
+
+.hero {
+  background:
+    linear-gradient(rgba(40, 35, 40, 0.45), rgba(40, 35, 40, 0.38)),
+    url("assets/city.png") center / cover no-repeat;
+  min-height: 26rem;
+  text-align: center;
+}
+.hero .lede, .hero .actions { display: none; }
+.hero h1 {
+  max-width: 22ch;
+  margin-inline: auto;
+  text-shadow: 0 2px 14px rgba(0,0,0,.55);
+}
 

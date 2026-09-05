@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Location | Forum Terrace Church of Christ</title>
   <meta name="description" content="2446 Arkansas Lane, Grand Prairie, Texas 75052.">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192x192.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="msapplication-TileImage" content="assets/favicon-270x270.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
-<body>
+<body class="theme-dark-header">
   <a class="skip" href="#main">Skip to content</a>
   
   <header class="site-header">
@@ -21,11 +25,18 @@
         </span>
       </a>
       <nav id="site-nav" class="nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="location.html" aria-current="page">Location</a>
-        <a href="classes.html">Bible Classes</a>
-        <a href="resources.html">Resources</a>
-        <a href="contact.html">Contact</a>
+        <a href="location.html">Location</a>
+        <a href="index.html#blog">Bulletins</a>
+        <a href="index.html#contact">Contact Us</a>
+        <a href="tracts.html">Tracts</a>
+        <a href="bible-classes.html">Workbooks</a>
+        <a href="sermons.html">Sermons</a>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false">MEMBERS</button>
+          <ul class="nav-sub">
+            <li><a href="http://forumterrace.org/member-directory-2/" target="_blank" rel="noopener noreferrer">Member Directory</a></li>
+          </ul>
+        </div>
       </nav>
       <a class="btn btn-dark header-cta" href="tel:+19729223249">Call (972) 922-3249</a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
@@ -44,6 +55,7 @@
         <p><strong>Forum Terrace Church of Christ</strong><br>2446 Arkansas Lane<br>Grand Prairie, Texas 75052<br>(972) 922-3249</p>
       </div>
     </section>
+  <section><div class="wrap"><img src="assets/map.png" alt="Map to Forum Terrace Church of Christ" class="media-frame" style="max-width:480px;"></div></section>
   </main>
   <footer class="site-footer">
     <div class="wrap footer-grid">
@@ -61,7 +73,7 @@
   </footer>
   <div class="callbar">
     <a class="btn btn-primary" href="tel:+19729223249">Call (972) 922-3249</a>
-    <a class="btn btn-dark" href="contact.html">Contact</a>
+    <a class="btn btn-dark" href="index.html#contact">Contact</a>
   </div>
   <script src="site.js"></script>
 </body>

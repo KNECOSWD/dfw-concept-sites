@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Attorney Len Conner | Irving Divorce &amp; Family Law</title>
   <meta name="description" content="The Law Office of Len Conner focuses on comprehensive divorce and family law. Call (972) 445-1500.">
+  <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 </head>
@@ -21,11 +22,44 @@
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     </div>
     <nav id="site-nav" class="nav nav-bar" aria-label="Primary">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="about.html">Firm &amp; Attorney</a>
-        <a href="practice.html">Practice Areas</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+        <a href="index.html">Home</a>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false">Firm Overview</button>
+          <ul class="nav-sub">
+            <li><a href="firm-overview.html">Firm Overview</a></li>
+            <li><a href="len-m-conner.html">Len M. Conner</a></li>
+          </ul>
+        </div>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false">Practice Areas</button>
+          <ul class="nav-sub">
+            <li><a href="practice-areas.html">Practice Areas</a></li>
+            <li><a href="contested-divorce.html">Contested Divorce</a></li>
+            <li><a href="uncontested-divorce.html">Uncontested Divorce</a></li>
+            <li><a href="modifications-enforcements.html">Modifications &amp; Enforcements</a></li>
+            <li><a href="child-support.html">Child Support</a></li>
+            <li><a href="child-custody.html">Child Custody</a></li>
+            <li><a href="interstate-visitation.html">Interstate Visitation</a></li>
+            <li><a href="collaborative-divorce.html">Collaborative Divorce</a></li>
+            <li><a href="military-divorce.html">Military Divorce</a></li>
+            <li><a href="termination-parental-rights.html">Termination of Parental Rights</a></li>
+            <li><a href="stepparent-adoptions.html">Stepparent Adoptions</a></li>
+            <li><a href="mediation-arbitration.html">Mediation &amp; Arbitration</a></li>
+            <li><a href="paternity.html">Paternity Rights</a></li>
+            <li><a href="divorce-myths.html">Divorce Myths</a></li>
+            <li><a href="marital-property.html">Marital Property</a></li>
+            <li><a href="domestic-violence.html">Domestic Violence</a></li>
+            <li><a href="divorce-faqs.html">Divorce FAQs</a></li>
+            <li><a href="criminal-law-divorce.html">Criminal Law in Divorce</a></li>
+            <li><a href="grandparents-rights.html">Grandparents’ Rights</a></li>
+            <li><a href="fathers-rights.html">Fathers’ Rights</a></li>
+            <li><a href="legal-glossary.html">Legal Glossary</a></li>
+          </ul>
+        </div>
+        <a href="read-blog.html">Read Our Blog</a>
+        <a href="https://square.link/u/gfg5dcET" target="_blank" rel="noopener noreferrer">Make a Payment</a>
+        <a href="contact-us.html">Contact Us</a>
+      </nav>
   </header>
   <main id="main">
     <section class="hero hero-photo hero-ink-brand" id="top">
@@ -47,6 +81,13 @@
           <div class="kpis"><div><strong>Family law</strong><span>Practice focus</span></div><div><strong>J.D., M.B.A.</strong><span>Len M. Conner</span></div><div><strong>Irving</strong><span>John Carpenter Fwy</span></div><div><strong>DFW</strong><span>Surrounding counties</span></div></div></aside>
       </div>
     </section>
+    <section id="hero-slides" aria-label="Practice banners">
+      <div class="wrap photo-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;">
+        <figure><img src="assets/banner-main.jpg" alt="Divorce &amp; Family Law"><figcaption>Divorce &amp; Family Law</figcaption></figure>
+        <figure><img src="assets/banner-main3.jpg" alt="Child Custody"><figcaption>Child Custody</figcaption></figure>
+        <figure><img src="assets/banner4.jpg" alt="Military Divorce Issues"><figcaption>Military Divorce Issues</figcaption></figure>
+      </div>
+    </section>
     <section id="intro">
       <div class="wrap">
         <div class="section-head">
@@ -54,9 +95,11 @@
           <p>Irving &amp; Dallas County family law lawyer.</p>
         </div>
         <div class="prose">
+          <img src="assets/attorney.jpg" alt="Len M. Conner" class="media-frame" style="max-width:11rem;float:right;margin:0 0 1rem 1rem;">
           <p>The Law Office of Len Conner focuses on comprehensive divorce and family law representation. Len has spent his entire legal career on family law matters, identifying and implementing the best solutions for his clients.</p>
           <p>Our office partners with psychologists, social workers, financial advisors, private investigators, and tax professionals. To set up a confidential meeting, call 972-445-1500. Our office is in Irving; we represent clients in surrounding cities and counties.</p>
           <p>Fully licensed by the Texas Supreme Court. Admitted to the U.S. Federal Courts, Northern District of Texas. Member of the Texas Family Law Section of the Texas State Bar Association.</p>
+          <img src="assets/content-photo.jpg" alt="Law Office of Len Conner" class="media-frame" style="max-width:16rem;display:block;margin:0 0 1rem;">
           <div class="badge-row">
           <img src="assets/badge-best-in-irving.png" alt="Best in Irving 2022 Winner">
           <img src="assets/badge-superlawyers.jpg" alt="Rated by Super Lawyers — Len Michael Conner">
@@ -162,13 +205,14 @@
       </div>
       <div>
         
+        <p><img src="assets/footer-map.jpg" alt="Map to the Irving office" style="max-width:12rem;"><br><img src="assets/visa.png" alt="Visa accepted" style="height:28px;margin-top:.4rem;"></p>
         <p class="legal">© <span id="year"></span> Len Conner &amp; Associates. Unless otherwise indicated, attorneys listed are not certified by the Texas Board of Legal Specialization. This site is general information only and does not create an attorney-client relationship.</p>
       </div>
     </div>
   </footer>
   <div class="callbar">
     <a class="btn btn-primary" href="tel:+19724451500">Call (972) 445-1500</a>
-    <a class="btn btn-dark" href="contact.html">Contact</a>
+    <a class="btn btn-dark" href="contact-us.html">Contact</a>
   </div>
   <script src="site.js"></script>
 </body>

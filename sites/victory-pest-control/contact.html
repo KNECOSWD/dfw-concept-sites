@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Victory Pest Control LLC</title>
   <meta name="description" content="Contact Victory Pest Control LLC.">
+  <link rel="icon" href="assets/favicon.ico">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Victory Pest Control LLC","logo":"assets/schema-logo.jpg","image":"assets/logo.jpg","telephone":"+19722305526","address":{"@type":"PostalAddress","streetAddress":"234 Paradise Way","addressLocality":"Red Oak","addressRegion":"TX","postalCode":"75154"}}
+  </script>
 </head>
 <body class="theme-bar-nav">
   <a class="skip" href="#main">Skip to content</a>
@@ -22,12 +26,33 @@
     </div>
     <nav id="site-nav" class="nav nav-bar" aria-label="Primary">
         <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true">Pest Control Services</button>
+          <ul class="nav-sub">
+            <li><a href="residential-commercial-pest-control.html">Residential &amp; Commercial Pest Control</a></li>
+            <li><a href="nuisance-wildlife-control.html">Nuisance Wildlife Control</a></li>
+            <li><a href="bed-bug-control.html">Bed Bug Control</a></li>
+          </ul>
+        </div>
         <a href="specials.html">Specials</a>
-        <a href="about.html">About</a>
+        <a href="pest-library.html">Pest Library</a>
+        <a href="technician-training.html">Technician Training</a>
         <a href="reviews.html">Reviews</a>
-        <a href="contact.html" aria-current="page">Contact</a>
-    </nav>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false">About</button>
+          <ul class="nav-sub">
+            <li><a href="about.html">About</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="nav-item">
+          <button class="nav-toggle" type="button" aria-expanded="false">Contact</button>
+          <ul class="nav-sub">
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="request-callback.html">Request Callback</a></li>
+          </ul>
+        </div>
+      </nav>
   </header>
   <main id="main">
     <section class="page-hero">
