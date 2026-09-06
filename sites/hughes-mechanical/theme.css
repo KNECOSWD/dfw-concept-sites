@@ -188,3 +188,15 @@
 .theme-dark-header :focus-visible { outline-color: #fff6c8; }
 .hero :focus-visible { outline-color: #111; }
 
+@media (max-width: 759px) {
+  header.site-header a.header-cta,
+  header.site-header .header-cta {
+    display: none !important;
+  }
+
+  header.site-header .brand {
+    min-width: 0;
+    width: min(68vw, 240px);
+  }
+}
+
