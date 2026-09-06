@@ -76,6 +76,18 @@
     }
   });
 
+  document.addEventListener("click", function (event) {
+    if (!nav) return;
+    var inside = event.target.closest("#site-nav, .menu-btn");
+    if (inside) return;
+    nav.querySelectorAll(".open").forEach(function (el) {
+      el.classList.remove("open");
+    });
+    nav.querySelectorAll("[aria-expanded='true']").forEach(function (el) {
+      if (el.id !== "menu-toggle") el.setAttribute("aria-expanded", "false");
+    });
+  });
+
   if (form && status) {
     form.addEventListener("submit", function (event) {
       event.preventDefault();

@@ -150,9 +150,22 @@ h2,
 .nav.open > a,
 .nav.open > .nav-item > .nav-toggle {
   color: #ffffff;
+  background: none;
+  box-shadow: none;
 }
 .nav.open .nav-sub a {
   color: #12202c;
+}
+
+@media (max-width: 979px) {
+  .nav.open > .nav-item > .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.45rem 0.2rem;
+    color: #ffffff;
+    font-weight: 700;
+  }
 }
 
 /* Hero: stock shop photo + blue-gray scrim + plate under FULL heading */
