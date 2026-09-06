@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-label="Flavia's Beauty Salon &amp; Barber Shop">
+  <circle cx="72" cy="80" r="58" fill="#EB639C"/>
+  <circle cx="72" cy="80" r="48" fill="none" stroke="#639EDB" stroke-width="6"/>
+  <text x="72" y="98" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="700" fill="#ffffff">F</text>
+  <text x="150" y="74" font-family="Georgia, 'Times New Roman', serif" font-size="44" font-weight="700" fill="#292929">Flavia's</text>
+  <text x="150" y="112" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#639EDB">Beauty Salon &amp; Barber Shop</text>
+</svg>

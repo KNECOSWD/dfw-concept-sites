@@ -10,3 +10,4 @@
 10. len-conner-law | live https://www.lonestarlaw.net/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/
 11. princeton-smiles | live https://princetonsmiles.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/princeton-smiles/
 12. best-price-tires | live https://bestpricetireandauto.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/best-price-tires/
+13. flavias-beauty | live https://flaviasbeautysalonandbarbershop.com/ | rebuild https://knecoswd.github.io/dfw-concept-sites/sites/flavias-beauty/

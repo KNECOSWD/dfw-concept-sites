@@ -1,0 +1,9 @@
+GENERIC MEDIA LOCK
+This folder contains only:
+- a generated wordmark / "F" mark (not the customer logo)
+- generated favicons (not the live GHL or customer favicon)
+- generic stock salon/barber photographs
+- generic initial avatars rendered in CSS (no headshots)
+
+Do not add customer logos, staff photos, storefront photos, or live favicons
+until Matthew approves a swap-after-approval pass.
