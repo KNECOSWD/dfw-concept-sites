@@ -50,6 +50,7 @@ Preview URLs:
 10. https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/
 11. https://knecoswd.github.io/dfw-concept-sites/sites/princeton-smiles/
 12. https://knecoswd.github.io/dfw-concept-sites/sites/best-price-tires/
+13. https://knecoswd.github.io/dfw-concept-sites/sites/flavias-beauty/
 
 ## The 10 sites
 
@@ -67,6 +68,7 @@ Preview URLs:
 | 10 | Law Office of Len Conner | Irving | [`sites/len-conner-law/`](sites/len-conner-law/) |
 | — | Princeton Smiles Dentistry (independent sales unit) | Princeton | [`sites/princeton-smiles/`](sites/princeton-smiles/) |
 | — | Best Price Tires & Auto (independent sales unit) | Princeton | [`sites/best-price-tires/`](sites/best-price-tires/) |
+| — | Flavia's Beauty Salon & Barber Shop (independent sales unit) | Princeton | [`sites/flavias-beauty/`](sites/flavias-beauty/) |
 
 ## Shared scaffold
 
@@ -95,3 +97,4 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **Len Conner** homepage testimonials only (Marie, Marc and Jill, David, Dena, Kelly). `/testimonials/` is 404. No public email or hours. Super Lawyers, Avvo, and Best in Irving 2022 badges from the live site.
 - **Princeton Smiles** is an independent $500 sales unit (not one of the original ten). Generic wordmark + Unsplash clinical stock only — no live logo, doctor photo, or live favicon. Form does not email princetonsmiles@gmail.com. Live Wylie emergency blurb omitted (NAP conflict). Four homepage quotes only. Do not confuse with NJ princetonsmile.com.
 - **Best Price Tires & Auto** is an independent $500 sales unit (not one of the original ten). Generic tire wordmark + stock bay/tire photos only — no customer logo, shop photos, financing badges, or live favicon. Forms stay on-page. No published shop email.
+- **Flavia's Beauty** is an independent $500 sales unit. Generic “F” wordmark + stock salon/barber photos only — no customer logo, headshots, storefront photos, or live favicon. Dual Princeton Drive locations. Forms do not email the salon or create a LeadConnector booking. Footer uses flaviasbeautysalonandbarbershop.com only.

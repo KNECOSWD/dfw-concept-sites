@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact us | Flavia's Beauty Salon &amp; Barber Shop</title>
+  <meta name="description" content="Two Princeton locations, hours, phones, and a preview-safe message form.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">
+        <img class="logo wide" src="assets/logo.svg" alt="Flavia's Beauty Salon &amp; Barber Shop">
+      </a>
+      <nav id="site-nav" class="nav" aria-label="Primary">
+        <a href="products.html">Products</a>
+        <a href="services.html">Services</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html" aria-current="page">Contact us</a>
+      </nav>
+      <a class="btn btn-primary header-cta" href="book.html">RESERVAR CITA / BOOK NOW</a>
+      <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="section-kicker">Contact us</p>
+        <h1>Elige el local que mejor te convenga</h1>
+        <p class="lede">West and east Princeton Drive. Same hours at both shops.</p>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="loc-grid">
+          <article class="loc-card">
+            <h3>West Princeton</h3>
+            <p><strong>Address</strong><br>275 West Princeton Drive, Princeton, Texas.</p>
+            <p class="phone"><strong>Phone number</strong><br><a href="tel:+14693783098">+1 469 378 3098</a></p>
+            <p><strong>Assistance hours</strong><br>Mon – Sat 10:00am – 7:00pm<br>Sunday – 10:00am - 4:00pm</p>
+          </article>
+          <article class="loc-card">
+            <h3>East Princeton</h3>
+            <p><strong>Address</strong><br>691 East Princeton Drive, Princeton, Texas.</p>
+            <p class="phone"><strong>Phone number</strong><br><a href="tel:+12149740534">+1 214 974 0534</a></p>
+            <p><strong>Assistance hours</strong><br>Mon – Sat 10:00am – 7:00pm<br>Sunday – 10:00am - 4:00pm</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap contact-grid">
+        <div>
+          <h2>Maps</h2>
+          <p class="muted">275 West Princeton Drive, Princeton, Texas.</p>
+          <iframe class="map-frame" title="Map of 275 West Princeton Drive, Princeton, Texas" src="https://maps.google.com/maps?q=275+West+Princeton+Drive,+Princeton,+TX&amp;output=embed" loading="lazy"></iframe>
+          <p class="muted" style="margin-top:1rem">691 East Princeton Drive, Princeton, Texas.</p>
+          <iframe class="map-frame" title="Map of 691 East Princeton Drive, Princeton, Texas" src="https://maps.google.com/maps?q=691+East+Princeton+Drive,+Princeton,+TX&amp;output=embed" loading="lazy"></iframe>
+        </div>
+        <form class="card form" id="contact-form" action="mailto:disabled" method="get" novalidate>
+        <p class="preview-notice" role="note"><strong>KNECO preview.</strong> This form stays on the page. It does not email the salon, open the live LeadConnector widget, or create a booking or transaction.</p>
+          <p class="note">Call either Princeton location so the shop receives the request.</p>
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="contact-phone">Phone</label>
+            <input id="contact-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" required></textarea>
+          </div>
+          <p class="form-error" id="form-error" hidden>Please complete the required fields: name and message.</p>
+          <button class="btn btn-dark" type="submit">Send message</button>
+          <p class="form-status" id="form-status" role="status" tabindex="-1">Thank you. This KNECO preview does not send messages or bookings — please call West +1 469 378 3098 or East +1 214 974 0534.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <strong>Flavia's Beauty Salon &amp; Barber Shop</strong>
+        <p>Princeton, TX</p>
+        <p>West: <a href="tel:+14693783098">+1 469 378 3098</a><br>275 West Princeton Drive, Princeton, Texas.</p>
+        <p>East: <a href="tel:+12149740534">+1 214 974 0534</a><br>691 East Princeton Drive, Princeton, Texas.</p>
+        <p>Site: <a href="https://flaviasbeautysalonandbarbershop.com/">flaviasbeautysalonandbarbershop.com</a></p>
+      </div>
+      <div>
+        <ul class="footer-menu">
+          <li><a href="products.html">Products</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="book.html">RESERVAR CITA / BOOK NOW</a></li>
+        </ul>
+        <p class="legal">© <span id="year"></span> Flavia's Beauty Salon &amp; Barber Shop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>
