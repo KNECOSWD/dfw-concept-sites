@@ -48,5 +48,10 @@
     "slug": "len-conner-law",
     "name": "Law Office of Len Conner",
     "city": "Irving, TX"
+  },
+  {
+    "slug": "princeton-smiles",
+    "name": "Princeton Smiles Dentistry",
+    "city": "Princeton, TX"
   }
 ]
