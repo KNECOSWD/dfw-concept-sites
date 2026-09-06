@@ -223,8 +223,25 @@ footer.site-footer a {
     height: auto;
   }
 
+  .vpc-util {
+    position: relative;
+    z-index: 45;
+    padding: 0.4rem 0 0.55rem;
+  }
+
   .vpc-util-row {
-    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.45rem;
+  }
+
+  .vpc-util-actions {
+    width: 100%;
+  }
+
+  .vpc-util-actions .btn {
+    flex: 1 1 auto;
   }
 }
 
