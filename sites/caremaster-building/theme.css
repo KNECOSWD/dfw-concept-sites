@@ -186,7 +186,22 @@ main > section:not(.hero) {
 }
 
 .page-home #about {
-  padding-top: clamp(2.6rem, 5vw, 3.8rem);
+  padding-top: calc(var(--sticky-header-offset) + 1.15rem);
+}
+
+@media (min-width: 760px) {
+  .theme-centered-header .header-centered {
+    padding: 0.7rem 0 0.55rem;
+    gap: 0.5rem;
+  }
+
+  .theme-centered-header .brand img.logo.wide {
+    height: 80px;
+  }
+
+  :root {
+    --sticky-header-offset: 10.5rem;
+  }
 }
 
 @media (max-width: 759px) {
