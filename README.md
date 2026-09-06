@@ -48,6 +48,7 @@ Preview URLs:
 8. https://knecoswd.github.io/dfw-concept-sites/sites/ferraro-dds/
 9. https://knecoswd.github.io/dfw-concept-sites/sites/garden-restaurant/
 10. https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/
+11. https://knecoswd.github.io/dfw-concept-sites/sites/princeton-smiles/
 
 ## The 10 sites
 
@@ -63,6 +64,7 @@ Preview URLs:
 | 8 | Daniel L. Ferraro, D.D.S. | Grand Prairie | [`sites/ferraro-dds/`](sites/ferraro-dds/) |
 | 9 | Garden Restaurant | Garland | [`sites/garden-restaurant/`](sites/garden-restaurant/) |
 | 10 | Law Office of Len Conner | Irving | [`sites/len-conner-law/`](sites/len-conner-law/) |
+| — | Princeton Smiles Dentistry (independent sales unit) | Princeton | [`sites/princeton-smiles/`](sites/princeton-smiles/) |
 
 ## Shared scaffold
 
@@ -89,3 +91,4 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **B&B Complete Auto** reviews are Elfsight JS only. Gallery is empty. No reviews or photos were invented. License CO16-0388.
 - **Garden Restaurant** menu is the full priced list from `/menu.php` (10 categories). No site reviews. About/Events stay thin.
 - **Len Conner** homepage testimonials only (Marie, Marc and Jill, David, Dena, Kelly). `/testimonials/` is 404. No public email or hours. Super Lawyers, Avvo, and Best in Irving 2022 badges from the live site.
+- **Princeton Smiles** is an independent $500 sales unit (not one of the original ten). Generic wordmark + Unsplash clinical stock only — no live logo, doctor photo, or live favicon. Form does not email princetonsmiles@gmail.com. Live Wylie emergency blurb omitted (NAP conflict). Four homepage quotes only. Do not confuse with NJ princetonsmile.com.
