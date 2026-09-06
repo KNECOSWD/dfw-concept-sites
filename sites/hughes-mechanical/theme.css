@@ -151,10 +151,14 @@
 }
 #services {
   background: #f2eae7;
+  background-image: none;
   padding: 0;
 }
 #services .services-copy {
+  isolation: isolate;
+  width: 100%;
   background: #f2eae7;
+  background-image: none;
   padding: clamp(2.2rem, 5.2vw, 3.6rem) 0 1.15rem;
 }
 #services .services-copy .section-head {
@@ -164,9 +168,16 @@
 #services .services-copy p {
   color: #152033;
   background: none;
+  background-image: none;
 }
 #services .services-board {
-  background: #0a1d38 url("assets/services-art.png") center / cover no-repeat;
+  isolation: isolate;
+  width: 100%;
+  background-color: #0a1d38;
+  background-image: url("assets/services-art.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 1.6rem 0 clamp(2.4rem, 5.2vw, 4.2rem);
 }
 #services .card {

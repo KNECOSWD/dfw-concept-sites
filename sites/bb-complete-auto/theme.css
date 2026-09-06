@@ -155,4 +155,11 @@
   color: #e8e8e8;
   border-top-color: rgba(255, 255, 255, 0.28);
 }
+footer.site-footer,
+footer.site-footer * {
+  color: #ffffff;
+}
+footer.site-footer a {
+  color: #ffffff;
+}
 
