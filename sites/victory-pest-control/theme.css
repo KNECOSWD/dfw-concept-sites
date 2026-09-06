@@ -72,7 +72,8 @@
 .vpc-ratings {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.55rem;
   color: #fff;
   text-decoration: none;
   font-weight: 800;
@@ -81,6 +82,15 @@
 .vpc-ratings .stars {
   color: #f7d000;
   letter-spacing: 0.06em;
+}
+.vpc-score {
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+.vpc-count {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff8d4;
 }
 .vpc-util-actions {
   display: flex;
@@ -172,4 +182,66 @@
 .btn-primary:focus-visible { outline-color: #fff6c8; }
 .reviews { background: #11414B url("assets/content4.jpg") center / cover; }
 .card p { color: #5c5c5c; }
+
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer strong {
+  color: #ffffff;
+}
+.site-footer {
+  background: #001a54;
+}
+.site-footer .legal {
+  color: #e6edf8;
+  border-top-color: rgba(255, 255, 255, 0.28);
+}
+
+footer.site-footer,
+footer.site-footer * {
+  color: #ffffff;
+}
+footer.site-footer a {
+  color: #ffffff;
+}
+
+@media (max-width: 759px) {
+  header.site-header a.header-phone,
+  header.site-header a.header-cta,
+  header.site-header .header-phone,
+  header.site-header .header-cta {
+    display: none !important;
+  }
+
+  header.site-header .brand {
+    min-width: 0;
+    max-width: calc(100% - 6.5rem);
+  }
+
+  header.site-header .brand img.logo.wide {
+    max-width: min(62vw, 240px);
+    height: auto;
+  }
+
+  .vpc-util {
+    position: relative;
+    z-index: 45;
+    padding: 0.4rem 0 0.55rem;
+  }
+
+  .vpc-util-row {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.45rem;
+  }
+
+  .vpc-util-actions {
+    width: 100%;
+  }
+
+  .vpc-util-actions .btn {
+    flex: 1 1 auto;
+  }
+}
 

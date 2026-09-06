@@ -112,11 +112,40 @@
 }
 
 
+.hero[data-hero-carousel] {
+  overflow: hidden;
+  padding-bottom: 3.4rem;
+}
+.hero-carousel-ui {
+  left: 50%;
+  right: auto;
+  bottom: 0.85rem;
+  transform: translateX(-50%);
+  background: rgba(13, 51, 58, 0.82);
+  box-shadow: 0 8px 22px rgba(13, 51, 58, 0.22);
+}
+.hero-carousel-ui [data-hero-dot]::after {
+  background: rgba(255, 255, 255, 0.42);
+}
+.hero-carousel-ui [data-hero-dot][aria-current="true"]::after {
+  background: #fff;
+}
+.hero-carousel-ui [data-hero-pause] {
+  color: #fff;
+}
+#featured {
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  padding: 1.8rem 0 2.2rem;
+  background: #eef6f6;
+  overflow: visible;
+}
 .featured-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  gap: 0.75rem;
-  padding: 1.5rem 0;
+  gap: 0.85rem;
+  padding: 0;
 }
 .featured-card {
   display: grid;
@@ -127,8 +156,74 @@
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
-.featured-card img { width: 100%; height: 8.5rem; object-fit: cover; }
+.featured-card img {
+  width: 100%;
+  height: 11rem;
+  object-fit: cover;
+  display: block;
+}
 .featured-card span { padding: 0.6rem 0.75rem; font-weight: 700; }
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer strong {
+  color: #ffffff;
+}
+.site-footer {
+  background: #0a5c5f;
+}
+.site-footer .legal {
+  color: #d7eef0;
+  border-top-color: rgba(255, 255, 255, 0.28);
+}
+footer.site-footer,
+footer.site-footer * {
+  color: #ffffff;
+}
+footer.site-footer a {
+  color: #ffffff;
+}
+.photo-row {
+  overflow: visible;
+}
 .photo-row figure { margin: 0; }
 .photo-row figcaption { font-size: 0.88rem; color: #16333a; margin-top: 0.35rem; }
-.photo-row img { width: 100%; height: 10rem; object-fit: cover; border-radius: 8px; }
+.photo-row img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  object-position: center 28%;
+  border-radius: 8px;
+  display: block;
+}
+#welcome-photo .wrap {
+  overflow: hidden;
+}
+#welcome-photo .media-frame {
+  float: none !important;
+  display: block;
+  margin: 0 auto 1rem !important;
+  max-width: min(22rem, 100%);
+}
+@media (min-width: 760px) {
+  #welcome-photo .media-frame {
+    float: right !important;
+    margin: 0 0 1rem 1rem !important;
+  }
+}
+@media (max-width: 759px) {
+  header.site-header a.header-cta,
+  header.site-header .header-cta {
+    display: none !important;
+  }
+
+  header.site-header .brand {
+    min-width: 0;
+    max-width: calc(100% - 6.5rem);
+  }
+
+  header.site-header .brand-text strong,
+  header.site-header .brand-text span {
+    white-space: normal;
+  }
+}

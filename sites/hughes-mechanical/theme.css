@@ -149,9 +149,54 @@
   color: #fdf102;
   box-shadow: inset 0 -2px 0 #fdf102;
 }
-#services { background: #f2eae7 url("assets/services-art.png") right / contain no-repeat; }
+#services {
+  background: #f2eae7;
+  background-image: none;
+  padding: 0;
+}
+#services .services-copy {
+  isolation: isolate;
+  width: 100%;
+  background: #f2eae7;
+  background-image: none;
+  padding: clamp(2.2rem, 5.2vw, 3.6rem) 0 1.15rem;
+}
+#services .services-copy .section-head {
+  margin-bottom: 0;
+}
+#services .services-copy h2,
+#services .services-copy p {
+  color: #152033;
+  background: none;
+  background-image: none;
+}
+#services .services-board {
+  isolation: isolate;
+  width: 100%;
+  background-color: #0a1d38;
+  background-image: url("assets/services-art.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 1.6rem 0 clamp(2.4rem, 5.2vw, 4.2rem);
+}
+#services .card {
+  background: #fff;
+}
 #services .card,
 #team .card { border-top: 4px solid #fdf102; }
 .theme-dark-header :focus-visible { outline-color: #fff6c8; }
 .hero :focus-visible { outline-color: #111; }
+
+@media (max-width: 759px) {
+  header.site-header a.header-cta,
+  header.site-header .header-cta {
+    display: none !important;
+  }
+
+  header.site-header .brand {
+    min-width: 0;
+    width: min(68vw, 240px);
+  }
+}
 

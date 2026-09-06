@@ -73,4 +73,45 @@
   .nav-sub2 { position: absolute; top: 0; left: 100%; min-width: 16rem; }
 }
 
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer strong {
+  color: #ffffff;
+}
+.site-footer {
+  background: #77080a;
+}
+.site-footer .legal {
+  color: #f6e6e6;
+  border-top-color: rgba(255, 255, 255, 0.28);
+}
+
+footer.site-footer,
+footer.site-footer * {
+  color: #ffffff;
+}
+footer.site-footer a {
+  color: #ffffff;
+}
+
+@media (max-width: 759px) {
+  header.site-header a.header-phone,
+  header.site-header a.header-cta,
+  header.site-header .header-phone,
+  header.site-header .header-cta {
+    display: none !important;
+  }
+
+  header.site-header .brand {
+    min-width: 0;
+    max-width: calc(100% - 6.5rem);
+  }
+
+  header.site-header .brand img.logo.wide {
+    max-width: min(62vw, 240px);
+    height: auto;
+  }
+}
+
 
