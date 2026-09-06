@@ -57,29 +57,91 @@
 
 
 
+.vpc-util {
+  background: #001a54;
+  color: #fff;
+}
+.vpc-util-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  min-height: 3.1rem;
+}
+.vpc-ratings {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  min-height: 44px;
+}
+.vpc-ratings .stars {
+  color: #f7d000;
+  letter-spacing: 0.06em;
+}
+.vpc-util-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.vpc-util .btn-primary,
+.header-cta {
+  background: #d4af37;
+  color: #122033;
+}
+.vpc-util .btn-ghost {
+  color: #fff;
+  border-color: #d4af37;
+  background: transparent;
+}
 .hero {
   --hero-scrim: linear-gradient(105deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.22) 68%, rgba(255, 255, 255, 0.06) 100%);
   background: #eef2f8 url("assets/hero-home.jpg") center / cover no-repeat;
-  min-height: clamp(24rem, 52vw, 34rem);
+  min-height: 0;
+  padding: clamp(1.4rem, 3.6vw, 2.4rem) 0;
+}
+.hero h1 {
+  font-size: clamp(1.7rem, 4vw, 2.45rem);
+  margin: 0.2rem 0 0.55rem;
+  max-width: 14ch;
 }
 .hero h1,
 .hero .lede,
 .hero .eyebrow { color: #001a54; }
+.hero-ratings {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.55rem;
+  color: #001a54;
+  font-weight: 800;
+}
+.hero-ratings a { color: #001a54; }
 .hero-bullets {
-  margin: 0.8rem 0 0;
+  margin: 0.35rem 0 0;
   padding-left: 1.15rem;
   color: #001a54;
   font-weight: 700;
 }
+.hero .actions { margin-top: 0.85rem; }
+.hero-call {
+  margin: 0.55rem 0 0;
+  font-weight: 800;
+}
+.hero-call a { color: #001a54; }
 .hero .panel {
   background: #fff8e8;
   color: #122033;
   border: 2px solid #d4af37;
 }
 .hero .panel .form {
-  margin-top: 0.7rem;
+  margin-top: 0.55rem;
   display: grid;
-  gap: 0.45rem;
+  gap: 0.35rem;
 }
 .hero .panel .form label {
   font-weight: 700;
@@ -90,7 +152,7 @@
 .hero .panel .form textarea {
   width: 100%;
   min-height: 44px;
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
 }
 .hero .btn-ghost { color: #001a54; border-color: #001a54; background: rgba(255,255,255,0.72); }
 .btn-primary,

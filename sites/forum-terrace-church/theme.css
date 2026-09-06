@@ -102,3 +102,24 @@
 .theme-dark-header .nav.open { background: #1a2433; }
 .theme-dark-header .nav.open .nav-toggle,
 .theme-dark-header .nav.open a { color: #f4f4f4; }
+.theme-dark-header .brand-text { display: none; }
+.theme-dark-header .brand img.logo.wide {
+  height: 42px;
+  max-width: min(46vw, 280px);
+}
+.theme-dark-header .header-row {
+  flex-wrap: nowrap;
+  gap: 0.45rem;
+  min-height: 3.6rem;
+}
+.theme-dark-header .nav,
+.theme-dark-header .nav-bar {
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+}
+.theme-dark-header .nav a,
+.theme-dark-header .nav-toggle {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.1rem;
+  letter-spacing: 0;
+}
