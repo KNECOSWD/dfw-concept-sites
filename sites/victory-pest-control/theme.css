@@ -183,3 +183,17 @@
 .reviews { background: #11414B url("assets/content4.jpg") center / cover; }
 .card p { color: #5c5c5c; }
 
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer strong {
+  color: #ffffff;
+}
+.site-footer {
+  background: #001a54;
+}
+.site-footer .legal {
+  color: #e6edf8;
+  border-top-color: rgba(255, 255, 255, 0.28);
+}
+

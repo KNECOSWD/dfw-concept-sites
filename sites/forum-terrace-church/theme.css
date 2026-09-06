@@ -123,3 +123,17 @@
   padding: 0.3rem 0.1rem;
   letter-spacing: 0;
 }
+
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer strong {
+  color: #ffffff;
+}
+.site-footer {
+  background: #1d597c;
+}
+.site-footer .legal {
+  color: #e6eef4;
+  border-top-color: rgba(255, 255, 255, 0.28);
+}

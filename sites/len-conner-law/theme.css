@@ -73,4 +73,18 @@
   .nav-sub2 { position: absolute; top: 0; left: 100%; min-width: 16rem; }
 }
 
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer strong {
+  color: #ffffff;
+}
+.site-footer {
+  background: #77080a;
+}
+.site-footer .legal {
+  color: #f6e6e6;
+  border-top-color: rgba(255, 255, 255, 0.28);
+}
+
 
