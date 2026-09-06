@@ -84,6 +84,13 @@ body { border-top: 6px solid #f27c21; }
   object-fit: cover;
   z-index: 0;
 }
+.hero.video-hero .hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.58) 42%, rgba(255, 255, 255, 0.28) 100%);
+}
 .hero.video-hero::before {
   z-index: 1;
   opacity: 1;
@@ -125,19 +132,22 @@ body { border-top: 6px solid #f27c21; }
 .prose a { color: #18793f; }
 .btn-primary { background: #d45f10; color: #fff; }
 .nav a,
-.nav > .nav-item > .nav-toggle {
-  color: #f27c21;
-  font-weight: 600;
+.nav > .nav-item > .nav-toggle,
+.nav > .nav-item > button.nav-toggle {
+  color: #f27c21 !important;
+  font-weight: 600 !important;
 }
 .nav a:hover,
 .nav a:focus-visible,
 .nav > .nav-item > .nav-toggle:hover,
-.nav > .nav-item > .nav-toggle:focus-visible {
-  color: #d45f10;
+.nav > .nav-item > .nav-toggle:focus-visible,
+.nav > .nav-item > button.nav-toggle:hover,
+.nav > .nav-item > button.nav-toggle:focus-visible {
+  color: #d45f10 !important;
 }
 .nav a[aria-current="page"] {
-  color: #18793f;
-  font-weight: 700;
+  color: #18793f !important;
+  font-weight: 700 !important;
 }
 
 .video-pause {
