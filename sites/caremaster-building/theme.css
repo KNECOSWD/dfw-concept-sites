@@ -169,11 +169,61 @@ h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #
   display: none !important;
 }
 
+/* Sticky header is tall (centered logo + Menu). Keep headings clear of it
+   on hash/scrollIntoView and when the hero has scrolled away. */
+:root {
+  --sticky-header-offset: 12.5rem;
+}
+
+html {
+  scroll-padding-top: var(--sticky-header-offset);
+}
+
+h2,
+.page-hero,
+main > section:not(.hero) {
+  scroll-margin-top: var(--sticky-header-offset);
+}
+
 .page-home #about {
-  padding-top: clamp(2.2rem, 5vw, 3.4rem);
+  padding-top: clamp(2.6rem, 5vw, 3.8rem);
 }
 
 @media (max-width: 759px) {
+  :root {
+    --sticky-header-offset: 5.75rem;
+  }
+
+  /* Single-row sticky chrome so the first section H2 is not clipped. */
+  .theme-centered-header .header-centered {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    padding: 0.45rem 0;
+    text-align: left;
+  }
+
+  .theme-centered-header .brand {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .theme-centered-header .brand img.logo.wide {
+    height: 48px;
+    max-width: min(62vw, 220px);
+  }
+
+  .theme-centered-header .menu-btn {
+    flex: none;
+  }
+
+  .page-home #about {
+    padding-top: calc(var(--sticky-header-offset) + 1.35rem);
+  }
+
   .hero {
     padding-bottom: 1.6rem;
   }
