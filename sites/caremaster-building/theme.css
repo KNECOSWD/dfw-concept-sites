@@ -164,22 +164,18 @@ h2::after { content: ""; display: block; width: 3rem; height: 3px; background: #
   color: #f4f1e8;
 }
 
+.page-home .cta-band,
+.page-home .callbar {
+  display: none !important;
+}
+
+.page-home #about {
+  padding-top: clamp(2.2rem, 5vw, 3.4rem);
+}
+
 @media (max-width: 759px) {
   .hero {
-    padding-bottom: calc(1.6rem + env(safe-area-inset-bottom));
-  }
-
-  .cta-band {
-    padding: 0.85rem 0 1.1rem;
-  }
-
-  #about {
-    scroll-margin-top: 1rem;
-    padding-bottom: var(--space);
-  }
-
-  .page-home .callbar {
-    display: none;
+    padding-bottom: 1.6rem;
   }
 
   .page-home .site-footer {
