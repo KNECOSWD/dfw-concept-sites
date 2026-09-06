@@ -1246,6 +1246,13 @@ def len_conner() -> dict:
     return site
 
 
+ACQUISITION_GALLERY_META = [
+    ("princeton-smiles", "Princeton Smiles Dentistry", "Princeton, TX", "Family & cosmetic dentistry"),
+    ("best-price-tires", "Best Price Tires & Auto", "Princeton, TX", "Tires & auto repair"),
+    ("flavias-beauty", "Flavia's Beauty Salon & Barber Shop", "Princeton, TX", "Beauty salon & barber shop"),
+    ("princeton-car-care", "Princeton Car Care", "Princeton, TX", "Auto repair & maintenance"),
+]
+
 GALLERY_META = [
     ("speakes-plumbing", "Speake's Plumbing, Inc.", "Garland, TX", "Residential & commercial plumbing"),
     ("beyond-lawn-care", "Beyond Lawn Care & Landscaping", "Mesquite, TX", "Lawn care & landscaping"),
@@ -1257,7 +1264,6 @@ GALLERY_META = [
     ("ferraro-dds", "Daniel L. Ferraro, D.D.S.", "Grand Prairie, TX", "General dentistry"),
     ("garden-restaurant", "Garden Restaurant", "Garland, TX", "Chinese restaurant"),
     ("len-conner-law", "Law Office of Len Conner", "Irving, TX", "Divorce & family law"),
-    ("best-price-tires", "Best Price Tires & Auto", "Princeton, TX", "Tires & auto repair"),
 ]
 
 
@@ -1271,6 +1277,16 @@ def write_gallery() -> None:
       <p class="note"><code>sites/{esc(slug)}/</code></p>
     </article>'''
         for slug, name, city, industry in GALLERY_META
+    )
+    acquisition_html = "\n".join(
+        f'''<article class="card">
+      <p class="muted">{esc(city)}</p>
+      <h3>{esc(name)}</h3>
+      <p>{esc(industry)}</p>
+      <p><a class="btn btn-dark" href="sites/{esc(slug)}/index.html">Open site</a></p>
+      <p class="note"><code>sites/{esc(slug)}/</code></p>
+    </article>'''
+        for slug, name, city, industry in ACQUISITION_GALLERY_META
     )
     html = f'''<!DOCTYPE html>
 <html lang="en">
@@ -1306,6 +1322,17 @@ def write_gallery() -> None:
       <div class="wrap">
         <div class="cards gallery-cards">
           {cards_html}
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Acquisition units</h2>
+          <p>Independent $500 sales units. Separate from the original ten rebuilds.</p>
+        </div>
+        <div class="cards gallery-cards">
+          {acquisition_html}
         </div>
       </div>
     </section>
@@ -1371,6 +1398,10 @@ Preview URLs:
 8. https://knecoswd.github.io/dfw-concept-sites/sites/ferraro-dds/
 9. https://knecoswd.github.io/dfw-concept-sites/sites/garden-restaurant/
 10. https://knecoswd.github.io/dfw-concept-sites/sites/len-conner-law/
+11. https://knecoswd.github.io/dfw-concept-sites/sites/princeton-smiles/
+12. https://knecoswd.github.io/dfw-concept-sites/sites/best-price-tires/
+13. https://knecoswd.github.io/dfw-concept-sites/sites/flavias-beauty/
+14. https://knecoswd.github.io/dfw-concept-sites/sites/princeton-car-care/
 
 ## The 10 sites
 
@@ -1386,6 +1417,10 @@ Preview URLs:
 | 8 | Daniel L. Ferraro, D.D.S. | Grand Prairie | [`sites/ferraro-dds/`](sites/ferraro-dds/) |
 | 9 | Garden Restaurant | Garland | [`sites/garden-restaurant/`](sites/garden-restaurant/) |
 | 10 | Law Office of Len Conner | Irving | [`sites/len-conner-law/`](sites/len-conner-law/) |
+| — | Princeton Smiles Dentistry (independent sales unit) | Princeton | [`sites/princeton-smiles/`](sites/princeton-smiles/) |
+| — | Best Price Tires & Auto (independent sales unit) | Princeton | [`sites/best-price-tires/`](sites/best-price-tires/) |
+| — | Flavia's Beauty Salon & Barber Shop (independent sales unit) | Princeton | [`sites/flavias-beauty/`](sites/flavias-beauty/) |
+| — | Princeton Car Care (independent sales unit) | Princeton | [`sites/princeton-car-care/`](sites/princeton-car-care/) |
 
 ## Shared scaffold
 
@@ -1420,8 +1455,13 @@ def main() -> None:
     built = [fn() for fn in builders]
     write_gallery()
     (ROOT / "README.md").write_text(README, encoding="utf-8")
+    data = [{"slug": s["slug"], "name": s["name"], "city": s["city"]} for s in built]
+    data.extend(
+        {"slug": slug, "name": name, "city": city}
+        for slug, name, city, _industry in ACQUISITION_GALLERY_META
+    )
     (ROOT / "sites-data.json").write_text(
-        json.dumps([{"slug": s["slug"], "name": s["name"], "city": s["city"]} for s in built], indent=2),
+        json.dumps(data, indent=2),
         encoding="utf-8",
     )
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")

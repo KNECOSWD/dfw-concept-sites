@@ -51,6 +51,7 @@ Preview URLs:
 11. https://knecoswd.github.io/dfw-concept-sites/sites/princeton-smiles/
 12. https://knecoswd.github.io/dfw-concept-sites/sites/best-price-tires/
 13. https://knecoswd.github.io/dfw-concept-sites/sites/flavias-beauty/
+14. https://knecoswd.github.io/dfw-concept-sites/sites/princeton-car-care/
 
 ## The 10 sites
 
@@ -69,6 +70,7 @@ Preview URLs:
 | — | Princeton Smiles Dentistry (independent sales unit) | Princeton | [`sites/princeton-smiles/`](sites/princeton-smiles/) |
 | — | Best Price Tires & Auto (independent sales unit) | Princeton | [`sites/best-price-tires/`](sites/best-price-tires/) |
 | — | Flavia's Beauty Salon & Barber Shop (independent sales unit) | Princeton | [`sites/flavias-beauty/`](sites/flavias-beauty/) |
+| — | Princeton Car Care (independent sales unit) | Princeton | [`sites/princeton-car-care/`](sites/princeton-car-care/) |
 
 ## Shared scaffold
 
@@ -98,3 +100,4 @@ Contact forms stay on the page. They do not email, store, or submit to the busin
 - **Princeton Smiles** is an independent $500 sales unit (not one of the original ten). Generic wordmark + Unsplash clinical stock only — no live logo, doctor photo, or live favicon. Form does not email princetonsmiles@gmail.com. Live Wylie emergency blurb omitted (NAP conflict). Four homepage quotes only. Do not confuse with NJ princetonsmile.com.
 - **Best Price Tires & Auto** is an independent $500 sales unit (not one of the original ten). Generic tire wordmark + stock bay/tire photos only — no customer logo, shop photos, financing badges, or live favicon. Forms stay on-page. No published shop email.
 - **Flavia's Beauty** is an independent $500 sales unit. Generic “F” wordmark + stock salon/barber photos only — no customer logo, headshots, storefront photos, or live favicon. Dual Princeton Drive locations. Forms do not email the salon or create a LeadConnector booking. Footer uses flaviasbeautysalonandbarbershop.com only.
+- **Princeton Car Care** is an independent $500 sales unit. Generic navy/gold wordmark + stock shop imagery only — no customer logo, gallery photos, financing badges, Mitchell1 marks, or live favicon. Forms stay on-page (Vault found no shop email). About is soft-missing and is not hard-linked.

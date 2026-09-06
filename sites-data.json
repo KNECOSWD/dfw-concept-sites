@@ -17,7 +17,7 @@
   {
     "slug": "victory-pest-control",
     "name": "Victory Pest Control LLC",
-    "city": "Dallas\u2013Fort Worth, TX"
+    "city": "Dallas–Fort Worth, TX"
   },
   {
     "slug": "caremaster-building",
@@ -62,6 +62,11 @@
   {
     "slug": "flavias-beauty",
     "name": "Flavia's Beauty Salon & Barber Shop",
+    "city": "Princeton, TX"
+  },
+  {
+    "slug": "princeton-car-care",
+    "name": "Princeton Car Care",
     "city": "Princeton, TX"
   }
 ]

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 128" role="img" aria-labelledby="title">
+  <title>Princeton Car Care</title>
+  <rect width="640" height="128" fill="#043f69"/>
+  <circle cx="56" cy="64" r="38" fill="#0055a0"/>
+  <circle cx="56" cy="64" r="30" fill="none" stroke="#ffc200" stroke-width="4"/>
+  <path d="M44 48h8v14h16v8H52v14h-8V70H36v-8h8V48z" fill="#ffc200"/>
+  <rect x="70" y="46" width="10" height="36" rx="2" fill="#ffc200" transform="rotate(28 75 64)"/>
+  <text x="112" y="58" fill="#ffffff" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="1.2">PRINCETON</text>
+  <text x="112" y="92" fill="#ffc200" font-family="Segoe UI, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="4">CAR CARE</text>
+</svg>
