@@ -1257,6 +1257,7 @@ GALLERY_META = [
     ("ferraro-dds", "Daniel L. Ferraro, D.D.S.", "Grand Prairie, TX", "General dentistry"),
     ("garden-restaurant", "Garden Restaurant", "Garland, TX", "Chinese restaurant"),
     ("len-conner-law", "Law Office of Len Conner", "Irving, TX", "Divorce & family law"),
+    ("best-price-tires", "Best Price Tires & Auto", "Princeton, TX", "Tires & auto repair"),
 ]
 
 

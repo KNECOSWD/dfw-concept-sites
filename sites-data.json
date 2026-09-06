@@ -53,5 +53,10 @@
     "slug": "princeton-smiles",
     "name": "Princeton Smiles Dentistry",
     "city": "Princeton, TX"
+  },
+  {
+    "slug": "best-price-tires",
+    "name": "Best Price Tires & Auto",
+    "city": "Princeton, TX"
   }
 ]
