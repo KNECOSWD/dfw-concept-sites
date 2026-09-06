@@ -100,11 +100,14 @@
 }
 .vpc-util .btn,
 .vpc-util .btn-primary {
-  min-height: 36px;
-  min-width: 0;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.82rem;
-  border-radius: 8px;
+  min-height: 32px !important;
+  min-width: 0 !important;
+  height: 32px;
+  padding: 0.2rem 0.7rem !important;
+  font-size: 0.75rem !important;
+  line-height: 1.1;
+  font-weight: 800;
+  border-radius: 6px;
   background: #d4af37;
   color: #122033;
 }
@@ -126,13 +129,7 @@ header.site-header .header-cta {
 .hero .lede,
 .hero .eyebrow { color: #001a54; }
 .hero-ratings {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem;
-  margin: 0 0 0.55rem;
-  color: #001a54;
-  font-weight: 800;
+  display: none;
 }
 .hero-ratings a { color: #001a54; }
 .hero-bullets {
