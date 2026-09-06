@@ -209,7 +209,13 @@ main > section:not(.hero) {
     --sticky-header-offset: 5.75rem;
   }
 
-  /* Single-row sticky chrome so the first section H2 is not clipped. */
+  /* Tick mob-bottom: unstick so the section H2 cannot park behind chrome. */
+  .theme-centered-header .site-header {
+    position: relative;
+    top: auto;
+  }
+
+  /* Compact logo + Menu row (was a ~186px stacked sticky). */
   .theme-centered-header .header-centered {
     display: flex;
     flex-direction: row;
