@@ -158,4 +158,22 @@
   }
   initHeroCarousel();
 
+  (function initVideoPause() {
+    var video = document.querySelector("video.videobgframe");
+    var btn = document.querySelector("[data-video-pause]");
+    if (!video || !btn) return;
+    btn.addEventListener("click", function () {
+      if (video.paused) {
+        var play = video.play();
+        if (play && typeof play.catch === "function") play.catch(function () {});
+        btn.textContent = "Pause";
+        btn.setAttribute("aria-pressed", "false");
+      } else {
+        video.pause();
+        btn.textContent = "Play";
+        btn.setAttribute("aria-pressed", "true");
+      }
+    });
+  })();
+
 })();

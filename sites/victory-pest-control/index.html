@@ -21,7 +21,7 @@
         <img class="logo wide" src="assets/logo.jpg" alt="Victory Pest Control LLC">
       </a>
       <a class="header-phone" href="tel:+19722305526">(972) 230-5526</a>
-      <a class="btn btn-primary header-cta" href="tel:+19722305526">Call (972) 230-5526</a>
+      <a class="btn btn-primary header-cta" href="request-callback.html">Request Callback</a>
       <button class="menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     </div>
     <nav id="site-nav" class="nav nav-bar" aria-label="Primary">
@@ -61,16 +61,46 @@
           <p class="eyebrow">Dallas–Fort Worth pest control</p>
           <h1>Dallas–Fort Worth pest control.</h1>
           <p class="lede">Victory Pest Control LLC is a premier pest control company serving the Dallas–Fort Worth Metroplex. With over 30 years of experience, we provide comprehensive solutions to residential and commercial customers.</p>
+          <ul class="hero-bullets">
+            <li>Available 24 hours a day</li>
+            <li>One-year warranty</li>
+            <li>Free estimates within 24 hours</li>
+          </ul>
           <div class="actions">
-            <a class="btn btn-primary" href="tel:+19722305526">Call (972) 230-5526</a>
-            <a class="btn btn-ghost" href="residential-commercial-pest-control.html">See services</a>
+            <a class="btn btn-primary" href="tel:+19722305526">Call or Text (972) 230-5526</a>
+            <a class="btn btn-ghost" href="request-callback.html">Request Callback</a>
           </div>
         </div>
-        <aside class="panel"><strong>Call or text</strong>
+        <aside class="panel">
+          <strong>Request a callback</strong>
           <p><a href="tel:+19722305526">(972) 230-5526</a> · Mobile <a href="tel:+12145436357">(214) 543-6357</a></p>
-          <p>234 Paradise Way, Red Oak, TX 75154</p>
-          <p>Available 24 hours a day</p>
-          <div class="kpis"><div><strong>John Gaines</strong><span>Owner</span></div><div><strong>2007</strong><span>Year established</span></div><div><strong>24/7</strong><span>Availability</span></div><div><strong>Red Oak</strong><span>Office</span></div></div></aside>
+          <form class="form" id="contact-form" novalidate>
+            <label>Name <input name="name" autocomplete="name" required></label>
+            <label>Phone <input name="phone" type="tel" autocomplete="tel" required></label>
+            <label>Email <input name="email" type="email" autocomplete="email"></label>
+            <label>Service
+              <select name="service" required>
+                <option value="">Select a service</option>
+                <option>Residential and Commercial Pest Control</option>
+                <option>Nuisance Wildlife Control</option>
+                <option>Bed Bug Control</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Message <textarea name="message" rows="2" required></textarea></label>
+            <p class="form-error" id="form-error" hidden>Please enter your name, phone, and a message.</p>
+            <button class="btn btn-primary" type="submit">Request Callback</button>
+            <p class="form-status" id="form-status" tabindex="-1">Thank you. This page does not send messages automatically — please call or text so the office receives your request.</p>
+          </form>
+        </aside>
+      </div>
+    </section>
+    <section id="video">
+      <div class="wrap">
+        <h2>See our work</h2>
+        <video class="video-frame" controls playsinline poster="assets/vid-play.png">
+          <source src="assets/hero.mp4" type="video/mp4">
+        </video>
       </div>
     </section>
     <section id="about">
@@ -99,12 +129,36 @@
 <article class="card"><h3>Specials</h3><p>10% off yearly advance pay, 5% off when you schedule online, 10% referral credit, mosquito specials, and free termite inspections.</p></article></div>
       </div>
     </section>
-    <section id="video">
+    <section id="reviews">
       <div class="wrap">
-        <h2>See our work</h2>
-        <video class="video-frame" controls poster="assets/vid-play.png">
-          <source src="assets/hero.mp4" type="video/mp4">
-        </video>
+        <div class="section-head">
+          <h2>Here’s what our satisfied customers are saying</h2>
+          <p class="ratings-row" aria-label="Five star customer ratings">★★★★★ published reviews</p>
+        </div>
+        <div class="cards two">
+          <article class="card review">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <blockquote>
+              <p>“I have never used a more friendly or effective pest control company. Ken is absolutely fantastic! I will never use anyone other than this company again!”</p>
+              <footer class="muted">— Taylor Akin</footer>
+            </blockquote>
+          </article>
+          <article class="card review">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <blockquote>
+              <p>“Every person on staff here is amazing! They take such good care of their customers! Like family!”</p>
+              <footer class="muted">— Michelle Owens</footer>
+            </blockquote>
+          </article>
+          <article class="card review">
+            <div class="stars" aria-hidden="true">★★★★★</div>
+            <blockquote>
+              <p>“I recommend Victory Pest Control because I can guarantee they will fix the problem and take care of you.”</p>
+              <footer class="muted">— Camille Henderson</footer>
+            </blockquote>
+          </article>
+        </div>
+        <p class="section-cta"><a class="btn btn-ghost" href="reviews.html">Read reviews</a></p>
       </div>
     </section>
   </main>
