@@ -178,5 +178,36 @@ footer.site-footer a {
     max-width: min(62vw, 240px);
     height: auto;
   }
+
+  .page-home .hero {
+    padding-bottom: calc(6.25rem + env(safe-area-inset-bottom));
+  }
+
+  .page-home .hero .panel {
+    margin-bottom: 0.35rem;
+  }
+
+  .callbar {
+    padding: 0.4rem 0.7rem calc(0.4rem + env(safe-area-inset-bottom));
+  }
+
+  .callbar .btn {
+    min-height: 44px;
+    padding: 0.55rem 0.85rem;
+  }
+}
+
+@media (min-width: 760px) {
+  .page-home .hero-grid {
+    grid-template-columns: 1.25fr 0.95fr;
+    grid-template-areas:
+      "intro panel"
+      "follow panel";
+    align-items: start;
+  }
+
+  .hero-intro { grid-area: intro; }
+  .hero-follow { grid-area: follow; }
+  .page-home .hero-grid > .panel { grid-area: panel; align-self: stretch; }
 }
 
