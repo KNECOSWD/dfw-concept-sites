@@ -137,9 +137,9 @@
   color: #001a54;
   font-weight: 700;
 }
-.hero .actions { margin-top: 0.85rem; }
+.hero .actions { display: none; }
 .hero-call {
-  margin: 0.55rem 0 0;
+  margin: 0.85rem 0 0;
   font-weight: 800;
 }
 .hero-call a { color: #001a54; }
@@ -164,11 +164,21 @@
   min-height: 44px;
   margin-top: 0.15rem;
 }
-.hero .btn-ghost { color: #001a54; border-color: #001a54; background: rgba(255,255,255,0.72); }
+.hero .panel .btn-dark {
+  background: #001a54;
+  color: #fff;
+  border-color: #001a54;
+}
 .btn-primary,
 .header-cta {
   background: #d4af37;
   color: #122033;
+}
+.callbar .btn-dark,
+.callbar a[href="request-callback.html"] {
+  background: transparent;
+  color: #001a54;
+  border: 1px solid #d4af37;
 }
 .ratings-row {
   color: #001a54;
@@ -242,6 +252,12 @@ footer.site-footer a {
 
   .vpc-util-actions .btn {
     flex: 1 1 auto;
+  }
+}
+
+@media (min-width: 760px) {
+  header.site-header .header-cta {
+    display: none;
   }
 }
 
