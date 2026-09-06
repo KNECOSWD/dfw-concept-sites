@@ -336,15 +336,134 @@ body {
   border-radius: 4px;
 }
 
+.prose a.btn,
+.prose a.btn-primary,
+.prose a.btn-dark,
+.actions .btn-primary,
+.callbar .btn-primary {
+  color: #fff;
+  background: #990021;
+}
+
 .btn-ghost {
   background: transparent;
   border-color: #7a001a;
   color: #7a001a;
 }
 
+.prose a.btn-ghost {
+  color: #7a001a;
+  background: #fff;
+}
+
 .hero .btn-ghost {
   border-color: #fff;
   color: #fff;
+}
+
+html {
+  scroll-padding-top: 9rem;
+}
+
+.theme-bar-nav .site-header {
+  isolation: isolate;
+  z-index: 60;
+}
+
+.speake-nav {
+  position: relative;
+  z-index: 61;
+}
+
+main {
+  position: relative;
+  z-index: 0;
+  background: var(--bg);
+}
+
+.speake-hero.hero {
+  position: relative;
+  z-index: 0;
+  height: clamp(18rem, 46vw, 28rem);
+  min-height: clamp(18rem, 46vw, 28rem);
+}
+
+.speake-hero-slot {
+  display: block;
+  height: clamp(18rem, 46vw, 28rem);
+}
+
+.speake-intro,
+.speake-intro-photo,
+.speake-services {
+  position: static;
+}
+
+.speake-services {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.speake-intro-photo {
+  min-width: 0;
+  overflow: visible;
+}
+
+.speake-intro-photo .media-frame,
+.split img.media-frame,
+.about-grid img.media-frame {
+  width: 100%;
+  height: auto;
+  min-height: 14rem;
+  max-height: 26rem;
+  object-fit: cover;
+  object-position: center 40%;
+  background: #ece7e2;
+}
+
+.page-hero.speake-page-hero {
+  position: relative;
+  z-index: 0;
+  padding: 2rem 0 1.6rem;
+}
+
+.speake-nav .nav-item,
+.speake-nav .nav-sub-item {
+  position: relative;
+}
+
+.speake-nav .nav-sub,
+.speake-nav .nav-sub2 {
+  z-index: 70;
+}
+
+.speake-nav .nav-sub::before,
+.speake-nav .nav-sub2::before {
+  content: "";
+  position: absolute;
+  background: transparent;
+}
+
+@media (min-width: 900px) {
+  .speake-nav .nav-sub {
+    top: calc(100% - 1px);
+  }
+  .speake-nav .nav-sub::before {
+    left: 0;
+    right: 0;
+    top: -14px;
+    height: 14px;
+  }
+  .speake-nav .nav-sub2 {
+    top: -0.35rem;
+    left: calc(100% - 2px);
+  }
+  .speake-nav .nav-sub2::before {
+    top: 0;
+    bottom: 0;
+    left: -14px;
+    width: 14px;
+  }
 }
 
 .prose table {
@@ -431,5 +550,14 @@ body {
     min-width: 18rem;
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
     padding: 0.4rem 0;
+  }
+
+  .speake-nav .nav-sub {
+    top: calc(100% - 1px);
+  }
+
+  .speake-nav .nav-sub2 {
+    top: -0.35rem;
+    left: calc(100% - 2px);
   }
 }

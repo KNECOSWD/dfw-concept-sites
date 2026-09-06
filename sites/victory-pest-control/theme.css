@@ -72,7 +72,8 @@
 .vpc-ratings {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.55rem;
   color: #fff;
   text-decoration: none;
   font-weight: 800;
@@ -81,6 +82,15 @@
 .vpc-ratings .stars {
   color: #f7d000;
   letter-spacing: 0.06em;
+}
+.vpc-score {
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+.vpc-count {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff8d4;
 }
 .vpc-util-actions {
   display: flex;
