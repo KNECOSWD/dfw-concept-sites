@@ -1,0 +1,325 @@
+/* Princeton Car Care — live navy / blue / gold. Generic media only. */
+:root {
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --ink: #12202c;
+  --muted: #4d5d6b;
+  --brand: #043f69;
+  --brand-2: #0055a0;
+  --accent: #ffc200;
+  --hero-ink: #f4f7fa;
+  --font-display: "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+  --font: "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+  --hero-pattern: none;
+  --focus: #043f69;
+  --cta-ink: #043f69;
+  --sticky-header-offset: 4.6rem;
+  --hero-scrim: linear-gradient(108deg, rgba(70, 86, 102, 0.52) 0%, rgba(70, 86, 102, 0.22) 52%, rgba(70, 86, 102, 0.1) 100%);
+}
+
+html {
+  scroll-padding-top: var(--sticky-header-offset);
+}
+
+section[id],
+h2,
+.page-hero {
+  scroll-margin-top: var(--sticky-header-offset);
+}
+
+.brand-text { display: none; }
+.brand img.logo.wide {
+  height: 52px;
+  max-width: min(68vw, 280px);
+  background: #043f69;
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+}
+
+.header-cta {
+  background: #ffc200;
+  color: #043f69;
+  border-color: #ffc200;
+  font-weight: 800;
+}
+.header-cta:hover,
+.header-cta:focus-visible {
+  background: #ffd24a;
+  color: #043f69;
+}
+
+.btn-primary {
+  background: #ffc200;
+  color: #043f69;
+  border-color: #ffc200;
+  font-weight: 800;
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: #ffd24a;
+  color: #043f69;
+}
+
+.prose a { color: #0055a0; }
+
+/* Finished sticky chrome — white lockup + navy nav strip */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: #ffffff;
+  border-bottom: 0;
+  box-shadow: 0 1px 0 rgba(4, 63, 105, 0.12);
+}
+.nav > a,
+.nav > .nav-item > .nav-toggle {
+  color: #043f69;
+  font-weight: 700;
+}
+.nav > a:hover,
+.nav > a[aria-current="page"],
+.nav > .nav-item > .nav-toggle:hover,
+.nav > .nav-item > .nav-toggle[aria-expanded="true"] {
+  color: #0055a0;
+}
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 12px;
+}
+.nav-sub {
+  background: #fff;
+}
+.nav-sub a,
+.nav-sub .nav-toggle {
+  color: #12202c;
+  box-shadow: none;
+  min-height: 44px;
+}
+.nav-sub a:hover,
+.nav-sub .nav-toggle:hover {
+  background: #eef3f8;
+  color: #043f69;
+}
+
+@media (min-width: 980px) {
+  :root { --sticky-header-offset: 7.4rem; }
+  .header-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "brand cta"
+      "nav nav";
+    align-items: center;
+    gap: 0.45rem 1rem;
+  }
+  .brand { grid-area: brand; }
+  .header-cta { grid-area: cta; display: inline-flex; }
+  .nav {
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    background: #043f69;
+    padding: 0.2rem 0.6rem;
+    gap: 0.15rem 0.85rem;
+  }
+  .nav > a,
+  .nav > .nav-item > .nav-toggle {
+    color: #ffffff;
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+  .nav > a:hover,
+  .nav > a[aria-current="page"],
+  .nav > .nav-item > .nav-toggle:hover,
+  .nav > .nav-item > .nav-toggle[aria-expanded="true"] {
+    color: #ffc200;
+    box-shadow: inset 0 -3px 0 #ffc200;
+  }
+  .menu-btn { display: none; }
+}
+
+.nav.open {
+  background: #043f69;
+}
+.nav.open > a,
+.nav.open > .nav-item > .nav-toggle {
+  color: #ffffff;
+}
+.nav.open .nav-sub a {
+  color: #12202c;
+}
+
+/* Hero: stock shop photo + blue-gray scrim + plate under FULL heading */
+.hero {
+  --hero-scrim: linear-gradient(108deg, rgba(70, 86, 102, 0.52) 0%, rgba(70, 86, 102, 0.22) 52%, rgba(70, 86, 102, 0.1) 100%);
+  background: #3a4a5a url("assets/hero-shop.jpg") center / cover no-repeat;
+  min-height: clamp(24rem, 52vw, 34rem);
+  color: #f4f7fa;
+}
+.hero::after { opacity: 0; }
+
+.hero-heading-plate {
+  display: inline-block;
+  max-width: min(100%, 22rem);
+  width: auto;
+  background: rgba(61, 78, 94, 0.92);
+  color: #f4f7fa;
+  padding: 0.95rem 1.15rem 1.05rem;
+  border-radius: 6px;
+  box-shadow: 0 14px 32px rgba(4, 63, 105, 0.28);
+}
+.hero-heading-plate .eyebrow {
+  color: #ffc200;
+  margin: 0;
+}
+.hero-heading-plate h1 {
+  margin: 0.35rem 0 0;
+  max-width: none;
+  width: 100%;
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.hero .lede {
+  color: #f4f7fa;
+  max-width: 38rem;
+  text-shadow: 0 1px 2px rgba(18, 32, 44, 0.45);
+}
+.hero .btn-ghost {
+  color: #ffffff;
+  border-color: #ffffff;
+  background: transparent;
+}
+.hero .actions {
+  gap: 0.7rem;
+}
+
+/* No CTA pile-up — one primary + one call in hero */
+.hero .actions .btn-primary + .btn-ghost { margin: 0; }
+
+.page-hero h1 { color: #043f69; }
+.section-head h2 { color: #043f69; }
+
+.warranty-list,
+.amenity-list {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.warranty-list li,
+.amenity-list li {
+  background: #fff;
+  border: 1px solid rgba(4, 63, 105, 0.12);
+  border-radius: 12px;
+  padding: 0.75rem 0.95rem;
+  font-weight: 600;
+}
+
+.special-card .price {
+  color: #043f69;
+  font-size: 1.35rem;
+}
+.special-note {
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.stock-note {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer strong {
+  color: #ffffff;
+}
+.site-footer {
+  background: #043f69;
+}
+.site-footer .legal {
+  color: #e6eef5;
+  border-top-color: rgba(255, 255, 255, 0.28);
+}
+footer.site-footer,
+footer.site-footer * {
+  color: #ffffff;
+}
+footer.site-footer a { color: #ffffff; }
+
+.callbar {
+  background: #043f69;
+  border-top-color: rgba(255, 255, 255, 0.16);
+}
+.callbar .btn-primary {
+  background: #ffc200;
+  color: #043f69;
+}
+
+@media (max-width: 979px) {
+  header.site-header a.header-cta,
+  header.site-header .header-cta {
+    display: none !important;
+  }
+  header.site-header .brand {
+    min-width: 0;
+    max-width: calc(100% - 6.5rem);
+  }
+  .brand img.logo.wide {
+    max-width: min(62vw, 230px);
+    height: auto;
+  }
+  .page-home .hero {
+    padding-bottom: calc(5.6rem + env(safe-area-inset-bottom));
+  }
+  .callbar {
+    padding: 0.4rem 0.7rem calc(0.4rem + env(safe-area-inset-bottom));
+  }
+  .callbar .btn {
+    min-height: 44px;
+  }
+}
+
+@media (min-width: 760px) {
+  .page-home .hero-grid {
+    grid-template-columns: 1fr;
+    max-width: 40rem;
+  }
+}
+
+.photo-row {
+  display: grid;
+  gap: 0.7rem;
+}
+@media (min-width: 760px) {
+  .photo-row.two { grid-template-columns: 1fr 1fr; }
+  .photo-row.three { grid-template-columns: 1fr 1fr 1fr; }
+}
+.photo-row img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #d5dde4;
+}
+
+.recent-card h3 { margin-bottom: 0.3rem; }
+.recent-meta { color: var(--muted); font-size: 0.92rem; }
+
+.alias-note {
+  background: #e8eef4;
+  border-left: 4px solid #0055a0;
+  padding: 0.8rem 1rem;
+}
+
+.stack-block { margin-bottom: 2.2rem; }
+.warranty-list.spaced { margin-top: 1.2rem; }
