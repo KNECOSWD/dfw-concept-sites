@@ -166,11 +166,11 @@
       if (video.paused) {
         var play = video.play();
         if (play && typeof play.catch === "function") play.catch(function () {});
-        btn.textContent = "Pause";
+        btn.textContent = "Pause video";
         btn.setAttribute("aria-pressed", "false");
       } else {
         video.pause();
-        btn.textContent = "Play";
+        btn.textContent = "Play video";
         btn.setAttribute("aria-pressed", "true");
       }
     });
