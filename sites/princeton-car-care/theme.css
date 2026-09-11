@@ -77,14 +77,30 @@ h2,
   font-weight: 700;
 }
 .nav > a:hover,
+.nav > a:focus-visible,
 .nav > a[aria-current="page"],
 .nav > .nav-item > .nav-toggle:hover,
+.nav > .nav-item > .nav-toggle:focus-visible,
 .nav > .nav-item > .nav-toggle[aria-expanded="true"] {
   color: #0055a0;
 }
 .nav-item,
 .nav-sub-item {
   position: relative;
+}
+/* Residual toggle chrome: match Best Price button reset + open/hover/aria states */
+.nav-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  font: inherit;
+  font-weight: 700;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 0;
 }
 .nav-item::after {
   content: "";
@@ -174,8 +190,10 @@ h2,
     font-weight: 700;
   }
   .nav > a:hover,
+  .nav > a:focus-visible,
   .nav > a[aria-current="page"],
   .nav > .nav-item > .nav-toggle:hover,
+  .nav > .nav-item > .nav-toggle:focus-visible,
   .nav > .nav-item > .nav-toggle[aria-expanded="true"] {
     color: #ffc200;
     box-shadow: inset 0 -3px 0 #ffc200;
@@ -192,8 +210,18 @@ h2,
   background: none;
   box-shadow: none;
 }
+.nav.open > a:hover,
+.nav.open > a:focus-visible,
+.nav.open > a[aria-current="page"],
+.nav.open > .nav-item > .nav-toggle:hover,
+.nav.open > .nav-item > .nav-toggle:focus-visible,
+.nav.open > .nav-item > .nav-toggle[aria-expanded="true"] {
+  color: #ffc200;
+  box-shadow: inset 0 -3px 0 #ffc200;
+}
 .nav.open .nav-sub a {
   color: #12202c;
+  box-shadow: none;
 }
 
 @media (max-width: 979px) {
@@ -362,6 +390,13 @@ footer.site-footer a { color: #ffffff; }
   object-fit: cover;
   border-radius: 12px;
   background: #d5dde4;
+}
+
+.home-photos {
+  margin-top: 1.4rem;
+}
+.home-photos img {
+  filter: brightness(1.08) contrast(0.97);
 }
 
 .recent-card h3 { margin-bottom: 0.3rem; }
