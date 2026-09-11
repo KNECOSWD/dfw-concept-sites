@@ -128,9 +128,11 @@ h2,
   color: #043f69;
 }
 .nav-item.open > .nav-sub,
-.nav-item > .nav-toggle[aria-expanded="true"] + .nav-sub,
+.nav-item:hover > .nav-sub,
+.nav-item:focus-within > .nav-sub,
 .nav-sub-item.open > .nav-sub2,
-.nav-sub-item > .nav-toggle[aria-expanded="true"] + .nav-sub2 {
+.nav-sub-item:hover > .nav-sub2,
+.nav-sub-item:focus-within > .nav-sub2 {
   display: block;
 }
 @media (min-width: 760px) {
