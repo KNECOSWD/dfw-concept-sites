@@ -15,6 +15,19 @@
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
     });
+
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        nav.querySelectorAll(".nav-item.open, .nav-sub-item.open").forEach(function (el) {
+          el.classList.remove("open");
+        });
+        nav.querySelectorAll(".nav-toggle[aria-expanded='true']").forEach(function (el) {
+          el.setAttribute("aria-expanded", "false");
+        });
+      });
+    });
   }
 
   document.querySelectorAll(".nav-toggle").forEach(function (btn) {
@@ -67,6 +80,8 @@
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape" && nav) {
+      nav.classList.remove("open");
+      if (toggle) toggle.setAttribute("aria-expanded", "false");
       nav.querySelectorAll(".open").forEach(function (el) {
         el.classList.remove("open");
       });

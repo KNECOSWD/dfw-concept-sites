@@ -215,7 +215,7 @@ SERVICES = [
     {
         "slug": "cosmetic-dentistry",
         "title": "Cosmetic Dentistry",
-        "lead": "Cosmetic smile makeovers using published restorative options.",
+        "lead": "Cosmetic smile makeovers with veneers, crowns, and whitening.",
         "body": [
             "Using modern dental technology, we can craft cosmetic restorations that look and feel completely natural. Our porcelain veneers and crowns mimic natural tooth enamel, and our teeth whitening system gently removes discolorations to reveal brighter, whiter teeth.",
             "Dr. Kumar’s advanced services include implant dentures, braces for teens and adults, and all-porcelain veneers. As our patient, you can rely on us for complete care in an environment where you will feel relaxed and respected.",
@@ -224,7 +224,7 @@ SERVICES = [
     {
         "slug": "porcelain-veneers",
         "title": "Porcelain Veneers",
-        "lead": "All-porcelain veneers as published on the live services list.",
+        "lead": "All-porcelain veneers.",
         "body": [
             "Strong and Stain Resistant. Porcelain veneers don’t just visibly restore your smile. They support it. During the bonding process, we attach the veneers to the surface of your teeth to make your teeth stronger and more durable. Besides strengthening your smile, porcelain veneers also resist stains.",
             "Quick and Conservative. Depending on your current oral health, we can place your veneers in just two easy visits. This includes the design, preparation, and final placement. The procedure is considered conservative, because unlike other treatments, only a small amount of tooth enamel is prepared.",
@@ -252,7 +252,7 @@ SERVICES = [
     {
         "slug": "sedation-dentistry",
         "title": "Sedation Dentistry",
-        "lead": "Nitrous oxide, oral sedation, and IV sedation as published.",
+        "lead": "Nitrous oxide, oral sedation, and IV sedation.",
         "body": [
             "Sedation dentistry is used to provide a relaxing and anxiety-free experience for patients receiving dental treatment. Sedation is a process used to establish a relaxed, easy and calm state through the use of sedatives. One of the major benefits of sedation dentistry is that people often feel like their dental procedure lasts only a few minutes, when in fact it might have taken hours to perform.",
             "The term sleep dentistry is sometimes used to describe sedation dentistry, but this term is misleading. In actual fact, you do not sleep during the procedure, but because of the effects produced by the sedation medicine, you may feel sleepy.",
@@ -264,7 +264,7 @@ SERVICES = [
     {
         "slug": "laser-dentistry",
         "title": "Laser Dentistry",
-        "lead": "Published laser applications for fillings, gum treatment, and whitening.",
+        "lead": "Laser applications for fillings, gum treatment, and whitening.",
         "body": [
             "Versatility and Applications. Lasers can cure (harden) dental materials, scan teeth to detect decay, vaporize decay and prep teeth for fillings, and activate whitening gel to brighten smiles. Currently, dental applications include gum disease treatments, gum re-contouring, and related restorative care.",
         ],
@@ -307,7 +307,7 @@ SERVICES = [
     {
         "slug": "root-canals",
         "title": "Root Canals",
-        "lead": "Root canal therapy with published comfort notes.",
+        "lead": "Root canal therapy.",
         "body": [
             "Will root canal therapy hurt? Not with today’s advanced analgesics and technology. In fact, the entire process can be so comfortable that many patients doze off. Oftentimes, root canal therapy can be completed in a single appointment. We simply clean out the diseased canal, fill it, and restore the tooth.",
         ],
@@ -408,7 +408,6 @@ def write_index():
       <div class="wrap">
         <div class="section-head">
           <h2>What patients have written</h2>
-          <p>These four quotes appear on the published homepage. No extra reviews were added.</p>
         </div>
         <div class="cards two">
           <article class="card review">
@@ -490,7 +489,7 @@ def write_services():
     <section class="page-hero">
       <div class="wrap">
         <h1>Dental services</h1>
-        <p class="lede">Put your best smile forward. Dr. Kumar’s published care includes implant dentures, braces for teens and adults, and all-porcelain veneers — plus the treatments listed below.</p>
+        <p class="lede">Put your best smile forward. Dr. Kumar’s care includes implant dentures, braces for teens and adults, and all-porcelain veneers — plus the treatments listed below.</p>
         <div class="actions">
           <a class="btn btn-primary" href="tel:{PHONE_TEL}">Call {PHONE_DISPLAY}</a>
         </div>
@@ -578,7 +577,7 @@ def write_new_patients():
         <p>For your convenience, we accept most insurance plans and file all insurance claims in our office. We understand that dental insurance can be confusing, so we do everything in our power to make sure you make an informed decision about your dental health care.</p>
         <h2>Payments</h2>
         <p>We accept American Express, MasterCard, Visa, and Discover. After reviewing your fees beyond insurance, we will create a custom payment tailored to your budget.</p>
-        <p class="note">Published “view financing options” and patient-form download links on the live site currently resolve to soft-404 pages, so they are not linked here. Ask the office by phone about current payment arrangements.</p>
+        <p class="note">Call (972) 736-3888 to ask about current payment arrangements and new-patient paperwork.</p>
       </div>
     </section>
 """
@@ -595,7 +594,7 @@ def write_team():
     <section class="page-hero">
       <div class="wrap">
         <h1>Meet our team</h1>
-        <p class="lede">Published biographies from the live team page. This preview uses names and text only — no doctor photos or staff headshots.</p>
+        <p class="lede">Dr. Vinay Kumar, Dr. Alekhya Patagarla, and the Princeton office team.</p>
         <div class="actions">
           <a class="btn btn-primary" href="tel:{PHONE_TEL}">Call {PHONE_DISPLAY}</a>
         </div>
