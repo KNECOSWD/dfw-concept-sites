@@ -11,6 +11,9 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"AutoRepair","name":"Princeton Car Care","url":"https://princetoncarcare.com/","telephone":"+19727360202","address":{"@type":"PostalAddress","streetAddress":"2170 W Princeton Dr","addressLocality":"Princeton","addressRegion":"TX","postalCode":"75407","addressCountry":"US"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"}]}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -32,8 +35,8 @@
         <a href="reviews.html">Reviews</a>
         <a href="contact.html">Contact</a>
         <div class="nav-item">
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-current="page">Vehicles Serviced</button>
-          <ul class="nav-sub">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="vehicles-sub" aria-current="page">Vehicles Serviced</button>
+          <ul class="nav-sub" id="vehicles-sub">
             <li><a href="vehicles-serviced.html">Vehicles Serviced</a></li>
             <li><a href="audi.html">Audi</a></li>
             <li><a href="bmw.html">BMW</a></li>

@@ -33,6 +33,7 @@
   document.querySelectorAll(".nav-toggle").forEach(function (btn) {
     btn.addEventListener("click", function (event) {
       event.preventDefault();
+      event.stopPropagation();
       var item = btn.closest(".nav-item, .nav-sub-item");
       if (!item) return;
       var willOpen = !item.classList.contains("open");
