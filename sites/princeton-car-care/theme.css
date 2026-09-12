@@ -361,10 +361,19 @@ footer.site-footer a { color: #ffffff; }
   header.site-header .brand {
     min-width: 0;
     max-width: calc(100% - 6.5rem);
+    flex: 1 1 auto;
   }
+  /* SVG wordmark has no PNG intrinsic size — never use height:auto alone
+     (that collapsed the mark to a ~13×6 blue dash on mobile). */
   .brand img.logo.wide {
-    max-width: min(62vw, 230px);
-    height: auto;
+    display: block;
+    width: min(62vw, 230px);
+    height: 48px;
+    max-width: 100%;
+    min-width: 168px;
+    min-height: 40px;
+    object-fit: contain;
+    object-position: left center;
   }
   .page-home .hero {
     padding-bottom: calc(5.6rem + env(safe-area-inset-bottom));
